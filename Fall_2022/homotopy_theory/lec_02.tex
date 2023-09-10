@@ -1,0 +1,100 @@
+\documentclass[12pt,class=article,crop=false]{standalone} 
+\input{../preamble.tex}
+
+\begin{document}
+How does $ [X, Y]_0$ depend on the base point?
+\begin{defn}
+Given $ f_0, f_1: X \to Y$ and a path $ u : I \to Y$, if there is a homotopy $ H: X \times I \to Y$ s.t.\ $ H(x,0) = f_0(x)$, $ H(x,1) = f_1(x)$, and $ H(x_0,t) = u(t)$, then we say $ H$ is a  \allbold{homotopy along $ u$}, denote $ f_0 \simeq_u f_1$. 
+\end{defn}
+
+If $ f_0, f_1$ are base-point preserving, then $ u$ is a loop in  $ Y$. To be able to say anything about moving base point we read  $ (X,x_0)$ to be ``non-degenerate" by which we mean that  $ (X,x_0)$ is an \allbold{NDR-pair} (neighborhood deformation retract).
+
+\begin{defn}
+$ A \subseteq X$ is an \allbold{NDR-pair} if there are maps $ u: X \to I$ and $ h:X \times I \to X$ s.t.\
+\begin{enumerate}[label=(\arabic*)]
+	\item $ A= u ^{-1}(0)$;
+	\item $ h(x,0) = x \ \forall \ x \in X$;
+	\item $ h(a,t) = a \ \forall \ a \in A$;
+	\item $ h(x,1) \in A \ \forall \ x \in X$ with $ u(x)<1$.
+\end{enumerate}
+\end{defn}
+Note: $ u^{-1}([0,1))$ is an open neighborhood of $ A \in X$ that retracts to $ A$.
+
+\begin{eg}[NDR-pairs]
+We have
+\begin{enumerate}[label=(\arabic*)]
+	\item sub CW-complex of a CW-complex (think that sphere can contract to boundary if we remove a point).
+	\item submanifold of a manifold.
+\end{enumerate}
+\end{eg}
+
+\begin{lem}
+If $ (X,A)$ is an NDR-pair, then  $ (X \times \{0\}) \cup  (A \times I) $ is a retract of $ X \times I$.
+\end{lem}
+
+\begin{proof}
+Define $ R: X \times I \to (X \times \{0\}) \cup (A \times I), (x,t) \mapsto \begin{cases}
+	(x,t) & x \in A \text{ or } t=0\\
+	(h(x,1),t - u(x) ) & t \geq u(x), t>0\\
+	(h(x,\frac{t}{u(x)}),0) & u(x) \geq t \text{ and } u(x)>0 
+\end{cases} $
+Exercise: this is a retract.
+\end{proof}
+
+\begin{lem}
+If $ (X,x_0)$ is an NDR-pair and  $ f_0: X \to Y$, $ f_0(x_0)=y_0$, $ \gamma: I \to Y$ path from $ y_0$ to $ y$, then there exists  $ f_1: X \to Y$ s.t.\  $ f_1(x_0) = y_1$ and $ f_0 \simeq_\gamma f_1$. We denote $ f_1$ by $ \gamma \cdot f_0$ (well-defined once $ R$ from previous lemma is fixed).
+\end{lem}
+\begin{proof}
+Let $ R$ be from previous lemma for  $ (X,x_0)$. Let $ H : X \times I \to Y$ to be
+\begin{align*}
+	H(x,t) = \begin{cases}
+		f_0(R(x,t)) & R(x,t) \in X \times \{0\} \\
+		\gamma(R(x,t)) & R(x,t) \in A \times I\\
+	\end{cases}
+\end{align*}
+	Let $ f_1(x) = H(x,1)$. Then $ H$ yields  $ f_0 \simeq _{ \gamma} f_1$.
+\end{proof}
+
+\begin{lem}
+Suppose $  f_0,f_1,f_2: X \to Y, (X,x_0)$ an NDR pair if  $ f_0 \simeq _{ \gamma} f_1, f_0 \simeq _{ \gamma'} f_2$ with $ \gamma \simeq \gamma'$ rel boundary, then $ f_1 \simeq f_2$ rel base point.
+\end{lem}
+\begin{proof}
+Since $ (X,x_0)$ is an NDR-pair, we can show that $ (X \times I, (X \times \{0,1\} \cup \{x_0\} \times I ))$ is also an NDR-pair. Exercise: show this ($ \epsilon$ tubes retract, just need to be compatible on overlaps). So lemma yields a retraction $ R: (X \times I) \times I \to ((X \times I) \times \{0\}) \cup ((X \times \{0,1\}) \cup (\{x_0\} \times I  )) \times I$.
+
+Let $ H$ be homotopy  $ f_0 \simeq_{ \gamma} f_1$, $ G$ be homotopy  $ f_0 \simeq_{ \gamma'} f_2$, $ K$ be homotopy  $ \gamma \simeq \gamma'$ rel boundary. Let $ \overline{R} = () \circ R$. Check $ \overline{R}|_{ X \times I \times \{1\} }$ is a homotopy $ f_1$ to $ f_2$ rel base point.
+\end{proof}
+
+\begin{lem}
+Suppose $ f_0,f_1, f_2 : X \to Y$, $ f_0 \simeq_{ \gamma_1} f_1$, $ f1 \simeq_{ \gamma_2} f_2$ with $ \gamma_1(1) = \gamma_2(0)$, then $ f_0 \simeq_{ \gamma_1 \times \gamma_2} f_2$.
+\end{lem}
+\begin{proof}
+Concatenate homotopies, $ H $ for $ f_0 \simeq _{ \gamma_1} f_1$ and $ G$ for  $ f_1 \simeq _{ \gamma_2} f_2$.
+\end{proof}
+
+\begin{thm}
+	If $ x_0$ is a non-degenerate base point of $ X$, then  $ \pi_1(Y,y_0)$ acts on $ [X, Y]_0$. Moreover, $ [X, Y]$ is the quotient of $ [X, Y]_0$ by the $ \pi_1(Y,y_0)$ action if $ Y$ is path-connected.
+\end{thm}
+
+\begin{proof}
+	Take $ [ \gamma] \in \pi_1(Y,y_0), [f] \in [X, Y]_0$, lemma yields $ \gamma \cdot f: X \to Y$ and $ [ \gamma \cdot f]$ clearly $ [X, Y]_0$.
+	\begin{claim}
+		$ [ \gamma \cdot f]$ is well-defined. 
+	\end{claim}
+		If $ f,g \in [f]$ so $ f \simeq g$ rel base point. By lemma, we get $ f,g$  s.t.\ $ f \simeq _{ \gamma} f_1$ and $ g \simeq _{ \gamma} g_1$. Thus $ f_1 \simeq _{ \gamma ^{-1}} f \simeq g \simeq _{ \gamma} g_1$. Lemma says $ f_1 \simeq \gamma^{-1} \times \text{const} \times \gamma g_1 \simeq \text{const}  $. So Lemma 11 says $ f_1 \simeq g_1$ rel base points.
+
+		That is, $ [ \gamma \cdot f]$ does not depend on choice of $ f$. By lemma 11,  $ [ \gamma \cdot f]$ does not depend on $ \gamma$. Let $ \Phi: [X, Y]_0 \to [X, Y]$ by just forgetting base point. Clearly $ \Phi( [ \gamma] \cdot [ f]) = \Phi([f])$. Hence we obtain an induced map
+		\begin{align*}
+			\Phi: [X, Y]_0 / \pi_1(Y,y_0) \to [X, Y].
+		\end{align*}
+\end{proof}
+If $ \Phi([f]) = \Phi([g])$, then let $ H$ be the free homotopy from  $ f$ to  $ g$. Set  $ \gamma(t) = H(x_0,t)$. Both $ f,g$ take  $ x_0$ to $ y_0$ so $ [ \gamma] \in \pi_1(Y,y_0)$ and $ [ \gamma \cdot f] = [g]$. So $ \Phi$ is injective.
+
+$ \Phi$ is surjective by lemma 10 if $ Y$ is path-connected.
+
+\begin{coro}
+A based map is null-homotopic iff it is based null-homotopic.
+\end{coro}
+\begin{proof}
+Based null-homotopy clearly implies null-homotopic. If $ f \simeq e$, WLOG $ e(x)=y_0$, by homotopy $ H$, let  $ \gamma(t) = H(x_0,t)$ so $ f \simeq _{ \gamma} e$ so $ e \simeq _{ \gamma ^{-1}} f$. By lemma 11, $ f \simeq e$ rel base point.
+\end{proof}
+\end{document}

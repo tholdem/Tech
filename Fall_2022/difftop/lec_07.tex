@@ -1,0 +1,63 @@
+\documentclass[12pt,class=article,crop=false]{standalone} 
+\input{../preamble.tex}
+
+\begin{document}
+\section{Transversality}
+
+Motivation: we want to prove the following theorem but have trouble at tangency.
+\begin{thm}[Whitney]
+If $ X \subseteq \rr^{n}$ is any closed set, there exists a smooth function $ f: \rr^{n} \to \rr$ with $ X= f^{-1}(0)$. Then the graph $ M = \{(x,f(x)): x \in \rr^{n}\} $ is a submanifold of $ \rr^{n+1}$. 
+\end{thm}
+
+\begin{defn}
+Let $ X,Y \subseteq Z$ be submanifolds of $ Z$. We say $ X,Y$ are  \allbold{transversal}, denoted $ X \pitchfork Y$ if
+ \begin{align*}
+	T_p X + T_p Y = T_p Z \ \forall \ p \in X \cap Y.
+\end{align*}
+\end{defn}
+
+\begin{remark}
+If $ X \cap Y = \O$, then $ X,Y$ are trivially transversal.
+
+If $ \dim X + \dim Y < \dim Z$ and $ X \pitchfork Y$, then  $ X \cap Y = \O$.
+\end{remark}
+
+The main results are
+\begin{enumerate}[label=(\arabic*)]
+	\item $ X \pitchfork Y$ and $ X \cap Y = \O$, then $ X \cap Y$ is a manifold. Moreover, $ \dim (X \cap Y) = \dim X + \dim Y - \dim Z$.
+	\item Any pair of submanifold becomes transversal after a perturbation (we say they assume general position).
+	\item If $ \dim X + \dim Y = \dim Z$, and $ X \pitchfork Y$, then $ X \cap Y$ is a discrete set. If $ X,Y$ are compact, then  $ \#(X \cap Y)$ is finite, called the  \allbold{intersection number}. This number mod 2 is invariant under homotopy. 
+\end{enumerate}
+
+Application: general Jordan curve theorem. 
+
+\begin{defn}
+Let $ Y \subseteq Z$, $ f: X \to Z$. Then we say f is \allbold{transversal}  to $ Y$,  $ f \pitchfork Y$, if
+\begin{align*}
+	df_p(T_p X) + T_{f(p)} Y = T_{f(p)} Z \ \forall \ p \in f^{-1}(Y).
+\end{align*}
+\end{defn}
+
+Note that $ X$ is a submanifold of  $ Y$ if there exists an embedding $ f: X' \to Y$  s.t.\ $ f(X') = X$, this is an immersion and a homemorphism. Rewrite $ X=X'$ and consider $ i: X \to Z$ the inclusion map. The rank theorem says that 
+
+Locally any submanifold is the inverse image of 0 via a submersion. 
+
+To prove (1), since $ X \cap Y = i ^{-1}(Y)$, it is equivalent to prove the following:
+\begin{thm}
+If $ f: X \to Z$ is transversal to $ Y \subseteq Z$, then  $ f^{-1}(Y)$ is a manifold.
+\end{thm}
+\begin{proof}
+Locally $ Y = g ^{-1}(0)$ where $ g$ is a submersion. Then
+\begin{align*}
+	f^{-1}(Y) &= f^{-1}(g^{-1}(0)) \\
+	&= (g \circ f)^{-1}(0)
+\end{align*}
+It suffices to show that 0 is a regular value of $ g \circ f$. Notice that $ \ker dg_{f(p)} = T_{f(p)} Y$.
+\begin{align*}
+	dg _{f(p)} \circ df_{p}(T_p X) + d g_{f(p)} (T_pY)  &= d g_{f(p)} (T_p Z) \\
+	dg _{f(p)} \circ df_{p}(T_p X)   &= d g_{f(p)} (T_p Z) 
+\end{align*}
+Since $ g$ is a submersion, we show that  $ d_{g \circ f}$ has full rank.
+\end{proof}
+
+\end{document}

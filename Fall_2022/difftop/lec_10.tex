@@ -1,0 +1,42 @@
+\documentclass[12pt,class=article,crop=false]{standalone} 
+\input{../preamble.tex}
+
+\begin{document}
+\section{Transversality}
+\begin{thm}
+
+\end{thm}
+\begin{proof}
+\begin{claim}
+If $ s$ is a regular value of  $ \pi$. then  $ f_s \pitchfork Z$.
+\end{claim}
+Let $ s$ be a regular value of  $ \pi$. Then $ F^{-1}(Z) \pitchfork X \times \{s\} $. Let $ p \in F^{-1}(Z) \cap X \times \{s\} $. Then
+\begin{align*}
+	T_pF^{-1}(Z) + T_p (X \times \{s\} ) &= T_p(X \times S)\\
+	T_{f_s(p)} Z + (df_s)_p(T_p X) &= T_{F(p,s)} Y && \text{ apply } dF_p 
+\end{align*}
+By Sard's, almost every $ s \in S$ is a regular value, so we are done.
+similar to homework question.
+\end{proof}
+
+Applications of intersection theory mod 2"
+\begin{eg}[Jordan-Brouwer Separation Theorem]
+Let $ X \subseteq \rr^{n+1}$ be a closed hypersurface, then $ \rr^{n+1} - X^{n}$ is not connected.
+\end{eg}
+\begin{proof}
+Suppose $ \rr^{n+1} - X^{n}$ is connected, then it is path-connected. Then using local coordinate we can find an arc, one inside the surface and one outside, intersecting once. By path-connected, we can complete a loop with this arc without intersection so intersection number is 1. But we can pull the loop apart and have 0 intersection, a contradiction. 
+
+Moreover, $ U_{ \epsilon}(X) - X$ has 2 components. We wish to show these two components are all the components of $ \rr^{n+1} - X^{n}$. Take closure and see intersection.
+\end{proof}
+
+A consequence of $ X= \partial W$.
+\begin{coro}[No-Retract]
+Suppose there exists a retraction $ r: X \to \partial X$. Let $ i: \partial X \to \partial X$ be the identity. Then $ r$ is the extension of  $ i$ to  $ X$. Then  $ I_2(i, \{x\} ) = 0$, a contradiction that it should be 1 since $ i ^{-1}(\{x\}) =1 $.
+\end{coro}
+
+\begin{remark}
+Locally constant map is globally constant if it is connected because $ f^{-1}(c)$ is clopen so it is $ X$.
+\end{remark}
+
+
+\end{document}

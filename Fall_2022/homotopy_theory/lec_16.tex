@@ -1,0 +1,63 @@
+\documentclass[12pt,class=article,crop=false]{standalone} 
+\input{../preamble.tex}
+
+\begin{document}
+\section{Homotopy Groups of Spheres}
+\begin{thm}
+$ \pi_4(S^3) \cong \zz /2$.
+\end{thm}
+\begin{remark}
+Recall $ \pi_3(S^2) \cong \zz$ so $ \pi_{n+1}(S^{n})$ is not fixed. So we need new ideas for this computations.
+\end{remark}
+
+\begin{defn}
+
+If $ X$ is a CW complex, then for each $ n$ there exists a sequence of fibrations  $ K(\pi_q(X),q) \to Y_q \xrightarrow{ p_q}  Y_{q-1}$ for $ q=1,\ldots,n$ and maps $f_q: X \to Y_q $ s.t.\ 
+\begin{enumerate}[label=(\arabic*)]
+	\item $ \pi_k(X) \xrightarrow{ (f_q)_*} \pi_k(Y_q) $ is an isomorphism for all $ k\leq q$.
+	\item  $ \pi_k(Y_q) = 0 \ \forall \ k > q$.
+	\item the diagram commutes.
+\end{enumerate}
+This is called a \allbold{Postnikov tower} and the $ Y_q$ are called  \allbold{Postnikov approximation of $ X$}.  
+\end{defn}
+\begin{lem}
+For each $ n$, every CW complex has a Postnikov tower.
+\end{lem}
+
+\begin{lem}
+$ \pi_q(S^3) \cong H_{q+1}(Y_{q-1})$ for $ q > 3$ where  $ Y_{q-1}$ is the $ (q-1)$st term in Postnikov tower for $ S^3$.
+\end{lem}
+
+\begin{coro}
+$ \pi_4(S^3) = H_5(K(\zz,3))$.
+\end{coro}
+\begin{proof}
+\begin{align*}
+	\pi_4(S^3) = H_5(Y_3) = H_5(K(\pi_3(S^3),3)) = H_5(K(\zz,3)).
+\end{align*}
+\end{proof}
+
+\begin{thm}
+$ H_5(K(\zz,3)) \cong \zz /2$.
+\end{thm}
+\begin{thm}
+$ \pi_5(S^3) \cong \zz /2$.
+\end{thm}
+
+The same trick doesn't work here. Given a CW complex $ X$, we can construct a sequence of fibrations  s.t.\ 
+\begin{enumerate}[label=(\arabic*)]
+	\item $ X_n$ is $ n$-connected,  \emph{i.e.} $ \pi_k(X_n) =0 \ \forall \ k \leq n$.
+	\item $ \pi_k(X_n) \cong \pi_k(X) \ \forall \ k > n$.
+	\item $ X_n \to X_{n-1}$ has fiber $ K(\pi_n(X),n-1)$. 
+\end{enumerate}
+This is called the \allbold{Whitehead tower} of $ X$. It generalizes the universal cover and this is kind of dual to Portnikov tower. 
+
+\begin{lem}
+Every CW complex has a Whitehead tower.
+\end{lem}
+\begin{lem}
+$ H_4 (K(\zz /2. 3)) =0$ and $ H_5(K(\zz /2,3)) = \zz /2$.
+\end{lem}
+
+
+\end{document}

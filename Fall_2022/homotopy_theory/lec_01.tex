@@ -1,0 +1,350 @@
+\documentclass[12pt,class=article,crop=false]{standalone} 
+\input{../preamble.tex}
+
+\begin{document}
+\section{Homotopy Theory}
+\subsection{Homotopy classes of maps}
+Recall homotopy, denoted by $ \simeq$.
+\begin{eg}
+	$ X$ is any space, $ f: X \to I:=[0,1]$ is homotopic to the constant map $ g(x) =0$ as $ I$ is convex. The homotopy is the straight-line homotopy $ \Phi(x,t)=(1-t)f(x)$.
+\end{eg}
+
+Let $ C(X,Y) = \{ \text{continuous functions from } X \to Y \}$. Denote $ [X,Y] = C(X,Y) /\simeq $, so homotopic maps are identified.
+
+\begin{eg}
+	$ [X,I] = \{g(x)=0\}$.
+\end{eg}
+
+In a pointed space, denote $ [X,Y]_0$ to be the homotopy classes of morphisms from pointed spaces  $ (X,x_0)$ to $(Y,y_0) $. If $ f:X \to X'$ a continuous function, then this induces a functor $ f^* : [X',Y]_0 \to [X,Y]_0$ by precomposition. Likewise for postcomposition.
+
+We have the covariant functor $ [X, - ]: \textsf{Top} \to \textsf{Set} $ and the contravariant functor $ [-,X]: \textsf{ Top} \to \textsf{Set}$.
+
+Recall homotopy equivalence, also denoted by $ \simeq$.
+
+\begin{eg}
+	$ X = S^{1}$ and $ Y=S^{1} \times [0,1]$. These are homotopy equivalent. We have $ f: X \to Y, \theta \mapsto (\theta,0)$ and $ g:Y \to X, (\theta,t) \mapsto \theta$.
+\end{eg}
+\begin{eg}
+$ X,Y$ are any spaces, morphism $ f: X \to Y$. The \allbold{mapping cylinder} is
+\begin{align*}
+	C_f= ((X \times I) \cup Y) / \sim
+\end{align*}
+where $ (x,0) \sim f(x)$.
+
+This is homotopy equivalent to  $ Y$. Exercise. 
+
+Show $ \pi: C_f \to Y, (x,t) \in X \times [0,1] \to f(x), y \in Y \mapsto y$ has homotopy inverse. Note there is an inclusion $ j : X \to C_f, x \mapsto (x,1)$.
+
+Show $ j \cong  i \circ f$.
+
+Moral: any map is an inclusion up to homotopy.
+\end{eg}
+
+\begin{defn}
+A pointed space $ (Y,y_0)$ is called an \allbold{H-space} if there exists maps $ \mu: Y \times Y \to Y$ and $ \nu: Y \to Y$ s.t.\ 
+\begin{enumerate}[label=(\arabic*)]
+	\item for $ i_1: y \mapsto (y,y_0)$ and $ i_2: y\mapsto (y_0,y)$, we have
+		\[
+\mu \circ i_1 \simeq  \text{id}_Y, \mu \circ i_2 \simeq  \text{id}_Y 
+.\] 
+\item The compositions
+\begin{align*}
+	Y \times (Y\times Y) \xrightarrow{ \text{id}_Y \times \mu } Y \times Y \xrightarrow{ \mu} Y  
+\end{align*}
+and
+\begin{align*}
+	(Y \times Y) \times Y \xrightarrow{ \mu \times \text{id}_Y } Y \times Y \xrightarrow{ \mu}  Y  
+\end{align*}
+are homotopic.
+\item The composition
+\begin{align*}
+	Y \xrightarrow{ \text{id}_Y  \times \nu} Y \times Y \xrightarrow{ \mu} Y  
+\end{align*}
+\begin{align*}
+	Y \xrightarrow{ \nu \times \text{id}_Y } \times Y \times Y \xrightarrow{ \mu}Y  
+\end{align*}
+are homotopic to constant maps.
+\end{enumerate}
+\end{defn}
+\begin{remark}
+This definition should remind us of group axioms: identity, association, and inverses. We see that $ \mu$ hints at multiplication whereas $ \nu$ hints at inversion.
+\end{remark}
+\begin{eg}
+If $ G$ is a topological group (group with topology  s.t.\ multiplication and inverses are continuous maps).
+
+Exercise: $ (G, e)$ is an H-space.
+\end{eg}
+
+\begin{thm}
+	The set $ [X,Y]_0$ has a natural group structure for all pointed spaces X  iff $ Y$ is an H-space.
+\end{thm}
+Natural means if $ f: X \to X'$, then the induced map $ f^* : [X',Y]_0 \to [X,Y]_0$ is a homomorphism. That is, $ [-,Y]_0$ is a functor.
+
+\begin{proof}
+	$ (\impliedby)$: suppose $ Y$ is an H-space. Given  $ (X,x_0)$ and notice $ \mu : Y \times Y \to Y$ induces $ \mu^* : [X,Y\times Y]_0 \to [X,Y]_0$. There is also a canonical function
+	\begin{align*}
+	\phi:	[X,Y]_0 \times [X,Y]_0 \to [X, Y\times Y]_0, ([f],[g]) \mapsto [f \times g].
+	\end{align*}
+	Exercise: $ \phi$ is well-defined and a bijection. Define multiplication
+	\begin{align*}
+		m=\mu^*  \circ \phi : [X,Y]_0 \times [X,Y]_0 \to [X,Y]_0.
+	\end{align*}
+	This is clearly well-defined since $ \phi$ is well-defined and post-composing homotopic functions are still homotopic. Denote $ m([f],[g])$ by  $ [f] \cdot [g]$. Denote $ \nu_x ([f])$ by $ [f]^{-1}$. Let $ e(x)=y_0$ be the constant map. Now we check the group axioms:
+
+	Identity: Tracking the representatives of $ [e] \cdot [g]$ yields
+	\begin{align*}
+		\mu(y_0,g(x)) &= (\mu \circ i_1) \circ g(x) \\
+		& \cong \text{id}_Y \circ g(x) =g(x) 
+	\end{align*}
+	The other direction follows from using $ i_2$. Thus $ [e] \cdot  [g]= [g] = [g] \cdot  [e]$.
+
+	Associativity: Given $ [f], [g], [h] \in [X, Y]_0$, we see that
+	\begin{align*}
+		([f] \cdot [g]) \cdot [h] &= \mu^* \circ \phi ([f],[g]) \cdot [h] \\
+					  &= \mu^* ([f \times g]) \cdot [h]\\
+					  &= [\mu \circ (f\times g)] \cdot [h] \\
+					  &= [\mu \circ ( (\mu \circ (f \times g)) \times h)] \\
+					  &= [\mu \circ (\mu \times \text{id}_{ Y}) \circ f\times g \times h] \\
+					  &= [\mu \circ (\text{id}_{ Y}\times \mu) \circ f \times g \times h] && \text{ condition 2} \\
+					  &= [\mu \circ (f \times (\mu \circ (g \times h)))] \\
+					  &= [f] \cdot ([g] \cdot  [h]) 
+	\end{align*}
+	Inverse: Given $ [f] \in [X, Y]_0$, we have
+	\begin{align*}
+		[f] \cdot [f]^{-1} &= [\mu \circ (f \times (\nu \circ f))] \\
+				   &= [\mu \circ (\text{id}_{ Y} \times \nu) \circ f] \\
+				   &= [e]
+	\end{align*}
+	The other direction follows similarly.
+
+	$ (\implies)$: Suppose $ [X,Y]_0$ has a natural group structure for all pointed spaces $ X$.  Take $ X = Y \times Y$, and $ p_1,p_2$ be the projections onto 1st and 2nd factors respectively. This yields $ [p_1], [p_2] \in [Y\times Y,Y]_0$. Let $ \mu$ be a representative of $ [p_1] \cdot [p_2]$. Let $\nu$ be a representative of $ [\text{id}_Y ]^{-1} $.
+
+	Now check condition 1. $ i_1: Y \to Y \times Y, y \mapsto  (y,y_0)$ induces $ i_1^* $ so that
+	\begin{align*}
+		i_1^* ([p_1]) &= [p_1 \circ i_1] = [ \text{id}_Y ]\\
+		i_1^* ([p_2]) &= [e]. 
+	\end{align*}
+	Therefore,
+	\begin{align*}
+		i_1^* ([\mu]) &=i^* ([p_1] \cdot [p_2]) \\ 
+			      &= [ \text{id}_Y ] \cdot [ e].
+	\end{align*}
+	Since $ [e]$ is the identity on $ [Y,Y]_0$, $ [\mu \circ i_1] = [\text{ id}_Y ]$.
+
+	2 and 3 are similar so left as exercises.
+\end{proof}
+
+\begin{defn}
+If $ (Y,y_0)$ is a point space, then the \allbold{loop space} of $ Y$ is
+ \begin{align*}
+	 \Omega(Y) = C^{0}((I, \{0,1\} ),(Y,y_0)) = C^{0}((S^{1},x_0),(Y,y_0)).
+\end{align*}
+\end{defn}
+
+\begin{lem}
+$ \Omega(Y)$ is an H-space.
+\end{lem}
+\begin{proof}
+Same as the proof for fundamental group. 
+\end{proof}
+
+\begin{defn}
+Given pointed spaces $ (X,x_0), (Y,y_0)$, the \allbold{wedge product} is $ X \vee Y = (X \times \{y_0\}) \cup (\{x_0\}  \times Y) \subseteq X \times Y$ with base point $ (x_0,y_0)$. 
+\end{defn}
+
+\begin{defn}
+A pointed space $ (Y,y_0)$ is an \allbold{H'-space} if there are maps $ \mu: Y \to Y \vee Y$ and $ \nu: Y \to Y$ s.t.\ 
+\begin{enumerate}[label=(\arabic*)]
+	\item $ p_1 \circ \mu \simeq \text{id}_{ Y}$ and $ p_2 \circ \mu \simeq \text{id}_{ Y}$ where $ p_1, p_2 : Y \vee Y \to Y$ are projections onto the 1st and 2nd factors.
+	\item The compositions
+		\begin{align*}
+			Y \xrightarrow{ \mu} Y \vee Y \xrightarrow{ \text{id}_{ Y} \vee  \mu} Y \vee (Y\vee Y)
+		\end{align*}
+		and
+		\begin{align*}
+			Y \xrightarrow{ \mu} Y \vee Y \xrightarrow{ \mu \vee \text{id}_{ Y}} (Y \vee Y) \vee Y 
+		\end{align*}
+		are homotopic.
+	\item The compositions
+		\begin{align*}
+			Y \xrightarrow{ \mu} Y \vee Y \xrightarrow{\nu \vee  \text{id}_{ Y}}  Y
+		\end{align*}
+		and
+		\begin{align*}
+			Y \xrightarrow{ \mu} Y \vee Y \xrightarrow{ \text{id}_{ Y} \vee \nu} Y  
+		\end{align*}
+		are homotopic to the constant map.
+\end{enumerate}
+\end{defn}
+
+\begin{thm}
+	The set $ [Y, X]_0$ has a natural group structure for all $ (X,x_0)$ iff $ Y$ is an H'-space.
+\end{thm}
+\begin{proof}
+Exercise.
+
+$ (\impliedby):$ suppose $ Y$ is a H'-space, then we have $\mu: Y \to Y \vee Y$ and $ \nu: Y \to Y$ that satisfy all the three conditions. 
+\end{proof}
+
+\begin{defn}
+Given a space $ X$, its  \allbold{suspension} is
+\begin{align*}
+	\Sigma X = X \times I / \sim,
+\end{align*}
+where $ X \times \{0\} $ and $ X \times \{1\} $ are collapsed to two distinct points.
+\end{defn}
+\begin{remark}
+	If $ (X,x_0)$ is pointed, then $ \sum X = X \times I / \{X \times \{0\} , X \times \{1\} , \{x_0\} \times I \} $ with base point $ [\{x_0\}] $.
+\end{remark}
+
+\begin{eg}
+Collapsing the two bases of a cylinder yields
+\begin{enumerate}[label=(\arabic*)]
+	\item $ S^{n} = \Sigma S^{n-1}$.
+	\item $ (S^{n},x_0)= \Sigma (S^{n-1},x_0)$.
+
+		Exercise: if $ M$ is any manifold and  $ C$ is an arc in  $ M$, then prove  $ M /C$ is homeomorphic to  $ M$. (hint: prove it for $ n$-disk.)
+\end{enumerate}
+\end{eg}
+
+\begin{lem}
+For any pointed space $ (Y,y_0)$, its suspension $ \Sigma Y$ is an  H'-space.
+\end{lem}
+\begin{proof}
+Define $ \mu: \Sigma Y \to \Sigma Y \vee \Sigma Y$. See ipad. Exercise.
+\end{proof}
+
+\begin{thm}
+	If $ X$ is an  H'-space and  $ Y$ is an H-space, then the corresponding binary operations on $ [X, Y]_0$ agree and are commutative.
+\end{thm}
+\begin{proof}
+	Denote the binary operation from H'-space by $ +$ and the other by  $ \cdot $. Let $ f_1, f_2$ be maps representing elements in $ [X, Y]_0$. See ipad for diagram. Let $ \Delta: X \to X \times X$ be the diagonal map, $ \nabla : Y \times Y \to Y, $Note that
+	\begin{align*}
+		[f_1] \cdot  [f_2] = [\mu_Y \circ (f_1 \times f_2) \circ \Delta],
+		[f_1]+[f_2] =[\nabla \circ (f_1 \vee f_2) \circ \mu_X].
+	\end{align*}
+Condition 1 of H'-space says $ i \circ \mu_X \simeq \Delta$. Condition 1 of H-space says $ \mu_Y \circ j \simeq \nabla $. Now $ (x,x_0) \in X \vee X$, then $ i(x,x_0) = (x,x_0) \in X \times X$. So
+\begin{align*}
+	(f_1 \times f_2) \circ  i(x,x_0) &= (f_1(x),y_0) \\
+	f_1 \vee f_2(x,x_0) &= (f_1(x),y_0) \\
+	j \circ  (f_1 \vee f_2) (x,x_0) &= (f_1(x),y_0) 
+\end{align*}
+Similarly for $ (x_0,x)$ so center square in the diagram commutes.
+\begin{align*}
+	\nabla \circ  (f_1 \vee f_2) \circ  \mu_X &\simeq \mu_Y \circ j \circ (f_1 \vee f_2) \circ  \mu_X \\
+	&= \mu_Y \circ  (f_1 \times f_2) \circ i \circ \mu_X\\
+	&\simeq \mu_Y \circ  (f_1 \times f_2) \circ  \Delta
+\end{align*}
+It remains to show abelian. Fact: if $ \rho : G \times G \to G, (g,h)\mapsto gh$ is a homomorphism then $ G$ is abelian. To see this, notice
+ \begin{align*}
+	 \rho((g,h) (g^{-1},h^{-1})) &= \rho((gg^{-1},h h^{-1}))\\
+	&= \rho(e,e)= e \\
+	 \rho(g,h) \rho(g^{-1},h^{-1}) &= gh g^{-1} h^{-1}
+\end{align*}
+
+$ \mu_Y: Y \times Y \to Y$ induces a homomorphism $ [X, Y\times Y]_0 \xrightarrow{ \mu_Y} [X, Y]_0$. We also have the bijection
+\begin{align*}
+	\phi: [X, Y]_0 \times [X, Y]_0 \to [X, Y\times Y]_0, ([f],[g])\mapsto [f \times g].
+\end{align*}
+\begin{claim}
+$ \phi$ is a homomorphism.
+\end{claim}
+Let $ p_1: Y \times Y \to Y$ be projection to 1st factor, which induces homomorphisms $ p_i: [X, Y\times Y]_0 \to [X, Y]_0$. Clearly $ \phi$ is the inverse of $ (p_1)_* \times (p_2)_*$ so $ \phi$ is a homomorphism. Then
+\begin{align*}
+	(\mu_Y)_* \circ \phi: [X, Y]_0 \times [X, Y]_0 \to [X, Y]_0, ([f],[g]) \mapsto [f] \cdot [g]
+\end{align*}
+So the group is abelian by the fact.
+\end{proof}
+\begin{defn}
+A space is \allbold{locally compact} if every point has a neighborhood that is contained in a compact set. 
+\end{defn}
+\begin{lem}
+If $ Y$ is locally compact and Hausdorff, there is a bijection
+ \begin{align*}
+	C^{0}(X\times Y,Z) \to C^{0}(X,C^{0}(Y,Z)).
+\end{align*}
+If $ X$ is also Hausdorff, this is a homeomorphism. Note that $ C^{0}$ is simply the $ \Hom$ functor.
+\begin{remark}
+Any manifold or CW-complexes are locally compact.
+\end{remark}
+\end{lem}
+\begin{remark}
+	The lemma implies that $ [X\times Y,Z] = [X,C^{0}(Y,Z)]$.
+\end{remark}
+\begin{defn}
+Given $ C$ a compact set in  $ X$,  $ W$ an open set in  $ Y$, let  $ U(C,W) = \{f \in C^{0}(X,Y) : f(C) \subseteq W)\} $. This forms a subbasis for a topology on $ C^{0}(X,Y)$, called \allbold{compact-open topology}.
+\end{defn}
+Exercises:
+\begin{enumerate}[label=(\arabic*)]
+	\item If $ Y$ is a metric space, show that this topology is the topology of compact convergence,  \emph{i.e.} $ f_n \to f$ iff for all compact sets $ C \subseteq X$, $ f_n|_C \to f|_C$ uniformly.
+	\item If $ f: X \times Y \to Z$ is continuous, then so is
+		\begin{align*}
+			F: X \to C^{0}(Y,Z), x\mapsto f_x: Y \to Z, y \mapsto f(x,y)
+		\end{align*}
+	\item The converse is true if $ Y$ is locally compact.
+	\item Prove the theorem.
+\end{enumerate}
+
+\begin{proof}
+We need a topology on $ C^{0}$: the compact-open topology. 
+\end{proof}
+
+\begin{defn}
+The \allbold{smash product} of two pointed spaces is
+\begin{align*}
+	X \wedge Y = X \times Y / X \vee Y = X \times Y / X \times \{y_0\} \cup \{x_0\} \times Y  .
+\end{align*}
+\end{defn}
+Recall that the \allbold{reduced suspension} is
+\begin{align*}
+	\Sigma X = S^{1} \wedge X = S^{1} \times X / S^{1} \times \{x_0\} \cup \{e_0\} \times X .
+\end{align*}
+See ipad.
+
+\begin{coro}
+If $ Y$ is locally compact, then
+ \begin{align*}
+	 [X \wedge Y, Z]_0 = [X, C^{0}_{ \text{based} } (Y,Z)]_0.
+\end{align*}
+\end{coro}
+\begin{proof}
+	If $ f \in C^{0}_{ \text{based} }(X,C^{0}_{ \text{based} }(Y,Z))$ then it has to send base point to base point: $ f(x_0) =$ constant map $ Y \to Z, y_0 \mapsto z_0$. So $ F: X \times Y \to Z$, $ (x,y) \mapsto f(x)(y)$ sends $ \{x_0\} \times Y \to z_0 $ by the lemma. As $ f(x): Y \to Z$ sends $ y_0 \to z_0$, $ F$ induces a map on  $ X \wedge Y = X \times Y / X \vee Y \xrightarrow{ F} Z$. So $ F \in [X \wedge Y, Z]_0$.
+
+	We can similarly define an inverse: exercise.
+\end{proof}
+
+Recall that a loop space is $ \Omega(X) = C^{0}_{ \text{based} }(S^{1},X)$.
+
+\begin{coro}
+	$ [\Sigma X, Y]_0 = [X, \Omega(Y)]_0$. That is, suspension is the adjoint of looping.
+\end{coro}
+\begin{proof}
+\begin{align*}
+	[\Sigma X, Y]_0 &= [S^{1} \wedge X, Y]_0 \\
+		      &= [X, C^{0}_{ \text{based} }(S^{1},Y)]_0 \\
+		      &= [X, \Omega(Y)]_0 \\
+\end{align*}
+\end{proof}
+\begin{remark}
+They are isomorphic as groups TODO
+\end{remark}
+\begin{defn}
+The \allbold{$ n$th homotopy group} of $ (X,x_0)$ is
+\begin{align*}
+	\pi_n(X) = [S^{n}, X]_0.
+\end{align*}
+\end{defn}
+Note that
+\begin{enumerate}[label=(\arabic*)]
+	 \item
+		 \begin{align*}
+			 \pi_n(X) &= [S^{n}, X]_0 \\
+				  &= [\Sigma S^{n-1}, X]_0 \\
+				  &= [S^{n-1}, \Omega(X)]_0 \\
+				  &= [S^{0}, \Omega^{n}(X)]_0 
+		 \end{align*}
+		 So $ \pi_n(X) = \pi_0(\Omega^{n}(X))$, the path components of $ \Omega(X)$.
+	 \item $ \pi_n(X) = [S^{n-1}, \Omega(X)]_0$. If $ n\geq 2$,  $ \Omega(X)$ is H-space, $ S^{n-1}$ is H'-space, so by Theorem $ \pi_n(X)$ is abelian for $ n \geq 2$.
+	 \item If  $ X$ is a Lie group, the it is an H-space so $ \pi_1(X)$ is abelian.
+\end{enumerate}
+\end{document}

@@ -1,0 +1,119 @@
+\documentclass[12pt,class=article,crop=false]{standalone} 
+\input{../preamble.tex}
+
+\begin{document}
+\section{Classifying Spaces}
+
+Exercise: $ E_n  \xrightarrow{ p} G_n$ is an $ n$-dimensional vector bundle. Hint: IF  $ \ell \in G_n$, let $ \pi_{\ell}: \rr^{\infty} \to \ell$ be orthogonal proj. Let $ U_\ell = \{\ell' \in G_n: \pi_{\ell}(\ell') \text{ has dim }n \} $. Show $ U_\ell$ is open and $ h: p ^{-1}(U_\ell) \to U_{ \ell} \times \ell, (\ell',v)\mapsto (\ell',\pi_\ell(v))$ is a local trivialization.
+
+\begin{thm}
+	Let $ X$ be paracompact and $ E_n = \{(\ell,v) \in G_n \times \rr^{\infty}: v \in \ell\} $. Then $ [X,G_n] \to \text{Vect}^{n}(X), f\mapsto f^* E_n $ is a 1 to 1 correspondence.
+\end{thm}
+
+\begin{defn}
+For a topological group $ G$, there exists a space  $ BG$ and a principal  $ G$-bundle  $ EG$  s.t.\ $ (EG,BG,G,p)$ is a bundle and  $ EG$ is weakly contractible. We call  $ BG$ the  \allbold{classifying space for principal $ G$-bundle} and $ EG$ the  \allbold{universal $ G$-bundle}.  
+\end{defn}
+
+\begin{remark}
+By the long exact sequence and weakly contractible, $ \pi_k(BG) \cong \pi_{k-1}(G) \ \forall \ k \geq 1$.
+\end{remark}
+
+\begin{thm}
+	$ [X,BG]$ and principal  $ G$-bundles over  $ X$ is a 1 to 1 correspondence (via $ f\mapsto f^* EG)$.
+\end{thm}
+\begin{thm}
+The homotopy type of $ BG$ is unique.
+\end{thm}
+\begin{eg}
+\begin{enumerate}[label=(\arabic*)]
+	\item $ G_n$ is the classifying space of $ \rr^{n}$-bundles. In fact, $ \mathcal{ F}(E_n)$ is an $ \text{GL}_{ n}(\rr) $-bundle and $ G_n$ is the $ \text{GL}_{ n}(\rr) $ classifying space. Exercise: $ \mathcal{ F}(E_n)$ is weakly contractible.
+	\item $ \rr \to S^{1}$ is a principal $ \zz$-bundle with $ E \zz = \rr$ and $ B\zz = S^{1}$. Principal $ \zz$-bundles over $ X$ is 1 to 1 correspondence with  $ [X,S^{1}] = [X,K(\zz,1)] \cong H^{1}(X;\zz)$ by Brown representation theorem: $ [X,K(\pi,n)] \cong H^{n}(X; \pi)$.
+	\item $ S^{\infty} \to \rr P^{\infty}$ is a principal $ \zz /2$-bundle. Note $ \zz /2 \cong O(1)$. Then $ BO(1) \cong \rr P^{\infty}$ and $ EO(1) \cong S^{\infty}$. Exercise: $ S^{\infty}$ is contractible. So line bundles over $ X$ is 1 to 1 with principal  $ O(1)$-bundles over $ X$ is 1 to 1 with  $ [X,BO(1)] = [X, \rr P^{\infty}] = [X,K(\zz /2,1)] = H^{1}(X; \zz /2)$ by Brown.
+	\item $ S^{\infty} \to S^{\infty} / S^{1} \cong \cc P^{\infty}$ is a principal $ S^{1}$-bundle. Note $ S^{1} = U(1)$. So $ BU(1) \cong \cc P^{\infty}$, $ EU(1) \cong S^{\infty}$. Complex line bundles over $ X$ 1 to 1 principal $ U(1)$-bundles over  $ X$ 1 to 1  $ [X,BU(1)]=[X, \cc P^{\infty}] = [X, K(\zz,2)] \cong H^{2}(X;\zz)$.
+\end{enumerate}
+\end{eg}
+
+\begin{defn}
+A $ G$CW-complex is a space $ X$ with a  $ G$-action that is the union of skeleta \ldots
+\end{defn}
+Exercise:
+\begin{enumerate}[label=(\arabic*)]
+	\item If $ X$ is a $ G$CW-complex, then  $ X /G$ has a natural  CW structure.
+	\item If $ G$ is a compact Lie group, then any principal  $ G$-bundle over a  CW-complex is a $ G$CW-complex.
+\end{enumerate}
+
+To construct classifying spaces, we need the definition:
+\begin{defn}
+Let $ X,Y$ be spaces. Their  \allbold{join} is
+\begin{align*}
+	X *Y = X \times I \times Y / \ \sim
+\end{align*}
+where $ (x,0,y_1) \sim (x,0,y_2) \ \forall \ y_1,y_2 \in Y$ and $ (x_1,1,y) \sim (x_2,1,y) \ \forall \ x_1,x_2 \in X$.
+\end{defn}
+Examples:
+\begin{enumerate}[label=(\arabic*)]
+	\item $ X* \{*\} \cong \text{Cone}(X) $.
+	\item $ X* \{p_1,p_2\} \cong \Sigma X$.
+	\item $ \{x_0\} * \cdots * \{x_k\} $ is a k-simplex.
+	\item Exercise: $ S^{n}*S^{m} \cong S^{n+m+1}$. Start with $ S^{1} * S^{1} \cong S^3$, $ \rr^2 * \rr^2, \rr^{4}$. DO THIS.
+\end{enumerate}
+\begin{remark}
+The join generalizes the cone.
+\end{remark}
+
+There exists inclusions $ X \xrightarrow{ i} X *Y, x\mapsto (x,0,y) $ for any $ y$ and  $ Y \xrightarrow{ j} X*Y, y \mapsto (x,1,y) $ for any $ x$.
+
+\begin{lem}
+The inclusion $ i: X \to X*Y$ and $ j: Y \to X*Y$ are nullhomotopic.
+\end{lem}
+
+\begin{proof}
+For any $ y_0 \in Y$, $ i$ factors through  $ X \to X * \{y_0\} = C(X) $ and hence $ X \to X* \{y_0\} $ is nullhomotopic. The claim follows.
+\end{proof}
+
+Given $ G$ a topological group, let  $ G^{*(k+1)} = \underbrace{ G* G * \cdots * G}_{k+1 } $. This has a $ G$-action:
+ \begin{align*}
+	 (g_0,t_1,g_1,t_2,\ldots,t_k,g_k).g = (g_0 g, t_1, g_1g,t_2,\ldots,t_k,g_k g).
+\end{align*}
+Exercise:
+\begin{enumerate}[label=(\arabic*)]
+	\item There exists a natural $ G$-equivariant map $ \Delta^{k} \times G ^{k+1} \to G^{*(k+1)}$ that is a homeomorphism when restricted to interior of $ \Delta ^{k} \times G^{k+1}$. (think simplex example).
+	\item Use 1 to show $ G^{*(k+1)}$ has the structure of a $ G$CW-complex.
+\end{enumerate}
+Let $ \mathcal{ J}(G) = \lim_{ k \to \infty} G^{*(k+1)}$.
+\begin{thm}
+The quotient map $ p: \mathcal{ J}(G)=EG \to J(G) / G = BG$ is a universal principal $ G$-bundle.
+\end{thm}
+\begin{proof}
+Exercise: show $ p$ is a principal  $ G$-bundle.
+
+We are done if  $ \mathcal{ J}(G)$ is weakly contractible. For any $ \alpha: S^{n} \to \mathcal{ J}(G)$, there exists some $ k$ s.t.\ $ \alpha(S^{n}) \subseteq G^{*(k+1)} \subseteq \mathcal{ J}(G)$ and $ G^{*(k+1)} \to G^{*(k+1)} \subseteq \mathcal{ J}(G)$ is nullhomotopic. So $ \alpha: S^{n} to G^{*(k+1)} \subseteq G^{*(k+2)}$ is nullhomotopic.
+\end{proof}
+
+From the construction, given $ f:H to G$ a homo, then we get an induced map  $ Ef: EH = \mathcal{ J}(H) \to EG= \mathcal{ J}(G)$ and $ Bf: BH \to BG$.
+
+Exercise:
+\begin{enumerate}[label=(\arabic*)]
+	\item $ Bf$ is the classifying map for the bundle  $ BH \times _f G$, \emph{i.e.} $ (Bf)^* EG \cong BH \times _f G$.
+	\item If $ H \leq G$ and  $ P \to M$ is a principal $ G$-bundle, then structure group of  $ P$ reduces to  $ H$ iff the classifying map  $ f: M \to BG$ (after homotopy) factors through $ M \to BH$.
+\end{enumerate}
+
+A different view of characteristic classes:
+\begin{thm}
+	$ H^* (BO(n); \zz /2) \cong \zz /2[w_1,\ldots,w_n]$ where $ w_i$ has degree $ i$.
+
+	$ H^* (BU(n); \zz) \cong \zz [c_1,\ldots,c_n]$ where $ c_i$ has degree $ 2i$.
+\end{thm}
+We can use this theorem to define characteristic classes of an $ \rr^{n}$-bundle $ E \to M$. There exists an associated $ O(n)$-bundle. By theorem 13 there exists a map  $ f: M \to BO(n)$ s.t.\ $ \mathcal{ F}(E) \cong f^* EO(n)$. Define the $ i$th Steifel-Whitney class of  $ E$ to be
+ \begin{align*}
+	w_i(E) = f^* w_i.
+\end{align*}
+Simiarly for Chern classes.
+
+
+\begin{thm}
+	$ H^* (BSO(2n+1); \zz) \cong \zz [p_1,\ldots,p_n] \oplus $ Torsion where Torsion is $ \beta(H^{n}(BSO(2n+1); \zz /2))$.
+
+	$ H^* (BSO(2n);\zz) \cong \zz[p_1,\ldots,p_n, e] / \langle e ^2 =p_n  \rangle \oplus $ Torsion.
+\end{thm}
+\end{document}

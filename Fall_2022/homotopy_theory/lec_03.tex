@@ -1,0 +1,130 @@
+\documentclass[12pt,class=article,crop=false]{standalone} 
+\input{../preamble.tex}
+
+\begin{document}
+\section{Homotopy groups}
+Recall that $ \pi_n(X) = [S^{n}, X]_0$. Since $ S^{n}$ is an H'-space (by successive suspension), there is a multiplication on $ \pi_n(X)$. What is this product?
+
+Define $ f,g:(S^{n},p) \to (X,x_0)$.
+~\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\textwidth]{./figures/product1.png}
+\end{figure}
+
+Sometimes it is useful to see $ \pi_n(X)$ as $ [(D^{n}, \partial D^{n}),(X,x_0)]$. If $ \kappa: D^{n} \to S^{n}$ collapses $ \partial D^{n}$ to $ p \in S^{n}$, then  $\pi_n(X) \to [(D^{n},\partial D^{n}),(X,x_0)], [f] \mapsto [f \circ \kappa ]$ is well-defined and injective. It is surjective since any $ f:(D^{n},\partial D^{n}) \to (X,x_0)$ factors through $ (S^{n},x_0)$ (universal property of quotients of pairs?).
+
+Note that we can see $ \pi_n(X)$ is abelian for $ n \geq 2$ using the multiplication structure.
+
+What is the multiplication structure in $ [(D^{n} , \partial D^{n}),(X,x_0)]$? We think $ D^{n}$ as $ I \times D^{n-1}$. Given  $ g,f: I \times D^{n-1} \to X$,
+\begin{align*}
+	f \cdot g(t,x) = \begin{cases}
+		f(2t,x) & t \in [0, \frac{1}{2}]\\
+		g(2t-1,x) & t \in (\frac{1}{2},1]\\
+	\end{cases}
+\end{align*}
+Now we just move the puzzle pieces to swap them.
+
+\begin{defn}
+	We can also define \allbold{relative homotopy groups}.
+Given space $ X$, subspace  $ A$ and  $ x_0 \in A$, define
+\begin{align*}
+	\pi_n(X,A) = [(D^{n}, \partial D^{n},s_0),(X,A,x_0)]
+\end{align*}
+with $ s_0 \in \partial D^{n}$.
+\end{defn}
+
+This multiplication does not make sense for $ \pi_1(X,A)$. So $ \pi_1(X,A)$ is just a set as it doesn't have to preserve base point to get a group structure.
+~\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\textwidth]{./figures/pi1_bad.png}
+\end{figure}
+
+
+This definition doesn't help us showing inverses and associativity. So we provide an alternative definition:
+\begin{defn}
+	Let $ D^{n} = I^{n}$ and $ J = \overline{\partial D^{n}-(D^{n-1} \times \{1\} )} = (D^{n-1} \times \{0\} ) \cup (\partial D^{n-1} \times I)$. That is, $ J$ is three edges of a square.
+\end{defn}
+	Exercise: show $ [(D^{n}, \partial D^{n}, s_0),(X,A,x_0)]$ is in 1-1 correspondence with $ [(D^{n}, \partial D^{n},J),(X,A,x_0)]$. Note $ (D^{n}, \partial D^{n}, J) / J \cong(D^{n}, \partial D^{n}, s_0)$.
+
+Define a multiplication: $ f,g \in \pi_n(X,A)$.
+\begin{align*}
+	f \cdot g (x_1,\ldots,x_n) = \begin{cases}
+		f(2x_1,x_2,\ldots,x_n) & x_1 \in [0, \frac{1}{2}]\\
+		g(2x_1-1,x_2,\ldots,x_n) & x_2 \in (\frac{1}{2},1]\\
+	\end{cases}
+\end{align*}
+	Let $ f ^{-1} (x_1,\ldots,x_n) = f(1-x_1,\ldots,x_n)$.
+
+	Exercise:
+	\begin{enumerate}[label=(\arabic*)]
+		\item Show $ \pi_n(X,A)$ is a group with identity the constant map for $ n \geq 2$.
+		\item Show  $ \pi_n(X,A)$ is abelian for $ n \geq 3$ (need the 3rd dimension to move around).
+		\item  $ \pi_n(X,x_0) = \pi_n(X)$.
+	\end{enumerate}
+
+	\begin{lem}
+	$ f: (D^{n}, \partial D^{n},s_0) \to (X,A,x_0)$ is $ 0$ in  $ \pi_n(X,A)$ iff it is homotopic rel $ \partial D^{n}$ and $ s_0$ to a map whose image is in $ A$.
+	\end{lem}
+	\begin{proof}
+	$ (\impliedby):$ suppose $ f$ is homotopic to  $ g$ with  $ g$ having image in  $ A$. We know  $ D^{n}$ deformation retracts to $ s_0$:
+	\begin{align*}
+		H: D^{n} \times I \to D^{n}, H(x,0) = x, H(x,1) = s_0, H(s_0,t) = s_0 \ \forall \ t.
+	\end{align*}
+	Now $ g \circ H$ is a homotopy from $ g$ to constant map (rel  $ A$). Therefore  $ f = 0 \in \pi_n(X,A)$.
+	\end{proof}
+
+	$ (\implies):$ assume $ f=0$. So there exists a homotopy  $ H:D^{n} \times I \to X, H(x,0) = f, H(x,1)=x_0, H(x,t) \in A \ \forall \ x \in \partial D^{n}$. Note $ H|_{D^{n} \times \{1\} \cup \partial D^{n} \times I}$ is a map $ D^{n} \to A$ ($ H|_{D^{n} \times \{0\} } = f$. We can use $ H$ on  $ D^{n} \times I$ to give a homotopy $ f$ to a map with image in  $ A$. Here is the idea: there exists a homeomorphism  $ D^{n} \times I \xrightarrow{ \phi}  D^{n+1}$. There is also a continuous map $ D^{n} \times I \xrightarrow{ \psi} D^{n+1} $ that collapses $ ( \partial D^{n} \times I)$ to the equator. Now $ H \circ \phi ^{-1} \circ \psi: D^{n} \times I \to X$ is the homotopy.
+
+\begin{note}
+\begin{enumerate}[label=(\arabic*)]
+	\item The inclusion maps $ (A,x_0) \subseteq (X,x_0) \subseteq (X,A)$ yield
+		\begin{align*}
+			\pi_n(A,x_0) \xrightarrow{ i_*} \pi_n(X,x_0) \xrightarrow{ j_*} \pi_n(X,A).  
+		\end{align*}
+	\item if $ f:(D^{n},\partial D^{n},J ) \to (X,A,x_0)$ then define $ \partial f: (\partial D^{n},J) \to (A,x_0)$. This induces a map $ \pi_n(X,A) \to \pi_{n-1}(X,A)$. Note $ \pi_{n-1}(A) = [(\partial D^{n},(A,x_0), Y]_0$. Exercise: show it's well-defined.
+\end{enumerate}
+\end{note}
+
+\begin{thm}
+Given $ (X,A,x_0)$ we have a long exact sequence
+\begin{align*}
+	\cdots \to \pi_n(A) \xrightarrow{ i_*} \pi_n(X) \xrightarrow{ j_*} \pi_n(X,A) \xrightarrow{ \partial } \pi_{n-1}(A) \to \cdots
+\end{align*}
+is equivariant under $ \pi_1(A)$ action.
+\end{thm}
+\begin{proof}
+	First $ j_* i_* = 0$ by lemma 16. If  $ [f] \in \ker j_*$ then $ f:(D^{n}, \partial D^{n})\to (X,x_0)$ and homotopy $ H: D^{n} \times I \to X$ s.t.\ 
+	\begin{enumerate}[label=(\arabic*)]
+		\item $ H(x,0) = j \circ f(x)= f(x)$
+		\item $ H(x,1) \in A$ by lemma 16.
+		\item $ H(x,t) \in A \ \forall \ t$ and $ x \in \partial D^{n}$.
+		\item $ H(s_0,t) = x_0 \ \forall \ t$.
+	\end{enumerate}
+	Note $ D' := (D^{n} \times \{1\} ) \cup  (\partial D^{n} \times I)$ is a disk and $ H|_{D'}: D' \to A$ s.t.\ $ H( \partial D') = x_0$. So $ g = H|_{D'}: D^{n} \to A$ this is in $ \pi_n(A)$ and as in the proof of lemma 16, $ f$ is homotopic to $ g$, so  $ i_*([g]) = [f]$ so  $ \im i_* = \ker j_*$ yielding exactness.
+
+	Now we show $ \im j_* \subseteq \ker \partial $. Given $ [f] \in \pi_n(X,A)$, s.t.\ $ \partial f =0$ in $ \pi_{n-1}(A)$. There exists homotopy $ H: S^{n-1} \times I \to A$ s.t.\ $ H(x,0) =f(x)$, $ H(x,1) = x_0$, and $ H(s_0,t) = x_0$. Let $ D' = D^{n} \cup (S^{n-1} \times I)$ is a disk.
+
+	$ f': D' \to X: x\mapsto \begin{cases}
+		f(x) & x \in D^{n}\\
+		H(x) & x \in S^{n-1} \times I
+	\end{cases}$.
+	Note $ [f'] \in \pi_n(X)$. Exercise $ f' \sim f $ in $ \pi_n(X,A)$ (because it can't see what's in $ A$ intuitively). Then $ j_*([f']) = [f]$ so  $ \ker \partial \subseteq \im j_*$. 
+
+	Exercise: show $ \im \partial  = \ker i_*$.
+\end{proof}
+
+\begin{thm}
+Let $ p: \widetilde{ X} \to X$ be a covering space, then $ p_*: \pi_n(\widetilde{ X}, \widetilde{ x_0}) \to \pi_n(X,p(\widetilde{ x_0}))$ is an isomorphism $ \ \forall \ n \geq 2$.
+\end{thm}
+\begin{proof}
+Recall the lifting criterion: given a $ f:Y \to X$ s.t.\ $ f(y_0) = x_0$, $ f$ lifts to a map  $ \widetilde{ f}: Y \to \widetilde{ X}$ with $ \widetilde{ f} (y_0) = \widetilde{ x_0}$ iff $ f_*(\pi_1(Y,y_0)) \subseteq p_*(\pi_1(\widetilde{ X},\widetilde{ x_0}))$.
+
+From this, we see that $ p_*$ is surjective for  $ n\geq 2$. Given  $ [f] \in \pi_n(X,x_0)$, then
+\begin{align*}
+	f_*(\pi_1(S^{n})) = \{e\} < p_*(pi_1(\widetilde{ X})) .
+\end{align*}
+So there exists a lift $ \widetilde{ f} : S^{n} \to \widetilde{ X}$ s.t.\ $ p_*([\widetilde{ f}]) =p \circ \widetilde{ f} = f$. 
+
+It is also injective for $ n \geq 2$. Given $ [f] \in \pi_n(\widetilde{ X})$, suppose  $ p_*([f]) = 0$ in  $ \pi_n(X)$. So there exists a homotopy $ H : S^{n} \times I \to X$ s.t.\ $ H(x,0) = p \circ f(x)$, $ H(x,1) = x_0$, and $ H(s_0,t) = x_0$. Recall covering spacess satisfying the homotopy lifting property. So there exists $ \widetilde{ H}: S^{n} \times I \to \widetilde{ X}$ s.t.\ $ \widetilde{ H}(x,0) = f(x)$, $ \widetilde{ H}(x,1) = \widetilde{ x_0}$, and $ \widetilde{ H}(s_0,t) = \widetilde{ x_0}$. So $ [f] = 0$ in  $ \pi_n(\widetilde{ X})$.
+\end{proof}
+\end{document}

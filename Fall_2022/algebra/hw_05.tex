@@ -1,0 +1,117 @@
+\documentclass[12pt]{article}
+\input{./preamble.tex}
+
+\begin{document}
+\centerline {\textsf{\textbf{\LARGE{Homework 5}}}}
+\centerline {Jaden Wang}
+\vspace{.15in}
+
+\begin{problem}[1]
+	(collab with Ari and Will): Let $ G$ be a finitely generated group with generators $ \{g_1,\ldots,g_m\} $ and suppose $ H \leq G$ with $ [G:H] = n$ for some $ n \in \zz^{+}$. Let the cosets of $ H$ in  $ G$ be $ \{eH,a_2H,\ldots,a_n H\} $ (note we choose $ a_1 = e$). Since $ g_i a_j$ must be in one of the cosets $ a_k H$, we see that $ g_i a_j = a_k^{ij} h_{ij}$ for some $ h_{ij} \in H$. Moreover, for any given $ a_k$ and $ g_i$, let $ a_j$ be the representative of the coset that $ g_i ^{-1} a_k$ is in, then $ a_k H = g_i g_i ^{-1} a_k H = g_i a_j H$. Hence for every $ g_i$ we have $ g_i a_j = a_k^{ij} h_{ij}$ for some $ a_j$. That is, $ a_j$ (and therefore $ h_{ij}$ ) is determined solely by the choice of $ a_k$ and $ g_i$.
+
+	Now I claim that $ \{h_{ij}:1\leq i \leq m, 1 \leq j\leq n\} $ generates $ H$. Since elements of $ H$ are words of generators of  $ G$, any $ h \in H$ is a finite string of $ g_i$. We wish to use $ h_{ij}$ to recover $ h$. So we start from the left: if the first letter in $ h$ is $ g_i$, then by using $ e =a_1 \in H$, we determine an $ a_j$ and $ h_{ij}$. This yields
+	\begin{align*}
+		h_{ij} = e_{ij} h_{ij} = g_i a_j 
+	\end{align*}
+So we recover the first letter $ g_i$ with an additional $ a_j$ on the right. Now suppose the second letter is $ g_\ell$, then $ a_j$ and $ g_{\ell}$ determine an $ a_k$ and $ h_{\ell k}$. Thus
+\begin{align*}
+	 h_{ij} h_{\ell k} &= g_i a_j h_{\ell k} \\
+	&= g_i g_\ell a_k 
+\end{align*}
+So we recover the second letter, with an $ a_k$ on the right. Repeating this process until we recover the entire string of $ h$ with an $ a_p$ on the right. That is,
+\begin{align*}
+	h_{ij} h_{\ell k} \ldots h_{qp} = g_i g_\ell \ldots g_q a_p  = h a_p
+\end{align*}
+But since the LHS is in $ H$ and $ h \in H$, we have that $ a_p$ is also in  $ H$. This forces $ a_p = a_1 = e$ (otherwise it would be a representative of a coset not equal to $ H$). Hence $ h = h_{ij} h_{\ell k} \ldots h_{qp}$. That is, it is a product of generators of the form $ h_{ij}$ as desired.
+\end{problem}
+
+\begin{problem}[2]
+$ 270 = 2 \cdot 3^3 \cdot 5$. Thus we only need to consider the partition of 3 which yields three cases: $ 3,(2,1),(1,1,1)$.
+\begin{table}[H]
+	\centering
+	\begin{tabular}{c|c}
+	\hline
+	invariant factor & elementary divisor\\
+	\hline
+	$ Z_{270}$ & $Z_2 \times  Z_{3^3} \times Z_5$ \\
+	$ Z_{90} \times \zz_3$ & $ Z_2 \times Z_{3^2} \times Z_5$ \\
+	$ Z_{30} \times \zz_3 \times \zz_3$ & $ Z_2 \times Z_3 \times Z_3 \times Z_3 \times Z_5$. 
+	\end{tabular}
+\end{table}
+\end{problem}
+\begin{problem}[3]
+There is no element of order $ 2$ in cyclic groups of odd order by Lagrange and there is a unique element of order 2 in each cyclic group with even order. Since for any cyclic group with even order $ Z_n = \langle g \rangle$, $ o(g) = n$, so $ o(g^{ \alpha}) = 2$ implies that $ g^{ \alpha} = g^{ - \alpha} \implies g^{ 2\alpha} = g^{n} =e$ (since $ \alpha \neq 0$ as that would be order 1). So $ \alpha = n /2$ which is unique. Hence we have an element of order 2 from each even cyclic group, yielding 3 in total. Their lcm order is also 2 so we have $ 2^3 -1 = 7$ ways to construct elements of order 2 as we exclude the identity.
+\end{problem}
+\begin{problem}[4]
+Since $ G$ is finite, we can resort to dual group. Due to the isomorphisms, it suffices to find an injective map from $ \Hom( G, U)$ to $ \Hom( G, U)$ which would induce an injection from $ G /H \to G$ by isomorphisms. There are two ways to do this.
+\begin{enumerate}[label=(\arabic*)]
+	\item Let $ U$ denote the group of all roots of unity (or replace it with $ \cc^* $). Consider the map $ i^* : \Hom( G /H, U) \to \Hom( G, U), f \mapsto f \circ \pi$, where $ \pi: G \to G /H$ is the canonical projection map. Let $ \phi: G \to U$ be the trivial homomorphism that maps everything to 1. By the universal property of quotient groups, this induces a homomorphism $ \Phi: G /H \to U$ s.t.\ $ \phi = \Phi \circ \pi$. If $ H= G$ the problem is trivial so WLOG assume $ H$ is a proper subgroup. Then  $ \pi$  is not the trivial map. This forces $ \Phi$ to be the trivial map in $ \Hom( G /H, U)$, which shows that $ \ker i^* $ is trivial so $ i^*$ is injective. By the isomorphisms we get an injective map $ i: G /H \to G$ so $G /H \cong \im i \leq G$.
+% https://q.uiver.app/?q=WzAsNSxbMCwwLCJHL0giXSxbMiwwLCJHIl0sWzAsMiwiXFx0ZXh0e0hvbX0oRy9ILFUpIl0sWzIsMiwiXFx0ZXh0e0hvbX0oRyxVKSJdLFsxLDEsIlxcY2lyYyJdLFswLDEsImkiLDAseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJob29rIiwic2lkZSI6InRvcCJ9fX1dLFswLDIsIiIsMix7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Im1vbm8ifSwiaGVhZCI6eyJuYW1lIjoiZXBpIn19fV0sWzIsMywiaV4qIiwyLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJ0b3AifX19XSxbMSwzLCIiLDAseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJtb25vIn0sImhlYWQiOnsibmFtZSI6ImVwaSJ9fX1dXQ==
+\[\begin{tikzcd}
+	{G/H} && G \\
+	& \circ \\
+	{\text{Hom}(G/H,U)} && {\text{Hom}(G,U)}
+	\arrow["i", hook, from=1-1, to=1-3]
+	\arrow[tail, two heads, from=1-1, to=3-1]
+	\arrow["{i^*}"', hook, from=3-1, to=3-3]
+	\arrow[tail, two heads, from=1-3, to=3-3]
+\end{tikzcd}\]
+	\item By viewing $ G$ as a  $ \zz$-module, recall that $ \Hom( -, U)$ is a right-adjoint functor between the cateogry of  \textsf{R-mod} so it preserves colimits including cokernel. Consider the short exact sequence:
+\begin{align*}
+	0 \to H \xrightarrow{i} G \xrightarrow{ \pi} G /H \to 0 .
+\end{align*}
+Applying $ \Hom( -, U)$ to the sequence yields an left-exact sequence
+		\begin{align*}
+			0 \to \Hom( G /H, U) \xrightarrow{i^* } \Hom( G, U) \to \Hom( H,U )
+		\end{align*}
+		By exactness, $ \ker i^*  = \im 0 = 0$ so $ i^* $ is injective. This yields the $ i: G /H \to G$ we seek. 
+\end{enumerate}
+
+If we omit finite (so we cannot use dual group isomorphisms), then consider $ G = \zz$, all subgroups of $ G$ are of infinite order, but for $H = 2\zz $, $ G /H \cong Z_2$ which has finite order so it cannot be isomorphic to a subgroup of $ G$.
+
+If we omit abelian (so we cannot use either quotient group universal property or left-exactness of $ \Hom( -, U)$), then consider  $ G= S_3$ and $ H = \{e,(1,2)\} $. $ G /H$ is not a group as  $ H$ is not a normal subgroup, so  $ G /H$ clearly cannot be isomorphic to a subgroup.
+\end{problem}
+\begin{problem}[5]
+~\begin{enumerate}[label=(\alph*)]
+	\item First we show that $ \wh{ G}$ is a group. It contains the identity $ 1_{\wh{ G}}: g \mapsto 1$ and is clearly associative. Given $ f,g \in \wh{ G}$, since $ \cc^* $ is abelian, $ (f \cdot g)(xy) = f(xy)g(xy) = f(x)f(y)g(x)g(y) = f(x)g(x)f(y)g(x) = (f \cdot g)(x) (f \cdot g)(y)$ so it is closed under pointwise multiplication. The inverse of $ f$ is just  $ f^{-1} : x \mapsto \frac{1}{f(x)}$ which is well-defined as $ 0 \not\in \cc^* $. Commutativity is obvious as $ \cc^* $ is abelian.
+	\item Since $ G$ is finite abelian, by FToFGAB, $ G \cong \langle g_1 \rangle \times \cdots \times \langle g_n \rangle $. We denote the order of each $ g_i$ by $ n_i$. We wish to show that $G \cong \Hom(G, \cc^* )$. Define $ x_i: G \to \cc^*, g_i \mapsto e^{i2\pi / n_i}, g_j \mapsto 1,j\neq i$. Notice that $ x_i^{n_i}: g_i \mapsto e^{i2\pi n_i /n_i} = 1, g_j \mapsto $ so $ n_i$ is the smallest power that makes $ x_i$ the trivial homomorphism so $ o(x_i) = n_i$. I claim that $ \{x_i\} $ generates $ \wh{ G}$. Given $ f \in \Hom(G, \cc^* )$, it suffices to specify where $ f$ maps each generator  $ g_i$. Since $ f$ is a homomorphism, the order of  $ f(g_i)$ must divide $ n_i$. Thus $ f$ must map  $ g_i$ to a root of unity, \emph{i.e.}  $ f: g_i \mapsto ( e^{i2 \pi /n_i})^{d_i} = (x_i(g_i))^{d_i}$ where $ d_i$ is some divisor of  $ n_i$. It follows that
+		\begin{align*}
+			f = \prod_{ i= 1}^{ n}  x_i^{d_i} 
+		\end{align*}
+where the product denotes pointwise multiplication. Thus $ \{x_i\} $ generates $ \wh{ G}$. Then map
+\begin{align*}
+	\phi: G \to \wh{ G}, g_i \mapsto x_i
+\end{align*}
+is thus a well-defined homomorphism as we map generators to generators of the same orders. Surjectivity follows from hitting all $ x_i$. Suppose $ \phi(g) = 1_{\wh{ G}}$ where $ 1_{\wh{ G}}: G \to U, g \mapsto 1$ is the trivial homomorphism, since $ \phi$ maps all generators $ g_i$ to a non-trivial homomorphism, the kernel must be trivial. Thus $ \phi$ is an isomorphism.
+\end{enumerate}
+\end{problem}
+
+\begin{problem}[6]
+Given $ x,y \in R$, $ x^2 = x$ and $ y^2 = y$, then notice $-x = (-x)^2 = x^2 = x$. Moreover,
+\begin{align*}
+	x+y=(x+y)^2 &= x^2 + xy+yx+y^2 \\
+	&= x+xy+yx+y \\
+	0 &= xy+yx \\
+	0 &= -xy + yx \\
+	xy &= yx 
+\end{align*}
+So $ R$ is commutative.
+\end{problem}
+
+\begin{problem}[7]
+~\begin{enumerate}[label=(\alph*)]
+	\item Clearly $ IJ$ is non-empty. It is closed under addition because sum of finite sums is still finite. It is closed under negation because  $ I,J$ are. Given  $ x_1 y_1+ \cdots + x_ky_k \in IJ$ and $ r \in R$, since $ I$ is an ideal, any  $ rx_i \in I$, so
+		\begin{align*}
+			r(x_1y_1 + \cdots +x_k y_k) &= (rx_1)y_1+ \cdots + (rx_k)y_k \in IJ
+		\end{align*}
+	So this proves closure under multiplication as well and shows that $ IJ$ is an ideal. Since  $ x_i y_i$ is both in $ I$ and $ J$, viewed as a left-ideal and right ideal respectively, the sum is also in both. So  $ IJ \subseteq I \cap J$. 
+
+	Let $R= \zz, I = \langle 2 \rangle, J = \langle 4 \rangle$. Then $ I \cap J = J$ but $ IJ = \{2r_1 4r_1' + 2r_2 4 r_2' + \cdots + 2r_k 4 r_k' : r_i, r_i' \in R\} = \langle 8 \rangle \neq \langle 4 \rangle = I \cap J$.
+\item Suppose $ I+J = R$. Then given  $ s \in I \cap J$, given $ r \in R$, we can write it as $ r= x+y$,  $ x \in I,y \in J$. Then
+	\begin{align*}
+		sr = s(x+y) = sx+ sy=xs + sy \in IJ
+	\end{align*}
+	Since $ IJ$ is an ideal, $ (s r) r^{-1} = s \in IJ$ and $ I \cap J \subseteq IJ$ which yields equality.
+\end{enumerate}
+\end{problem}
+\end{document}

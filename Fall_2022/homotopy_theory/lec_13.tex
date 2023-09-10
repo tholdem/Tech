@@ -1,0 +1,121 @@
+\documentclass[12pt,class=article,crop=false]{standalone} 
+\input{../preamble.tex}
+
+\begin{document}
+\section{Obstruction Theory Revisited}
+
+Suppose $ A \subseteq X$ and a map $ f: A \to Y$, can we extend $ f$ to a map  $ X \to Y$?
+
+As usual we assume
+\begin{enumerate}[label=(\alph*)]
+	\item $ (X,A)$ is a relative CW-complex  \emph{i.e.} $ X^{(-1)} = A$.
+	\item $ Y$ is  $ n$-simple for all  $ n$,  \emph{i.e.} $ \pi_1(Y)$ acts trivially on $ \pi_n(Y)$ which simplies $ \pi_n(Y) = [S^{n},Y]$ (unbased).
+\end{enumerate}
+
+\begin{thm}
+Given $ (X,A)$ satisfying  a) and  $ Y$ satisfying  $ b)$ and  $ f: X^{(n)} \to Y$. Then
+\begin{enumerate}[label=(\arabic*)]
+	\item there exists a cocycle
+		\begin{align*}
+			\widetilde{ \sigma}(f) \in C^{n+1}(X,A; \pi_n(Y))
+		\end{align*}
+		which vanishes iff $ f$ extends to  $ X^{(n+1)}$.
+	\item $ \sigma(f) = [\widetilde{ \sigma}(f)] \in H^{n+1}(X,A; \pi_n(Y))$ vanishes $ \iff$ $ f|_{x^{(n-1)}}$ extends to $ X^{(n+1)}$.
+\end{enumerate}
+\end{thm}
+\begin{proof}
+JUst like in Section A,
+\begin{align*}
+	\widetilde{ \sigma}(f): C_{n+1}^{CW}(X,A) \to \pi_n(Y)
+\end{align*}
+is defined as follows:
+$ e_i^{n+1}$ is attached to $ X^{(n)}$ by $ \phi_i: S^{n} \to Y$ so
+\begin{align*}
+	\widetilde{ \sigma}(e_i^{n+1}) = [f \circ \phi_i] \in [S^{n},Y] = \pi_n(Y)
+\end{align*}
+Exercise:
+\begin{enumerate}[label=(\arabic*)]
+	\item $ \widetilde{ \sigma}(f) = 0 \iff f$ extends to $ X^{(n+1)}$.
+	\item $ \widetilde{ \sigma}(f)$ is unchanged if you homotop $ f$.
+	\item  $ \delta \widetilde{ \sigma}(f) = 0$.
+	\item Given $ f,g : X^{(n)} to Y$ s.t.\ $ f=g$ on  $ X^{(n-1)}$ then there exists $ \tau(f,g) iin C^{n}(X,A;\pi_n(Y))$ s.t.\ 
+		\begin{align*}
+			\delta \tau(f,g) = \widetilde{ \sigma}(f) - \widetilde{ \sigma}(g)
+		\end{align*}
+	\item By varying the homotopy class of $ f$ on  $ X^{(n)}$ relative to $ X^{(n-1)}$, we can change $ \widetilde{ \sigma}(f)$ by an arbitrary coboundary.
+
+The theorem follows.
+\end{enumerate}
+\end{proof}
+
+\begin{thm}
+Let $ f,g: X \to Y$ be given (satisfying a), b)), and $ H: X^{(n)} \times I \to Y$ a homotopy from $ f|_{X^{(n)}} \to g|_{X^{(n)}}$. Then the obstruction to extending $ H$ to  $ X^{(n+1)} \times I \to Y $ lies in $ H^{n}(X,A;\pi_n(Y))$.
+\end{thm}
+
+\begin{proof}
+Theorem 19 says we get an obstruction in $ H^{n+1}(X \times I,((A \times I) \cup (X \times \{0,1\} ));\pi_n(Y))$.
+
+Let $ U_1 = X \times [0, \frac{3}{4}]$ and $ V_1 = (X \times \{0\} ) \cup  (A \times [0, \frac{3}{4}])$, $ U_2 = X \times [\frac{1}{4},1]$, $ V_2 = (A \times [\frac{1}{4},1] \cup (X \times \{1\} ))$.
+
+By Lemma I.9, since $ (X,A)$ is a NDR-pair, we know  $ V_1$ is a retract of $ U_1$. So $ H^{n}(U_1,V_1) = 0$.
+\begin{align*}
+	0=H^{n}(U_1,V_1) \oplus  H^{n}(U_2,V_2) \to H^{n}(U_1 \cap U_2, V_1 \cap V_2) \to H^{n+1}(U_1 \cup U_2, V_1 \cup V_2) \to H^{n+1}(U_1,V_1) \oplus H^{n+1}(U_2,V_2) = 0
+\end{align*}
+So $H^{n}(X,A) \cong H^{n}(X \times [\frac{1}{4},\frac{3}{4}], A \times [\frac{1}{4},\frac{3}{4}]) \cong H^{n+1}(U_1 \cup U_2,V_1 \cup V_2)$.
+\end{proof}
+\begin{thm}
+	Let $ (X,A)$ be a relative CW complex and  $ Y$  $ n$-simple space  $ \ \forall \ n$. If $ \pi_k(Y) \ \forall \ k<n-1$, then for any $ f: A \to Y$, there exists an extension $ \widetilde{ f}: X^{(n)} \to Y$ and the obstruction $ [ \widetilde{ \sigma}(\widetilde{ f})]$  only depends on $ f$ and is denoted  $ \gamma^{n+1}(f)$, the \allbold{primary obstruction}.
+
+	Moreover, if $ g: (X',A') \to (X,A)$, then
+	\begin{align*}
+		g^* ( \gamma^{n+1}(f)) = \gamma^{n+1}(f \circ g).
+	\end{align*}
+\end{thm}
+\begin{proof}
+Same as proof of Theorem 4.
+\end{proof}
+
+\begin{thm}[Brown Representation Theorem]
+Let $ (X,A)$ be a relative CW-pair, there is a natural bijection
+ \begin{align*}
+	 [(X,A),K(\pi,n),x_0] \longleftrightarrow H^{n}(X,A; \pi)
+\end{align*}
+\end{thm}
+
+\begin{proof}
+BY Hurewicz, $ H_k(K(\pi,n)) = 0 \ \forall \ k<n$ and $ H_n(K(\pi,n)) = \pi$. By the Universal Coefficients Theorem,
+\begin{align*}
+	H^{n}(K(\pi,n);\pi) \cong \Hom( H_n(K(\pi,n)), \pi) \oplus \ext(H_{n-1}(K(\pi,n)),\pi) = \Hom( \pi, \pi).
+\end{align*}
+as $ \ext$ is 0. Let $ \iota \in H^{n}(K(\pi,n);\pi)$ corresponds to $ 1_{\pi}$. Define $ \psi: [(X,A),(K(\pi,n);x_0)] \to H^{n}(X,A;\pi), f\mapsto f^* \iota $.
+
+Note since $ \pi_n(K(\pi,n)) =0$ for $ k<n$. The first obstruction to homotopying a map  $ f:(X,A) \to (K(\pi,n),x_0)$ to be constant lives in $ H^{n}((X,A);\pi)$.
+\begin{claim}
+This obstruction is $ \psi(f)$.
+\end{claim}
+\begin{proof}
+By naturality, it suffices to check that $ \iota $ is the primary obstruction to homotopying the identity map on $ K(\pi,n)$ to a constant map. 
+
+We know $ (K(\pi,n))^{(n-1)} = \{x_0\} $. So the identity and constant map agree on  $ n-1$ skeleton. The  $ n$-cell  $ e_i^{n}$ corresponding to a generator of $ \pi=\pi_n(K(\pi,n))$.
+
+\begin{claim}
+$ \psi$ is onto.
+\end{claim}
+Let $  \alpha \in H^{n}(X,A;\pi)$ so there exists $ \widetilde{ \alpha} \in C^{n}(X,A; \pi)$ s.t.\ $ \alpha=[ \widetilde{ \alpha}]$, $ \widetilde{ \alpha}: C_n(X,A) \to \pi$, define $ f_{ \alpha}$ to be constant on $ X^{(n-1)}$ and for each $ n$-cell  $ e_i^{n}$ of $ X$. Let  $ f_{ \alpha}: e_i^{n} to K(\pi,n)$. Represent $ [f_{ \alpha}(e_i^{n})] = \widetilde{ \alpha}(e_i^{n}) \in \pi = \pi_n(K(\pi,n))$. This gives $ f_{ \alpha}$ on $ X^{(n)}$. For each $ e_j^{n+1}$,
+\begin{align*}
+	\widetilde{ \alpha}(\partial e_j^{n+1}) = \delta \widetilde{ \alpha}(e_j^{n+1}) = 0
+\end{align*}
+So $ f_{ \alpha}(\partial  e_j^{n+1})$ is nullhomotopic. we can extend $ f_{ \alpha}$ over $ e_j^{n+1}$ so $ f_{ \alpha}$ extends to $ X^{(n+1)}$. Since $ \pi_k(K(\pi,n)) = 0 \ \forall \ k>n$. So no obstruction to extending $ f_{ \alpha}$  to all of $ X$. As in the proof of first claim, we see  $ \psi(f_{ \alpha}) = f_{ \alphaa}^*  \iota = \alpha$.
+
+\begin{claim}
+$ \psi$ is injective.
+\end{claim}
+
+\begin{proof}
+$ f,g: (X,A) \to (K(\pi,n),x_0)$ s.t.\ $ \psi(f) = \psi(g)$. The primary and only obstruction to a homotopy from $ f \to g$ lives in $ \theta \in H^{n}(X,A;\pi) \cong \pi_n(K(\pi,n))$. If we evaluate $ \widetilde{ \theta}$ on $ e_i^{n}$, we get
+
+so $ \widetilde{ \theta}(e_i^{n}) = f(e_i^{n}) - g(e_i^{n}) \in \pi_n(K(\pi,n)) = \iota (f_*-g_*)(e_i^{n}) = (f^* \iota -g^* \iota ) e_i^{n = \psi(f) - \psi(g)}e_i^{n} = 0$  since they have different orientations. Thus $ f \simeq g$.
+\end{proof}
+\end{proof}
+\end{proof}
+\end{document}

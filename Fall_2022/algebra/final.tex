@@ -1,0 +1,123 @@
+\documentclass[12pt]{article}
+\input{./preamble.tex}
+
+\begin{document}
+\centerline {\textsf{\textbf{\LARGE{Algebra 1 Final}}}}
+\centerline {Jaden Wang}
+\vspace{.15in}
+Please do NOT grade Problem 4.
+
+\begin{problem}[1]
+Let $ |G:H| = n$.  
+\begin{case}[1]
+If $ n$ is a prime, then it must be the smallest prime dividing  $ |G|$ by assumption. Then $ |H|$ has index the smallest prime and therefore  $ H \trianglelefteq G$ by Corollary 4.5.
+\end{case}
+\begin{case}[2]
+Supoose $ n$ is not a prime. Then the prime factors of $ |H|$ must be strictly  larger than $ n$. Consider the action representation $ \phi: G \to S_n$ of $ G$ acting on cosets $ G /H$ by left multiplication. Per Homework 2 Problem 2 we know that $ K:=\ker \phi$ is the largest normal subgroup contained in $ H$. Therefore,  $|G:H| =n$ divides $ |G:K| $ divides $ |G|=|H|n$. That is, $ |G:K| = dn$ where  $ d| |H|$. But since we know that every prime dividing  $ |H|$ is strictly larger than $ n$, each prime factor of $ d$ is also greater than $ n$ as well. Moreover,  $ |\im \phi| $ divides $ |S_n|=n!$, so by the definition of factorial, prime factors of $ |\im \phi|$ must all be no greater than  $ n$. By the first isomorphism theorem, we know that  $ |G:K| = | \im \phi|$. However, if $ d > 1$, then  $ |G:K|$ would contain prime factors strictly larger than any prime factor in $ | \im \phi|$ so they wouldn't equal, a contradiction. It follows that $ d=1$ and therefore  $ |G:K| = |G:H|$. This implies that  $ H= K$ and therefore  $ H \trianglelefteq G$ as $ K$ does.
+\end{case}
+\end{problem}
+\begin{problem}[2]
+By the class equation, 
+\begin{align*}
+	pq-p-q=|X| = |Z| + \sum_{ a \in A} [G:G_a]
+\end{align*}
+where $ Z$ is the set of elements with trivial orbits ( \emph{i.e.} fixed points) and $ A$ is the set consisting of one representative from each nontrivial orbit. Since  $ |G|=pq$,  $[G:G_a]$ must divide  $ |G|$ so  $ [G:G_a] =1, p,q$ or  $ pq$. If $ [G:G_a]=1$, then  $ G$ fixes  $ a$ and we are done. If  $ [G:G_a] =pq$, this violates that the sum is at most $ pq-p-q<pq$. We are left of the cases where  $ [G:G_a] = p$ or  $ q$.  Then the sum can be written as
+\begin{align*}
+	\sum_{a \in A} [G:G_a] = mp+nq
+\end{align*}
+for some $ m,n \in \nn$ (note when $ A = \O$, $ m=n=0$). It follows that
+\begin{align*}
+	pq-p-q &= |Z| + mp+nq \\
+	|Z| &= pq-(m+1)p - (n+1)q
+\end{align*}
+Suppose to the contrary that $ |Z| = 0$, then  $ pq = (m+1)p+(n+1)q$. This implies that  $ p|(m+1)p+(n+1)q$ and  $ q|(m+1)p+(n+1)q$ which by the definition of primes implies  $ p|n+1$ and  $ q|m+1$. But since $ m+1,n+1>0$, we must have  $ m+1 \geq q$ and  $ n+1 \geq p$, then  $ (m+1)p+(n+1)q \geq qp+pq =2pq>pq$, a contradiction.  This forces $ |Z|>0$. That is, there is at least one fixed point.
+\end{problem}
+
+\begin{problem}[3]
+Given $ P \in Syl_{ p}( G) $ and $ Q \in Syl_{ p}( H)$, since $ |Q|=p ^{k}$ for some $ k$ and  $ Q \leq H \leq G$, $ Q$ is a  $ p$-subgroup of  $ G$. Thus by Sylow Theorem, there exists a $ g \in G$ s.t.\ $ Q \leq gPg^{-1}$. This establishes that $ Q \leq gPg ^{-1} \cap H$. 
+
+Let $ |gPg^{-1}| = p ^{n}$ for some $ n \geq k$, and $ |H|=p ^{k}m$ where $ p$ doesn't divide  $ m$. We see that $ gPg^{-1} \cap H$ must have order dividing both $ p ^{n}$ and $ p ^{k}m$ and therefore must divide $ p ^{k} = |Q|$, \emph{i.e.} $ |gPg^{-1} \cap H|\leq |Q|$. It follows that $ Q = gPg^{-1} \cap H$.
+ 
+\end{problem}
+
+\begin{problem}[4] (DO NOT GRADE). 
+For any $ a \in \zz$, denote $ a_m:= a \bmod m$ and $ a_n := a \bmod n$. Since $ \zz_n = \langle 1_n \rangle$ and $ \zz_m = \langle 1_m \rangle$ as abelian groups, we can define an abelian group (or $ \zz$-module) homomorphism $ \phi$ by mapping generator to generator: $ \phi: \zz_n \to \zz_m, 1_n \mapsto 1_m$. Note $ \phi(a_n) = a_m$. This is well-defined since $ m|n$ and $ 1_m \cdot n = 1_m \cdot m \cdot k = 0 \cdot k = 0$ satisfies the relation on the generator $ 1_n$. Surjectivity is clear from that the generator $ 1_m$  is hit. It remains to check that $ \phi$ respects multiplication: given $ a_n,b_n \in \zz_n$, we have
+\begin{align*}
+	\phi(a_n b_n) &= \phi((ab)_n) \\
+	&= (ab)_m\\
+	&= a_m b_m \\
+	&= \phi(a_n) \phi(b_n) 
+\end{align*}
+Hence $ \phi$ is a ring homomorphism.
+
+Given $ a_n \in \zz_n^{ \times }$, we know that $ \gcd ( a,n) =1$. Since $ m|n$, we have  $ \gcd ( a,m)=1 $ so $ a_m = \phi(a_n) \in \zz_m^{ \times }$. Thus the restriction $ \overline{\phi}: \zz_n^{ \times } \to \zz_m^{ \times }$ of $ \phi$ is well-defined and clearly remains a homomorphism. Let $ n=km$ for some $ k \in \zz_{+}$. Consider $ \ker \overline{\phi} = \{a_n \in \zz_n^{ \times }: \overline{\phi}(a_n) = a_m =1_m\} = \{a_n \in \zz_n^{ \times }: a = 1+\ell m, \ell \in \zz\} = \{a_n: a = 1+ \ell m , 0\leq \ell \leq k-1, \gcd ( 1+\ell m,km)=1 \} $. Since it is clear that $ \gcd ( 1+\ell m, km) =1 =$, we finally simplify to
+\begin{align*}
+	\ker \overline{\phi} = \{a_n: a=1+\ell m, 0\leq \ell \leq k-1, \gcd (a, k) =1\}.
+\end{align*}
+\end{problem}
+
+\begin{problem}[5]
+	It doesn't seem like commutativity is required?
+
+	First I show an elementary proof. Suppose we have a multiplication $ \times $ structure with identity on $ \qq / \zz$. Let the identity be $ [p /q] \neq [0]$, \emph{i.e.} $ q \neq 0$ and $p /q \not\in \zz$, as $ \qq /\zz$ is not the trivial ring. Then by the axiom of identity, $ [p /q] \times [1 /2] = [1 /2] \neq [0]$. However,
+\begin{align*}
+	[p /q] \times [1/2] &= [p /2q+ p /2q] \times [1 /2]\\
+			    &= ([p /2q] + [p / 2q])\times [1 /2] \\
+			    &= [p /2q] \times [1 /2] + [p /2q] \times [1 /2] && \text{ distributivity} \\
+			    &= [p /2q] \times ([1 /2] + [1 /2]) && \text{ distributivity} \\
+			    &= [p /2q] \times [1] \\
+			    &= [p /2q] \times [0]\\
+			    &= [0],
+\end{align*}
+a contradiction. Hence no such ring structure exists.
+
+Here I also show a similar proof using the language of tensor products as a bonus.
+
+	It suffices to show that no compatible multiplication can be defined on $ \qq / \zz$. Suppose that we have an associative and distributive binary operation (demanded by a ring multiplication) $ m: \qq / \zz \times \qq /\zz \to \qq / \zz$ defined on the $ \zz$-module $ \qq / \zz$, with a multiplicative identity $ \mathbbm{1}$. Then by distributivity laws, $ m$ is a $ \zz$-bilinear map. By the universal property of tensor products of modules over a commutative ring ($ \zz$) (Theorem 10.10 and Corollary 10.12), we have the commutative diagram:
+% https://q.uiver.app/?q=WzAsMyxbMCwwLCJcXG1hdGhiYntRfS9cXG1hdGhiYntafSBcXHRpbWVzIFxcbWF0aGJie1F9L1xcbWF0aGJie1p9Il0sWzEsMCwiXFxtYXRoYmJ7UX0vXFxtYXRoYmJ7Wn0gXFxvdGltZXNfXFxtYXRoYmJ7Wn0gXFxtYXRoYmJ7UX0vXFxtYXRoYmJ7Wn0iXSxbMSwxLCJcXG1hdGhiYntRfS9cXG1hdGhiYntafSJdLFswLDEsIlxcaW90YSJdLFsxLDIsIlxccGhpIl0sWzAsMiwibSIsMl1d
+\[\begin{tikzcd}
+	{\mathbb{Q}/\mathbb{Z} \times \mathbb{Q}/\mathbb{Z}} & {\mathbb{Q}/\mathbb{Z} \otimes_\mathbb{Z} \mathbb{Q}/\mathbb{Z}} \\
+	& {\mathbb{Q}/\mathbb{Z}}
+	\arrow["\iota", from=1-1, to=1-2]
+	\arrow["\phi", from=1-2, to=2-2]
+	\arrow["m"', from=1-1, to=2-2]
+\end{tikzcd}\]
+However, since $ \qq / \zz \otimes _\zz \qq / \zz = 0$ (Example 4 under Corollary 10.12), this forces $ \iota = 0$ so $ m$ is the zero $ \zz$-module homomorphism as well. But this violates the axiom for the identity $ m(\mathbbm{1},[1 /2]) = [1/2] \neq [0]$ (since $ 1 / 2 \not\in  \zz$), a contradiction. Hence no such ring structure exists for the abelian group $ \qq / \zz$ so there is no such isomorphic ring either.
+\end{problem}
+\begin{problem}[8]
+Since $ G$ is finitely generated, we can apply the structure theorem for $ \zz$-modules. In particular, we wish to diagonalize the presentation represented by the relation matrix via the Smith Normal Form.
+\begin{align*}
+	\begin{pmatrix} 1&-1&3\\2&1&0 \end{pmatrix} & \xrightarrow{ R_2 - 2R_1} \begin{pmatrix} 1&-1&3\\0&3&-6 \end{pmatrix} \\
+			 & \xrightarrow{ C_2+ C_1, C_3-3C_1} \begin{pmatrix} 1&0&0\\0&3&-6 \end{pmatrix}  \\
+			 & \xrightarrow{ C_3+2C_2} \begin{pmatrix} 1&0&0\\0&3&0 \end{pmatrix}  
+\end{align*}
+Thus we obtain a new set of generators $ x',y',z'$ with the relations $ x' = 0, 3y'=0,0z'=0$. Therefore, $ \Ann_{ \zz}( \langle x' \rangle) = \zz $, $ \Ann_{ \zz}( \langle y' \rangle) = \langle 3 \rangle$, and $ \Ann_{ \zz}( \langle z' \rangle) =0$ since $ z'$ has no relation. This implies that
+\begin{align*}
+	G &\cong \zz/ \Ann_{ \zz}( \langle x' \rangle ) \oplus \zz / \Ann_{ \zz}( \langle y' \rangle) \oplus \zz / \Ann_{ \zz}( \langle z' \rangle) \\
+	&= \zz / \zz \oplus \zz / \langle 3 \rangle \oplus \zz /0\\
+	&\cong \zz \oplus \zz_3
+\end{align*}
+\end{problem}
+\begin{problem}[9]
+The number of possible JCF (up to permutation of Jordan blocks) over $ \cc$ is the same as the number of possible RCF over $ \cc$. First we see that the minimal polynomial $ m(x) $ must be divisible by  $ x(x^2-1)(x^2+1) = x(x+1)(x-1)(x+i)(x-i)$. Then Cayley-Hamilton yields the following possible invariant factors over $ \cc$:
+\begin{enumerate}[label=(\arabic*)]
+	\item $ x(x^2+1)| x(x^2-1)(x^2+1)=m(x)$.
+	\item $ x^2+1|x^2(x^2-1)(x^2+1) = m(x)$.
+	\item $ x|x(x^2-1)(x^2+1)^2 = m(x)$.
+	\item $ x^2(x^2-1)(x^2+1)^2=m(x)$.
+\end{enumerate}
+Therefore the number is 4.
+\end{problem}
+
+\begin{problem}[11]
+By Eisenstein $ p=5$, we see that  $ 5|20$ but  $ 25 $ does not divide $ 20$ so  $ x^{15}+20$ is irreducible.
+\begin{align*}
+	x^{15}+20 &= 0 \\
+	x^{15} &= -20 \\
+	x &= -\sqrt[15]{20} e^{(2k\pi i) /15}
+\end{align*}
+Let $ \gamma:= \sqrt[15]{20} $ and $ \zeta = e^{2\pi i/15}$. Clearly $ \zeta, \gamma$ generate all the roots.
+
+Since $ -\gamma$ is a root of $ x^{15}+20$ which is irreducible, $ [ \qq( \gamma): \qq] = 15$. Since $ \zeta$ is a primitive 15th roots of unit, by Corollary 13.42, $ [ \qq(\zeta): \qq] = \phi(15)=\phi(3)\phi(5)=2 \cdot 4= 8$. Since $ \gcd ( 15,8)=1 $, by Lagrange $ [\qq( \gamma, \zeta) : \qq] = 15 \cdot 8 = 120$. Since any field that $ x^{15}+20$ splits must contain $\gamma, \zeta$, and $ \qq( \gamma, \zeta)$ is the smallest field containing $ \gamma,\zeta$ by definition, we conclude that it is the splitting field of $ x^{15}+20$ with degree 120.
+\end{problem}
+\end{document}

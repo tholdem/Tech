@@ -1,0 +1,340 @@
+\documentclass[12pt,class=article,crop=false]{standalone} 
+\input{./preamble.tex}
+
+\title{Algebraic Topology Project: Characteristic Classes}
+\author{Jaden Ai}
+\date{March 2023}
+\input{preamble}
+
+\begin{document}
+
+\maketitle
+
+\section{Introduction}
+Believe me this thing is very important. I don't have space for a proper intro. Examples will be further elaborated in a future draft. References will be added later as well.
+\section{Background}
+Due to the limited scope of the paper, we assume readers either have learned everything in this section or are willing to take them as facts.
+\subsection{Homotopy}
+\begin{lem} \label{lem:hep} 
+A pair $ (X,A)$ has the homotopy extention property (HEP) if and only if  $ (X,\{0\} ) \cup (A \times I)$ is a retract of $ X \times I$.
+\end{lem}
+In particular, $ (X,D^{k})$ has HEP since $ D^{k} \times I$ is contractible, and $ X \times \{0\} $ is clearly a retract of $ X \times I$.
+
+\begin{coro} \label{coro:cw-hep} 
+A CW-pair $ (X,A)$ has HEP.
+\end{coro}
+
+\begin{thm}[Hurewiz] \label{thm:hurewiz} 
+	Suppose $ X$ is path-connected. If $ \pi_{ k} ( X) = 0$ for $ k<n$, then for $ n>1$, $h_n: \pi_n(X) \to H_n(X)$ is an isomorphism; for $ n=1$,  $ \ker h_1 = [\pi_{ 1} ( X),\pi_{ 1} ( X)]$, the commutator subgroup.
+\end{thm}
+\subsection{Fiber Bundles}
+\begin{defn}
+A \allbold{fiber bundle} or \allbold{locally trivial fibration} is $ F\to E \xrightarrow{ p} B$ where $ E,B,F$ are topological spaces and  $ p:E \to B$ is a continuous map such that for all $ x \in B$, there exists an open set  $ U \subseteq B$ and a homeomorphism $ \phi: p^{-1}(U)  \to U \times F$ s.t.\ $ p_1 \circ \phi = p$, where $ p_1$ is projection onto first factor. Here $ E$ is the  \allbold{total space}, $ B$ is the  \allbold{base space}, and $ F$ is the  \allbold{fiber}.   
+\end{defn}
+We shall stick with this narrow definition of fiber bundle for the rest of the paper. For a visual intuition, check out the cylindrical hairbrush on fiber bundle's Wikipedia page.
+
+\begin{defn}\label{defn:pb}
+Given a fiber bundle $ F \to E \xrightarrow{ p}B $ and a map $ f: A \to B$, we can define the \allbold{pull-back of E to A} as
+\begin{align*}
+	f^* E = \{(a,e) \in A \times E:f(a) = p(e)\} .
+\end{align*}
+\end{defn}
+The following diagram commutes:
+% https://q.uiver.app/?q=WzAsNCxbMCwwLCJmXipFIl0sWzEsMCwiRSJdLFsxLDEsIkIiXSxbMCwxLCJBIl0sWzAsMywicF8xIiwyXSxbMSwyLCJwIiwwLHsic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoiZXBpIn19fV0sWzMsMiwiZiJdLFswLDEsInBfMiJdXQ==
+\[\begin{tikzcd}
+	{f^*E} & E \\
+	A & B
+	\arrow["{\rho_1}"', from=1-1, to=2-1]
+	\arrow["p", from=1-2, to=2-2]
+	\arrow["f", from=2-1, to=2-2]
+	\arrow["{\rho_2}", from=1-1, to=1-2]
+\end{tikzcd}\]
+where $ \rho_1:(a,e) \mapsto a$ and $ \rho_2:(a,e) \mapsto e$. Note that we use $ \rho$ here because the domain is not necessarily a direct product, so it is not exactly the projection onto $ i$th factor which we denote via $ p_i$.
+\begin{prop}
+$F \to f^* E \xrightarrow{ \rho_1} A$ is a fiber bundle.
+\end{prop}
+
+\begin{prop} \label{prop:contract-trivial} 
+If $ A$ is contractible, then  $ f^* E \cong A \times F$.
+\end{prop}
+
+\section{Obstruction theory for sections}
+
+Characteristic classes can arise from obstruction theory on fiber bundles. The motivating question of obstruction theory is: if a map with domain a subspace exists, what prevents (or obstructs) the existence of an extension map with domain the whole space? In the case of fiber bundles, we can ask the question for sections, \emph{i.e.} a map $ s: B \to E$ such that the composition $ p \circ s = \text{id}_{ B}$. Specifically, if there exists a section $ s_k: B^{(k)} \to E$, when can we extend it to a map $ s_{k+1}: B^{(k+1)} \to E$? It turns out that as long as some assumptions are satisfied, it all boils down to whether a particular class in the $ (k+1)$th cohomology of $ B$ with coefficients in  $ \pi_k( F) $ is zero. 
+
+First, let's state the three assumptions that the base space $ M$ (as in manifold) has to satisfy to possess characteristic classes.
+\begin{ass} \label{ass:3} 
+~\begin{enumerate}[label=(\arabic*)]
+	\item $ M$ is a CW-complex.
+	\item  $ F$ is  $ k$-simple for all  $ k$. That is, the action of  $ \pi_{ 1} ( F,x_0)$ on $ \pi_{ k} ( F,x_0 )$ is trivial. Recall that the action is collapsing the lower hemisphere of $ S^{k}$ into an interval and applying the loop to the interval while applying the original map to the $ S^{k}$ arised from the upper hemisphere.
+	\item The monodromy action of $ \pi_{ 1} ( M,p(x_0))$ on $ \pi_{ k} ( F,x_0)$ is trivial. By homotopy lifting property of fiber bundle, from homotopy $ \gamma \circ \pi_2: F\times I \to B$ we get a lift $ \widetilde{ \gamma}$ such that $ p \circ \widetilde{ \gamma} = \gamma \circ \pi _2 $. Then we see that $ \widetilde{ \gamma}(x,1) \in p^{-1}( \gamma \circ \pi_{ 2} ( x,1)) = p^{-1}( \gamma(1)) = p^{-1}(x_0)$. Therefore, $ \widetilde{ \gamma}(x,1): F \cong p ^{-1}(x) \to p^{-1}(x_0) \cong F$. For $ f \in \pi_{ k} ( F,x_0)$, define the monodromy action $ \gamma . f$ by $ \widetilde{ \gamma}(x,1)_*(f)$. Since the action is trivial, we have $ \pi_{ k} ( p^{-1}(x),x_0) = \pi_{ k} (p^{-1}(x_0),x_0) $. That is, the homotopy groups of the fiber are canonically identified independent of $ x$.
+\end{enumerate}
+\end{ass}
+\begin{remark}
+Since by assumption (2) $ \pi_{ 0} ( F) = 0$, $ F$ is path-connected.
+\end{remark}
+In fact, the third assumption is not necessary but makes the proofs a lot easier.
+
+\begin{lem} \label{lem:pb-section} 
+Suppose $ F \to E \xrightarrow{ p}  M$ is a fiber bundle and $ s_k: M^{(k)} \to E$ is a section. Let $ f: A \to M$ be a map, then $ s_k$ pulls back to a section  $f^*(s_k) : f^{-1}(M^{(k)}) \to f^* E$. In particular, if $ f$ is cellular, then  $ f^* (s_k)$ is a section on $ A^{(k)}$.
+\end{lem}
+\begin{proof}
+Define $ f^*(s_k) : a \mapsto (a, s_k \circ f(a))$, clearly continuous. Moreover, $ p(s_k \circ f(a)) = (p \circ s_k) (f(a)) = \text{id}_{ M^{(k)}}(f(a)) = f(a)$ so the image indeed lies in $ f^* E$. We see that
+\begin{align*}
+	\rho_1 \circ f^*(s_k) (a) = \rho_1 (a, s_k \circ f(a)) = \text{id}_{ A}(a)
+\end{align*}
+so $ f^* (s_k)$ is indeed a section. If $ f$ is cellular,  $ f^{-1}(M^{(k)}) = A ^{(k)}$. The commutativity of the following diagram is immediate:
+% https://q.uiver.app/?q=WzAsNCxbMCwwLCJmXipFIl0sWzEsMCwiRSJdLFsxLDEsIk1eeyhrKX0iXSxbMCwxLCJmXnstMX0oTV57KGspfSkiXSxbMywwLCJzX2teKiJdLFsyLDEsInNfayIsMl0sWzMsMiwiZiJdLFswLDEsIlxccmhvXzIiXV0=
+\[\begin{tikzcd}
+	{f^*E} & E \\
+	{f^{-1}(M^{(k)})} & {M^{(k)}}
+	\arrow["{f^*(s_k)}", from=2-1, to=1-1]
+	\arrow["{s_k}"', from=2-2, to=1-2]
+	\arrow["f", from=2-1, to=2-2]
+	\arrow["{\rho_2}", from=1-1, to=1-2]
+\end{tikzcd}\]
+\end{proof}
+
+Recall that to define a $ (k+1)$ cohomology class, we need a  $ (k+1)$-cocycle which in turn requires a  $ (k+1)$-cochain. That is, we need to define a map on each generator $ e_i^{k+1}$ of the $ (k+1)$-cellular chain of $ M$. Keep the following diagram in mind for the construction next.
+% https://q.uiver.app/?q=WzAsNyxbMiwwLCJlXntrKzF9IFxcdGltZXMgRiBcXGNvbmcgSV4qRSJdLFszLDAsIkUiXSxbMywxLCJNXnsoayl9Il0sWzIsMSwiZV57aysxfSJdLFsxLDAsIlxccGFydGlhbCBlXntrKzF9IFxcdGltZXMgRiJdLFsxLDEsIlxccGFydGlhbCBlXntrKzF9Il0sWzAsMCwiRiJdLFswLDEsIlxccmhvXzIiXSxbMSwyLCJwIiwyLHsib2Zmc2V0IjoyfV0sWzMsMiwiSSIsMl0sWzAsMywiXFxyaG9fMSIsMl0sWzQsMCwiIiwyLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJ0b3AifX19XSxbNSwzLCIiLDIseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJob29rIiwic2lkZSI6InRvcCJ9fX1dLFsyLDEsInNfayIsMix7Im9mZnNldCI6Mn1dLFs1LDQsInNfa14qIiwyXSxbNCw2LCJwXzIiLDJdLFs1LDYsIlxcdGlsZGV7XFxzaWdtYX0oc19rKSJdXQ==
+\[\begin{tikzcd}
+	F & {\partial e^{k+1} \times F} & {e^{k+1} \times F \cong I^*E} & E \\
+	& {\partial e^{k+1}} & {e^{k+1}} & {M^{(k)}}
+	\arrow["{\rho_2}", from=1-3, to=1-4]
+	\arrow["p"', shift right=2, from=1-4, to=2-4]
+	\arrow["I"', from=2-3, to=2-4]
+	\arrow["{\rho_1}"', from=1-3, to=2-3]
+	\arrow[hook, from=1-2, to=1-3]
+	\arrow[hook, from=2-2, to=2-3]
+	\arrow["{s_k}"', shift right=2, from=2-4, to=1-4]
+	\arrow["{s_k^*}"', from=2-2, to=1-2]
+	\arrow["{p_2}"', from=1-2, to=1-1]
+	\arrow["{\tilde{\sigma}(s_k)}", from=2-2, to=1-1]
+\end{tikzcd}\]
+Let $ I_i: e_i^{k+1} \to M^{(k+1)}$ be the characteristic map. Then $ I_i^* E $ is a fiber bundle over $ e_i^{k+1}$ which is contractible. Thus by \cref{prop:contract-trivial}, the bundle is trivial, \emph{i.e.} $ I_i^* E \cong D^{k+1} \times F$ (note that we shall suppress this isomorphism in notation for convenience). Since by assumption (3), we can assume that all homotopy groups of fiber $ \pi_{ k} ( F,x_0) = \pi_{ k} ( p^{-1}(x_0),x_0)$, we have a projection map $ p_2: I_i^* E \to F=p^{-1}(x_0)$ that yields elements of the same homotopy groups $ \pi_{ k} ( F,x_0)$ for all $ i$. By \cref{lem:pb-section}, from $ s_k$ we obtain a section $ s_k^* : \partial e_i^{k+1} \to I_i^* E, a \mapsto (a, s_k \circ I_i(a))$. It follows that $ p_2 \circ s_k^* : \partial e_i^{k+1} \cong S^{k} \to F$ is a representative of $ \pi_{ k} ( F)$ (due to the suppressed isomorphism, $ p_2$ is not simply projection onto the second factor of $ s_k^* $). This way, we define a $ (k+1)$-cochain $ \widetilde{ \sigma}(s_k) := [p_2 \circ s_k^* ]$ for this $i$th cell. Throughout the paper, for simplicity we just assume $ M^{(k+1)} = M^{(k)} \cup_I e^{k+1}$ so we only deal with a single cochain. But in general, we get a cochain for each cell and the theory technically must consider all of them.
+
+We now state some properties of this cochain.
+\begin{lem} \label{lem:homotopy-invariant} 
+If $ s_k, r_k$ are homotopic sections on $ M^{(k)}$, then $ \widetilde{ \sigma}(s_k) = \widetilde{ \sigma}(r_k)$.
+\end{lem}
+\begin{proof}
+	Let $ H: M^{(k)} \times [0,1] \to E$ be the homotopy between $ s_k, r_k$. Define $ H^* : e^{k+1} \times [0,1] \to I^* E$ by
+\begin{align*}
+	H^* (a,t) = (a, H(I(a),t)).
+\end{align*}
+It is clearly continuous and a homotopy between $ s_k^* $ and $ r_k^* $. Thus $ p_2 \circ H^* $ is a homotopy between $ p_2 \circ s_k^* $ and $ p_2 \circ r_k^* $, proving the lemma.
+\end{proof}
+
+\begin{remark}
+In the case of trivial fiber bundle $ E \cong B \times F$, sections are simply continuous maps $s: B \to F$ since $ \pi_1 \circ ( \text{id}_{ B},s) = \text{id}_{ B}$. 
+\end{remark}
+\begin{lem} \label{lem:0extend} 
+A section $ s_k: M^{(k)} \to E$ extends to $ M^{(k+1)}$ if and only if $ \widetilde{ \sigma}(s_k) = 0$.
+\end{lem}
+\begin{proof}
+	$ (\implies):$ suppose $ s_k$ extends to $ M^{(k+1)}$,  then the pull-back section $ s_k^*$ is defined on the entire $ e^{k+1}$, which is contractible. Since $ F$ is path-connected, $ p_2 \circ  s_k^*: e^{k+1} \to F$ is nullhomotopic as the domain is contractible, \emph{i.e.} $ \widetilde{ \sigma}(s_k) = [p_2 \circ s_k^* ] = 0$.
+	
+	$(\impliedby):$ WLOG assume $ M^{(k+1)} = M^{(k)} \cup_I e^{k+1}$. It suffices to define a section on $ e^{k+1}$ that agrees with $ s_k$ on $ I( \partial e^{k+1})$ so the universal property of quotient map yields a section on $ M^{(k+1)}$. Suppose $ \widetilde{ \sigma}(s_k) = 0$, \emph{i.e.} $ p_2 \circ s_k^* $ is nullhomotopic in $ \pi_{ k} ( F)$. Since $ e^{k+1}$ is contractible, $ p_1 \circ s_k^*$ and therefore $ (p_1 \circ s_k^* , p_2 \circ s_k^* ) = s_k^* $ are also nullhomotopic. The nullhomotopy is a cone which is homeomorphic to a disk, so we can extend $ s_k^* $ to a map $f : e^{k+1} \to I^* E$. By the commutativity of the diagram in \cref{lem:pb-section}, we see that $ s_k|_{I( \partial e^{k+1})} = s_k \circ I|_{ \partial e^{k+1}} = \rho_2 \circ s_k^* = \rho_2 \circ f|_{ \partial e^{k+1}}$. This means that given a point $ x \in \partial I(e^{k+1}) = I(\partial e^{k+1})$, any point $ a$ in the preimage $ I^{-1}(x)$ is in $ \partial e^{k+1}$ and $\rho_2 \circ f(a) = s_k(x)$ for all such $ a$.  Since $ I$ is a homeomorphism on the interior of the cell, for any $x \in \inte I(e^{k+1})$  $\rho_2 \circ f \circ I^{-1}(x)$ is clearly a singleton. This way, the universal property of quotient map yields a map $s_{k+1}: M^{(k+1)} \to E$,
+ % https://q.uiver.app/?q=WzAsMyxbMCwwLCJNXnsoayl9IFxcc3FjdXAgZV57aysxfSJdLFswLDEsIk1eeyhrKX0gXFxjdXBfSSBlXntrKzF9Il0sWzEsMSwiRSJdLFswLDEsInEiLDJdLFswLDIsInNfayBcXHNxY3VwIFxccmhvXzIgXFxjaXJjIGYiXSxbMSwyLCJzX3trKzF9IiwyLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV1d
+\[\begin{tikzcd}
+	{M^{(k)} \sqcup e^{k+1}} \\
+	{M^{(k)} \cup_I e^{k+1}} & E
+	\arrow["I"', from=1-1, to=2-1]
+	\arrow["{s_k \sqcup \rho_2 \circ f}", from=1-1, to=2-2]
+	\arrow["{s_{k+1}}"', dashed, from=2-1, to=2-2]
+\end{tikzcd}\]
+For any $x \in \inte I(e^{k+1})$, by the commutativity of the diagram in \cref{defn:pb} we have
+\begin{align*}
+    p \circ s_{k+1} (x) &= p \circ \rho_2 \circ f \circ I^{-1}(x)\\
+    &=I \circ I^{-1} \circ p \circ \rho_2 \circ f \circ I^{-1}(x)\\
+    &= I \circ (\rho_1 \circ f) \circ I^{-1}(x)\\
+    &= I \circ \id_{e^{k+1}} \circ I^{-1}(x) \\
+    &= x
+\end{align*}
+which shows that $s_{k+1}$ is indeed a section on points outside $M^{(k)}$ so it is a section on $M^{(k+1)}$.
+
+\end{proof}
+The reader might be wondering if we are done finding the obstruction to extend sections at this point. While the theorem above indeed lets us extend sections one dimension higher, it is not flexible enough to give us the characteristic class which is independent of the choice of sections! To get more ``wiggle room'' to construct such invariant, we need to find an obstruction on the cohomology level. In particular, we need to show the following:
+
+\begin{lem} \label{lem:cocycle} 
+$ \delta \widetilde{ \sigma}(s_k) = 0$.
+\end{lem}
+This proof is omitted for its technical nature.
+
+This shows that $ \widetilde{ \sigma}(s_k)$ is a cocycle, \emph{i.e.} it is in the kernel of the coboundary map $ \delta$. Therefore, it represents a cohomology class $ \sigma(s_k) := [ \widetilde{ \sigma}(s_k)] \in H^{k+1}(M; \pi_{ k} ( F))$. We have found the object we have been looking for! Now we have to prove it works as intended. To do so, we need more machinery called a difference cochain.
+
+Whenever we have two sections $ s_k, r_k$ on $ M^{(k)}$ that agree on $ M^{(k-1)}$, we can define a \allbold{difference cochain} $ D(s_k, r_k) \in C^{k}(M; \pi_{ k} ( F))$ as follows: again let $ I_i: e_i^{k} \to M^{(k)}$ be the characteristic map, and as above we have $ I_i^* E \cong e_i^{k} \times F$. We also have pull-back sections $ s_k^* $ and $ r_k^* : e_i^{k} \to I_i^* E$ which agree on  $ \partial e_i^{k}$ since the originals agree on $ M^{(k-1)}$. Therefore, we can paste their domains (both disks) along $ \partial e_i^{k}$, viewed as the equator of a $ k$-sphere, to form a map $s_k^* - r_k^* : S^{k} \to I^* E$ (the minus sign accounts for reversing orientation). Composing with the projection map $ p_2$, we obtain a representative of a homotopy class in $ \pi_n(F)$; this is defined to be the difference cochain $ D(s_k,r_k)$. That is,
+\begin{align*}
+	D(s_k,r_k) (e_i^{k}) = [p_2 \circ (s_k^*  - r_k^*)].
+\end{align*}
+
+Similar results can be proven for the difference cochain.
+\begin{lem} \label{lem:diff-ext} 
+	Let $ s$ and  $ r$ be sections that agree on $ M^{(k-1)}$, then $ s|_{M^{(k)}}$ is homotopic to $ r|_{M^{(k)}}$ if and only if $ D(s,r) = 0 \in C^{k}(M; \pi_{ k} ( F))$.
+\end{lem}
+This proof is omitted as it is similar to the other cochain case.
+
+\begin{lem} \label{lem:diff-prop} 
+~\begin{enumerate}[label=(\arabic*)]
+	\item $ \delta (D(s_k, r_k)) = \widetilde{ \sigma}(s_k) - \widetilde{ \sigma}(r_k)$.
+	\item Given $ s_k: M^{(k)} \to E$ and any $ h \in C^{k} (M; \pi_{ k} ( F))$, there exists a section $ r_k: M^{(k)} \to E$ such that $ D(s_k, r_k) = h$.
+\end{enumerate}
+\end{lem}
+\begin{proof}
+\begin{enumerate}[label=(\arabic*)]
+	\item The proof is omitted as it is similar to the other cochain case..
+
+	\item Since any $ h: C_k(M) \to \pi_{ k} ( F)$ is determined by where it sends the generators ($ k$-cells), it suffices to prove the statement for the following $ h$: given any $ k$-cell $ e^{k}$, consider $ h(e^{k}) = [g]$ for some $ g: S^{k} \to F$ and  $ h$ is zero for all other $ k$-cells. Any $ k$-cochain can then be constructed by adding these simple $ h$'s for each $ k$-cell.
+
+		Let $ I:e^{k} \to M$ be the characteristic map. Again we have the trivial bundle $ I^* E \cong e^{k} \times F$ with the pull-back section $ s_k^*: e^{k} \to I^* E$. Now take a disk $ D^{k} \subseteq \inte e^{k}$, we also identify $ I(D^{k})$ as $ D^{k}$ since $ I$ is a homeomorphism on  $ \inte e^{k}$. Since the pair $ (M^{k},D^{k})$ has the homotopy extension property (HEP) by $ \cref{lem:hep}$ and $ D^{k}$ is contractible, we can homotope $ s_k$ to a map $ s_k'$ via a homotopy extension of this contraction. Replace the notation $ s_k'$ by $ s_k$ for convenience. It follows that $ p_2 \circ s_k^* (D^{k}) = x_0 \in F$. Since $ s_k$ is constant on $ \partial D^{k}$, we can view $ -g$ as a map of pairs $ (D^{k}, \partial D^{k}) \to (F,x_0)$ so that it agrees with $ p_2 \circ s_k^* $ on $ \partial D^{k}$. Now define
+		\begin{align*}
+			r_k = \begin{cases}
+				s_k  & M^{(k)} - \inte D^{k}\\
+				(*,-g) \circ I^{-1}  & D^{k} \\
+			\end{cases}
+		\end{align*}
+		where $ *:e^{k} \to e^{k}$ is any continuous map.  By pasting lemma, $ r_k$ is continuous. It is also a section since sections for trivial bundle over a cell are just continuous maps. Then we see that for this $ k$-cell  $ e^{k}$, $D(s_k,r_k) = [p_2 \circ s_k^* - p_2 \circ r_k^* ] =[ 0-(-g)] =[g] = h(e^{k})$, as desired.
+\end{enumerate}
+\end{proof}
+
+\begin{thm} \label{thm:obstruction} 
+	Given a fiber bundle $ F \to E \xrightarrow{ p} M $ and a section $ s_k: M^{(k)} \to E$, then $ s_k|_{M ^{(k-1)}}$ extends to a section on $ M^{(k+1)}$ if and only if $ \sigma(s_k) = [\widetilde{ \sigma}(s_k)] = 0 \in H^{k+1}(M; \pi_{ k} ( F))$.
+\end{thm}
+\begin{proof}
+	Suppose $ \sigma(s_k) = 0$, then $ \widetilde{ \sigma}(s_k) = \delta h$ for some $ h \in C^{k}(M; \pi_{ k} ( F))$. By \cref{lem:diff-prop} (2), there exists a section $ r_k$ such that $ D(s_k, r_k) = h$ and $ r_k|_{M^{(k-1)}} = s_k|_{M^{(k-1)}}$. Thus by \cref{lem:diff-prop} (1),
+\begin{align*}
+	\widetilde{ \sigma}(s_k) &= \delta h = \widetilde{ \sigma}(s_k)- \widetilde{ \sigma}(r_k)\\
+	\widetilde{ \sigma}(r_k)&= 0
+\end{align*}
+Thus by \cref{lem:0extend}, $ r_k$ extends to $ M^{(k+1)}$ and agrees with $ s_k$ on $ M^{(k-1)}$, completing the proof.
+\end{proof}
+Now we have a more flexible obstruction to work with.
+\section{Characteristic classes}
+
+From obstruction theory, we identity an important cohomology class $ \sigma(s_k)$ as the obstruction to extending section $ s_k$. However, the fun doesn't stop there. With some additional assumptions on the fiber, this cohomology class becomes canonical, independent of the choice of $ s_k$. This canonical class is exactly the characteristic class of the fiber bundle. First, we need a crucial lemma:
+\begin{lem} \label{lem:section-hep} 
+Let $ F \to E \xrightarrow{ p} B$ be a locally trivial fibration with CW-structure and $ A$ be a CW-subspace of  $ B$. Suppose  $s,r : B \to E$ are two homotopic sections such that $ s|_A \simeq r|_A$, then we can extend this homotopy to $ s \simeq r$.
+\end{lem}
+\begin{proof}
+	Note that in the case of trivial fiber bundle $ E \cong B \times F$, sections are simply continuous maps $s: B \to F$ since $ p \circ ( \text{id}_{ B},s) = \text{id}_{ B}$. Therefore, in this case for a CW-pair $(B,A)$ we can extend homotopy between sections $ A \to E$ to $ B \to E$ via HEP by \cref{coro:cw-hep}. 
+
+	Since $ A$ is a CW-subcomplex of $ B$, it suffices to consider the case where $ B$ has one more cell $ e$ attached than  $ A$. Given two sections $ s,r$ whose restrictions on $ A$ are homotopic via $ H$, by \cref{lem:pb-section} they also pull back to sections $ s^* ,r^* : e \to I^* B$, where $ I: e \to B$ is the characteristic map. Again $ I^* E$ is trivial. Since $ \partial e \subseteq A$, by the HEP of CW-pair $(e, \partial e)$, we can extend $ H|_{ \partial e}$ to a homotopy $ H^*$ between $ s^* $ and $ r^* $. Pasting $ H$ and  $ H^* $ along $ \partial e$ yields a homotopy between $ s$ and  $ r$.
+\end{proof} 
+
+Now we are ready to prove the main theorem of this paper.
+\begin{thm} \label{thm:po} 
+Let $ F \to E \xrightarrow{ p} M$ be a fiber bundle. If $ \pi_{ k} ( F) = 0 $ for $ k<n$, then there exists a section  $ s_n : M^{(n)} \to E$, and the obstruction $ \sigma(s_n)$ to the existence of a section on $ M^{(n+1)}$ is independent of the choice of $ s_n$. In this case, we call $ \sigma (s_n)$ the \allbold{primary obstruction} and denote it by $ \gamma^{n+1}(E)$. Moreover, it is natural with respect to pull-backs. That is, if $ f:N \to M$ is a map, then
+\begin{align*}
+	\gamma^{n+1} (f^* E) = f^* ( \gamma^{n+1}(E)).
+\end{align*}
+\end{thm}
+\begin{proof}
+We clearly have $ s_0 $ which just maps 0-cells to distinct points in $ E$. By the assumption that $ \pi_{ k} ( F) = 0 $ for $ k<n$ and the prior theorem, we can extend $ s_0$ up to $ s_n$, proving existence.
+
+For uniqueness, we first show that any two sections on $ M^{(k)}$ are homotopic for $ k<n$. The base case $ k=0$ is clear since $ E$ is path-connected and homotopy of points are just paths. Suppose for $ k<n-1$ we have two sections $ s_{k-1}, r_{k-1} : M^{(k-1)} \to E$ homotopic, since any such homotopy can be extended to $s_n, r_n: M^{(n)} \to E$ by \cref{lem:section-hep} with no change to $ \sigma(s_n)$ by \cref{lem:homotopy-invariant}, we can WLOG assume that $ s_{k-1} = r_{k-1}$. Since the difference cochain $ D(s_k,r_k)$ is 0 by assumption on $ \pi_{ k} ( F)$, and they agree on $ M^{(k-1)}$, by \cref{lem:diff-ext} we can extend them to $ s_{k}$ and $ r_{k}$ homotopic, completing the induction. This eventually yields $ s_{n-1}$ and $ r_{n-1}$ homotopic. Again WLOG we can assume $ s_{n-1} = r_{n-1}$. Now since $ s_n$ and $ r_n$ agree on $ M^{(n-1)}$, we can define their difference cocycle $ D(s_n,r_n) \in C^{n}(M; \pi_{ n} ( F))$ with $ \delta D(s_n, r_n) = \widetilde{ \sigma}(s_n) - \widetilde{ \sigma}(r_n)$. Since they differ by a boundary, $ \sigma(s_n)= [ \widetilde{ \sigma}(s_n)] = [ \widetilde{ \sigma}(r_n)] = \sigma(r_n)$, implying uniqueness.
+
+For naturality, suppose WLOG $ f:N \to M$ is a cellular map (homotopy by cellular approximation theorem), then $ f^*s_n : N \to f^* E$ is a section of the pull-back bundle by \cref{lem:pb-section}. We wish to show that $ \sigma(f^* s_n) = f^* \sigma(s_n)$, \emph{i.e.} they agree on all the $ (n+1)$-cells which are generators of $ C_{n+1}(N)$.
+
+Moreover, since $ \pi_{ k} ( M^{(n+1)}, M^{(n)}) = 0$ for all $ k \leq n$ as any $ (D^{k}, \partial D^{k}) \to (M^{(n+1)}, M^{(n)})$ can be homotope to a cellular map, and misses a point in each $ n+1$-cell so it can be homotoped to a map whose image is contained in $ M^{(n)}$ by lemma IB.16 CREF. By \cref{thm:hurewiz},  we have that $ \pi_{n+1}(M ^{(n+1)}, M^{(n)}) \cong H_{n+1}(M^{(n+1)}, M^{(n)}) \cong C_{n+1}(M)$ and likewise $\pi_{n+1}(N^{(n+1)}, N^{(n)}) \cong H_{n+1}(N^{(n+1)},N^{(n)}) \cong C_{n+1}(N)$. Note that in the second isomorphism, each generator $e^{n+1}$ is mapped to a generator of $ H_{n+1}(S^{n+1}) \cong \zz$, which is a sphere in the wedge of spheres post applying the characteristic maps. Notice that any map $f:(D^{n+1}, \partial D^{n+1}) \to (N^{(n+1)},N^{(n)})$ can be constructed by simpler maps that restrict the codomain of $f$ to each individual sphere. These simpler maps are homotopic to the characteristic maps since disks are contractible. Therefore, the (homotopy classes of) characteristic maps themselves are the generators of $ \pi_{n+1}(N^{(n+1)},N^{(n)})$. Therefore, it suffices to show that these maps agree on the characteristic maps.
+
+Given a characteristic map $ I:(D^{n+1}, \partial D^{n+1}) \to (N^{(n+1)},N^{(n)})$, we can view it as a map $ (S^{n+1},s_0) \to (N^{(n+1)},N^{(n)})$. Therefore, it represents a homotopy class in $ \pi_{ n+1} ( N^{(n+1)},N^{(n)})$. Then $ [f \circ I] \in \pi_{n+1}(  M^{(n+1)}, M^{(n)})$ and $ [ p_2 \circ s_n \circ f \circ I|_{\partial e^{n+1}}] \in \pi_n(F)$, since the pullback bundle is trivial so we can project directly via $ p_2$. This represents $ f^* \sigma(s_n)(I) = \sigma(s_n)(f \circ I)$ (this is pullback on cohomology). We also see that $ [p_2 \circ (s_n \circ f) \circ I|_{ \partial e^{n+1}}]$ represents $ \sigma(f^*s_n)$ as $( \text{id}_{ N}, s_n \circ f) =f^* s_n $. Thus, $ \sigma(f^* s_n)$ and $ f^* \sigma(s_n)$ agree on generators of $ C_{n+1}(N)$ and therefore equal.
+
+\end{proof}
+
+\begin{defn}
+The primary obstruction $ \gamma^{n+1}$ is referred to as the \allbold{characteristic class} of the fiber bundle. 
+\end{defn}
+
+\section{Characteristic classes of vector bundles}
+A \allbold{real vector bundle} is a fiber bundle with fiber $ \rr^{n}$ ($ n$ allowed to be  $ \infty$). For the rest of the paper, we shall restrict our discussion to this type of fiber bundles, as they are ubiquitous ( \emph{e.g.} tangle bundles) and easier to understand than fibers not equipped with a linear structure.  
+
+\begin{eg}
+The tangle bundle $ TM$ of a manifold $ M$ is a real vector bundle.
+\end{eg}
+\begin{eg}
+	Viewing elements of $ \rr P^{n}$ as lines through origin in $ \rr^{n+1}$, we have the \allbold{canonical line bundle} defined by
+\begin{align*}
+	E( \rr P^{n}):= \{(\ell,v) \in \rr P^{n} \times \rr^{n+1}, v \in \ell\},
+\end{align*}
+with $ p(\ell,v) = \ell$, fiber $ \rr^{1}$, and local trivialization near any fixed $ \ell$ defined by $ p^{-1}(\ell') \ni (\ell',v') \mapsto (\ell', \proj_{\ell}(v')) \in U \times \rr^{1}$.
+\end{eg}
+\begin{eg} \label{eg:gr} 
+Recall that the Grassmannian $ \gr_{ n} := \gr_{ n}(\rr^{ \infty}) $ is the set of all $ n$-dimensional subspaces of  $ \rr^{\infty}$ endowed with a smooth manifold structure, a generalization of $ \rr P^{\infty}$ which is just $ \gr_{1}$. Therefore, similar as above, it has a canonical bundle
+\begin{align*}
+	E_n := \{(\ell,v) \in \gr_{ n} \times \rr^{\infty}: v \in \ell\},
+\end{align*}
+with $ p(\ell,v) = \ell$, fiber $ \rr^{n}$, and local trivialization near any fixed $ \ell$ defined by $ p^{-1}(\ell') \ni (\ell',v') \mapsto (\ell', \proj_{\ell}(v')) \in U \times \rr^{n}$.
+\end{eg}
+
+We can define a direct sum operation on any two vector bundles $ \rr^{n} \to E \xrightarrow{ p} B$ and $ \rr^{m} \to E' \xrightarrow{ p'} B$ by
+\begin{align*}
+	E \oplus E' = \{(e,e') \in E \times E': p(e)=p'(e')\} = \Delta^* (E \times E'),
+\end{align*}
+where $ \Delta: B \to B \times B$ is the diagonal map. This is a vector bundle over $ B$ with fiber  $ \rr^{n+m}$.
+
+
+\begin{defn}
+A topological space is \allbold{paracompact} if it is Hausdorff and every open cover admits a partition of unity. 
+\end{defn}
+\begin{remark}
+This definition might be stronger than some common definitions of paracompact, so tread carefully if the reader encounter this term elsewhere.The precise definition is less important than the fact that most spaces we care about, such as CW-complex, manifolds, compact Hausdorff spaces, metric spaces etc are paracompact.
+\end{remark}
+The following facts 
+\begin{prop}
+Let $ F \to E \xrightarrow{ p} \to B$ be a vector bundle and $ A$ be a paracompact space. If  $ f,g: A \to B$ are homotopic, then $ f^* E \cong g^* E$.
+\end{prop}
+
+We provide an alternative definition for characteristic classes of vector bundles from a category-theoretic perspective. If the reader is not comfortable with this perspective, there is no harm skipping to the examples. Thus we shall freely use categorical terminologies without introducing them. Let $ \textsf{pchTop} $ denote the subcategory of the homotopy category $ \textsf{hTop}$ where we restrict objects to paracompact topological spaces (the morphisms are homotopic classes of continuous maps). Let $ \vect_n : \textsf{pchTop}^{op} \to \textsf{Set}$ be the functor that takes in a paracompact topological space $ X$ and outputs the set of isomorphism classes of $ n$-dimensional vector bundles over $ X$. 
+
+\begin{defn}
+A \allbold{characteristic class of vector bundles} is a natural transformation from $ \vect_n$ to the cohomology functor $H^*(-;G)$ for some abelian group $ G$.
+\end{defn}
+
+\begin{prop}
+	The functor $ \vect_n$ is representable by $ \gr_{ n}$. That is, $ \vect_n \cong [-, \gr_{ n}]$.
+\end{prop}
+\begin{thm}
+Characteristic classes of vector bundles are in bijection with $ H^* ( \gr_{ n};G)$.
+\end{thm}
+\begin{proof}
+\begin{align*}
+	\nat ( \vect_n, H^* (-;G)) \cong \nat( [-, \gr_{ n} ], H^* (-;G)) \cong H^* ( \gr_{ n};G) )
+\end{align*}
+where the second bijection follows from Yoneda lemma.
+\end{proof}
+\section{Examples}
+Since the examples require a lot more background than the theory, we shall state terms and facts without detailed elaboration.
+\subsection{Steifel-Whitney class}
+Let $ \rr^{n} \to E \xrightarrow{ p}  M$ be a vector bundle. Let $ \mathcal{ F}(E)$ denote the principal $ O(n)$-bundle over $ M$ (also called the orthonormal frame bundle) associated with $ E$. Since $ E$ has an orthonormal  $ k$-frame iff  $ E = E' \oplus \rr^{k}$ iff the structure group of $ E$ reduces from $ O(n)$ to $ O(n-k)$ iff the structure group of $ \mathcal{ F}(E)$ reduces to $ O(n-k)$ iff $ \mathcal{ F}(E) / O(n-k)$ has a section, we have the following fact:
+\begin{prop} \label{prop:frame} 
+$ E$ has an orthonormal $ k$-frame if and only if  $ \mathcal{ F}(E) /O(n-k)$ has a section.
+\end{prop}
+Recall that $ \mathcal{ F}(E) / O(n-k)$ has fibers $ O(n) / O(n-k) = V_{n,k}$ (Stiefel manifold, or the orthogonal $ k$-frames in  $ \rr^{n}$). We know that 
+\begin{align*}
+	\pi_{ i} ( V_{n,k}) \cong \begin{cases}
+		0, & i < n-k\\
+		\zz, & i=n-k \text{ even, or }k=1\\
+		\zz /2, & i=n-k \text{ odd} 
+	\end{cases}
+\end{align*}
+Since $ \pi_{ 1} ( M)$ doesn't necessarily act trivially on $ \pi_{ n-k} ( V_{n,k})$ if it equals $ \zz$, we have to reduce the coefficient to $ \zz /2$ as $ \aut(\zz /2) = 1$ forces actions to be trivial. By $ \cref{thm:po}$, we have a primary obstruction $ \gamma^{n-k+1} \in H^{n-k+1}(M; \zz /2)$ to the existence of a section and thus that of an orthonormal  $ k$-frame on  $ E$ TODO. Define the \allbold{ $ \ell$th Steifel-Whitney class} of $ E$ as $ w_\ell(E) := \gamma^{ \ell}(E) \in H^{\ell}(M; \zz /2)$. We see that when $ \ell$ is even, $ n-k$ is odd, so the coefficient is not altered and  $ w_\ell$ is indeed the primary obstruction to the existence of a $ n-\ell+1$-frame on $ M^{(\ell-1)}$ that extends over $ M^{(\ell)}$. It turned out that $ w_\ell$ in fact determine all the primary obstructions.
+
+\subsection{Euler class}
+In the special case when $ \rr^{n} \to E \xrightarrow{ p} M $ is an oriented bundle and $ k=1$, $ \pi_{ 1} ( M)$ acts trivially on $ \pi_{ n-1} ( V_{n,1}) \cong \zz$. We define the  \allbold{Euler class} by the primary obstruction $ e(E):= \gamma^{n} \in H^{n}(M;\zz)$. Then by \cref{prop:frame}, we know the Euler class is the primary obstruction to $ E$ having a 1-frame, which is equivalent to a nonvanishing vector field over $ M$. It follows that if $ M$ has a nonvanishing vector field, then  $ e(M) = 0$. The converse doesn't necessarily hold because there could be further obstructions in higher dimensions. But it does hold if  $ \dim M = n$.
+
+
+\subsection{Chern class}
+We have a parallel construction for a complex vector bundle $ \cc^{n} \to E \xrightarrow{ M} $, by replacing $ O(n)$ with  $ U(n)$ the unitary group in the Steifel-Whitney case. Since
+ \begin{align*}
+	\pi_{ i} ( V_{n,k}( \cc)) \cong \begin{cases}
+		0, & i \leq 2(n-k)\\
+		\zz, & i=2(n-k)+1
+	\end{cases}
+\end{align*}
+and assumptions CREF are satisfied, the primary obstruction is $ \gamma^{2(n-k+1)} \in H^{2(n-k+1)}(M;\zz)$. We define the \allbold{ $ k$th Chern class} of $ E$ as $ c_k(E) := \gamma^{2k}(E)$.
+
+\subsection{Pontryagin class}
+For any $ \rr^{n} \to E \xrightarrow{ p} M $ bundle, $ E \otimes_\rr \cc$ is a complex vector bundle. We define the \allbold{ $ i$th Pontryagin class} of $ E$ as  $ p_i(E):=(-1)^{i} c_{2i}(E \otimes \cc) \in H^{4i}(M;\zz)$. 
+\end{document}
+
+

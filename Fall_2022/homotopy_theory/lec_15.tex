@@ -1,0 +1,90 @@
+\documentclass[12pt,class=article,crop=false]{standalone} 
+\input{../preamble.tex}
+
+\begin{document}
+\section{Fibrations}
+\begin{thm}[Leray-Serre spectral sequence]
+If $ E \xrightarrow{ p} B $ is a Serre fibration and $ B$ is a simply connected CW complex (only need $ \pi_1(B)$ acts trivially on $ H_*(F)$). Then there exists a spectral sequence that converges to $ G(H_*(E))$ with  $ E_{s,t}^2 = H_s(B;H_t(F))$.
+\end{thm}
+\begin{remark}
+There is a similar cohomology spectral sequence with $ E_2^{s,t} = H^{s}(B;H^{t}(F))$.
+\end{remark}
+\begin{proof}
+Exercise: show $ d^{1}$ is the boundary map for chain complex $ C_*^{CW}(B; H_t(F))$.
+\end{proof}
+\begin{lem}
+$H_{s+t}(E^{s} , E^{s-1}) \cong C_s(B;H_t(F))$.
+\end{lem}
+\begin{proof}
+Exercise: for $ p>0$,  $ H_p(Y)  \cong H_{p+1}(\Sigma Y)$. 
+
+Recall $ \Sigma Y \cong S^{1} \wedge Y = S^{1} \times Y / S^{1} \vee Y$. Also $ S^{p} = S^{1} \wedge \cdots \wedge S^{1}$ $ p$ times. There exists an $ S^{s}$  in $ D^{s} \times F /S^{s-1} \times F$ by taking a point in $ F$.
+
+Exercise: for any spaces  $ X,Y,Z$ with  $ Y \subseteq x$
+\begin{align*}
+	\frac{X\times Z}{ (Y \times Z) \cup (X \times \{*\} )} \cong \frac{X /Y \times Z}{(\{*\} \times Z ) \vee (X \times \{*\} / Y \times \{*\} ) }.
+\end{align*}
+Exercise: think about $ t=0,1$.
+
+
+\end{proof}
+\begin{thm}
+For $ k \geq 2$,
+\begin{align*}
+	H_q(\Omega S^{k}) = \begin{cases}
+		\zz& q = a(k-1) , a \geq 0\\
+		0& \text{ else}\\ 
+	\end{cases}
+\end{align*}
+\end{thm}
+\begin{proof}
+Apply Theorem 4 and Lemma 1.
+\end{proof}
+
+\begin{thm}[Gysin sequence]
+Let $ E \xrightarrow{ p} B $ be a fibration with fiber $ S^{n}$ and $ B$ a CW complex. Assume $ \pi_1(B)$ acts trivially on $ H_*(S^{n})$, there exists an exact sequence
+\begin{align*}
+	\ldots H_r(E) \xrightarrow{ p_*} H_r(B) \to H_{r-n-1} (B) \to H_{r-1} (E) \xrightarrow{ p_*} H_{r-1}(B) \ldots  
+\end{align*}
+for $ k \geq n+1$.
+\end{thm}
+\begin{proof}
+Apply Theorem 4 and Lemma 1.
+\end{proof}
+
+Exercise: If $ E\xrightarrow{ p} S^{n}$ is a fibration with fiber $ F$, show there exists an exact sequence
+ \begin{align*}
+	\ldots H_r(F) \to H_r(E) \to H_{r-n}(F) \to H_{r-1}(F) \to\ldots
+\end{align*}
+called the Wang sequence.
+
+Let's consider a cohomology version:
+\begin{thm}[Leray-Serre for cohomology]
+Let $ E\xrightarrow{ p} B$ be a Serre fibration with $ B$ a CW complex where  $ \pi_1(B)$ acts trivially on  $ H^{*}(F)$. There exists a spectral sequence converging to $ G(H^* (F))^{s,t}$ with $ E_2^{s,t} = H^{s}(B;H^{t}(F))$ and
+\begin{enumerate}[label=(\arabic*)]
+	\item $ \{E_r^{s,t}\} $ is a bigraded algebra, \emph{i.e.} there exists a product $ E_r^{s,t} \times E_r^{p,q} \to E_r^{s+p,t+q}$ 
+	\item $ d_r: E_r \to E_r$ is a derivation $ (r,-r+1)$, \emph{i.e.}
+		\begin{align*}
+			d_r(a \cdot b) = (d_r a) \cdot b + (-1)^{p+q} a \cdot d_r b
+		\end{align*}
+	\item $ E_2^{*,0} \cong H^* (B)$ as rings and $ E_2^{0,*} \cong H^* (F)$ as rings.
+\end{enumerate}
+\end{thm}
+\begin{remark}
+The product structure on $ E_2^{s,t}$ is
+\begin{align*}
+	H^{p}(B; H^{q}(F)) \times H^{s}(B; H^{t}(F)) \to H^{p+s}(B; H^{q}(F) \otimes H^{t}(F))
+\end{align*}
+and compose with the cup product on $ H^{q}(F) \otimes H^{t}(F)$.
+\end{remark}
+
+\begin{eg}
+$ \cc P^n$.
+\end{eg}
+\begin{thm}
+$ H^* (U(n)) \cong \Lambda (x_1,x_3,\ldots,x_{2n+1})$ with $ \deg x_i = i$.
+\end{thm}
+\begin{remark}
+	From this we can compate $ H^* (BU(n)) \cong \zz[c_1,\ldots,c_n]$ where $ c_i$ has degree $ 2i$ (this is Theorem II.17).
+\end{remark}
+\end{document}

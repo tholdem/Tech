@@ -1,0 +1,69 @@
+\documentclass[12pt,class=article,crop=false]{standalone} 
+\input{../preamble.tex}
+
+\begin{document}
+All rings are commutative, associative, and with 1. All ring homomorphisms preserve 1. All modules are unital.
+
+
+\begin{defn}
+A ring is \allbold{Noetherian} if every ideal is finitely generated. 
+\end{defn}
+\begin{remark}
+We will mostly consider Noetherian rings in this course.
+\end{remark}
+
+\section{Algebraic sets}
+Let $ K$ be a field, usually algebraically closed. A polynomial in  $ K[x_1,\ldots,x_n]$ may be thought of as a function $ K^{n} \to K$.
+
+\begin{defn}
+	Given polynomials $ f_1,\ldots,f_m \in K[x_1,\ldots,x_n]$, a set of the form
+	\begin{align*}
+		\mathcal{ V}(f_1,\ldots,f_m) = \{(a_1,\ldots,a_n) \in K^{n}: f_i(a_1,\ldots,a_n) = 0 \ \forall \ i\} .
+	\end{align*}
+is called an \allbold{algebraic set in $ K^{n}$}.  
+\end{defn}
+
+\begin{eg}
+	$ K = \rr$, $ K[x,y]$, then  $ \mathcal{ V}(y-x^2)$ is the parabola $ y=x^2$.
+\end{eg}
+
+\begin{ques}
+	What is the dimension of an algebraic set?
+\end{ques}
+Recall from linear algebra,
+\begin{align*}
+	\dim (V \cap W) = \dim  V + \dim  W - \dim (V+W)\\
+	&\geq \dim V + \dim  W -n
+\end{align*}
+\begin{eg}
+Intersection of 2 planes in 3-space, has dimension at least 2+2-3=1.
+\end{eg}
+
+\begin{remark}
+Suppose $ \mathcal{ V}, \mathcal{ W} \subseteq K^{n}$ are algebraic sets, then $ \mathcal{ V} \cap \mathcal{ W}$ may consist of a union of smaller, algebraic sets called (irreducible) components. The components may have different dimensions. Let $ a \in \mathcal{ V}$. Then $ \dim _a \mathcal{ V}$ is the dimension of the largest component of $ \mathcal{ V}$ containing $ a$. If  $ a \mathcal{ V} \cap \mathcal{ W}$, then
+\begin{align*}
+	\dim _a( \mathcal{ V} \cap \mathcal{ W}) \geq \dim _a( \mathcal{ V})  + \dim _a ( \mathcal{ W}) - n.
+\end{align*}
+\end{remark}
+
+\begin{ques}
+	Given an algebraic set $ \mathcal{ V}(f_1,\ldots,f_m)$, what is the ideal in $ K[x_1,\ldots,x_n]$ of all polynomials vanishing on that set? Call this ideal $ J$.
+\end{ques}
+\begin{eg}
+$ I=(x^2)$ then $ J = \langle x \rangle$.
+\end{eg}
+\begin{eg}[the commutator scheme]
+See lecture notes.
+\end{eg}
+
+\begin{ques}
+Given an algebraic set $ \mathcal{ V}(f_1,\ldots,f_m)$, what is the least number $ k$ such that
+ \begin{align*}
+	 \mathcal{ V}(f_1,\ldots,f_m) = \mathcal{ V}(g_1,\ldots,g_k), where $ g_1,\ldots,g_k \in K[x_1,\ldots,x_n]$?
+\end{align*}
+\end{ques}
+\begin{ques}
+What is the geometry associated to a commutative ring? See Nullstellensatz.
+\end{ques}
+\end{document}
+

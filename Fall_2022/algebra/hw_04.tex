@@ -1,0 +1,119 @@
+\documentclass[12pt]{article}
+\input{../preamble.tex}
+
+\begin{document}
+\centerline {\textsf{\textbf{\LARGE{Homework 4}}}}
+\centerline {Jaden Wang}
+\vspace{.15in}
+
+\begin{problem}[1]
+Suppose $|G|= 24= 2^3 \cdot 3$. If $ G$ is abelian, then it is a product of its Sylow subgroups which are normal in $ G$ so  $ G$ cannot be simple. Suppose $ G$ is non-abelian. The only divisor $ n$ where  $ \gcd ( n,24 /n) =1$ are $ n=1,3,8,24$. Since Sylow $ 2$-subgroups have order 8, Sylow 3-subgroups has order 3, and  $ \{e\} $ and $ G$ exist, by Theorem on P105,  $ G$ is solvable (or use Burnside's Theorem). Then by definition there exists a chain for $ G$:
+ \begin{align*}
+	\{e\} \trianglelefteq G_1 \trianglelefteq \cdots \trianglelefteq   G_{s-1} \trianglelefteq G_s = G 
+\end{align*}
+where $ G_{i+1} / G_i$ is abelian. Since $ G$ is not abelian but  $ G / G_{s-1}$ is abelian, $ G_{s-1} \neq \{e\} $ so we have found a normal subgroup $ G_{s-1}$ of $ G$.
+
+\allbold{Alternatively} : By Sylow we see that $ n_2 = 1,3$ and $ n_3 = 1,4$. Suppose $ n_2 = 3$ and $ n_3 =4$. $ G$ acts on  $ P := Syl_{ 2}( G) $ by conjugation. This yields a homomorphism $ \phi: G \to S_3$. Notice that $ \phi$ is not the trivial action as the action permutes three Sylow 2-subgroups. Hence  $ |\im \phi| > 1 $ and $ | \ker \phi| = |G| / | \im \phi| \geq 24 / 6 = 4$ but $ | \ker \phi| = |G| / \im \phi < |G|$. Therefore, $ \ker \phi$ is a non-trivial proper normal subgroup of $ G$ so $ G$ is not simple.
+\end{problem}
+
+\begin{problem}[2]
+~\begin{enumerate}[label=(\alph*)]
+	\item The $ (\impliedby)$ direction is immediate as cyclic groups are abelian. $ (\implies):$ suppose $ G$ is finite and solvable. Then by the FToFGAB, any $ G_{i+1} / G_i \cong Z_{p_1}^{ \alpha_1} \times \cdots \times Z_{p_k}^{ \alpha_k}$. We know $ Z_{p_1}^{ \alpha_1-1} \times \cdots \times Z_{p_k}^{ \alpha_k} \trianglelefteq G_{i+1} / G_i$, so by the 4th isomorphism theorem, we can pull back this normal subgroup to a normal subgroup $ G_i' \trianglelefteq G_{i+1}$ with index $ p_1$. Therefore $ G_{i+1} / G_i' \cong Z_{p_1}$. Continue this process inductively on $ G_i' / G_i$ until the quotient is cyclic and do this for all $ i$. This yields a composition series with all cyclic quotients.
+	\item First we prove a lemma.
+\begin{lem}
+A group $ G$ is solvable iff its derived series terminates.
+\end{lem}
+\begin{proof}
+Denote the commutator subgroup of $ G$ as  $ G^{(1)}$, whose commutator subgroup is denoted as $ G^{(2)}$, and so on.
+
+$ (\implies):$ Suppose $ G$ is solvable, with the series
+ \begin{align*}
+	\{e\} \trianglelefteq N_{s-1} \trianglelefteq \cdots \trianglelefteq N_1 \trianglelefteq N_0 = G.
+\end{align*}
+Since $ G / N_1$ is abelian, and $ G^{(1)}$ is the smallest normal subgroup that yields abelian quotient, $ G^{(1)} \leq N_1$ so we establish the base case. Assume $ G^{(i-1)} \leq N_{i-1}$. Notice $ G^{(i)} = [G^{(i-1)},G^{(i-1)}] \leq [N_{i-1},N_{i-1}]$. Since $ N_{i-1} / N_i$ is abelian, $[N_{i-1},N_{i-1}] \leq N_i$ so $ G^{(i)} \leq N_i$ and we complete the induction.
+
+$ (\impliedby):$ Suppose the derived series of $ G$ terminates. Since $ G^{(i)} \trianglelefteq G^{(i-1)}$ and $ G^{(i-1)} / G^{(i)}$ is abelian by properties of commutator subgroups, the derived series satisfy the definition of solvable group.
+\end{proof}
+
+With this equivalent but more concrete definition of solvable groups, we can give elegant proofs to this part.
+
+Suppose $ G$ is solvable and let $ H \leq G$. We wish to show that the derived series of $ H$ terminates. First notice that intersecting the derived series of $ G$ with $ H$ factorwise yields a terminating series
+\begin{align*}
+	\{e\} \trianglelefteq H \cap G^{(s-1)} \trianglelefteq \cdots \trianglelefteq H \cap  G^{(1)} \trianglelefteq H 
+\end{align*}
+Moreover, we see that for every $ h \in H^{(i)}$, clearly $ h \in H$ and $ h \in G^{(i)}$, so $ H^{(i)} \leq H \cap G^{(i)}$. Therefore, we establish factorwise containment of the derived series of $ H$ with the terminating series above. This shows that the derived series of  $ H$ also terminates so  $ H$ is solvable.
+
+\begin{prop}
+Let $ G$ be a solvable group and $ \phi:G \to H$ be a group homomorphism, then $\ker \phi$ and $ \im \phi$ are solvable.
+\end{prop}
+\begin{proof}
+	Denote $ N:= \ker \phi$ and $K:= \im \phi \cong G /N$. Since $N \trianglelefteq G $, it is solvable by argument above. Since $ \phi$ is a homomorphism, it maps generators $ [g_1,g_2]$ of $ G^{(1)}$ to $[\phi(g_1),\phi(g_2)]$ which are generators of $ K^{(1)}$. Since $ \phi$ is surjective onto its image $ K$, all generators of $ K^{(1)}$ can be hit this way so we have the base case $K^{(1)} \leq \phi(G^{(1)})$. Assume $ K^{(i-1)} \leq \phi (G^{(i-1)})$. Then
+	\begin{align*}
+		K^{(i)} = [K^{(i-1)},K^{(i-1)}] \leq [\phi(G^{(i-1)}),\phi(G^{(i-1)})] = \phi([G^{(i-1)},G^{(i-1)}]) = \phi (G^{(i)}).
+	\end{align*}
+	Hence we complete the induction. Since the factorwise image of derived series of $ G$ terminates, so does the derived series of $ K$. Hence  $ K$ is solvable.
+\end{proof}
+It follows immediately that for any $ N \trianglelefteq G$, $ G /N$ is solvable.
+\end{enumerate}
+\end{problem}
+\begin{problem}[3]
+	(collab with Will and Ari) Suppose  $ |G| = 200 = 2^3 \cdot 5^2$. By Sylow, $ n_5 | 8$ and $ n_5 = 1 \bmod 5$ so $ n_5 = 1$. That is, Sylow 5-subgroup $ P_5$ is normal. Moreover, $ P_5$ has order 25 so it is a  $ p$-group and therefore solvable. Consider $ G / P_5$ which has order $ 8$. It is also a $ p$-group so it is solvable.  By Theorem, $ G$ is therefore solvable.
+\end{problem}
+\begin{problem}[4]
+$ (\implies):$ Suppose every group of odd order is solvable. Then any simple group of odd order $ G$ must be abelian since the only possible solvable series is $ \{e\} \trianglelefteq G $ by simplicity so $ G / \{e\} $ is abelian. Since $ G$ is finite, by the FToFGAB,  $ G \cong Z_{p_1}^{ \alpha_1} \times \cdots \times Z_{p_k}^{ \alpha_k}$. Since $ G$ is simple, it cannot have more than one product and it cannot be trivial so  $ G \cong Z_{p_j}$, where $ p_j$ is a prime. Then $ |G| = p_j$ which forces $ p_j$ to be odd.
+BETTER: use 2(a).
+
+$ (\impliedby):$ Suppose that every simple group of odd order is $ Z_p$ for some odd prime  $ p$. Then given a group  $ G$ of odd order and its decomposition series, the quotients  $ G_{i+1} / G_i$ is simple and must have odd order by Lagrange, so $ G_{i+1} / G_i \cong Z_{p_i}$ by assumption, which is abelian. Hence $ G$ is solvable.
+\end{problem}
+\begin{problem}[5]
+~\begin{enumerate}[label=(\alph*)]
+	\item First, any $ hk \in HK$ can be expressed as $ hkh^{-1}h = (hkh^{-1})h \in KH$ since $ K \trianglelefteq G$. Likewise any $ kh = hh^{-1}kh \in HK$. So $ KH=HK$. $ HK$ is clearly non-empty. Given  $ h_1k_1,h_2k_2 \in HK$, we see that $ h_1 k_1 h_2 k_2 = (h_1 h_2) (h_2^{-1} k_1 h_2 k_2) \in HK$ since $ h_2 ^{-1} k_1 h_2 \in K$ by normality so $ HK$ is closed under operation. Clearly $ (hk)^{-1} = k^{-1}h^{-1} \in KH = HK$ so it is closed under inverses. Hence $ KH=HK \leq G$.
+
+		This part claims that $ H$ acts on $ K$ by left conjugation. Given $ h_1 , h_2 \in H$, we see that
+		\begin{align*}
+			 \gamma(h_1 h_2) (k) &= \gamma_{h_1 h_2} (k) \\
+			 &= h_2^{-1}h_1^{-1} k h_1 h_2 \\
+			 &= h_2 ^{-1} \gamma_{h_1}(k) h_2\\
+			 &= \gamma_{h_2} \circ \gamma_{h_1}(k) \\
+			 &= \phi(h_1) \circ \phi(h_2) (k) 
+		\end{align*}
+		So $ \gamma$ is a homomorphism.
+	\item Consider the map $ \phi: HK \to H \times K,hk \mapsto (h,hkh^{-1})$. Then
+		\begin{align*}
+			\phi(h_1 k_1 h_2 k_2) &= \phi(h_1 h_2 h_2^{-1} k_1 h_2 k_2) \\
+			&= \phi((h_1h_2)(h_2^{-1}k_1h_2k_2) \\
+			&= (h_1h_2,h_2^{-1} k_1 h_2 k_2) && h_2^{-1}k_1 h_2 \in K\\
+			&= (h_1, k_1) * (h_2, k_2) \\
+			&= \phi(h_1k_1) \phi(h_2k_2)
+		\end{align*}
+		shows that $ \phi$ is a homomorphism. Surjectivity is clear. Clearly if $ (h,k)=0$, then  $ h,k=0$ so  $ hk=0$. Hence  $ \phi$ is injective and therefore an isomorphism. That is, $HK= G \cong H \times K$.
+	\item Closure under operation is clear from definition of the operation. 
+		\begin{align*}
+			((x_1,y_1) * (x_2,y_2))*(x_3,y_3) &= (x_1x_2,\phi_{x_2^{-1}}(y_1)y_2)*(x_3,y_3) \\
+			&= (x_1x_2x_3,\phi_{x_3^{-1}}(\phi_{x_2^{-1}}(y_1)y_2)y_3) \\
+			&= (x_1x_2x_3, (\phi_{x_3^{-1}} \circ \phi_{x_2^{-1}}) (y_1) \phi_{x_3^{-1}}(y_2)y_3) \\
+			&= (x_1x_2x_3, (\phi_{(x_2x_3)^{-1} }) (y_1) \phi_{x_3^{-1}}(y_2)y_3) \\
+			&= (x_1,y_1)*(x_2x_3,\phi_{x_3^{-1}}(y_2)y_3) \\
+			&=(x_1,y_1) * ((x_2,y_2)*(x_3,y_3))
+		\end{align*}
+
+		I claim that $ (e_H,e_K)$ is the identity. Not surprisingly, $ (h,k)*(e_H,e_K) = (he_H,\phi_{e_H^{-1}} (k) e_K  ) = (h, \phi_{e_H} (k) ) = (h,k)$. The other direction is similar. Finally, $ (h^{-1},\phi_h(k^{-1}))$ is the inverse of $ (h,k)$:
+		\begin{align*}
+			(h,k)(h^{-1},\phi_{h}(k^{-1})) &= (hh^{-1},\phi_{h}(k) \phi_h(k^{-1}) \\
+			&= (e_H,\phi_h(k k ^{-1})) \\
+			&= (e_H,\phi_h(e_K) )\\
+			&= (e_H,e_K) 
+		\end{align*}
+		And the other direction is similar. Hence $ G$ is a group.
+	\item Given $ (h,k) \in G,(e,k') \in K$, notice
+		\begin{align*}
+			(h,k)*(e,k')*(h,k)^{-1} &= (h,kk') * (h^{-1},\phi_h(k^{-1})) \\
+			&= (e,\phi_h(kk'k^{-1}) \in K
+		\end{align*}
+		So $ K \trianglelefteq G$. Clearly $ H \cap K = (e,e)$. Then by counting, $ |HK| = |H||K| /|H \cap K| = |H||K| = |H \times K|$ so $ G = HK$.
+\end{enumerate}
+\end{problem}
+\begin{problem}[6]
+Clearly $ G \cong G \times \{e\} \leq H$. Also $ G \times Z_2 \cong Z_2 \times G$. Denote $ e_i$ to be $ 1$ in the  $ i$th entry and zero elsewhere. Then clearly $ e_i$ for all $ i \in \nn_+$ are the generators of $ G$ and  $ H$. Define $ \phi:Z_2 \times G \to G, (1,0,0,\ldots)) \mapsto (2,0,0,\ldots)$ and then $ e_i \mapsto e_{i+1}$ for $ i >1$. Then $ \phi$ is clearly a homomorphism. It is also injective as none of the generators is mapped to 0 so the kernel is trivial. Hence  $ H \cong \phi(H) \leq G$. However, $ H$ and  $ G$ are not isomorphic because  $ G$ has no generators of order 2, but  $ H$ does. This is a structural difference.
+\end{problem}
+\end{document}

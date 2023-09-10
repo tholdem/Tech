@@ -1,0 +1,47 @@
+\documentclass[12pt]{article}
+\input{../preamble.tex}
+
+\begin{document}
+\centerline {\textsf{\textbf{\LARGE{Homework 8}}}}
+\centerline {Jaden Wang}
+\vspace{.15in}
+\begin{problem}[2.1.3]
+Let $ s$ be a corner of the square and let  $ f$ be the diffeomorphism that maps a neighborhood  $ U$ of  $ s$ to  $ H^2$, with the boundary(two edges) mapped to the boundary of $ H^2$ which is the real line. Then $ v_1, v_2$ depicted in Figure 2-4 are two smooth half curves based at $ s$ so they are in  $ T_s S$. They are also clearly linearly independent. However, since they are along the boundary, they are mapped into the real line, becoming linearly dependent. Thus  $ df_s$ is singular so $ f$ cannot be a diffeomorphism, a contradiction. Thus  $ S$ is not a manifold with boundary.
+\end{problem}
+\begin{problem}[2.1.10]
+Let $ h: H^{n} \to \rr$ be the height function which is clearly smooth as it is linear. It is easy to see that $ h(z) = 0$ iff $ z \in \partial H^{n}$ which is the real line. Now since $ X$ is a manifold with boundary, take  $ x \in \partial X$, take a chart $(U, \phi)$ around $ x$. Then define  $ f= h \circ \phi $. Since $ \phi$ maps boundary to boundary, we see that for any boundary point $ z \in \partial U$, $ \phi(z) \in \partial H^{n}$, and $ f(z) = h ( \phi(z)) =0$. Moreover, if $ f(z) = h(\phi(z)) = 0$, then $ \phi(z)$ must be a boundary point in $ H^{n}$, so $ z = \phi ^{-1} \phi(z) \in \partial U$.
+
+If $ z \in \partial U$, then the outward normal $ n(z)$. It corresponds to a vector $ v=(0,\ldots,0,-a)$ where $ a >0$ pointing straight down in  $ H^{n}$, \emph{i.e.} then the curve is $ vt$. So
+\begin{align*}
+	df_z(n(z)) &= (f \circ \phi ^{-1} (vt))'(0) \\
+	&= (h (vt))'(0) \\
+	&= (t(-a))'(0) \\
+	&= -a <0.
+\end{align*}
+\end{problem}
+
+\begin{problem}[2.2.3]
+You can simply rotate the solid torus by an angle that isn't a multiple of $ 2 \pi$. The proof fails at the fact that the ray from $ f(x)$ to $ x$ can hit the boundary more than once as the solid torus isn't convex, so $ g(x)$ isn't well-defined. Even if we arbitrarily pick a point of intersection, some boundary points can be mapped to other boundary points, so  $ g(x)$ may not be identity on the boundary so we cannot apply the no-retract theorem. Moreover, $ g(x)$ won't be continuous.
+\end{problem}
+
+\begin{problem}[2.2.7]
+Assume $ A$ is nonsingular with nonnegative entries. Consider the map $ f: S^{n-1} \to S^{n-1}, v \mapsto Av / \norm{ Av} $. Suppose $ v$ is in $ Q$ (\emph{i.e.} unit vector with nonnegative entries), then clearly $ Av$ with each entry being the sum of nonnegative numbers would remain in the first quadrant. Hence  $ Av / \norm{ Av} $ is in $ Q$. So $ f|_Q : Q \to Q$. Since $ Q \cong B^{n-1}$, we obtain a continuous map $ g: B^{n-1} \to B^{n-1}$. By Brouwer Fixed-Point Theorem for continuous maps, $ g$ has a fix point: there exists an $ x \in B^{n-1}$ s.t.\  $g(x) = x$. The homemorphism yields that there exists a $ v \in Q$ s.t.\ $ f|_Q(v) = Av / \norm{ Av} = v$. So $ Av = \norm{ Av} v $. By positive definiteness of norm, $ A$ has an nonnegative eigenvalue  $ \norm{ Av} $.
+\end{problem}
+
+\begin{problem}[2.3.4]
+Consider $ F:X \times \rr^{n} \to \rr^{n}, (x,a)\mapsto x+a$. I claim that $ F$ is transversal to  $ Y$. First notice that  $ F$ is linear so $ dF$ is just  $ F$. Furthermore notice that  $ dF$ is surjective since given any  $ v \in \rr^{n}$, just choose $ x=0$ and  $ a=v$ and we have  $ dF(0,v) = v$. This yields $ dF_p(T_p (X \times \rr^{n})) = \rr^{n}$. Thus we have
+\begin{align*}
+	dF_p(T_p(X \times \rr^{n})) + T_{F(p)}Y = T_{F(p)} \rr^{n} =\rr^{n}.
+\end{align*}
+
+By the Transversality Theorem, for almost every $ a \in \rr^{n}$, $ f_a: X \times \{a\} \to x+a$ is transversal to $ Y$. Since  $ f_a(X \times \{a\} ) = X+a$, we show that $ X+a$ is transversal to  $ Y$.
+\end{problem}
+
+\begin{problem}[2.3.5]
+Given $ \epsilon>0$. Consider the inclusion map $ i: X \to Y$. It is an embedding of $ X$. By the corollary Tubular Neighborhood Theorem, there exists a $ F: X \times B^{n} \to Y$ where $ n= \dim Y$  s.t.\ $ F_0 = i(x)$ and  $ F$ is a submersion,  \emph{i.e.} $ F \pitchfork Z$. Then by Transversality Theorem, for almost all $ s \in B^{n}$, $F_s \pitchfork Z$. Since $ X$ is compact, by the generalized stability theorem of Exercise 1.6.11, there exists an $ \epsilon_1>0$ s.t.\ $ F_s$ is also an embedding if $ |s|< \epsilon_1$. Moreover, since $ F$ is continuous, we can take the closure of $ B^{n}$ to compactify the domain, so $ F$ is uniformly continuous. That is, there exists a  $ \delta>0$ s.t.\ if $ |s|< \delta$, for every $ x \in X$ we have $|F(x,0)-F(x,s)| = |x-i_s(x)|< \epsilon$. Finally, we set $ \epsilon_2 = \min \{ \delta, \epsilon_1\}$ and choose any $ |s_1|< \epsilon_2$ that makes $ F_{s_1} \pitchfork Z$. This means that $ X_s$ is a manifold and is transversal to  $ Z$, but since  $ \dim X = \dim X_s$ and $ \dim X+ \dim  Z < \dim Y$, we see that $ X_s$ and  $ Z$ can be transversal only if they do not intersect. Hence  $ X_s$ is the deformation of  $ X$ that doesn't intersect  $ Z$.
+\end{problem}
+
+\begin{problem}[2.3.9]
+Consider $ F: \rr^{k} \times  \rr^{k} \to \rr^{k}, (x,a) \mapsto  \left(  \frac{\partial f}{\partial x_1} +a_1, \ldots, \frac{\partial f}{\partial x_k} +a_k  \right) $. I claim that $ F$ is a submersion. Notice $ F$ is linear in the second argument so $ dF$ with a fixed  $ x$ is just  $ F$ with a fixed  $ x$. Given $ v \in \rr^{k}$, we can set $ x=0$ and  $ a=v$ so that  $ dF(0,v) = 0+v=v$. So $ F$ is a submersion. Hence  $ F \pitchfork \{0\}$. Then by Transversality Theorem, $ F_a: \rr^{k} \times \{a\} \to \rr^{k} $ is transversal to $ \{0\} $ as well. Denote the hessian of $ f_a$ as  $ H$. Notice that $ df_a = F_a$ so $ H = dF_a$. Since $ F_a$ is transversal to  $ \{0\} $, $ dF_a$ is surjective so does $ H$. Then $ H$ as a $ k\times k$ matrix must be invertible and hence is nondegenerate. Therefore, any critical point of $ f_a$ must be nondegenerate so $ f_a$ is a Morse function.
+\end{problem}
+\end{document}

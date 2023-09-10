@@ -1,0 +1,115 @@
+\documentclass[12pt]{article}
+\input{../preamble.tex}
+
+\begin{document}
+\centerline {\textsf{\textbf{\LARGE{Homework 13}}}}
+\centerline {Jaden Wang}
+\vspace{.15in}
+\begin{problem}[4.4.3]
+\begin{align*}
+	\int_{ a}^{ b} c^* \omega &= \int_{ a}^{ b} c^* df  \\ 
+	&= \int_{ a}^{ b} d (c^* f)  \\
+	&= \int_{ a}^{ b} d(f \circ c)  \\
+	&= \int_{ a}^{ b} \frac{d(f \circ c)}{ dx} dx \\
+	&= f \circ c(b) - f \circ c(a) &&\text{ FTC}  \\
+	&= f(q) - f(p) 
+\end{align*}
+\end{problem}
+
+\begin{problem}[4.4.5]
+Let $ \gamma(t) = ( \gamma_1(t), \gamma_2(t), \gamma_3(t))$ where we view $ S^{1} \cong I / \partial I$. Since $ \omega$ is a 1-form, we have $ \omega = \sum_{ i= 1}^{ k} f_i d x_i$, where $ f_i: X \to \rr$. Therefore,
+\begin{align*}
+	\gamma^* \omega &= \sum_{ i= 1}^{ k} (f_i \circ \gamma) \gamma^* d x_i\\
+	&= \sum_{ i= 1}^{ k} (f_i \circ \gamma) d(x_i \circ \gamma) \\
+	&= \sum_{ i= 1}^{ k} (f_i \circ \gamma) d \gamma_i \\
+	&= \sum_{ i= 1}^{ k} (f_i \circ \gamma) \frac{d \gamma_i}{ dt} dt 
+\end{align*}
+Therefore,
+\begin{align*}
+	\oint_{ \gamma} \omega &= \int_{S^{1}} \sum_{ i= 1}^{ k} (f_i \circ \gamma(t)) \frac{d \gamma_i}{ dt} dt \\
+&= \sum_{ i= 1}^{ k} \int_{S^{1}} (f_i \circ \gamma(t)) \frac{d \gamma_i}{ dt} dt 
+\end{align*}
+\end{problem}
+\begin{problem}[4.4.7]
+By Problem 3, since the endpoints $ p$ of a closed curve are the same, we immediately obtain
+\begin{align*}
+	\oint_{ \gamma} \omega &= f(p) - f(p) = 0 
+\end{align*}
+\end{problem}
+
+\begin{problem}[4.4.8]
+~\begin{enumerate}[label=(\alph*)]
+	\item First note that under the polar coordinates, $ x = r \cos \theta, y = r \sin \theta$, and $ r^2 = x^2 + y^2$. Thus $ dx = \frac{\partial x}{\partial r} dr + \frac{\partial x}{\partial \theta} d \theta  = \cos \theta dr - r \sin \theta d \theta $ and $ dy = \frac{\partial y}{\partial r} dr + \frac{\partial y}{\partial \theta} d \theta = \sin \theta dr + r \cos \theta d \theta $. Thus we have
+\begin{align*}
+	\int_{C_a} \omega &= \int_{C_a} \frac{-y}{ x^2+y^2} dx + \int_{C_a} \frac{x}{ x^2+y^2} dy\\
+	&= \int_{a}^{a} \frac{- \sin \theta \cos \theta}{ r} dr + \int_{0}^{2 \pi} (\sin \theta)^2 d \theta + \int_{ a}^{ a} \frac{ \cos \theta \sin \theta }{ r} dr + \int_{ 0}^{ 2\pi} (\cos \theta)^2 d \theta \\
+	&= 0+ \int_{ 0}^{ 2 \pi} (\sin^2 \theta + \cos^2 \theta) d \theta  + 0  \\
+	&= \theta|_{0}^{2\pi} \\
+	&= 2 \pi
+\end{align*}
+\item Note that when $ x > 0$,  $ \frac{y}{x}$ is well-defined. Thus we have
+	\begin{align*}
+		d \left( \arctan \frac{y}{x}\right) &=  \frac{\partial \arctan \frac{y}{x}}{\partial x} dx + \frac{\partial \arctan \frac{y}{x}}{\partial y} dy \\
+		&= \frac{1}{1+\left( \frac{y}{x} \right)^2 } \left( - \frac{y}{x^2} \right) dx + \frac{1}{1+ \left( \frac{y}{x} \right) ^2} \frac{1}{x} dy\\
+		&= \frac{-y}{ x^2+y^2} dx + \frac{x}{ x^2+y^2} dy 
+	\end{align*}
+\item Suppose $ w = \partial f$ for some $ f: \rr^2 - \{0\} \to \rr$, then by 7 its contour integral would be 0, but that contradicts with part a.
+\end{enumerate}
+\end{problem}
+
+\begin{problem}[4.4.13]
+Suppose $ S$ is the graph of $ G: \rr^2 \to \rr$, then $ S$ can be parameterized by $ h(x_1,x_2) = (x_1,x_2, G(x_1,x_2))$. Therefore,
+\begin{align*}
+	d x_3 = d G &= \frac{\partial G}{\partial x_1} dx_1 + \frac{\partial G}{\partial x_2} dx_2  .
+\end{align*}
+Then the 2-form becomes
+\begin{align*}
+	d A &= - n_1 \frac{\partial G}{\partial x_1} dx_1 \wedge dx_2 - n_2 \frac{\partial G}{\partial x_2} dx_1 \wedge dx_2  + n_3 dx_1 \wedge dx_2 \\
+	    &= \left( -\frac{\partial G}{\partial x_1} n_1, -\frac{\partial G}{\partial x_2} n_2, n_3  \right) dx_1 \wedge dx_2=: \ve{v} dx_1 \wedge dx_2 && n_i\text{ are linearly independent} \\
+	    &= \begin{pmatrix} - \frac{\partial G}{\partial x_1}&0&0\\0& - \frac{\partial G}{\partial x_2} &0\\ 0&0&1   \end{pmatrix} \begin{pmatrix} n_1\\n_2\\n_3 \end{pmatrix} dx_1 \wedge dx_2 =: D \ve{n} dx_1 \wedge dx_2\\
+	    &= \norm{ D} \ve{n} dx_1 \wedge dx_2  && \ve{n}  \text{ unit vec} \\
+	    &= \sqrt{ \left( \frac{\partial G}{\partial x_1} \right)^2 + \left( \frac{\partial G}{\partial x_2}  \right)^2 + 1 }\quad  \ve{n} dx_1 \wedge dx_2 \\
+	    &= \norm{ \ve{v}} \ve{n} dx_1 \wedge dx_2
+\end{align*}
+which coincides with the other definition of $ dA$ after doting with $ \ve{n}$.
+\end{problem}
+
+\begin{problem}[4.5.1]
+\begin{enumerate}[label=(\alph*)]
+Denote the given form $ \omega$.
+	\item
+		\begin{align*}
+			d(\omega)& = d(z^2 dx \wedge dy) + d(z^2 dx \wedge dz) + d(2y dx \wedge dz)\\
+			&= d(z^2) \wedge dx \wedge dy + d(z^2) dx \wedge dz + d(2y) \wedge dx \wedge dz \\
+			&= 2z dz \wedge dx \wedge dy + 2z dz \wedge dx \wedge dz + 2 dy \wedge dx \wedge dz \\
+			&= (2z- 2) dx \wedge dy \wedge dz 
+		\end{align*}
+	\item 
+		\begin{align*}
+			d\omega &= 13 dx \wedge dx + 2y dy \wedge dy +d(xyz) dz \\
+			&= 0+ 0+ (yzdx+ xzdy+xydz) \wedge dz \\
+			&= yz dx \wedge dz + xz dy \wedge dz
+		\end{align*}
+	\item 
+		\begin{align*}
+			d(f dg) &= df \wedge d g + 0 \qquad \text{  product rule}  \\
+			&= \left( \frac{\partial f}{\partial x} dx + \frac{\partial f}{\partial y} dy + \frac{\partial f}{\partial z} dz \right) \wedge  \left( \frac{\partial g}{\partial x} dx + \frac{\partial g}{\partial y} dy + \frac{\partial g}{\partial z} dz \right)\\
+			&= \frac{\partial f}{\partial x} \frac{\partial g}{\partial y}  dx  \wedge dy  + \frac{\partial f}{\partial x} \frac{\partial g}{\partial z}  dx  \wedge dz + \frac{\partial f}{\partial y} \frac{\partial g}{\partial x}  dy  \wedge dx \\
+			&\quad + \frac{\partial f}{\partial y} \frac{\partial g}{\partial z}  dy\wedge dz + \frac{\partial f}{\partial z} \frac{\partial g}{\partial x}  dz  \wedge dx+\frac{\partial f}{\partial z} \frac{\partial g}{\partial y}  dz  \wedge dy\\
+			&= \left(\frac{\partial f}{\partial x} \frac{\partial g}{\partial y} -  \frac{\partial f}{\partial y} \frac{\partial g}{\partial x}   \right) dx \wedge dy + \left(\frac{\partial f}{\partial x} \frac{\partial g}{\partial z} -  \frac{\partial f}{\partial z} \frac{\partial g}{\partial x}   \right) dx \wedge dz + \left(\frac{\partial f}{\partial y} \frac{\partial g}{\partial z} -  \frac{\partial f}{\partial z} \frac{\partial g}{\partial y} \right) dy \wedge dz
+		\end{align*}
+	\item 
+		\begin{align*}
+			d \omega = 0+0+ 6y^2 dy \wedge dz \wedge dx + 0 = 6y^2 dy \wedge dz \wedge dx
+		\end{align*}
+\end{enumerate}
+\end{problem}
+\begin{problem}[4.5.2]
+\begin{align*}
+	\nabla \times F &= \frac{\partial F_2}{\partial x} - \frac{\partial F_1}{\partial y}  \\
+	&= \frac{x^2+y^2-2x^2}{ (x^2+y^2)^2} + \frac{x^2+y^2-2y^2}{ (x^2+y^2)^2} \\
+	&= 0 
+\end{align*}
+By Problem 4.4.8, we know that $ F$ is not the differential of any function, thus it cannot be written as the gradient of any function. Otherwise, the gradient expression immediately leads to the 1-form aka differential.
+\end{problem}
+\end{document}

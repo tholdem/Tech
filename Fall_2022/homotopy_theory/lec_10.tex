@@ -1,0 +1,79 @@
+\documentclass[12pt,class=article,crop=false]{standalone} 
+\input{../preamble.tex}
+
+\begin{document}
+\begin{eg}
+Recall a vector bundle $ (E,B,\rr^{n})$ has a $ k$-frame iff the structure group reduces to $ \text{GL}_{ n-k}(\rr) $. If we choose a metric on $ E$, then the structure group of  $ E$ is  $ O(n)$.  $ E$ has an orthonormal  $ k$-frame iff structure group reduces to  $ O( n-k) $. In terms of principal bundles. Let $ \mathcal{ F}(E)$ be the orthonormal frame bundle associated to $ E$. Now  $ E$ has an orthonormal  $ k$-frame iff  $ \mathcal{ F}(E) / O(n-k)$ has a section. The fibers of $ F(E) / O(n-k)$ are  $ O(n) /O(n-k) \cong V_{n,k}$. In Cor II.11, we have $ \pi_i(V_{n,k})$. Unfortunately, $ \pi_1(M)$ does not necessarily act trivially on $ \pi_{n-k}(V_{n,k})$ if it is $ \zz$. But if we take $ \pi_{n-k}(V_{n,k}) \bmod 2$ then action is trivial (since any action on $ \zz /2$ is trivial. So we have a primary obstruction to a $ k$-frame over the  $ (n-k+1)$-skeleton of  $ M$. So  $ \gamma^{n-k+1}(E) \in H^{n-k+1}(M; \pi_{n-k}(V_{n,k}) \bmod 2)$. We set $ w_{\ell}(E) := \gamma^{\ell}(E) \in H^{\ell}(M; \zz /2)$. This is called the  \allbold{$ \ell$th- Steifel-Witney class of $ E$}. When $ \ell$ is even, this is the primary obstruction to existence of an $ n-\ell+1$-frame on $ M^{(\ell-1)}$ that extends to $ M^{(\ell)}$. If $ \ell$ odd then $ w_{\ell}(E)$ is the $ \bmod 2$ reduction of the primary obstruction.
+
+Fact: $ w_\ell$ determines primary obstruction for all $ \ell$.
+
+Exercise: given $ (E,M,\rr^{n})$,
+\begin{enumerate}[label=(\arabic*)]
+	\item $ w_\ell(E) 0 \iff$ there exists $ n$-frame over  $ M^{(0)}$ that extends over $ M^{(1)}$ iff there is an orientation on $ E$, \emph{i.e.} structure group reduces to $ \text{SO}( n) $. 
+	\item If $ E$ is orientable, then  $ w_2(E) = 0 \iff$ there exists an $ (n-1)$-frame over  $ M^{(1)}$ that extends to $ M^{(2)}$ iff there exists an $ n$-frame on  $ M^{(1)}$ that extends to $ M^{(2)}$ (since there is a canonical unit vector with positive orientation orthogonal to $ (n-1)$-frame ). This is called a \allbold{spin} structure on $ E$. 
+\end{enumerate}
+
+\end{eg}
+\begin{eg}
+If $ (E,M,\rr^{n})$ is oriented, then $ \pi_1(M)$ acts trivially on $ \pi_{n-1}(V_{n,1}) \cong \zz$. Exercise: check this. So we get a primary obstruction $ e(E) \in H^{n}(M;\zz)$ to the existence of a non-zero section of $ E$ over  $ M^{(n)}$. $ e(E)$ is called the  \allbold{Euler class}. 
+
+Exercise:
+\begin{enumerate}[label=(\arabic*)]
+	\item If $ s:M \to E$ is a section and $ M$ a manifold. Then we can isotop  $ s$ so it is transverse to zero section  $Z= \{0 \in E_x: x \in M\} $. Then $ e(E)= P.D.[s^{-1}(Z)]$ (Poincare duality of homology class of $ s ^{-1}(Z)$).
+	\item $ e(TM) ([M]) = \Chi(M)$.
+\end{enumerate}
+\end{eg}
+\begin{eg}
+Let $(E,M, \cc^{n})$ be a vector bundle. Structure group is $ \text{GL}_{ n}(\cc) $ so this is a complex vector bundle. As discussed above, we can take structure group to be $ U(n)$. Let  $ \mathcal{ F}(E)$ be the frame bundle which is a $ U(n)$ bundle over  $ M$.
+
+Then  $ E$ has a complex  $ k$-frame iff structure group reduces to  $ U(n) /U(n-k) \cong V_{n,k}( \cc)\iff \mathcal{ F}(E) / U(n-k)$ has a section. We have $ \pi_i(V_{n,k}( \cc))$ by Cor II.11.
+
+Exercise: $ \pi_1(M)$ acts trivially on $ \pi_{2(n-k)+1}(V_{n,k}( \cc)$ as the fiber of $ \mathcal{ E} / U(n-k)$. Thus we get a primary obstruction to a $ M^{2(n-k)+2}$ :
+\begin{align*}
+	\gamma^{2(n-k)+2}(E) \in H^{2(n-k)+2}(M; \zz = \pi_{2(n-k)+1}(V_{n,k}( \cc))).
+\end{align*}
+Define $ c_k(E) = \gamma^{2k}(E) \in H^{2k}(M;\zz)$. This is called the \allbold{$ k$th Chern class of $ E$}. Then  $ c_k(E)$ is the obstruction to a complex $ (n-k+1)$ frame on  $ M^{(2k-1)}$ that extends to $ M^{(2k)}$.
+
+Exercise:
+\begin{enumerate}[label=(\arabic*)]
+	\item $ c_n(E) = e(E)$.
+	\item $ w_{2i+1}(E) = 0$, which implies complex bundles are orientable.
+	\item $ w_{2i}(E) = c_i(E) \bmod 2$.
+	\item $ c_1(E) = 0 \iff$ structure group of $ E$ reduces to  $ \text{SU}((n)) $, ``complex orientation".
+	\item if $ \overline{E}$ is $ E$ with the conjugate complex structure,  \emph{i.e.} $ z \in \cc$ multiply by $ \overline{z}$, then $ c_i( \overline{E}) = (-1)^{i}c_i(E)$. Hint: easy for $ c_n(E)$, reduce to this case (see Milnor-Stasheff).
+\end{enumerate}
+\end{eg}
+
+\begin{eg}
+	$ (E,M,\rr^{n})$, then $ E \otimes_\rr \cc$ is a complex vector bundle. Then the \allbold{ $ i$th Pontrjagin class of $ E$ } is
+	\begin{align*}
+		p_1(E) = (-1)^{i} c_{2i}(E \otimes \cc) \in H^{4i}(M;\zz)
+	\end{align*}
+	Exercise:
+	\begin{enumerate}[label=(\arabic*)]
+		\item show $ E \otimes \cc$ and $ \overline{E \otimes \cc}$ are isomorphic. Use this to show $ c_{2i+1}(E \otimes \cc)$ is 2-torsion.
+		\item If $ E$ is an oriented  $ \rr^{2n}$-bundle, then
+			\begin{align*}
+				p_n(E) = e(E) \smile e(E)
+			\end{align*}
+		\item If $ E$ is a complex bundle and and  $ E^{\rr}$ denotes the underlying real bundle. Then
+			\begin{align*}
+				E^{\rr} \otimes \cc \cong E \oplus \overline{E}.
+			\end{align*}
+		\item use 3) to show for complex $ \cc^{n}$-bundle $ E$ we have
+			 \begin{align*}
+				1-P_1(E)+p_2(E)-\ldots\pm p_n(E) = (1+ c_1(E) + \ldots c_n(E)) \smile (1-c_1(E)+c_2(E)-\ldots \pm c_n(E))
+				p_1(E) = c_1(E) \smile c_1(E) - 2c_2(E)
+			\end{align*}
+	\end{enumerate}
+\end{eg}
+
+Characteristic class, in general, do not determine a bundle. But we have
+\begin{enumerate}[label=(\arabic*)]
+	\item complex line bundles are determined by $ c_1$, and any $ \alpha \in H^2(M)$ is $ c_1$ of some $ \cc$-bundle.
+	\item $ c^2$-bundles are determined by $ c_1$ and $ c_2$, and any $ (\alpha , \beta) \in H^2(M) \times H^{4}(M)$ is $ (c_1,c_2)$ of some $ \cc^2$-bundle.
+	\item $ \text{SO}(3) $-bundles are isomorphic iff $ w_2,p_1$ agree.
+	\item $ \text{SO}(4) $-bundles are isomorphic $ \iff$ $ w_2,p_1,e$ agree.
+\end{enumerate}
+Exercise: prove them.
+\end{document}

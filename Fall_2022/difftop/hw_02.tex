@@ -1,0 +1,47 @@
+\documentclass[12pt]{article}
+\input{../preamble.tex}
+
+\begin{document}
+\centerline {\textsf{\textbf{\LARGE{Homework 2}}}}
+\centerline {Jaden Wang}
+\vspace{.15in}
+\begin{problem}[4.4]
+There is a canonical homeomorphism $ \phi: \rr^{m \times n} \to \rr^{mn}$ by concatenating the columns together. This is a linear operation as it is clearly closed under addition and scalar multiplication and therefore smooth. Hence $ (\phi, \rr^{m \times n})$ is a global chart. Hausdorff and second-countable follows from homeomorphism and therefore $ \rr^{m \times n}$ is a smooth manifold.
+
+Notice that the general linear group $ \text{GL}_{ n}( R) = \{M \in \rr^{m \times n} : \det (M) \neq 0\} = \det ^{-1}( \rr \setminus \{0\}) $. Since $ \{0\} $ is closed ($ \rr$ is Hausdorff and hence T1), $ \rr \setminus \{0\} $ is open. The determinant function is a polynomial of entries and therefore continuous, so $ \text{GL}_{n}( R) $ as the preimage of an open set of $ \rr$ via a continuous function is open in $ \rr^{m \times n}$. By theorem any open subset of a smooth manifold is a smooth manifold.
+\end{problem}
+
+\begin{problem}[4.6]
+Given $ (U_1,\phi_1),(V_1,\psi_1)$ and $ (U_2,\phi_2),(V_2,\phi_2)$ be two sets of local charts that satisfy the assumptions. Notice that since $ \rr^{m}$ and $ \rr^{n}$ are smooth manifolds, the transition maps $ \phi_1 \circ \phi_2 ^{-1}: U_1 \cap U_2 \to \rr^{m}$ and $ \psi_2 \circ \psi_1 ^{-1} : V_1 \cap V_2 \to \rr^{n}$ are also smooth. Thus if $\psi \circ  f \circ \phi ^{-1}$ is smooth, then
+\begin{align*}
+	\psi_2 \circ f \circ \phi_2 ^{-1} = (\psi_2 \circ \psi_1 ^{-1}) \circ (\psi_1 \circ f \circ \phi_1 ^{-1}) \circ (\phi_1 \circ \phi_2 ^{-1})
+\end{align*}
+is a composition of smooth functions and therefore smooth. Thus $ f$ is smooth regardless of the choice of local charts.
+\end{problem}
+
+\begin{problem}[5.8]
+	Recall that for any smooth map $ f: \rr^{n} \to \rr^{m}$, $ d_pf : T_p \rr^{n} \to T_{f(p)} \rr^{m}, [ \alpha] \mapsto [f \circ \alpha]$. By the identification, we can also think $ d_pf: \rr^{n} \to \rr^{m}, \alpha'(0) \mapsto (f \circ \alpha)'(0)$. But by the chain rule, $ (f \circ \alpha)'(0) = Df(p) \circ \alpha'(0)$. That is, $ d_p f = Df(p)$ which is exactly the Jacobian of $ f$ at $ p$.
+\end{problem}
+\begin{problem}[5.9]
+	Let $ f:M \to N$ and $ g; N \to L$ be smooth maps. Then $ d_p(g \circ f): T_p \rr^{m} \to T_p \rr^{ \ell}, [ \alpha] \mapsto [g \circ f \circ \alpha]$. Choose any chart $ (U,\phi),(V, \psi),(W, \theta)$ containing $ p,f(p), g \circ f(p)$. Then
+\begin{align*}
+	d_p(g \circ f)([ \alpha]) &=(\theta \circ g \circ f \circ \alpha)'(0) \\
+	&= (\theta \circ g \circ  \psi ^{-1}) \circ (\psi \circ f \circ \phi ^{-1}) \circ (\phi \circ \alpha))'(0) \\
+	&= D (\theta \circ g \circ \psi ^{-1}) \circ D( \psi \circ  f \circ \phi ^{-1}) \circ ( \phi \circ \alpha)'(0) \\
+	&= d_{f(p)} g \circ d_pf ( [ \alpha]) 
+\end{align*}
+\end{problem}
+
+\begin{problem}[5.10]
+Let $ f: M \to N$ be a diffeomorphism. That is, given $ p \in M$ and any charts $ (U,\phi)$ of $ \rr^{m}$ containing $ p$ and $ (V, \psi)$ of $ \rr^{n}$ containing $ f(p)$, the transition map $ \psi \circ f \circ \phi ^{-1}: \rr^{m} \to \rr^{n}$ (restricted to well-defined domain) is smooth and has smooth inverse. This forces the Jacobian of the transition map to be a linear isomorphism by the inverse function theorem. Then
+\begin{align*}
+	d_pf ([ \alpha]) &= (\psi \circ f \circ \circ \alpha)'(0) \\
+	&= ((\psi \circ f \circ \phi ^{-1} )\circ (\phi \circ \alpha))'(0) \\
+	&= D(\psi \circ f \circ \phi ^{-1}) \circ (\phi \circ \alpha)'(0) \\
+	&= D(\psi \circ f \circ \phi ^{-1})[ \alpha] .
+\end{align*}
+So we see that $ d_pf$ can be identified with the Jacobian of the transition map which must be a linear isomorphism. Since the domain and codomain of $ d_pf$ can be identified with  $ \rr^{m}$ and $ \rr^{n}$, it follows that $ \rr^{m} = \rr^{n}$ so $ m=n$. That is,  $ \dim M = \dim N$.
+\end{problem}
+\end{document}
+
+

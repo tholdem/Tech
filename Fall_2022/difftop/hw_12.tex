@@ -1,0 +1,79 @@
+\documentclass[12pt]{article}
+\input{../preamble.tex}
+
+\begin{document}
+\centerline {\textsf{\textbf{\LARGE{Homework 12}}}}
+\centerline {Jaden Wang}
+\vspace{.15in}
+\begin{problem}[4.2.1]
+First note that since $ T$ is alternating,  if any two of the entries coincide \emph{i.e.} $ v_i = v_j$, then
+\begin{align*}
+	T(v_1,\ldots,v_i,\ldots,v_j,\ldots,v_n) &= - T(v_1,\ldots,v_j,\ldots,v_i,\ldots,v_n) && \text{ alternating} \\
+						&= -T(v_1,\ldots,v_i,\ldots,v_j,\ldots,v_n) && v_i = v_j\\
+						&= 0 &&  x=-x \implies x=0
+\end{align*}
+by the definition of alternating. Since $ v_1,\ldots,v_n$ are linearly dependent, there exists $ a_1,\ldots,a_n \in \rr$ not all zeros (WLOG $ a_1 \neq 0$) such that $ a_1 v_1 + \cdots + a_n v_n = 0$. This yields $ v_1 = \frac{a_2}{ a_1} v_2 + \cdots + \frac{a_n}{ a_1}v_n$. Thus we have
+\begin{align*}
+	T(v_1,\ldots,v_n) &= T\left(\frac{a_2}{ a_1} v_2 + \cdots + \frac{a_n}{ a_1} v_n, v_2,\ldots,v_n\right) \\
+	&=\frac{a_2}{ a_1}T\left(v_2,v_2,\ldots,v_n \right) + \cdots + \frac{a_n}{ a_1}T\left( v_n,v_2,\ldots,v_n \right)   \\
+	&= 0+ \cdots + 0 = 0 
+\end{align*}
+\end{problem}
+\begin{problem}[4.2.3]
+	If $ \phi_i $ are linearly dependent, then the dependence relation would make the matrix $ [\phi_i(v_j)]$ having linearly dependent columns, so $ \det $ is 0, matching the result of Exercise 2. If $ \phi_i$ are linear independent. First consider the standard dual basis $ x_1,\ldots,x_k$ where $ x_i(e_j) = \delta_{ij}$. Let $ M = (v_1,v_2,..,v_n)$. It is easy to see that $ M = [x_i(v_j)]$. Thus we have
+	\begin{align*}
+		x_1 \wedge \cdots \wedge x_k(M) &= M^* (x_1 \wedge \cdots \wedge x_k(I)) \\
+		&= \det M \text{Alt} (x_1 \otimes \cdots \otimes  x_k)(I) \\
+		&= \det M \left( \frac{1}{k!} \sum_{ \sigma \in S_k} x_{ \sigma(1)} \otimes \cdots \otimes x_{ \sigma(k)} \right)(I)  \\
+		&= \frac{1}{k!} \det M (x_1 \otimes \cdots \otimes x_k)(I) \\
+		&= \frac{1}{k!} \det M (1\cdots 1) \\
+		&= \frac{1}{k!} \det [x_i(e_j)] 
+	\end{align*}
+	Now we check that $ \det [\phi_i]$ is an alternating tensor. We have that $ \det $ is multilinear in the columns, and the matrix where each entry $ \phi_i$ is linear is clearly multilinear in all the columns. Thus the composition $ \det [\phi_i]$ is multilinear. Moreover, $ \det $ is alternating; since swapping $ v_j,v_k$ leads to swapping of $ \phi_i(v_j)$ and $ \phi_i(v_k)$, we obtain the negative of the original determinant so $ \det [\phi_i]$ is alternating. Hence  $ \det [\phi_i] \in \Lambda^{k}(\rr^{k*})$. Since its dimension is one, $ \phi_1 \wedge \cdots \wedge \phi_k (v_1,\ldots,v_k) = \lambda \det [\phi_i(v_j)]$. Since $ \phi_i= a_1^{i} x_1 + a_n^{i} x_n$, define $ w_j = \frac{1}{a_1^{j}} e_1 + \cdots \frac{1}{a_n^{j}} e_n$ wherever $ a_k^{j} \neq 0$. Then it is easy to see that $ \phi_i (w_j) = \delta_{ij}$. By the same argument as in the dual basis case, $ \lambda = \frac{1}{k!}$, it follows that 
+	\begin{align*}
+		\phi_1 \wedge \cdots \wedge \phi_k(v_1,\ldots,v_k) &= \frac{1}{k!} \det [\phi_i(v_j)]
+	\end{align*}
+\end{problem}
+
+\begin{problem}[4.2.5]
+\begin{align*}
+	\text{Alt}(\phi_1 \otimes \phi_2 \otimes \phi_3) &= \frac{1}{6} (\phi_1 \otimes \phi_2 \otimes \phi_3 - \phi_1 \otimes \phi_3 \otimes \phi_2 + \phi_3 \otimes \phi_1 \otimes \phi_2 \\
+	& \quad - \phi_3 \otimes \phi_2 \otimes \phi_1 +\phi_2 \otimes \phi_3 \otimes \phi_1 - \phi_2 \otimes \phi_1 \otimes \phi_3) \\ 
+\end{align*}
+\end{problem}
+
+\begin{problem}[4.2.6]
+\begin{enumerate}[label=(\alph*)]
+	\item Two ordered bases are equivalently oriented iff the linear map defined by mapping between them has positive determinant. Define $ A: V \to V, v_i \mapsto v_i'$. Then notice
+		\begin{align*}
+			T(v_1',\ldots,v_n') &= T(Av_1,\ldots,Av_n) \\
+			&= A^* T(v_1,\ldots,v_n) \\
+			&= \det A T(v_1,\ldots,v_n)
+		\end{align*}
+		It follows that $\det A > 0 \iff T(v_1,\ldots,v_n)$ and $ T(v_1',\ldots,v_n')$ have the same sign.  
+	\item By part a), the sign of $ T$ is well-defined independent of the choice of positively oriented basis.
+	\item We define the orientation of $ V$ by the orientation of its ordered basis. An ordered basis $ \{v_1,\ldots,v_n\} $ is positively oriented if the sign of $ T(v_1,\ldots,v_n)$ is positive. This is again well-defined by part a). Given an orientation on $ \Lambda^{n}(V^* )$, any two alternating tensors are scalar multiples of each other, so their sign difference will also be passed to the orientation of the vectors $ v_1,\ldots,v_n$, making it well-defined$.
+
+\end{enumerate}
+\end{problem}
+
+\begin{problem}[4.2.7]
+Define $ D (A):= \det A^{T}$ so $ D \in \Lambda^{k}(\rr^{k*})$. We wish to show that $ D$ is multilinear, alternating, and  $ D(I) = 1$. Since  $ \det $ is multilinear in the row, we see that $ D$ is multilinear in the columns. Let  $ P$ be the permutation matrix that swap  $ i,j$th row of  $ A$. Then
+ \begin{align*}
+	D(PA) &= \det (PA)^{T} \\
+	&= \det A^{T} \det P^{T} \\
+	&= \det A^{T} (-1) && \text{ swap row viewed as swap col} \\
+	&= - D(A) 
+\end{align*}
+So $ D$ is alternating. Finally  $ D(I) = \det (I^{T}) = \det I = 1$. Hence by uniqueness of $ \det $, $ D = \det $ so $ D(A) = \det A^{T} = \det A$.
+\end{problem}
+
+\begin{problem}[P165 Exercise]
+Since $ \phi: Y \to \rr$, $ f^* \phi = \phi \circ f$. Therefore,
+\begin{align*}
+	f^* (d \phi) &= d \phi \circ df \\
+		     &= d (\phi \circ f) && \text{ chain rule}  \\
+	&= d(f^* \phi) 
+\end{align*}
+\end{problem}
+\end{document}

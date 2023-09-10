@@ -1,0 +1,189 @@
+\documentclass[12pt,class=article,crop=false]{standalone} 
+\input{../preamble.tex}
+
+\begin{document}
+\section{Homotopy group and CW-complexes}
+
+Recall if $ A$ is a top space, and  $ f: \bigsqcup_{ i \in I} S^{n-1} \to A$ then $ X = A \cup _f ( \bigsqcup_{ D^{n}}) = A \bigsqcup ( \bigsqcup D^{n}) / \sim$ where $ x \in \partial ( \bigsqcup_{ D^{n}})$ is identified with $ f(x) \in A$ is said to be obtained from $ A$ by attaching  $ n$ cells.
+
+A  \allbold{relative CW-pair} is a pair $ (X,A)$  s.t.\ 
+\begin{enumerate}[label=(\arabic*)]
+	\item $ X$ is a top space.
+	\item  $ A$ is a closed subspace.
+	\item There exists a sequence of spaces  $ X^{(n)}, n=-1,0,1,\ldots$ called $ n$-skeleton  s.t.\
+		\begin{enumerate}[label=(\alph*)]
+			\item $ X^{(-1)} = A$.
+			\item $ X^{(n)}$ is obtained from $ X^{(n-1)}$ by attaching $ n$-cells.
+			\item  $ X = \bigcup_{ i =1}^{\infty} X^{(i)}$.
+			\item $ B \subseteq X$ is closed iff $ B \cap X^{(n)}$ closed for all $ n$.
+		\end{enumerate}
+	If $ X^{(n)}$ for some $ n$ then we say  $ (X,A)$ is an  \allbold{$ n$-dimensional CW-pair}. Otherwise infinite. If $ A = \O$, then $ X$ is a CW-complex. If  $ X$ has a finite number of cells then  (d) is automatically ignored. 
+\end{enumerate}
+
+exercise: $ (X,A)$ a CW-pair then  $ X /A$ is a CW complex.
+
+ \begin{eg}
+\begin{enumerate}[label=(\arabic*)]
+	\item A 1-dimensional CW-complex is a graph.
+	\item any surface as a 2-dimensional CW-complex. Any $ n$-manifold is a CW-complex.
+	\item If  $ X,Y$ are CW-complexes, then so is  $ X \times Y$. Exercise: work out the CW structure on $ X \times Y$ from the CW structure on $ X$ and  $ Y$.
+\end{enumerate}
+\end{eg}
+
+A map $ f: X \to Y$ between CW-complexes is \allbold{cellular} if $ f(X^{(n)}) \subseteq Y^{(n)} \ \forall \ n$. 
+
+\begin{thm}[cellular approximation]
+If $ f: X \to Y$ is a map between CW-complexes and $ f$ is cellular on  $ A \subseteq X$ a sub CW-complex. Then $ f$ is homotopic rel  $ A$ to a map  $ g: X \to Y$ that is cellular on all of $ X$.
+\end{thm}
+
+\begin{prop}
+$ \pi_k(S^{n}) = 0 \ \forall \ k <n$.
+\end{prop}
+\begin{proof}
+Given $ f : (S^{k},s_0) \to (S^{n},x_0)$ where $ s_0,x_0$ part of $ 0$-skeleton. We can homotop  $ f$ to  $ g$  s.t.\ $ g((S^{k})^{(k)}) \subseteq (k$-skeleton of $ S^{n}) = \{x_0\} $. So $ f \simeq 0$ in $ \pi_n(S^{n})$.
+\end{proof}
+
+What about $ \pi_k(S^{n}) $ for $ k>n$. This is very hard in general.
+ \begin{eg}
+$ \pi_3(S^2) \neq 0$. To see this let $ f: S^3 \to S^2$ be the Hopf map. That is, think $ S^3 \subseteq \cc^2$, $ S^{1} \subseteq \cc$ the unit spheres. $ S^{1}$ acts on $ S^3$ by multiplication, \emph{i.e.} $ \lamda \in S^{1}$, then $ \lambda(z_1,z_2) = (\lambda z_1, \lambda z_2) \in S^3$. In fact $ S^3 /S^{1} = \cc P^{1} \cong S^2$. So the Hopf map is this quotient map. Exercise: $ \cc P^2  \cong \cc P^{1} \cup _f D^{4}$ (glue a 4-cell to $ S^2$ by the Hopf map).
+
+If $ f \simeq $ const, then $ \cc P^2 \cong S^2 \vee S^{4}$. Easy to see generator $ [s^2] \in H^2(S^2 \vee S^{4})$. $ [s^2] \smile [s^2] = 0$ in $ H^{4}(S^2 \vee S^{4})$. Poincare duality says $ g \in H^2( \cc P^2)$ s.t.\ $ g \smile g \neq 0$ in $ H^{4}( \cc P^2)$. So $ f$ cannot be trivial in  $ \pi_3(S^2)$.
+\end{eg}
+
+\begin{lem}
+$ X$ a CW-complex. Let  $ i : X^{(n)} \to X$ be inclusion then $ i$ induces an isomorphism  $ i_*: \pi_k(X^{(n)}) \to \pi_k(X)$ for $ k <n$ and a surjection for  $ k=n$.
+\end{lem}
+
+\begin{proof}
+	$ i_*$ is surjective for  $ k = n$ by similar argument to previous proposition. Given $ [f] \in \pi_n(X)$, we have $ f: S^{n} \to X$. By cellular approximation theorem, we can homotop $ f$ to a cellular map  $ g$  s.t.\ $ g(S^{n}) \subseteq X^{(n)}$. Then viewing  $ g$ as a map from  $ S^{n}$ to $ X^{(n)}$, we see that $ [g] \in \pi_n(X^{(n)})$ is the element that maps to $ [f]$ under $ i_*$. 
+
+	If $ k<n$ then  $ i_*$ is injective. suppose  $ f: S^{k} \to X^{(n)}, g : S^{k} \to X^{(n)}$ and $ [f] = [g]$ in  $ \pi_k(X)$. By cellular approximation, we can assume $ f,g$ map into  $ X^{(k)}$. Let $ H:S^{k} \times I \to X$ be the homotopy. Note: $ H$ is cellular on  $ (S^{k} \times I) \cup (s_0 \times I)$. Exercise: $ S^{k} \times I$ has a CW structure of $ \dim k+1$. Cellular approximation says we can homotop  $ H$ and  $ S^{k} \times I$ and $ s_0 \times I$ so its image is in $ X^{(k+1)} \subseteq X^{(n)}$. Therefore, $ f \simeq g$ in $ X^{(n)}$.
+\end{proof}
+
+\begin{lem}[Homotopy extension theorem]
+Given a relative CW-complex $ (X,A)$ a map  $ f: X \to Y$ and a homotopy $ H:A \times I \to Y$ of $ f|_A$, then there exists an extension of  $ H $ to $ G: X \times I \to Y$ s.t.\ $ G(x,t) = H(x,t)$ on  $ A \times I$ and $ G(x,0)=f(x)$.
+\end{lem}
+Exercise: prove theorem 21 and 24 directly using this lemma.
+
+\begin{proof}
+For any $ D^{n}$ there is a deformation retraction of $ D^{n} \times I $ to $ D^{n} \times \{0\} \cup (\partial D^{n} \times I)=:B$. To see this, $ D^{n} \subseteq \rr^{n} = \rr^{n} \times \{0\} \subseteq \rr^{n+1} $. Also $ D^{n} \times I \subseteq \rr^{n+1}$. Let $ p=(0,\ldots,0,2)$. For any $ x \in D^{n} \times I$, let $ \ell_x$ be the line through $ p,x$ and it is going to intersect $ B$ at a unique point $ \widetilde{ r}(x)$. Then we have a deformation retract $ \widetilde{ r}_t(x) = t \widetilde{ r}(x) + (1-t) x$.
+
+Now suppose $ X-A$ has one cell  $ D^{n}$. We know $ \partial D^{n} \subseteq A$, by hypothesis of the lemma, we have a map $ \overline{H}: X \times \{0\}  \cup (A \times I)=:C \to Y, (x,0)\mapsto f(x),(x,t)\mapsto H(x,t)$. Now let
+\begin{align*}
+	G: X \times I \to Y, G(x,t) = \begin{cases}
+		\overline{H}(x,t) & x \in C\\
+		\overline{H} \circ \widetilde{ r}(x,t) & x \in D^{n} \times I\\
+	\end{cases}
+\end{align*}
+This is an extension, we can do this cell by cell.
+\end{proof}
+
+\begin{lem}
+If $ (X,A)$ a relative CW-complex and  $ A$ contractible, then  $ X / A \simeq X$.
+\end{lem}
+
+\begin{proof}
+Since $ A$ is contractible, we have a homotopy $ f: A \times I \to A$ s.t.\ $ f(x,0)=x, f_1$ is constant, $ f_t(x):=f(x,t)$. Note that $ f_0 = F_0|_A$ where $ F_0 = \text{id}_{ X}$. So HET yields a homotopy $ F: X \times I \to X$ by extending $ f$. Note that  $ F_t(A) \subseteq A$. Therefore, there are induced maps $ \overline{ F}_t: X /A \to X /A$ since everything in $ A$ gets sent to the same equivalence class, and everything outside  $ A$ is untouched by  $ F_t$ so the diagram commutes. Also $ F_1(A)=$pt. So $ F_1$ also induces a map $ h: X /A \to X$. By commutative diagram, $ h \circ q = F_1$, $ q \circ h = \overline{ F}_1$. But $ h \circ q = F_1 \simeq F_0 = \text{id}_{ X}$ and $ q \circ h = \overline{F}_1 \simeq \overline{F}_0 = \text{id}_{ X /A}$ so $ h,q$ are homotopy equivalences.
+\end{proof}
+
+\begin{defn}
+	A space $ X$ is  \allbold{$ k$-connected} if $ \pi_{\ell} (X) =0 \ \forall \ \ell\leq k$.
+\end{defn}
+
+\begin{thm}
+If $ X$ is a  $ k$-connected  CW-complex, then  $ X \simeq X'$ where $ X'$ is a CW-complex containing a single vertex and no cells of dimension 1 through  $ k$.
+\end{thm}
+\begin{proof}
+Let $ x_0$ be a vertex, and $ v_1,\ldots,v_\ell$ be all the vertices. Since $ k>0$, $ \pi_0(X) = 0$ so $ X$ is path-connected, so there exists a path  $ \gamma_i$ from $ x_0$ to $ v_i$. By cellular approximation we can assume $ \im \gamma_i \subseteq X^{(1)}$. Attach $ D^2$ to $ X$ as follows:
+~\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\textwidth]{./figures/kconnect_disk.png}
+\end{figure}
+Call result $ \widetilde{ X}'$. Note: $ \widetilde{ X}'$ is a CW-complex where for each $ i$ we add a 1-cell and a 2-cell. Also $ \widetilde{ X}' \simeq X$ since we can just push the disk down into the boundary. Let $ e = \overline{ \widetilde{ X}' - X} $. Note that $ e$ is a contractible subcomplex of  $ \widetilde{ X}'$ (push down to path and then retract along the paths to $ x_0$). Now set $ \widetilde{ X} = \widetilde{ X}' / e$ then lemma 20 says $ \widetilde{ X}  \simeq \widetilde{ X}'$ since $ e$ is contractible. So  $ X \simeq \widetilde{ X}$ which has one vertex. More generally, let $ T$ be a tree in  $ X^{(1)}$ so $ \widetilde{ X} = X /T \simeq X$.
+
+Assume $ X \simeq \wh{ X}$ where $ \wh{ X}$ is a CW-complex with one vertex and no cells of dim $ 1,\ldots,\ell$ for $ \ell < k$. For each $ \ell+1$ cell, $ e^{\ell+1}$, the attaching map is $ \partial e^{\ell+1} \xrightarrow{ f} X^{( \ell)} = \{e_0\} $. This attaches a $ \ell+1$-sphere to $ \wh{ X}$. So $ e^{\ell+1}$ is an element of $ \pi_{\ell+1}(\wh{ X})=0$, so there must exist a disk $ \alpha: D^{\ell+2} \to \wh{ X}$ s.t.\ $ \alpha( \partial D^{\ell+2}) = e^{\ell+1}$ ???. We can assume $ \alpha(D^{\ell+2}) \subseteq \wh{ X} ^{(\ell+2)}$ by cellular approximation. Now glue $ D^{\ell+3}$ to $ \wh{ X}$ by 
+~\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\textwidth]{./figures/kconnect_disk2.png}
+\end{figure}
+call result $ \widetilde{ X} := \wh{ X}$ with a $ \ell+2$ cell $ e$ and a  $ \ell+3$ cell $ e'$.
+
+Since  $ e'$ is homotopic to  $ \overline{\partial e' - e}$ so $ \widetilde{ X} ' \simeq \wh{ X}$. Since $ e$ is contractible,  $ \wh{ X}' = \widetilde{ X}' / e \simeq \widetilde{ X}' \simeq \wh{ X}$. NOw $ \wh{ tX}'$ has one less $ \ell+1$ cells and we repeat to get rid of all of them.
+\end{proof}
+
+\begin{coro}
+If $ X$ is a CW-complex with $ \pi_{i} (X) = 0 \ \forall \ i$, then $ X$ is contractible.
+\end{coro}
+\begin{proof}
+If $ X$ is a finite dimensional CW-complex, then theorem above says  $ X \simeq \{ \text{pt} \} $. If $ X$ is infinite, use weak topology.
+\end{proof}
+
+\begin{coro}
+If $ X$ is a  $ k$-connected CW-complex, then  $ \widetilde{ H}_\ell(X) =0 \ \forall \ \ell \leq k$.
+\end{coro}
+That is, $ \pi_{\ell}(X)=0$ for all $ \ell \leq k$ implies that $ \widetilde{ H}_\ell (X) =0 \ \forall \ \ell \leq k$. Recall that we remove a $ \zz$ from 0th homology to get reduced homology.
+
+\begin{proof}
+Compute $ \widetilde{ H}_\ell(X)$ using cellular homology. Recall $ C_\ell^{ \text{CW} }(X)$ is the free abelian group generated by the $ \ell$-cells. We can assume no $ \ell$-cells for $ \ell=1,\ldots,k$ and for $ \ell=0$. So $ H_\ell(X) = 0 \ \forall \ \ell=1,\ldots,k$. Also $ H_0(X) = \zz$ since it is path-connected so $ \widetilde{ H}_0(X) = 0$.
+\end{proof}
+
+\begin{thm}
+If $ (X,A)$ is a CW pair and  $ \pi_n(X,A) = 0 \ \forall \ n $ then $ X$ deformation retracts to  $ A$,  \emph{i.e.} $ X \simeq A$.
+\end{thm}
+
+\begin{proof}
+Exercise. Much like 21 and 22.
+\end{proof}
+
+\begin{thm}[Whitehead]
+If $ X,Y$ are CW complexes, with base points $ x_0 \in X^{(0)}, y_0 \in Y^{(0)}$ with $ Y$ connected, and  $ f:(X,x_0) \to  (Y,y_0)$ is a map s.t.\ $ f_* \pi_k(X,x_0) \to \pi_k(Y,y_0)$ is an isomorphism for all $ k$, then  $ f: X \to Y$ is a homotopy equivalence.
+\end{thm}
+
+\begin{remark}
+\begin{enumerate}[label=(\arabic*)]
+	\item $ f$ satisfying the hypothesis is called a  \allbold{weak homotopy equivalence}. So theorem says for CW-complexes, a weak homotopy equivalence is a homotopy equivalence.
+	\item 2 spaces can have isomorphic $ \pi_n \ \forall \ n$ but not be homotopy equivalence. We do need this map.
+		\begin{eg}
+		Let $ X = \rr P^2 \times S^3$, $ Y = S^2 \times \rr P^2$. Note $ S^2 \times S^3$ is the universal cover of $ X$ and  $ Y$, by lemma 18,  $ \pi_n(X) \cong\pi_n(S^2 \times S^3) \cong\pi_n(Y) \ \forall \ k\geq 2$. So $ \pi_1(X)= \zz /2 = \pi_1(Y)$. They are path-connected so they have isomorphic $ \pi_0$. But $ X$ is not homotopy equivalence to  $ Y$, because $ X$ is not orientable but $ Y$ is so $ H_5(X)=0, H_5(Y) \cong \zz$.
+		\end{eg}
+	\item If $ X,Y$ are not CW-complexes, then  $ f:X to Y$ inducing isomorphisms on all homotopy groups, then  $ f$ doesn't not need to be a homotopy equivalence. Consider topologist's comb and a point at the top of first bar.
+\end{enumerate}
+\end{remark}
+
+\begin{proof}
+Given $ f: X \to Y$ we can make it cellular, consider the mapping cylinder $ C_f= (X \times I) \sqcup Y /(x,0) \sim f(x) $. Exercise: $ C_f$ has the structure of a CW-complex where  $ X \times \{1\} $ is a subcomplex. Recall $ C_f \simeq Y$ given by $ j$ which has a homotopy inverse  $ i:Y \to C_f$. Let $ i_x: X \to C_f,x\mapsto (x,1)$, then $ j \circ i_X \simeq f$. Since $ f_*: \pi_n(X) \to \pi_n(Y)$ is an iso for all $ n$, so is  $ (i_X)_*$. By long exact sequence in lemma 17, 
+
+By Theorem 24,  $ C_f \simeq X$.
+\end{proof}
+
+Let's go back to computing $ \pi_k$. Recall by lemma 10, $ \pi_1(X,x_0)$ acts on $ \pi_n(X,x_0)$. Given $ [ \gamma] \in \pi_1(X,x_0), [f] \in \pi_n(X,x_0)$. Define $ [ \gamma]. [f]$ by
+
+Exercise: this makes $ \pi_n(X,x_0)$ into a $\zz [\pi_1(X,x_0)]$-module (group ring).
+
+\begin{thm}
+	Given $ (X,x_0)$, $ f: \partial D^{n}\to X$ a map s.t.\ $ f(y_0) = x_0$. Let $ \wh{ X}= X \cup _f D^{n}$. Let $ i: X \to \wh{ X}$ be inclusion. Then $ i_*: \pi_k(X,x_0) \to \pi_k( \wh{ X} ,x_0)$ is an isomorphism for  $ k<n-1$ and surjective for $ k=n-1$ with kernel generated by  $ [f]$ and  $ [ \gamma] . [f]$ for all $ [ \gamma] \in \pi_1(X,x_0)$.
+\end{thm}
+
+\begin{proof}
+	Given $ g: S^{k} \to \wh{ X}$ s.t.\ $ [g] \in \pi_k(\wh{ X})$, we want to find an element in $ \pi_k(X)$ that maps to it. Consider $ \int(D^{n})$ this is a smooth open manifold. So $ g^{-1}(\int D^{n})$ is a smooth open submanifold of $ S^{k}$ (open subset of smooth manifold). We can homotop $ g|_{g^{-1}(\int D^{n})}$ to be smooth. Choose a regular value $ p$ of  $ g|_{g^{-1}(\int D^{n})}$ by Sard's Theorem. If $ k<n$ then  $ g^{-1}(p) = 0$ by dimension $ <0$. Since $ D^{n} - p$ deformation retracts to $ \partial D^{n}$, we can homotop $ g$ to $ \wh{ g}$ s.t.\ $ \im \wh{ g} \cap \int D^{n} = \O$. So $ \wh{ g} \in \pi_n(X)$ and $ i_*([\wh{ g}]) = [g]$. So $ i_*$ is surjective if  $ k \leq n-1$.
+
+	Suppose  $ [g_0],[g_1] \in \pi_k(X)$ s.t.\ $ i_*([g_0]) = i_*([g_1])$, that is, there exists $ H: S^{k} \times I \to \wh{ X}$ between $  g_0$ and $ g_1$. Note $ S^{k} \times I$ is a smooth manifold of $ \dim k+1$. So if  $ k+1 \leq n-1$, then the argument above (for surjectivity) says we can homotop  $ H$ to  $ \wh{ H}$ s.t.\ $ \wh{ H}: S^{k} \times I \to X$ is a homotop of $ g_0$ to $ g_1$ in $ X$. So  $ i_*$ is injective for  $ k \leq n-2$. 
+
+	Now for $ i_*: \pi_{n-1}(X) \to \pi_{n-1}(\wh{ X})$, clearly $ [f]$ and  $ [ \gamma] \cdot [f]$ are in $ \ker i_*$. So it remains to show $ [g] \in \ker i_*$ is in the subgroup generated by $ [f]$ and  $ [ \gamma] \cdot [f]$. We have $ G: D^{n} \to \wh{ X}$ s.t.\ $ G|_{\partial D^{n}} =g$. We can assume there exists $ p \in \int(D^{n})$ (the cell we added to get $ \wh{ X}$) s.t.\ $ G^{-1}(p) = \{p_1,\ldots,p_\ell\} $ by codimension. So there exists open balls $ N_i$ around $ p_i$ s.t.\ $ G|_{N_i}$ embeds $ N_i$ into $ \int D^{n}$. Note that $ G|_{D^{n} - \cup N_i}$ misses $ p$ so we can deformation retract to boundary, so homotopic to  $ G'$ with image in  $ X$ and each boundary component of  $ \partial [(D^{n}- \cup N_i)-\partial D^{n}]$ has image equal to $ f$. So there exists  $ p_i \in \partial N_i$ s.t.\ $ G'(p_i)=x_0$. Let $ \alpha_i: I \to D^{n}-\cup N_i$ be a path from $ p_i'$ to  $ x_0$.
+\end{proof}
+
+\begin{thm}
+Any topological space is weakly homotopy equivalent to a CW-complex.
+\end{thm}
+
+\begin{proof}
+Given a topological space $ X$, WLOG path-connected with base point $ x_0$,  set $ Y_0 = \{e^{0}\} $ and $ f_0: Y_0 \to X, e^{0} \mapsto x_0$. We see that $ f_0$ is an isomorphism on $ \pi_0$.
+
+Let $ \alpha_1,\ldots, \alpha_k: I \to X$ generate $ \pi_1(X,x_0)$. Set $ Y_1 = Y_0 \cup e_1^{1} \cup \cdots \cup e_k^{1}$ which is a wedge of circles. Extend $ f_0$ to $ f_1': Y_1' \to X$ by $ \alpha_i$ on each $ e_i^{1}$. Clearly $ f_1'$ is an isomorphism on $ \pi_n$ for $ n<1$ and surjective on  $ \pi_1$. Let $ \beta_1, \beta_\ell$ generate $ \ker (f_1')_*$ on $ \pi_1$, \emph{i.e.} $ f_1' \circ \beta_i: I \to X$ are null-homotopic. So we have $ F_i: D^2 \to X$ s.t.\ $ F_2|_{ \partial D^2} = f_1' \circ \beta_i$ ??? Let $ Y_1 = Y_1' \cup \bigsqcup_{ i=1}^{\ell} \overline{e}_1^2$, glue $ \overline{e}_i^2$ to $ Y_1'$ by $ \beta_i$. Extend $ f_1'$ to $ f_1: Y_1 \to X$ by $ F_i$ on $ \overline{e}_i^2$.
+
+Exercise: $ \pi_1(Y_1) \cong \pi_1(Y_1') / \langle \beta_1, \ldots, \beta_\ell \rangle$ so $ f_1 $ is an isomorphism on $ \pi_n$ for $ n \leq 1$.
+
+Now let  $ \alpha_1,\ldots, \alpha_k: D^2 \to X$, generate $ \pi_2(X)$, $ Y_2' = Y_1 \cup  e_1^2 \cup \cdots \cup e_k^2$ which each 2-cell is attached by the constant map (a wedge of spheres). Extend $ f_1$ on $ Y_1$ to $ f_2': Y_2' \to X$ by $ \alpha_i$ on each $ e_i^2$. Clearly $ f_2'$ induces an isomorphism on $ \pi_n$ for $ n\leq 1$ and a surjection on  $ \pi_2$. Let $ \beta_1,\ldots, \beta_\ell$ generate $ \ker( f_2')_*$ on $ \pi_2(Y_2')$ (the smallest normal subgroup and $ \pi_1$ acting on it). As above $ f_2' \circ  \beta_i: D^2 \to X$ is null-homotopic, so there exists $ F_i: D^3 \to X$ s.t.\ $ F_i|_{ \partial D^3} = f_2' \circ \beta_i$. Set $ Y_2 = Y_2' \cup \bigsqcup_{ i=1}^{\ell} \overline{e}_i^3$ where $ \overline{e}_i^3$ is attached to $ Y_2'$ by $ \beta_i$. Extend $ f_2'$ to $ f_2: Y_2 to X$ by $ F_i$ on $ \overline{e}_i^3$ using Theorem 27. So $ f_2$ induces an isomorphism on $ \pi_n, n \leq 2$. The induction step is clear.
+\end{proof}
+\end{document}
+

@@ -1,0 +1,215 @@
+global !p
+def math():
+	return vim.eval('vimtex#syntax#in_mathzone()') == '1'
+endglobal	
+
+context "math()"
+snippet + "+ subscript" i
++_{ $1} $0
+endsnippet
+
+context "math()"
+snippet = "= subscript" i
+=_{ $1} $0
+endsnippet
+
+context "math()"
+snippet pp "phi,cs" A
+\phi($1) $0
+endsnippet
+
+context "math()"
+snippet iso "isomorphic" iA
+\cong
+endsnippet
+
+context "math()"
+snippet gcd "gcd" Ai
+\gcd ( $1) $0
+endsnippet
+
+context "math()"
+snippet sim "equivalence" A
+\sim
+endsnippet
+
+context "math()"
+snippet lcm "least common multiple" A
+\lcm \left( $1 \right) $0
+endsnippet
+
+context "math()"
+snippet im "image" A
+\im $0
+endsnippet
+
+context "math()"
+snippet dg "degree" A
+\dg $0
+endsnippet
+
+context "math()"
+snippet mod "modulo" A
+\bmod $0
+endsnippet
+
+context "math()"
+snippet ker "kernel" A
+\ker $0
+endsnippet
+
+context "math()"
+snippet vare "curly epsilon" A
+\varepsilon $0
+endsnippet
+
+context "math()"
+snippet lteq "normal subgroup" A
+\trianglelefteq $0
+endsnippet
+
+context "math()"
+snippet 'infpro:([A-Za-z])(\d)' "infinite product" rwA
+\prod_{ ${1:`!p snip.rv = match.group(1)`= `!p snip.rv = match.group(2)`}}^{\infty} ${2:}
+endsnippet
+
+context "math()"
+snippet 'pro:([A-Za-z])(\d)([A-Za-z]|\d)' "product" rwA
+\prod_{ ${1:`!p snip.rv = match.group(1)`= `!p snip.rv = match.group(2)`}}^{ ${2:`!p snip.rv = match.group(3)`}} ${3:}
+endsnippet
+
+context "math()"
+snippet ww "omega" iA
+\omega
+endsnippet
+
+context "math()"
+snippet WW "Omega" iA
+\Omega
+endsnippet
+
+context "math()"
+snippet aut "Aut" A
+\aut ($1)
+endsnippet
+
+context "math()"
+snippet ging "Inn" A
+\inn ($1)
+endsnippet
+
+context "math()"
+snippet char "characteristic" A
+\char $1
+endsnippet
+
+context "math()"
+snippet syl "Sylow" A
+Syl_{ ${1}}( $2) $0
+endsnippet
+
+context "math()"
+snippet rsd "right semidirect product" A
+\rtimes $1
+endsnippet
+
+snippet Rm "R-module" A
+$ ${1:R}$-module $0
+endsnippet
+
+context "math()"
+snippet edm "Endomorphism" A
+\edm_{ ${1:R}}( ${2:M}) $0
+endsnippet
+
+context "math()"
+snippet o+ "direct sum" A
+\oplus $0
+endsnippet
+
+context "math()"
+snippet ox "tensor product" A
+\otimes $0
+endsnippet
+
+context "math()"
+snippet bo "big direct sum" A
+\bigoplus_{ ${1: }} $0
+endsnippet
+
+context "math()"
+snippet lam "lambda" iA
+\lambda
+endsnippet
+
+context "math()"
+snippet v.. "vdots" A
+\vdots
+endsnippet
+
+context "math()"
+snippet iota "iota" iA
+\iota
+endsnippet
+
+context "math()"
+snippet bw "big wedge product" A
+\bigwedge $0
+endsnippet
+
+context "math()"
+snippet wg "wedge product" A
+\wedge $0
+endsnippet
+
+context "math()"
+snippet gal "Gal" A
+\gal ($1)
+endsnippet
+
+context "math()"
+snippet oc "circ" A
+\circ 
+endsnippet
+
+context "math()"
+snippet stab "stablizer" A
+\Stab_{ $1}( $2) $0
+endsnippet
+
+context "math()"
+snippet inje "injection" A
+\rightarrowtail
+endsnippet
+
+context "math()"
+snippet surj "surjection" A
+\twoheadrightarrow
+endsnippet
+
+context "math()"
+snippet bico "bijection correspondence" A
+\leftrightarrow
+endsnippet
+
+context "math()"
+snippet hom "Hom" A
+\Hom( $1, $2)$0
+endsnippet
+
+context "math()"
+snippet cont "content" A
+\cont( $1) $0
+endsnippet
+
+context "math()"
+snippet anl "annilator" A
+\Ann_{ $1}( $2) $0
+endsnippet
+
+context "math()"
+snippet xra "words on right arrow" iA
+\xrightarrow{ $1} $0
+endsnippet
+# vim:ft=snippets
+

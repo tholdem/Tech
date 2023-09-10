@@ -1,0 +1,255 @@
+\documentclass[12pt,class=article,crop=false]{standalone} 
+\input{../preamble.tex}
+
+\begin{document}
+\section{Introduction to Spectral Sequences}
+
+\begin{defn}
+A \allbold{bigraded module} is an indexed collection of modules $ E_{s,t}$ for every pair of integers  $ s,t$.
+
+A  \allbold{differential of bidegree $ (-r,r-1)$}  is a collection of homomorphisms $ d: E_{s,t} \to E_{s-r,t+r-1}$ s.t.\ $ d^2 = 0$ (where composition makes sense).
+
+The \allbold{homology of $ d$} is
+\begin{align*}
+	H_{s,t}(E,d) : = \frac{ \ker :E_{x,t} \to E_{s-r,t+r-1}}{ \im (d: E_{s+r,t-r+1} \toE_{s,t})}
+\end{align*}
+\end{defn}
+If $ E_q = \bigoplus_{ s+t=q} E_{s,t}$ then $ d$ induces a homomorphism  $ \partial :E_q \to E_{q-1}).$ so $ (E_q, \partial )$ is a chain complex. Moreover, $ H_q(E_*, \partial ) = \bigoplus_{ s+t=q} H_{s,t}(E,d) $.
+\begin{defn}
+An  \allbold{$ E^{k}$-spectral sequence} is a sequence $ \{E^{r},d^{r}\} $  for $ r \geq k$  s.t.\ 
+\begin{enumerate}[label=(\alph*)]
+	\item $ E^{r}$ is a bigraded module and $ d^{r}$ is a differential of bidegree $ (-r,r-1)$,
+	\item  $ E^{r+1} = H(E^{r},d^{r}) \ \forall \ r>k$.
+\end{enumerate}
+\end{defn}
+
+\begin{eg}
+$ E^{1}$.
+\end{eg}
+
+\begin{defn}
+Suppose for every $ s,t$ there exists a  $ \# r(s,t)$  s.t.\ $ \ \forall \ r > r(s,t)$
+\begin{align*}
+	d^{r}:E_{s,t}^{r} \to E_{s-r,t+r-1}^{r}
+\end{align*}
+is the zero map, then $ E_{s,t}^{r+1}$ is just a quotient of $ E_{s,t}^{r}$ we can define $ E_{s,t}^{\infty}$ to be the direct limit of $ E_{s,t}^{r}$. In this situation we say the spectral sequence \allbold{coverges} to $ E_{s,t}^{\infty}$ .
+\end{defn} 
+\begin{remark}
+If $ E_{s,t}^{r} = 0, s<0,t<0$ (first quadrant ss), then for each $ s,t$ there is some  $ r$  s.t.\ $ E_{s,t}^{r}$ is constant in $ r$.
+\end{remark}
+
+So where do spectral sequences come from? Filtrations.
+
+\begin{defn}
+A \allbold{filtration $ F$ on a module  $ A$}  is a sequence of submodules $ \{F_sA\} $ of $ A$  s.t.\ 
+\begin{align*}
+	A \supseteq \ldots \supseteq F_{s+1} A \supseteq F_s A \supseteq \ldots
+\end{align*}
+$ s$ is the  \allbold{filtration degree}, $ t$ is the  \allbold{complementary degree}, and $ s+t$ is the  \allbold{total degree}.   
+A filtration is \allbold{convergent}  if
+\begin{align*}
+	\bigcap_{ s} F_sA = 0 
+\end{align*}
+and
+\begin{align*}
+	\bigcup_{ s} F_s A =A 
+\end{align*}
+We will usually have a finite filtration where $ F_{-1}(A) = 0$.
+
+If $ A$ is graded  $ \{A_k\} $ and $ F$ respects the grading,  then the filtration inherits a grading $ F_sA = \{F_s A_k\} $. The \allbold{associated graded module} is
+\begin{align*}
+	G(A)_s = F_sA / F_{s-1}A\\
+	G(A) = \bigoplus_{ s} G(A)_s 
+\end{align*}
+If $ A$ is graded then  $ G(A)$ is bigraded
+ \begin{align*}
+	G(A)_{s,t} = F_s A_{s+t} / F_{s-1} A_{s+t}
+\end{align*}
+\end{defn}
+
+\begin{eg}
+\begin{enumerate}[label=(\arabic*)]
+	\item $ A= F_1A = \zz /4$, $ F_0A= \zz /2$, $ F_{-1}A=0$, so
+		\begin{align*}
+			G(A)_s = \begin{cases}
+				\zz /2 & s=1,0\\
+				0 & s \neq 0,1\\
+			\end{cases}
+		\end{align*}
+		So $ G(A) = \bigoplus_{ s}G(A) = \zz /2 \oplus  \zz /2 $.
+	\item $ A = F_1A = \zz_2 \oplus \zz_2$, $ F_0A = \zz_2$, $ F_{-1}A = 0$. Then
+		\begin{align*}
+			G(A)_s = \begin{cases}
+				\zz /2 & i = 1,0\\
+				0 & i \neq 0,1\\
+			\end{cases}
+		\end{align*}
+	\item $ A = A_1 = \zz$, $ A_0 = 2 \zz$, $ A_{-1}=0$, then
+		\begin{align*}
+			G(A) = A_1 / A_0 \oplus  A_0 / A_{-1}\\
+			\cong \zz_2 \oplus \zz \not \cong A
+		\end{align*}
+		But $ G(A)$ is ``close'' to  $ A$.
+\end{enumerate}
+\end{eg}
+\begin{lem}
+If $ F$ is a finite filtration of  $ A_1$ then
+\begin{enumerate}[label=(\arabic*)]
+	\item If $ G(A)_s$ is free for all  $ s$ then  $ G(A) \cong A$.
+	\item If $ G(A)_s$ is a vector space over a field then  $ G(A) \cong A$.
+	\item If $ G(A)_s$ is finite for all  $ s$, then  $ A$ is finite and order $ (A) = $order $ G(A)$. 
+	\item If  $ G(A)_s$ is finitely generated  $ \ \forall \ s$, then $ A$ is finitely generated and  $ \rank A = \rank (G(A))$.
+	\item If  $ G(A)_s =0$ for all but one  $ s$, then  $ A \cong G(A)$.
+	\item If $ G(A)_s = 0$ for all but two  $ s$, say  $ G(A)_k, G(A)_\ell$ with $ k < \ell$ then
+		\begin{align*}
+			0 \to G(A)_k \to A \to G(A)_{\ell} \to 0
+		\end{align*}
+is exact.
+\end{enumerate}
+\end{lem}
+\begin{proof}
+\begin{enumerate}[label=(\arabic*)]
+	\item We have
+		\begin{align*}
+			0 \to F_{n-1} A \to F_nA = A \to F_n A / F_{n-1} A = G(A)_n \to 0
+		\end{align*}
+		Exercise: if $ 0 \to A \to B \to C \to 0$ is exact and $ C$ is free, then  $ B = A \oplus C$. So $ A \cong G(A)_n \oplus F_{n-1}(A)$. Similarly,
+		\begin{align*}
+			$ F_{n-1}(A) \cong G(A)_{n-1} \oplus F_{n-2}(A)$ and so on. So $ A \cong \bigoplus_{ s} G(A)_s $.
+		\end{align*}
+	\item this is a corollary of 1.
+	\item 
+	\item
+	\item 
+	\begin{align*}
+	G(A)_s = \begin{cases}
+		F_s(A) & s=k\\
+		0& s \neq k\\
+	\end{cases}
+\end{align*}
+So $ G(A) = G(A)_k$ and
+ \begin{align*}
+	A = F_n(A) = F_{n-1}(A) = \ldots= F_k(A) \supseteq  F_{k-1}(A) = \ldots = F_{-1}A
+\end{align*}
+so $ A = F_k(A) = F_k(A) / F_{k-1}(A) = G(A)_k = G(A)$.
+
+6): If
+\begin{align*}
+	G(A)_s = \begin{cases}
+		C,& s=\ell\\
+		B, & s = k\\
+		0, & \text{ else} 
+	\end{cases}
+\end{align*}
+Then
+\begin{align*}
+	A = F_n(A) = \ldots F_{\ell}(A) \supseteq F_{\ell-1}(A) = \ldots F_k(A) \supseteq F_{k-1}(A) = \ldots=F_{-1}(A) = 0
+\end{align*}
+So $ G(A)_{\ell} = A /F_{\ell-1}(A) \cong C$.
+and
+\begin{align*}
+	B = G(A)_k = (F_{l-1}A = F_k(A)) / (F_{k-1}A = 0) = F_{\ell-1}A
+\end{align*}
+So $ A  /B = C$ iff
+ \begin{align*}
+	0 \to B \to A \to C \to 0
+\end{align*}
+
+\end{enumerate}
+
+Exercise: prove 3-4.
+\end{proof}
+
+If $ F$ is a filtration of a chain complex $ \{C_*, \partial \} $ s.t.\ $ (F_s C_*, \partial )$ is a subcomplex of $ (C_*, \partial )$, then $ F$ induces a filtration on the homology  $ H_*(C_*, \partial )$
+\begin{align*}
+	F_s H(C_*, \partial ) = \im  (H(F_s C_*, \partial ) \to H_*(C_*,\partial ))
+\end{align*}
+If $ F$ is finite, then it is easy to see
+ \begin{align*}
+	H(C_*, \partial ) = \bigcup F_s H(C_*, \partial )\\\
+	\bigcap (F_s H(C_*, \partial )) =0
+\end{align*}
+\begin{thm}
+Let $ F$ be a finite filtration of a chain complex  $ (c_*, \partial )$, then there is an $ E^{1}$ spectral sequence with
+\begin{enumerate}[label=(\arabic*)]
+	\item $ E^{1}_{s,t} = H_{s+t}(F_s C / F_{s-1}C)$ 
+	\item $ d^{1}$ is the connecting homomorphism of the triple $ (F_s C, F_{s-1}C,F_{s-2}C)$.
+	\item $ G(H(C_*, \partial ))_{s,t} = E_{s,t}^{\infty}$.
+\end{enumerate}
+\end{thm}
+\begin{proof}
+\begin{align*}
+	E_{s,t}^{r} = \frac{ \{ c \in F_s(C_{s,t}): \partial c \in F_{s-r} (C_{s+t+1})\}}{F_{s-1}C_{s+t} + \partial (F_{s+r-1} C_{s+t-1}) }
+\end{align*}
+and $ d^{n} = \partial $ applied to representatives of $ E_{s,t}^{r}$.
+\end{proof}
+For 2, recall
+\begin{align*}
+	0 \to F_{s-1}C / F_{s-2}C \to F_{s}C / F_{s-2} c \to F_s C / F_{s-1} C \to 0
+\end{align*}
+Third isomorphism theorem, induces a long exact sequence on homology.
+\begin{align*}
+	 H_k(F_s C / F_{s-1}C) \xrightarrow{ d^{1}} H_{k-1} (F_{s-1}C / F_{s-2}C) 
+\end{align*}
+
+\begin{eg}
+Computing the homology of $ T^2$.
+\end{eg}
+\begin{eg}
+Let $ A \subseteq X$ a subspace we get a filtration of $ C_*(X)$
+ \begin{align*}
+	 F_1C &= C_*(X)\\
+	F_0C &= C_*(A)\\
+	F_{-1}C &= 0 
+\end{align*}
+So we get a spectral sequence with
+\begin{align*}
+	E_{s,t}^{1} = H_{s+t}\left( \frac{F_s C_*}{ F_{s-1}C_*} \right)  \cong \begin{cases}
+		H_{s+t}(X,A) & s=1\\
+		H_{s+t} (A) & s=1\\
+		0 & s \neq 0,1\\
+	\end{cases}
+\end{align*}
+Note $ E^2 = E^{2+k}  = E^{\infty}$. So $ G(H(C_*(X)))_k = \bigoplus_{ s+t=k} E_{s,t}^{\infty} = E_{0,k}^{\infty} \oplus E_{1,k-1}^{\infty}$. Lemma 1 says we get
+\begin{align*}
+	0 \to H_k(A) / \im \partial \to H_k(X) \to \ker \partial \to 0
+\end{align*}
+Note this is equivalent to
+\begin{align*}
+	0 \to \im (\partial : H_{k+1}(X,A) \to H_k(A)) \to H_k(A) \xrightarrow{ i_8}  H_k(X) \to \ker (\partial :H_{k}(X,A) \to H_{k-1}(A)) \to 0
+\end{align*}
+If $ i: A \to X$ and $ j: X \to (X,A)$ inclusions. The above says $ \im \partial = \ker i_*$ and $ \ker \partial  = \im j_*$. This proves the hard part of the long exact sequence for the pair $ (X,A)$. So the spectral sequence generalizes long exact sequence.
+\end{eg}
+\begin{eg}
+We will show for $ X$ CW complex , $H_*^{CW}(X) \cong H_*^{Sing}(X) $.
+
+Let $ F_kC_*(X) = C_*(X^{(k)})$. This is a finite filtration so there exists a spectral sequence that converges to $ E_{s,t}^{\infty}$.
+
+\begin{align*}
+	E_{s,t}^{1} = H_{s+t}(F_s C / F_{s-1}C)\\
+	&= H_{s+t}(C_*(X^{(s)})/ C_*(X^{(s-1)})) \\
+	&= H_{s+t}(X^{(s)}, X^{(s-1)}) & \text{ by defn} \\
+	&=\con\widetilde{ H}_{s,t}(X^{(s)} / X^{(s-1)})\\
+	&= \widetilde{ H}_{s+t} ( \text{wedge of s-spheres} ) \\
+	&= \begin{cases}
+		\bigoplus_{ s- \text{cells} } \zz& t=0\\
+		0& t \neq 0\\
+	\end{cases} \\
+	&= \begin{cases}
+		C_s^{CW}(X) & t=0\\
+		0& t\neq 0\\
+	\end{cases} 
+\end{align*}
+and in sequence $ d^{1} = \partial $ map of the LES of $ (F_s ,F_{s-1}, F_{s-2})$ \emph{i.e.} $ H_s(X^{(s)} , X^{(s-1)}) \to H_{s-1} (X^{(s-1)} , X^{(s-2)})$. We know $ d^{1} = \partial ^{CW}$. So
+\begin{align*}
+	E^2 = E_{s,t}^{\infty} = \begin{cases}
+		H_s^{CW}(X) & t=0\\
+		0& t \neq 0\\
+	\end{cases}
+\end{align*}
+By Lemma 1 part 5, we have $ H_p(X) \cong H_p ^{CW}(X)$.
+\begin{remark}
+All the above works for cohomology too and the $ \partial $ respect the product structure.
+\end{remark}
+\end{eg}
+\end{document}

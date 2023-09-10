@@ -1,0 +1,92 @@
+\documentclass[12pt,class=article,crop=false]{standalone} 
+\input{../preamble.tex}
+
+\begin{document}
+When does a bundle have a section?
+
+\begin{lem}
+$ \delta \widetilde{ \sigma}(s_k) = 0$.
+\end{lem}
+\begin{proof}
+Recall $ \partial ^{CW}: C_{k+1}(M) \to C_k(M)$ is as follows: for $ e_i^{k+1}$,
+\begin{align*}
+	\partial e_i^{k+1} = S^{k} \xrightarrow{ a_i} M^{(k)}  \to M^{k+1} / M^{k} \cong \bigvee S^{k} \xrightarrow{ p_j} S^{k} \\
+	\partial ^{CW} e_i^{k+1} = \sum_i (\deg g_{ij}) e_j^{k}
+\end{align*}
+where $ g_{ij}$ is the composition map above. Then
+\begin{align*}
+	\delta: \Hom( C_{k-1}( M);G) \to \Hom( C_k(M);G )\\
+	(\delta h)(e_i^{k}) := h ( \partial ^{CW} e_i^{k})
+\end{align*}
+
+$ \delta( \widetilde{ \sigma}(s_k)): C_{k+2}(M) \to \pi_k(F), e^{k+2} \mapsto \widetilde{ \sigma}(s_k)( \partial e^{k+2})$. Let $ a: \partial e^{k+2} \to M^{(k+1)}$ be the attaching map and $ I:e^{k+2} \to M$ be the ``inclusion". We homotop $ a$ as in exercise so
+ \begin{align*}
+	 (\delta \widetilde{ \sigma}(s_k))(e^{k+2}) = \widetilde{ \sigma}(s_k)( \sum d_j [e_j^{k+1}])
+\end{align*}
+where $ d_j$ are degrees of maps. As above $ I^* E \cong e^{k+2} \times F$ arrows into $ e^{k+2}$ and $ s_k$ gives a section above $ a(\partial d^{k+2} - \bigcup_{ n}D_n^{k+1})$ from exercise. And $ a|_{ \partial D_n^{k+1}}$ is the attaching map for some $e_i^{k+1} $. We can use $ p_2 \circ a|_{ \pm \partial D_n^{k+2}}$ to define $ \widetilde{ \sigma}(s_k) (e_i^{k+1})$. Hence the maps used in definition of $ \sum d_j \widetilde{ \sigma}(s_k)(e_j^{k+1})$ can be extended over $ \partial e^{k+2} - \bigcup D_n^{k+1} $.
+
+Exercise: show this means $ \sum d_j \widetilde{ \sigma}(s_k)(e_j^{k+1})$ is 0 in $ \pi_k(F)$. Hint: first consider the case when there is only one $ D_n^{k+1}$. So this finishes the proof.
+\end{proof}
+
+Now suppose $ s_k,s_k'$ are two sections over $ M^{(k)}$ that agree on $ M^{(k-1)}$, then their \allbold{difference class} in $ C^{k}(M, \pi_k(F))$ is defined as follows:
+\begin{align*}
+	D(s_k,s_k'): C_k(M) \to \pi_k(F)
+\end{align*}
+Let $ I_i: e_i^{k} \to M$ be inclusion of a $ k$-cell. Then  $ I_i^* E \cong e_i^{k} \times F$. Now $ s_k|_{\partial e_i^{k}} = s_k'|_{\partial e_i^{k}}$. So putting them together as upper and lower hemispheres, we have a map $ p_2 \circ (s_k|_{e_i^{k}} - s_k'|_{e_i^{k}}): S^{k} \to F$. Define $ D(s_k,s_k')(e_i^{k}):= p_2 \circ (s_k|_{e_i^{k}} - s_k'|_{e_i^{k}}) \in \pi_k(F)$.
+
+\begin{lem}
+\begin{enumerate}[label=(\arabic*)]
+	\item $ \delta(D(s_k,s_k'))= \widetilde{ \sigma}(s_k) - \widetilde{ \sigma}(s_k')$.
+	\item given any $ s_k$ and $ h \in C^{k}(M;\pi_k(F))$, there exists $ s_k'$ s.t.\ $ D(s_k,s_k') = h$.
+\end{enumerate}
+\end{lem}
+\begin{proof}
+1 is similar to proof of lemma 1. Exercise.
+
+Let $ s_k$ be a section over $ M$, for fix a $ k$-cell  $ e^{k}$, define
+\begin{align*}
+	h(e^{k}) := [g] \in \pi_k(F)
+\end{align*}
+and $ h=0$ on other  $ k$-cells. If we can find  $ s_k'$ s.t.\ $ D(s_k,s_k') = h$, then we are done (by doing it cell by cell). Let $ I:e^{k} \to M$ be the inclusion so pullback bundle is trivial. We choose a disk $ D^{k} \subseteq \int e^{k}$ and homotop $ s_k$ on $ e^{k} $ so $ p \circ s_k(D^{k}) = x_0 \in F$.
+
+Let $ s_k'=s_k$ on $ M^{(k)} - D^{k}$ and on $ D^{k}$ let it be $ -g \in \pi_k(F)$. Clearly $ D(s_k,s_k') = h$.
+\end{proof}
+
+The two lemmas above give
+\begin{thm}
+Given a bundle $ (E,M,F,p)$ satisfying the three assumptions and a section  $ s_k:M^{(k)} \to E$ then $ s_k|_{M^{(k-1)}}$ extends to $ M^{(k+1)} \iff$ 
+\begin{align*}
+	\sigma(s_k) = [\widetilde{ \sigma}(s_k)] = 0 \in H^{k+1}(M; \pi_k(F)).
+\end{align*}
+\end{thm}
+
+\begin{remark}
+If $ \pi_k(F) = 0$ for all $ k< \dim M$, then the above shows there exists a section of  $ (E,M,F)$. In particular, if  $ F$ is contractible then any bundle with fiber  $ F$ has a section.
+\end{remark}
+\begin{remark}
+$ \sigma(s_k)$ depends on $ s_k|_{M^{(k-1)}}$ so it is not an obstruction to the existence of a section of $ E$ over  $ M^{(k+1)}$ but only an obstruction to the existence of an extension of $ s_k|_{M^{(k-1)}}$ to $ M^{(k+1)}$.
+\end{remark}
+But the ``first obstruction" is independent of any choices and is ``natural".
+
+\begin{thm}
+Given a bundle satisfying the three assumptions, if $ \pi_k(F) = 0 $ for $ k<n$, then there exists a section  $ s_n:M^{(n)} \to E$ and the obstruction $ \sigma(s_n)$ does not depend on $ s_n$, \emph{i.e.} it is well-defined independent of choices. Denote $ \sigma(s_n)$ by $ \gamma^{n+1}(E)$, called the \allbold{primary obstruction}. And if $ f:N \to M$ is a map then
+\begin{align*}
+	\gamma^{n+1}(f^* E) = f^* ( \gamma^{n+1}(E)).
+\end{align*}
+\end{thm}
+\begin{defn}
+	$ \gamma^{n+1}$ is called a \allbold{characteristic class}.
+\end{defn}
+\begin{proof}
+The discussion above says $ s_n$ exists since all obstructions vanish. You can develop an obstruction theory to homotoping one section to another: given $ s,s'$ agreeing on  $ k-1$-skeleton, then  $ s|_{M^{(k)}}$ is homotopic to $ s'|_{M^{(k)}} \iff \sigma(s,s') \in H^{k}(M;\pi_k(F))$ vanishes (by the same argument before). Exercise.
+
+So there is a unique (up to homotopy) section of $ E$ over  $ M^{(n-1)}$. Thus $ \sigma(s_n)$ is independent of $ s_n$.
+
+For naturality, WLOG suppose $ f:N \to M$ is a cellular map. Now a section $ s$ of  $ E \to M$ gives a section $ f^* (S)$ of $ f^* (E)$. Exercise: check this. For any $ \Phi:(D^{n+1}, \partial D^{n+1}) \to (N^{(n+1),N^{(n)}}$ we see
+\begin{align*}
+	\pi_{n+1}(N^{(n+1)},N^{(n)}) \xrightarrow{ f_*} \pi_{n+1} (M^{(n+1)}, M^{(n)})  \to \pi_n(F)\\
+	[\Phi] \mapsto [f \circ \Phi] \mapsto [p_2 \circ s \circ f \circ \Phi_{ \partial D^{n+1}}]
+\end{align*}
+is essentially both $ \sigma(f^* s)(\Phi)$ and $ (f^* \sigma(s))(\Phi)$. Now $ pi_{n+1}(N^{(n+1)},N^{(n)} \cong H_{n+1} (N^{(n+1)},N^{(n)}) \cong C_{n+1}^{CW}(N)$. Similarly for $ M$. So the cocycle  $ \gamma^{n+1}(f^* E)$ is $ f^* ( \gamma^{n+1}(E))$.
+\end{proof}
+\end{document}

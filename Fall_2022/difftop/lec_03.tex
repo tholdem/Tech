@@ -1,0 +1,101 @@
+\documentclass[12pt,class=article,crop=false]{standalone} 
+\input{../preamble.tex}
+
+\begin{document}
+\section{Immersions and Embeddings}
+
+How to put one manifold inside another?
+
+\begin{defn}
+A \allbold{immersion} $ f: M \to N$ is a mapping with $ \rank (d_pf = \dim M)$ for all $ p \in M$.
+\end{defn}
+
+\begin{remark}
+$ f$ is always locally 1-1 by the rank theorem.
+\end{remark}
+
+\begin{defn}
+An \allbold{embedding} is an immersion which is globally 1-1 and a diffeomorphism onto its image (wrt subspace topology). 
+\end{defn}
+\begin{eg}[immersion]
+Given a curve $ f:(a,b) \to \rr^{n}, f'\neq 0$. 
+\end{eg}
+\begin{eg}
+A 1-1 immersion is not always an embedding. Let $ f: (a,b) \to \rr^2$ be a figure-8 curve without intersecting. But it is not an embedding due to open neighborhood around origin. We have 4 connected components if we remove origin in the image.
+\end{eg}
+\begin{prop}
+If $ M$ is compact, then a 1-1 immersion is always an embedding. More generally, let $ X$ be a compact topological space,  $ Y$ be Hausdorff, then any 1-1 map  $ f: X \to Y$ is a homeomorphism onto its image.
+\end{prop}
+\begin{proof}
+It suffices to show that $ f^{-1}$ is continuous or show that $ f$ is open. Given an open set $ U \subseteq X$, so $ X\setminus U$ is closed so it is compact. So $ f(X \setminus U)$ is compact and therefore closed since $ Y$ is Hausdorff. Hence by $ f$ 1-1, $ f(U) = f(X) \setminus f(X\setminus U)$ is open.
+\end{proof}
+
+\begin{defn}
+	A topological \allbold{immersion} is a locally 1-1 continuous map. A topological \allbold{embedding} is a 1-1 immersion which is a homeomorphism onto the image. 
+\end{defn}
+
+\begin{thm}[Whitney Embedding]
+Any (smooth) manifold $ M^{n}$ maybe (smoothly) embedded in $ \rr^{2n}$ and immersed in $ \rr^{2n-1}$. 
+\end{thm}
+\begin{remark}
+$ 2n$ is in general a tight bound.
+\end{remark}
+\begin{eg}
+$ \rr P^2$: Exercise 4 of lecture notes 3. $ f: \rr^3 \to \rr^{4}, (x,y,z)\mapsto (xy, yz,xz,x^2+2y^2+3z^2)$. When you restricted $ f$ to  $ S^2$, then antipodal points yield the same thing.
+
+For immersion of $ \rr P^2$ into $ \rr^3$, google Boy's surface.
+\end{eg}
+
+\begin{proof}
+Any compact manifold $ M^{n}$ may be topologically embedded in $ \rr^{N}$ for $ N$ sufficiently large). Theorem 5 LN3.
+
+Idea: glue $ m$ finite charts together to construct an embedding into $ \rr^{n} \times  \cdots \times \rr^{n}$ $ m+1$ times. There exists $ V_i \subseteq U_i$ s.t.\ $ \{V_i\} $ still covers $ M$. Define  $ \lambda_i: U_i \to \rr$ s.t.\ $ \lambda_i=1$ on $ V_i$ and 0 elsewhere. Define $ f_i: M \to \rr^{n}, p \mapsto \lambda_i(p) \phi_i(p)$. Then $ f(p):=(\lambda_1,\ldots, \lambda_m,f_1,\ldots,f_m)$.
+
+\begin{claim}
+$ f$ is 1-1.
+\end{claim}
+Suppose $ f(p) = f(q)$, that is,  $ \lambda_i(p)= \lambda_i(q), f_i(p) = f_i(q)$. Since $ p \in V_j$ for some $ j$, we have  $ \lambda_j(p) = 1 = \lambda_j(q)$ which implies that $ q \in V_j$. But since $ f$ is 1-1 on each  $ V_i$, so
+\begin{align*}
+	\lambda_j(p) \phi_j(p) &= f_j(p) = f_j(q) = \lambda_j(q) \phi_j(q) \\
+	\phi_j(p) &= \phi_j(q) \\
+	p&= q 
+\end{align*}
+More details: $ V_i:= \phi_^{-1} (\int B^{n})$ unit ball in $ \rr^{n}$. Let $ \lambda: \rr^{n} \to \rr$, $ \lambda \neq 0 $ on $ B^{n}(1)$ and $ \lambda=0$ on $ \rr^{n} - B^{n}(2)$. Then $ \lambda_i: M \to \rr, \lambda_i(p) := \begin{cases}
+	\lambda(\phi_i(p)),& p \in U_i\\
+	0 & \text{ else}\\ 
+\end{cases}$ 
+\begin{claim}
+$ \lambda_i$ is continuous.
+\end{claim}
+
+$ K_i = \phi_i ^{-1}(B^{n}(2))$ so $ K_i$ is compact and therefore closed by Hausdorff. So $ M - K_i$ is open. So $ \{U_i,M - K_i\} $ is an open cover for $ M$,  $ \lambda_i$ is continuous on $ U_i$, is continuous on $ M - K_i$ so $ \lambda_i$ is continuous.
+
+\begin{claim}
+$ \rank d_pf =n \ \forall \ p \in M$.
+\end{claim}
+
+$ p \in V_i$ for some $ i$,  $ f_i(p) = \lambda_i \phi_i(p) = \phi_i(p)$ which has rank $ n$ so is the derivative. The rank of  $ f$ cannot be less than  $ f_i$, but the dimension of the codomain in $ n$ so the rank has to be  $ n$.
+
+Now for the proof, there exists an embedding $ f: M \to \rr^{N}$, $ N$ large, 
+ \begin{claim}
+If $ N > 2n+1$, then there exists a unit vector  $  u \in S^{n-1}$ s.t.\ $ \pi_u \circ f: M \to \rr^{n-1}$ is an embedding, where $ \pi_k: \rr^{N} \to H_n$ (hyperplane) be the orthogonal projection.
+\end{claim}
+Note that $ u$ needs to be chosen  s.t.\ 
+\begin{enumerate}[label=(\arabic*)]
+	\item For all $ (p,q) \in M$, $ \frac{ f(p) - f(q)}{|f(p)-f(q)| } $ is not parallel to $ u$.
+	\item For all  $ p \in M$, $ u \not\in T_pM$.
+\end{enumerate}
+Let $ \Delta_M$ be the diagonal of $ M$, by Hausdorff  $ \Delta_M$ is closed, so $ M\times M - \Delta_M$ is open so it is a submanifold. $ \dim (M \times M - \Delta_M) = 2n < N-1 = \dim S^{N-1}$ by assumption.  Define $ \sigma: M \times M - \Delta_M \to S^{N-1}, (p,q) \mapsto \frac{f(p)-f(q)}{ \norm{ f(p)-f(q)} }$. Then $ \mu( \sigma(M \times M - \Delta_M)) = 0$ by lemma. Therefore, there exists a $ u \in S^{N-1}$ s.t.\  $ u \not\in \sigma(M \times M- \Delta_M)$. Hence $ \pi_u|_M$ is 1-1.
+
+Exercise: the unit tangent bundle $ \dim T^{1}f(M) = 2n-1$. The norm function is smooth and 1 is a regular value. 
+\end{proof}
+
+\begin{lem}
+If $ f: M^{m} \to N^{n}$ is a $ C^{1}$ map for $ n>m$, then $ f(M)$ is not surjective. In particular, $ f(M)$ has measure zero in $ N$.
+\end{lem}
+
+\begin{proof}
+
+\end{proof}
+
+\end{document}

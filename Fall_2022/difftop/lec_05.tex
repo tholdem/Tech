@@ -1,0 +1,43 @@
+\documentclass[12pt,class=article,crop=false]{standalone} 
+\input{../preamble.tex}
+
+\begin{document}
+\section{Brouwer's Fixed Point Theorem}
+\begin{thm}
+Let $ f: B^{n} \to B^{n}$ be a continuous map, then there exists a $ p \in B^{n}$ s.t.\ $ f(p) = p$.
+\end{thm}
+
+\begin{defn}
+A \allbold{manifold with boundary} $ M$ models after halfspaces $ H^{n}: \{(x_1,\ldots,x_n) \in \rr^{n}| x_n \geq 0\} $. 
+\end{defn}
+
+Exercise: If $ \dim(M) =n$, then  $ \partial M$ is an $ (n-1)$-manifold (therefore $ \partial ( \partial M) = \O$.
+
+The tangent space are one-sided derivatives of half-curves and has the same dimension as $ M$.
+
+Every  $ n$-manifold with  $ \partial $ is diffeomorphic to a subset of a $ n$-manifold without  $ \partial $. (Doubling of a manifold by identifying boundaries of two manifolds). 
+
+Exercise: $ f : M^{m} \to \rr$ and $ 0$ is a regular value of  $ f$, then  $ f^{-1}([0,\infty))$ is an $ m$-manifold with boundary and  $ \partial (f^{-1}[0,\infty)) = f^{-1}(0)$.
+
+\begin{thm}
+$ f: M^{m} \to N^{n}$, $ M$ is a manifold with  $ \partial $, $ q \in N$ is a regular value of both $ f$ and  $ f|_{ \partial M}$ and $ f^{-1}(q)\neq \O$, then $ f^{-1}(q)$ is $ (m-n)$-manifold with  $ \partial $, and
+\begin{align*}
+	\partial (f^{-1}(q)) = f^{-1}(q) \cap \partial M
+\end{align*}
+\end{thm}
+
+Exercise 9: $ T_p H^{m} \cong T_p \rr^{m}$ since we can extend any half-curve to a curve.
+
+Exercise 13: take $ v \in T_p f^{-1}(q)$, $ v = \alpha'(0), \alpha:(- \epsilon, \epsilon) \to f^{-1}(q), \alpha(0)=p$. Since $ f \circ \alpha(t) = q$ so $ df_p(v) = (f' \circ \alpha)'(0)=0$.
+\begin{proof}
+	WLOG $ M = H^{m}$. Take $ p f^{-1}(q) \cap \partial M$. Take a neighborhood $ V$ of  $ p$, by smoothness of  $ f$ we can extend it to  $ \widetilde{ f}: V \to N$ where $ \widetilde{ f} = f$ on $ H^{m} \cap V$. By $ d\widetilde{ f}_p = df_p$, we know that $ p$ is a regular point of  $ \widetilde{ f}$. This implies that $ q$ is a regular value of  $ \widetilde{ f}$ as we can make $ V$ small so $ \{p\} = \widetilde{ f}^{-1}(q)$. So $ \widetilde{ f}^{-1}(q)$ is a manifold in $ V$. Define  $ g:\widetilde{ f}^{-1}(q) \to \rr, (x_1,\ldots,x_n)\mapsto x_n$. Then $ g(p)=0$ and  $ V \cap f^{-1}(q) = H \cap \widetilde{ f}^{-1}(q) = g^{-1}([0,\infty))$. Suppose $ 0$ is not a regular value, then rank is 0 so  $ T_p \widetilde{ f}^{-1}(q) = \ker dg _p \subseteq T_p \partial H$. Since both $ \ker dg_p $ and $ T_p \partial H$ are dimension $ m-1$ we have equality. It follows that $ \ker df_p \supseteq T_p \partial H$, a contradiction since $ p$ is a regular value of  $ f_{\partial M}$.
+\end{proof}
+\begin{thm}[Sard's]
+Let $ f: M \to N$ be a smooth map, almost every  (except for a set of measure zero)$ g \in N$ is a regular value of $ f$.
+\end{thm}
+
+\begin{proof}[Proof of Brouwer]
+First we may assume that $ f$ is smooth by approximation theorem. Suppose to the contrary that  $ f: B^{n} \to B^{n}$ has no fixed point. Then there exists a smooth retraction $ r: B^{n} \to \partial B^{n} = S^{n-1}$ by a ray at $ f(p)$ through $ p$. Notice that $ r(p)=p \ \forall \ p \in \partial B^{n}$. By Sard's Theorem, there exists a $ q \in S^{n-1}$ which is a regular value of $ r$ and $ r^{-1}(q) \neq \O$. By the regular value theorem, $ r^{-1}(q)$ is a 1-dim manifold with $ \partial $. Recall $ \partial (r^{-1}(q)) = r^{-1}(q) \cap S^{n-1}$. Since $ q \in r^{-1}(q)$. So $ r^{-1}(q)$ must be an interval with distinct endpoints on the boundary. But this says that $r(q')=q $ yet  $ r(q')=q'$, a contradiction.
+\end{proof}
+
+\end{document}

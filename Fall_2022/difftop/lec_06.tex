@@ -1,0 +1,57 @@
+\documentclass[12pt,class=article,crop=false]{standalone} 
+\input{../preamble.tex}
+
+\begin{document}
+\section{Sard's Theorem}
+\begin{eg}
+Consider $ T: P \to S^{1}$, take $ p \in S^{1}$, by Sard's Theorem and rank theorem, $ T^{-1}(q)$ is finite points.
+\end{eg}
+\begin{lem}[Fubini for measure zero]
+Let $ A \subseteq \rr^{n}$, closed, $ \rr^{n} = \rr \times \rr^{n-1}$, $ S_x := \{x\} \times \rr^{n-1}, x \in \rr $. If $ \mu(A \cap S_x) =0 \ \forall \ x \in \rr$, then $ \mu(A) = 0$.
+\end{lem}
+\begin{proof}
+We may assume $ A$ is compact (by countable). If  $ A \cap S_x$ lies in an open set $ U \subseteq S_x$, denote $ S_{(x- \epsilon,x+ \epsilon)}:= \bigcup_{ x' \in (x- \epsilon, x+\epsilon) S_{x'}}^{ n}$ (thickened slice), then $ A \cap S_{x- \epsilon,x+ \epsilon} \subseteq U \times (x- \epsilon, x+ \epsilon)$. Then
+\begin{align*}
+	A \subseteq \bigcup_{ i= 1}^{ n} U_i \times (x_i - \epsilon_i,x_i+ \epsilon_i) = : N.
+\end{align*}
+We may also assume that $ \sum_{ i= 1}^{ n} 2 \epsilon_i \leq 2(b-a)$. Then by subadditivity, $ $
+\begin{align*}
+	\mu(N) &\leq \sum_{ i= 1}^{ n} \mu(U_i \times (x_i - \epsilon_i, x_i+ \epsilon_i))\\ 
+	       &\leq \sum_{ i= 1}^{ n} \mu(U_i) \cdot 2 \epsilon_i\\
+	       &= \sum_{ i= 1}^{ n} \delta 2 \epsilon_i \\
+	       &= 2 \delta (b-a) \to 0 
+	\item 
+\end{align*}
+\end{proof}
+\begin{proof}
+Baby case: $ f: M \to N$, $ \dim M \leq \dim  N$. The case when $ \dim M = \dim N$ is implicitly shown in Lecture 8 (lemma 4). The rest is shown in Lemma 7.
+
+May assume that $ M = \rr^{n}$ and $ N = \rr^{p}$ because we are proving a local property and countable union of measure zero sets is measure zero. When $ n=0$, it has measure zero. Assume theorem holds for $ n-1$. $ f: \rr^{n} \to \rr^{p}$. Let $ C$ be the set of critical points in  $ \rr^{n}$. Define $ C_i := \{x \in U: \text{ all partial derivatives up to order }k =0  \} $. Then $ C \supseteq C_1 \supseteq C_2 \supseteq \ldots$. Then it suffices to show that
+\begin{enumerate}[label=(\arabic*)]
+	\item $ \mu(f(C-C_1)) = 0$
+	\item $ \mu(f(C_k - C_{k+1})) = 0$ 
+	\item $ \mu(f(C_k)) = 0$ for some large $ k$.
+\end{enumerate}
+For 1, it suffices to show that there exists an open neighborhood $ V$ of  $ x \in \rr^{n}$ s.t.\ $ \mu(f(V \cap C)) = 0$ by countable basis of $ \rr^{n}$. Suppose $ x \not\in  C_1$, then WLOG assume $ \frac{ \partial f^{1}}{ \partial x_1 }  \neq 0$. Define $ h : U \subseteq \rr^{n} \to \rr^{n}$ by $ h(x) = (f^{1}(x),x_2,\ldots,x_n)$ so $ \rank dh_x = n$ since the Jacobian is
+ \begin{align*}
+	dh_x = \begin{pmatrix} \frac{ \partial f^{1}}{ \partial x_1 } & 0\\ 0& I \end{pmatrix} 
+\end{align*}
+
+So $ h$ is a local diffeomorphism by IFT. Let $ g : = f \circ  h^{-1}$. I claim that locally $ g$ and  $ f$ share the same critical points. Moreover, $ g$ fixes the first coordinate of any point by definition of  $ h$ and  $ g$. Thus  $ t \times \rr^{n-1} \xrightarrow{ g} t \times \rr^{p-1} $. Define $ g^{t} = g|_{t \times \rr^{n-1}}$. Then
+\begin{align*}
+	dg = \begin{pmatrix} 1&0\\ 0& dg^{t}\end{pmatrix} 
+\end{align*}
+Then critical points of $ g^{t}$ are also critical points of $ g$ since the matrix has 0 determinant iff  $ \det dg^{t} =0$. Now we've reduced the dimension and can apply induction hypothesis. So the critical points of $ g$ has measure zero and thus same goes for $ f$.
+
+2 is very similar.
+
+
+\end{proof}
+
+\begin{eg}
+Application: $ S^{n}$ is simply connected for $ n \geq 2$. Any curve will miss a point by Sard's.
+\end{eg}
+\begin{eg}
+	Let $ M$ be a smooth closed (compact, connected, without boundary) hypersurface in  $ \rr^{n}$ so $ \dim M = n-1$. Then we have the Gauss map  $ \nu: M to S^{n-1}$, where we map each point to its outward unit normal vector. Then $ \# \nu^{-1}(u)< \infty$ for almost every $ u \in S^{n-1}$. Since regular point would have codimension 0 and surface is compact. This implies that for almost every $ u \in S^{n-1}$, there exists finitely many tangent hyperplanes $ H$ of  $ M$ that are orthogonal to  $ u$. Any hyperplane $ H \subseteq \rr^{n}$ will be transversal to $ M$, after a perturbation. The set of transversal hyperplanes to $ M$ is open and dense. This is a metric space with distance of unit normal vectors and the offset from origin as the metric. It is diffeomorphic to  $ S^{n-1} \times [0, \infty)$.
+\end{eg}
+\end{document}

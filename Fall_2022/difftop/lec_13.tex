@@ -1,0 +1,35 @@
+\documentclass[12pt,class=article,crop=false]{standalone} 
+\input{../preamble.tex}
+
+\begin{document}
+\section{Hopf Degree Theorem}
+\begin{proof}
+Let $ \overline{X}:= X \times \{0,1\} $, $ \overline{f}_0 : X \times \{0\} \to S^{n}, \overline{f}_1: X \times \{1\} $. So $ \overline{f}: \overline{X} \to S^{n}$ by putting them together. Let $ W = X \times I$ then $ \overline{X} = \partial W$. So $ f_0 \sim f_1 \iff \overline{ f}$ extends to $ F$ on $ W$ (so $ F$ is the homotopy). Recall $ \deg (\partial F) = \deg f_1 - \deg f_0 = 0$. So Hopf Theorem is a corollary of the Extension Theorem.
+\end{proof}
+\begin{thm}
+Let $ f: X^{n} \to S^{n}$, $ X^{n} = \partial W$, then $ \deg f = 0 \iff f$ can be extended to $ W$.
+\end{thm}
+
+\begin{remark}
+It is important that the codomain is $ S^{n}$.
+\end{remark}
+
+\begin{proof}
+The theorem holds if the codomain is $ \rr^{n+1}$ by the tubular neighborhood theorem. In this case, $ f$ extends to a neighborhood  $ U$ of  $ X$ in  $ W$:  $ x \in U$, $ f(x):= f(\overline{x})$ where $ \overline{x}$ is the unique closest point to $ x$ in  $ X$. Let $ \rho: W \to I$ s.t.\ $ \rho=0$ on $ W-U$ and  $ \rho = 1$ near $ X$. Now define  $ f$ on  $ W$ by
+ \begin{align*}
+	f(x) := \begin{cases}
+		0,& x \not\in U\\
+		\rho(x), &x \in U\\
+	\end{cases}
+\end{align*}
+So as long as the image misses one point (origin) in $ \rr^{n+1}$, we can always project the extension to $ S^{n}$ by projecting along the lines through origin.
+
+\end{proof}
+
+\begin{lem}
+$ f: \rr^{n} \to \rr^{n}$, $ x \in \rr^{n}$, if $ f^{-1}(x)$ is finite and $ \sum_{y \in f^{-1}(x)} \sgn(y) = 0$, then $ f \sim g: \rr^{n} \to \rr^{n} \setminus \{0\} $.
+\end{lem}
+\begin{proof}
+winding number around origin is 0. 
+\end{proof}
+\end{document}

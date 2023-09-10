@@ -1,0 +1,30 @@
+\documentclass[12pt]{article}
+\input{../preamble.tex}
+
+\begin{document}
+\centerline {\textsf{\textbf{\LARGE{Homework 8}}}}
+\centerline {Jaden Wang}
+\vspace{.15in}
+\begin{problem}[9.14]
+	Since $ h_u$ is linear, its derivative  $ {d h_u} _p : T_p \Gamma \to T_p \rr$ is just itself  $ \langle p,u \rangle$. The only critical points of $ h_u$ are those points s.t.\ $ {dh_u}_p = 0 = \langle p,u \rangle$, \emph{i.e.} points that are orthogonal to $ u$. So it suffices to show that there are finitely many points on $ M$ that are orthogonal to  $ u$.
+
+	Let $ f: \Gamma \to S^{1}$ be the function that maps any point on the curve to a vector orthogonal to it (by 90 degree clockwise rotation). Then $ f$ is linear and therefore smooth. Then by Sard's Theorem, almost all  $ u \in S^{1}$ are regular values of $ f$. That is, for almost every  $ u \in S^{1}$, $ f^{-1}(u)$ is a 0-dimensional manifold, \emph{i.e.} a set of points in $ \Gamma$.  Since $ S^{1}$ is compact, so is $ \Gamma$. Then by homework we know that $ f^{-1}(u)$ is a finite number of points. Thus we show that there are only finitely many points of $ \Gamma$ that is orthogonal to $ u$.
+\end{problem}
+\begin{problem}[10.1]
+Sard's Theorem says that all except for measure zero set of elements in $ N$ are regular values of $ f$. But since $ \dim M < \dim N$, $ df_p$ can at most have rank  $ \dim M$ so none of the elements in $ f(M)$  can be regular value. Hence they must be in the measure zero set.
+\end{problem}
+
+\begin{problem}[10.2]
+	Given $ [f] \in \pi_1(S^2)$, where $ f: S^{1} \to S^2$ is continuous, we can always choose a smooth representative by Weierstrass Approximation Theorem, \emph{i.e.}  perturbing $ f$ into a polynomial  $ \overline{f}: S^{1} \to S^2$, which is smooth. (This is because we can take an $ 2 \epsilon$ tube around the curve $ f(S^{1})$ and we know $ \overline{f}$ is in this $ 2 \epsilon$ tube. Since this $ 2 \epsilon$ tube is an hyper-annulus, it is homotopic to a hyper-circle so we can always homotop $ f$ to  $ \overline{f}$. If $ \overline{f}$ lies outside of $ S^n$, then we just project it to $ S^n$ which is still in the $ 2 \epsilon$ tube. Since projection is smooth, composition of smooth functions are smooth so we get a smooth function on $ S^n$.) So we can assume $ f$ is smooth. Then by 10.1, since $ \dim S^{1} < \dim S^{n}$, $ f(S^{1})$ has measure zero in $ S^n$ and thus misses at least one point in $ S^2$. But $ S^n - \{p\} $ is diffeomorphic to $ \rr^n$ via stereographic projection. Since $ \rr^n$ is contractible, so is $ f(S^{1}) \subseteq S^n - \{p\} $. Therefore, the loop $ f$ is homotopic to the constant loop, \emph{i.e.} $ \pi_1(S^n) = 0$. Since $ S^n$ is path-connected, we see that it is simply connected. 
+\end{problem}
+
+\begin{problem}[10.3]
+Every hyperplane is completely identified by its outward normal vector and the offset from origin.
+
+Consider the unit normal vector field  $ \nu:M \to S^{n}$. Since $ M$ is a smooth manifold, its unit normal vector field is also smooth. Then by Sard's Theore, almost every  $ u \in S^{n}$ is a regular value of $ f$. That is, almost every $ \nu^{-1}(u)$ is a 0-dimensional manifold (as $ \dim M = \dim S^{n} =n$ ), \emph{i.e.} a set of points. Since $ M$ is compact,  $ \nu^{-1}(u)$ is a finite set of points. That is, only a finite number of points in $ M$ that have tangent planes parallel to  $ H$. If  $ H$ happens to be tangent to $ M$ then a small perturbation would give us a hyperplane that either has a normal vector that is not tangent or an offset that doesn't land on  $ M$. Either way  this hyperplane will be transversal. So almost all hyperplanes are transversal.
+\end{problem}
+
+\begin{problem}[10.5]
+For any smooth map $ f: M \to N$ and a critical point $ p \in M$, then $ df_p$ has rank less than $ n$. We can choose charts $ (U, \phi)$ of $ M$ around $ p$,  $ (V,\psi)$ of $ N$ around $ q:=f(p)$. Let $ g:= \psi \circ f \circ \phi ^{-1}: \phi (U) \subseteq \rr^{m} \to \rr^{n}$, it is clearly smooth. Then $ dg_{\phi ^{-1}(p)} = d \psi \circ df_p d \phi ^{-1}_p$ also has rank less than $ n$. Thus $ \phi ^{-1}(p)$ is a critical point and $ g(p)$ is a critical value. Therefore, any critical value of $ f$ yields a critical value of  $ g$. Since the set of critical value is measure zero, since $ \psi ^{-1}$ is smooth, it follows that the critical value of $ f$ is also measure zero. Thus almost all points of $ N$ are regular values of $ f$.
+\end{problem}
+\end{document}

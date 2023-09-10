@@ -1,0 +1,33 @@
+\documentclass[12pt,class=article,crop=false]{standalone} 
+\input{../preamble.tex}
+
+\begin{document}
+\section{Manifold with boundary}
+Exercise: is the unit square $ S := I \times I \subseteq \rr^2$ a smooth manifold with $ \partial $?
+
+Take $ v_1,v_2$ at the corner $ p$ along the edges, they are in the tangent space of $ p$. Then $ d \phi_p (v_1), d \phi_p(v_2) \subseteq T_{\phi(p)} \partial  H \subseteq \rr$ so $ d\phi_p(v_1) $ and $ d \phi_p(v_2)$ are linearly dependent. So are $ v_1,v_2$ as $ \phi$ is a diffeomorphism, $ d \phi_p$ is full rank, a contradiction.
+
+\begin{prop}
+Let $ p \in \partial M$ be a regular point of a $ f: M^{n} \to N^{n}$. Then $ p$ is a regular point of  $ \partial f$.
+\end{prop}
+\begin{proof}
+$ \rank df_p = \dim N = \dim M$ so $ df_p$ preserves linear independence. Notice $ T_p \partial M \subseteq T_p M$.  TODO
+\end{proof}
+
+\begin{thm}[Sard's]
+$ f: M \to N$ where $ N$ doesn't have  $ \partial $. Almost every $ q \in N$ is a regular value of both $ f$ and  $ \partial f$.
+\end{thm}
+\begin{proof}
+	By regular Sard's Theorem, $ \mu(\partial f ( \{ \text{critical points of} \partial f \})) = 0$. $ \mu(f(\{ \text{critical points of } f \in \inte M \} )) = 0$. $ \mu(f( \{ \text{critical points of } f \in \partial M \} ))$.
+
+	Prove by contrapositive: let $ p$ be a regular point of  $ \partial f$, then $ \rank d \partial f_p = \dim N$, but $ \rank df_p \geq d \partial f_p$, so $ p$ is a regular point of  $ f$. So  $ \{ \text{ critical point of } \partial f \} \subseteq \{ \text{ critical points of } f \text{ on } \partial M \} $.
+\end{proof}
+
+\begin{thm}[transversality]
+
+\end{thm}
+
+\begin{remark}
+The submersion theorem is a special case of transversality theorem. Recall if $ f: X \to Y$ is a submersion, then  $ f^{-1}(q)$ is a submanifold of $ X$. Notice $ q$ is a regular value of  $ f$ iff  $ f \pitchfork q$.
+\end{remark}
+\end{document}

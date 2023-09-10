@@ -1,0 +1,213 @@
+\documentclass[12pt,class=article,crop=false]{standalone} 
+\input{../preamble.tex}
+
+\begin{document}
+Given $ [f] \in \pi_k(X,x_0), f: X^{k} \to X$, define $ h_k([f]) = f_*(1) \in H_k(X)$ where 1 generates $ H_k(S^{k}) \cong \zz$. This gives a well-defined map (homotopic maps go to the same homology class) $ h_k: \pi_k(X,x_0) \to H_k(X)$ called the Hurewicz map.
+
+\begin{lem}
+$ h_k$ is a homomorphism.
+\end{lem}
+\begin{proof}
+	$ [f], [g] \in \pi_k(X,x_0)$, $ f,g: S^{k} \to X$, $ h \in [f] \cdot [g]$ is given by
+~\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\textwidth]{./figures/multi.png}
+\end{figure}
+The collapse map $ c_*: H_k(S^{k}) \to H_k(S^{k} \vee S^{k}) \cong H_k(S^{k}) \oplus H_k(S^{k}), 1 \mapsto (1,1)$ by counting degrees. Then
+\begin{align*}
+	h_*(1) &= (f_*,g_*) \circ c_*(1) \\
+	&= (f_*,g_*)(1,1) \\
+	&= f_*(1) + g_*(1)
+\end{align*}
+\end{proof}
+
+\begin{thm}[Hurewicz]
+	If $ X$ is path-connected, then for  $ n > 1$, if  $ \pi_n(X) =0 \ \forall \ k <n$, then $ h_n: \pi_n(X) \to \widetilde{ H}_n(X)$ is an isomorphism. If $ n=1$, then  $ \ker (h_1) = [\pi_1(X),\pi_1(X)] $.
+\end{thm}
+Note:
+\begin{enumerate}[label=(\arabic*)]
+	\item If $ n>1$ is the 1st  $ n$  s.t.\ $ \pi_n(X) \neq 0$, then $ h_k$ is an isomorphism $ \ \forall \ k \leq n$.
+	\item The theorem is true for $ \pi_n(X,A)$ if $ A$ is simply connected.
+\end{enumerate}
+\begin{lem}
+	$ h_k: \pi_k(S^{k}) \to H_k(S^{k}),[f] \mapsto f_*(1)$ is an isomorphism.
+\end{lem}
+\begin{proof}
+	By Lemma 29 we know $ h_k$ is a homomorphism. Also, let $ f: S^{k} \to S^{k}$ be the identity map, then $ f_*(1) =1 \in H_k(S^{k}) \cong \zz$. So $ h_k$ is clearly surjective. For injectivity, note the definition of the degree of a map $ f: S^{k} \to S^{k}$ is $ f_*(1)$  \emph{i.e.} $ h_k([f])  = \deg (f)$. We want to show that $ \deg f = 0 \implies f$ is null-homotopic. We do this by induction on $ k$.
+
+	Recall from Alg Top 1,  $\pi_1(S^{1}) \cong \zz, H_1(S^{1}) \cong \zz$ and $ h_1: \pi_1(S^{1}) \to H_1(S^{1})$ is an isomorphism. So the base case is done.
+
+Now assume lemma holds for $k-1$ and $ f: S^{k} \to S^{k}$ is a function s.t.\ $ \deg(f) = 0$. Homotop $ f$ so that it is smooth, take a regular value  $ p$ of $ f$ and codimension is 0 and since $ p$ is closed, preimage is closed and  $ S^{k}$ is Hausdorff so it is compact, so it is finite points: $ f^{-1}(p) = \{x_1,\ldots,x_\ell\} $. At each $ x_i$, $ df_{x_i} : T_{x_i} S^{k} \to T_p S^{k}$ is either orientating preserving or reversing. From Alg Top 1, $ \deg(f) = \sum_{ i= 1}^{ \ell} s(x_i)$ where $ s(x_i) = \begin{cases}
+	1 & df_{x_i} \text{ orientation preserving}\\
+	-1 & df_{x_i} \text{ orientation reversing}\\
+\end{cases}$ 
+. Since the degree is zero, we can pair up the points. By inverse function theorem, we know that since $ df_{x_i}$ is an isomorphism, that $ f$ is a local diffeomorphism around  $ x_i$. Thus we can take the intersection where we have local diffeomorphisms and get a neighborhood $ N$ of  $ p$  s.t.\ $ f^{-1}(N) = \bigcup_{ i= 1}^{\ell} N_i $ where $ N_i$ are disjoint neighborhoods of $ x_i$. We want a homotopy from $ f$ to constant map, $ S^{k} \times I \to S^{k}$. 
+~\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\textwidth]{./figures/homotopy_31.png}
+\end{figure}
+Let $ \alpha_i$ be an arc in $ S^{k} \times [ \epsilon,1]$ s.t.\ $ \partial \alpha_i$ is a pair of $ x_i$'s in $ S^{k} \times \{\epsilon\}$ with opposite signs and $ \inte \alpha_i \subseteq S^{k} \times ( \epsilon,1)$. All such arcs are disjoint since $ k>1$. Let  $ T_i = \alpha_i \times D^{k}$ be a neighborhood of $ \alpha_i$ s.t.\ $ T_i \cap (S^{k} \times \{ \epsilon\} )= N_j$ of $ \partial \alpha_i$ and $ T_i$ disjoint.
+~\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\textwidth]{./figures/Ti.png}
+\end{figure}
+
+Let $ p' \in \partial N$, and $ p_j \in \partial  N_j$ s.t.\ $ f(p_j) = g$. Now consider $I \times  S^{k-1}$ (this is part of $ \partial ( \alpha_i \times D^{k})0$. Let $ A$ be an arc in  $ I \times S^{k-1}$ from $ p_1$ to $ p_2$. We now have a map
+\begin{align*}
+	(S^{k-1} \times \{0,1\} ) \cup A \xrightarrow{ \widetilde{ f}} \partial N = S^{k-1}
+\end{align*}
+where we apply $ f$ to the first component and send $ A$ to  $ p'$. This gives a map $ \overline{f}: S^{k-1} \to S^{k-1}$.
+~\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\textwidth]{./figures/fbar.png}
+\end{figure}
+Note $ \overline{f}|_{S^{k} \times \{0\} }$ is orientation preserving diffeomorphism and $ \overline{f}|_{S^{k} \times \{1\} }$ is reversing. Hence for any regular value $ p'' \in \partial N$, $ \overline{f} ^{-1}(p'') = \{\widetilde{ p_1},\widetilde{ p_2}\}$ so $ \deg \overline{f} = 0$. So by induction $ \overline{f}$ is null-homotopic. Therefore, $ \overline{f}$ extends to a map $ \overline{F}: D^{k} \to \partial N$ with $ \overline{F}|_{ \partial D^{k}} = \overline{f}$.
+
+Note: $ (I \times S^{k-1}) - A \cong D^{k}$. Use $ \overline{F}$ to give a map $S^{k} \cong \partial T_i \to N \cong D^{k}$. This map takes $ \partial T_i - (N_1 \cup N_2)$ into $ \partial N$. Then any map $ S^{k} \to D^{k}$ can be extended to a map $ D^{k} \to D^{k}$ (since $D^{k} $ is contractible), \emph{i.e.} $ g: S^{k} \to D^{k}$,
+\begin{align*}
+	D^{k+1} = S^{k} \times I / S^{k-1} \times \{0\} \to D^{k}, (x,t) \mapsto tg(x).
+\end{align*}
+Therefore, we get a map defined on $ T_i$:
+\begin{align*}
+	(S^{k} \times [0, \epsilon]) \cup (\bigcup_{ i= 1}^{\ell}T_i ) =:M \to S^{k}
+\end{align*}
+$ \partial M = (S^{k} \times \{0\} ) \cup Y$ and $ G(Y) \subseteq S^{k} - \{p\} $. Since $ S^{k} - \{p\} $ is contractible, $ G|_Y$ is homotopic to a constant map  $ q$. Let  $ Y \times I$ be a neighborhood of $ Y$ in  $ (S^{k} \times I) - M$ and extend $ G$ over  $ Y \times I$ using $ G|_Y$ to  $ q$. Now extend $ G$ the rest of $ S^{k} \times I$ by sending everything to $ q$. This is null-homotopy of  $ f$.
+\end{proof}
+Note: $ \pi_n(S^{k}) \cong \zz$ and if $ g: S^{k} \to S^{k}$ then $ [g] \in \pi_k(S^{k})$ is the degree of $ g$.
+
+Also $ f,g: S^{k} \to S^{k}$ are homotopic iff $ \deg f = \deg g$.
+
+\begin{coro}
+$ h_k: \pi_k( \bigvee_n S^{k} ) \to  H_k( \bigvee_n S^{k})$ is an isomorphism.
+\end{coro}
+\begin{proof}
+$ \pi_k( \bigvee_n S^{k} ) = \bigoplus_{ n} \pi_k(S^{k}) $. Exercise: prove this (be careful it is not true that $ \pi_k(X \vee Y) \cong \pi_k(X) \oplus \pi_k(Y)$. Counterexample: $ \pi_2(S^{1} \vee S^2)$. The universal cover of $ S^{1} \vee S^2$ is $ \bigvee_\infty S^2$.)
+\end{proof}
+\begin{prop}
+If base points in $ X,Y$ are NDR pairs respectively, then
+ \begin{align*}
+	H_k(X \vee Y) \cong H_k(X) \oplus H_k(Y).
+\end{align*}
+\end{prop}
+So the proof follows from this and the lemma.
+\begin{proof}[Proof of Hurewicz]
+We prove for CW-complexes (true in general but harder). Let $ X$ be a CW-complex  s.t.\ $ \pi_k(X) = 0 \ \forall \ k <n$. Corollary 23 says $ \widetilde{ H}_k(X) = 0 \ \forall \ k <n$. Theorem 21 says we can assume $ X^{(n-1)} = \{e^{0}\} $. So $ X^{(n)} = \bigvee_{i \in J} S_i^{n}$ where $ J$ is any indexing set, one for each $ n$-cell  $ e_i^{n}$. The cellular chain groups are $ C_n(X) = \bigoplus_{ i \in J} \zz$, $ e_i^{n}$ generates $ i$th factor.  $ \partial_n^{CW}: C_n(X) \to C_{n-1}(X) = 0$. So $ \ker \partial _n^{CW} = C_n(X)$ so $ H_n(X) = C_n(X) / \im (\partial ^{CW}: C_{n+1}(X) \to C_n(X))$. Given  $ \beta_j: \partial D^{n+1} \to X^{(n)}$ attaching map for an $ (n+1)$-cell. Recall  $ \partial ^{CW} \beta_j$ is defined as follows:
+~\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\textwidth]{./figures/boundary.png}
+\end{figure}
+$ \partial ^{CW} \beta = \sum_{i \in J} (\deg (\p_i \circ \beta_j))e_i^{n}$. The sum is finite because $ S^{n}$ is compact.
+
+By Theorem 27, $ \pi_n(X,e_0) = \langle e_i^{n}| [ \beta_j] \rangle$ (free abelian group). Now $ h_n: \pi_n(X,e_0) \to H_n(X), [e_i^{n}] \mapsto (e_i^{n})_*(1) = e_i^{n}$. So $ h_n$ sends generators to generators and
+\begin{align*}
+	h_n( \beta_j) &= h_n(\prod [e_i^{n}]^{\deg (\p_i \circ \beta_j)})\\
+&= \sum_{i \in J} \deg ( p_i \circ \beta_j) h_n([e_j^{n}])\\
+&= \sum_{i \in J} \deg (p_i \circ \beta_j) e_n^{i} \\
+&= \partial^{CW} ( \beta_j) 
+\end{align*}
+
+so $ h_n$ also sends relations to relations. So $ h_n$ is an isomorphism.
+
+For $ n=1$, since  $ H_1(X)$ is abelian. We know $ [\pi_1(X),\pi_1(X)] \subseteq \ker h_1$, therefore $ h_1$ induces a map
+\begin{align*}
+	\overline{h}_1: \pi_1(X) / [\pi_1(X),\pi_1(X)] \to H_1(X)
+\end{align*}
+as above $ \overline{h}_1$ takes generators to generators and relations to relations so it is an isomorphism.
+\end{proof}
+
+\begin{lem}
+If $ \pi_1(X)=1$ and $ f: X \to Y$ induces an isomorphism $ H_k(X) \to H_k(Y) \ \forall \ k \leq n$, then it induces an isomorphism $ \pi_k(X) \to \pi_k(Y) \ \forall \ k<n$ and is surjective for $ k=n$.
+\end{lem}
+\begin{remark}
+The lemma is true with $ H_k,\pi_k$ swapped.
+\end{remark}
+\begin{proof}
+Let $ C_f = Y \cup X\times I / (x,0) \sim f(x)$ be the mapping cylinder of  $ f$. Since $ Y \to C_f$ is a retract of $ C_f$, so  $ \pi_k(C_f) \cong \pi_k(Y)$ and $ H_k(c_f) \cong H_k(Y) \ \forall \ k$ and there exists an inclusion $ i_X: X \to C_f$ s.t.\ the diagram commutes.
+
+So $ (i_X)_*: H_k(X) \to H_k(C_f)$ is an isomorphism $ \ \forall \ k \leq n$. Exercise: If $ C_f$ and  $ X$ are simply connected, then $ \pi_1(C_f,X)=0$. Recall the long exact sequence of homology:
+\begin{align*}
+	H_i(X) \to H_i(C_f) \to H_i(C_f, X) \to H_{i-1}(X) \to H_{i-1}(C_f)
+\end{align*}
+Exercise: the diagram commutes. By exactness, we can show that $ H_i(C_f,X) = 0$ for $ i \leq n$. The relative Hurewicz theorem,  $ \pi_i(C_f,X)=0 \ \forall \ i\leq n$. Hence $ f_*: \pi_i(X) \to \pi_i(Y)$ is an isomorphism for $ i<n$ and surjective for $ i=n$.
+\end{proof}
+
+\begin{thm}
+If $ X,Y$ are simply connected CW complexes and  $ f: X \to Y$ induces isomorphisms $ f_*:H_k(X) \to H_k(Y) \ \forall \ k$, then $ f$ is a homotopy equivalence.
+\end{thm}
+\begin{proof}
+Lemma 33 implies that $ f_*$ is isomorphism on all homotopy groups, so by Whitehead we obtain the claim.
+\end{proof}
+
+\begin{defn}
+Given a group $ \Pi$ and a positive integer $ n$, if  $ n>1$, then  $ \Pi$ needs to be abelian. Then a topological space $ X$ is called an  \allbold{Elienberg-MacLane} space of type $ (\Pi,n)$ or also called a $ K(\Pi,n)$  if
+ \begin{align*}
+	\pi_k(X) \cong \begin{cases}
+		0 & k \neq n\\
+		\Pi & k=n\\
+	\end{cases}
+\end{align*}
+\end{defn}
+\begin{eg}
+Note $ S^{1}$ is a $K(\zz,1)$ since $ \pi_1(S^{1}) \cong \zz$. Theorem 18 says for $ k>1$, $ \pi_k(S^{1}) = \pi_k(\rr) = 0$.
+\end{eg}
+
+\begin{thm}
+Given any group $ \Pi$ and positive integer $ n$ as above, then there exists a CW complex that is a  $ K(\Pi,n)$ and it is unique up to homotopy equivalence.
+\end{thm}
+
+\begin{proof}
+Exercise: show $ n=1$ case. Assume $ n>1$, let $ \{ \alpha_i\}_{i \in I} $ be generators for $ \Pi$. Set $ \wh{ X} = \{e^{0}\} \cap \{e_i^{n}\}_{i \in I} $, where each $ e_i^{n}$ attached to $ \wh{ X}^{(0)} = e^{0}$ by constant map. This is a wedge of $ n$-spheres $ \bigvee_{i \in I} S^{n}$. By previous lemma, $ \pi_k(\wh{ X}) = 0$ for $ k<n$ and  $ \pi_n(\wh{ X}) = \bigoplus_{ i \in I} \zz$. Let $ \{r_j\}_{j iin J} $ be the relations for $ \Pi$. For each $ r_j$, there exists a map $ f_j: S^{n} \to \wh{ X}$ s.t.\ 
+ \begin{align*}
+	 r_j = [f_j] \in \pi_n(\wh{ X}).
+\end{align*}
+Exercise: show this. Since $ \wh{ X}$ is simply connected, by Theorem 27 attaching $ e^{n+1}$ to $ \wh{ X}$ by $ f_j$ will add the relation $ r_j$ to $ \pi_n$ and not change $ \pi_k$, $ k<n$. Thus let $ \overline{X} = \wh{ X} \cap \{e_j^{n+1}\} $ using $ f_j$, then $ \pi_k(\overline{X}) \cong \begin{cases}
+	0 & k<n\\
+	\Pi & k=n
+\end{cases}$
+Now $ \pi_{n+1}(\overline{X})$ generated by some maps $ g_i: S^{n+1} \to \overline{X}$, add an $ (n+2)$-cell to  $ \overline{X}$ using $ g_i$ to get $ \widetilde{ X}$. Now
+\begin{align*}
+	\pi_k(\widetilde{ X}) = \begin{cases}
+		0 & k<n,k=n+1\\
+		\Pi& k=n
+	\end{cases}
+\end{align*}
+Inductively add $ j$ cells for  $ j>n$ to kill  $ \pi_k(\widetilde{ X})$, $ k>n$ get  $ X$  s.t.\ 
+\begin{align*}
+	\pi_k(X) \cong \begin{cases}
+		0 & k \neq n\\
+		\Pi& k=n\\
+	\end{cases}
+\end{align*}
+If $ X,Y$ are 2 such CW-complexes, then we build a map  $ f: X \to Y$ s.t.\ $ f_*$ is an isomorphism on  $ \pi_k \ \forall \ k$. By Whitehead's Theorem, $ f$ is a homotopy equivalence. We can build  $ f$ as in the proof below.
+\end{proof}
+
+\begin{thm}
+If $ X,Y$ are connected  CW-complexes, $ X$ is a  $ K(\Pi,1)$, then there exists a 1-1 correspondence
+\begin{align*}
+	[(Y,y_0),(X,x_0)]_0 \to \Hom( \pi_1(Y,y_0), \pi_1(X,x_0))
+\end{align*}
+\end{thm}
+\begin{defn}
+A connected space with $ \pi_k=0 \ \forall \ k>1$ is called \allbold{aspherical}. 
+\end{defn}
+
+\begin{proof}
+	Assume $ X^{(0)} = \{x_0\}, Y^{(0)}= \{y_0\}  $. Given any $ [f] \in [Y, X]_0$ then we get
+	\begin{align*}
+		f_*: \pi_1(Y) \to \pi_1(X)
+	\end{align*}
+	in $ \Hom( \pi_1(Y), \pi_1(X))$. 
+
+	Claim: this map is onto. Given $ h: \pi_1(Y) \to \pi_1(X)$, we inductively build $ f:Y \to X$ s.t.\ $ f_*=h$. This is obvious for 0-skeleton  $ f:y_0 \mapsto x_0$. For each 1-cell $ e^{1}$ in $ Y$, note it is a loop in  $ Y$, in particular,  $ [e^{1}] \in \pi_1(X)$. So $ h([e^{1}]) \in \pi_1(X)$. Let $ \gamma \in h([e^{1}]), \gamma:I \to X$ a loop/ Extend $ f$ over  $ e^{1}$ using $ \gamma$. This gives $ f:Y^{(1)} \to X$. If $ e ^2$ is a 2-cell in $ Y^{(2)}$ then $ \partial e ^2$ is a loop $ \eta$ in $ Y^{(1)}$ and $ [\eta] = 0 \in \pi_1(Y)$. So $ f_*([\eta]) = h([\eta]) = 0 \in \pi_1(X)$. So $ f \circ \eta$ is null-homotopic. Thus we can extend this to a map $ F: D^2 \to X$, \emph{i.e.} $ F|_{\partial D^2} = f \circ \eta$. Use $ F$ to extend  $ f$ over  $ e ^2$. Do this for all 2-cells to get $ f:Y^{(2)} \to X$. Inductively assume $ f:Y^{(k)} \to X$ is defined. Assume $ e^{k+1}$ is a $ k+1$-cell in  $ Y^{(k+1)}$. Then $ \partial e^{k+1}  \subseteq Y^{(k)}$. So $ f(\partial e^{k+1})$ is a $ k$-sphere in  $ X$. Since  $ \pi_k(X) = 0$ we know it extends to a $ k+1$-disk
+	 \begin{align*}
+		F: D^{k+1} \to X, F|_{\partial D^{n+1}} = f|_{\partial e^{k+1}}.
+	\end{align*}
+	So use $ F$ to extend  $ f$ over  $ e^{k+1}$ to get $ f:Y^{(k+1)} \to X$. Since $ f_*$ and  $ h$ do same thing on generators,  $ f_* = h$.
+
+	Claim: this is injective. Given  $ f,g: Y \to X$ s.t.\ $ f_*=g_*$ on  $ \pi_1$, need to show $ f \simeq g$. We need $ H: Y \times I \to X$ that is a based homotopy from $ f$ to  $ g$. Notice that $ Y \times I$ has a product CW-structure. We get two $ i$-cells:  $ e^{i} \times \{0\}, e^{i} \times \{1\}  $ and one $ i+1$-cell:  $ \widetilde{ e}^{i} = e^{i} \times I$ attached in obvious way. So we have $ H:Y \times I \to X$ defined by $ f$ on  $ Y \times \{0\} $, $ X \times I$, $ x_0$ on $ \{y_0\} \times I $. Now inductively extend over $ \widetilde{ e}^{i}$ for $ \widetilde{ e}^{1}$ in $ (Y \times I)^{(2)}$. Note $ \partial \widetilde{ e}^{1} = \overline{ e^{1} \times \{0\}} * ( e^{0} \times I) * (e^{1} \times \{1\} )* (e^{0} \times I)$. So
+	\begin{align*}
+		H(\partial \widetilde{ e}^{1}) = \overline{f(e^{1})} * x_0 * g(e^{1}) * x_0 \simeq \overline{f(e^{1})} * g(e^{1})
+	\end{align*}
+	This is 0 in $ \pi_1(X)$. So there exists a map $ F: D^2 \to X$ s.t.\ $ F|_{\partial  D^2 } = H(\partial \widetilde{ e}^{1})$. Extend $ H$ over  $ \widetilde{ e}^{1}$ by $ F$. Extend  $ H$ defined on  $ (Y \times I)^{(2)} \cup Y \times  \{0\} \cup Y \times \{1\} $. Extend $ H$ over higher skeleton as above, this gives  $ H$ so  $ f \simeq g$.
+\end{proof}
+\end{document}

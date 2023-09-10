@@ -1,0 +1,53 @@
+\documentclass[12pt,class=article,crop=false]{standalone} 
+\input{../preamble.tex}
+
+\begin{document}
+The general setting for this section is the abelian category. However, it is out of the scope for this project, and by the embedding theorem, restricting the setting to $ \rmod$ where $ R$ is a commutative ring with 1 is not too much of a loss. Moreover, any functor $ F$ in this setting is assumed to be \allbold{additive}. That is, given $ f,g \in \Hom_R( A, B)$, we have $ Ff+Fg = F(f+g)$.
+
+A functor is called \allbold{exact} if it sends short exact sequences to short exact sequences. A functor is \allbold{left/right-exact} if it preserves kernels/cokernels. That is, if $ F$ is a left-exact functor, given $ 0 \to A \xrightarrow{ i} B \xrightarrow{ p}C \to 0$, we have $0 \to F(A) \xrightarrow{ Fi} F(B) \xrightarrow{ Fp} F(C)$. In the interest of conciseness, we shall restrict the discussion to left-exact functors and leave the dual case to the reader (also covered by the book).
+
+The failure of exactness on the right raises a natural question: is there a way to use a longer sequence to patch this failure? This immediately reminds us of long exact sequence of cohomology, but to obtain such long exact sequence, we must start with a short exact sequence involving the image of $ F$. It appears that we are stuck, but it turns out we can circumvent this conundrum using injective resolutions.
+
+We have shown that there are enough injectives in $ \rmod$ CREF. That means we can find an injective resolution $ Q$ for $ C$:
+ \begin{align*}
+	 0 \to C = \ker f^0 \rightarrowtail Q_0 \xrightarrow{ f^0} Q_{1} \xrightarrow{ f^1} Q_{2} \to \cdots    
+\end{align*}
+Applying $ F$ to this resolution, we obtain a chain complex $ FQ$
+\begin{align*}
+	0 \to FC = \ker F f^0 \rightarrowtail FQ_0 \xrightarrow{ Ff^0} F Q_{1} \xrightarrow{ F f^1} FQ_{2} \to \cdots    
+\end{align*}
+which is no longer necessarily exact, as $ F$ doesn't necessarily preserve cokernels. The inexactness gives rise to non-trivial cohomology, therefore we can \emph{derive} interesting functors called the \allbold{$ i$th right-derived functor} from $ F$ by $ RF^{i}(C) = H^{i}FQ := \ker Ff^i / \im Ff^{i-1}$.
+
+\begin{prop}
+The right-derived functors of $ F$ are well-defined (does not depend on of the choice of resolutions) and satisfy the following properties:
+\begin{enumerate}[label=(\arabic*)]
+	\item $ RF^{0} = F$.
+	\item If $ C$ is an injective module, then  $ RF^i(C) = 0$ for all $ i>0$.
+	\item Suppose $ 0 \to A \xrightarrow{ i} B \xrightarrow{ p} C \to 0 $ is a short exact sequence, then there exists a long exact sequence of cohomology:
+	\item The connecting homomorphisms  $ \delta^i$ in the long exact sequence are natural.
+\end{enumerate}
+\end{prop}
+\begin{proof}
+By Corollary CREF, $ RF^{i}$ is well-defined.
+\begin{enumerate}[label=(\arabic*)]
+	\item $ RF^{0}(C) = H^{0}(FQ) = \ker Ff^{0} / \im F f^{1} = FC / 0 = F(C)$.
+	\item Since $ C$ is an injective module, let  $ 0 \to C \to C \xrightarrow{ f^{0}}  0 \xrightarrow{ f^{1}}  0 \to \cdots $ be its injective resolution. It is clear that $ RF^{i}(C) = \ker f^{i} / \im f^{i-1} = 0 / 0 = 0$ if $ i>0$.
+	\item From the given short exact sequence, we obtain a short exact sequence of chain complexes by taking injective resolutions described in CREF:
+		\begin{align*}
+			0 \to Q_A \xrightarrow{ j}  Q_B \to Q_C \to 0
+		\end{align*}
+Since $ Q_A$ is injective, since $ j$ is a monomorphism, $ 1_{Q_A}$ lifts to a map $ s: Q_B \to Q_A$ such that $ 1_{Q_A} = s \circ j$. Thus, the short exact sequence splits. It follows that  $ 0 \to  FQ_A \to FQ_B \to FQ_C \to 0$ is a split exact sequence by CREF. Applying CREF to this short exact sequence, we obtain the long exact sequence on cohomology as desired.
+
+\item This is a standard exercise.
+
+\end{enumerate}
+\end{proof}
+
+Let $ F = \Hom_R( M,-)$ covariant, we define $ \ext^{i}(M,-) := RF^{i}$.
+
+Let $ F = \Hom_R( -, N)$ contravariant, we define $ \ext^{i}(-,N) := RF^{i}$.
+
+Therefore, to compute $ \ext^{i}(M,N)$, we can either take a projective resolution $ P_M$ of  $ M$ or an injective resolution  $ Q_N$ of  $ N$.
+
+Let $ F = - \otimes_R M$ covariant, we define $ \tor_{i}(-,M) = \tor_i(M,-) := LF_i$.
+\end{document}

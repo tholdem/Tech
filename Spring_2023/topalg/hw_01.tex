@@ -1,0 +1,88 @@
+\documentclass[12pt]{article}
+\input{../preamble.tex}
+
+\begin{document}
+\centerline {\textsf{\textbf{\LARGE{Homework 1}}}}
+\centerline {Jaden Wang}
+\vspace{.15in}
+\begin{problem}[1]
+$ (\implies)$: suppose $ \gamma: I \to X$ is a path between $ x$ and  $ y$. Let $ p: \{*\} \times I \to I, (*,t) \mapsto t$ be the canonical identification (and projection and thus continuous). We see that $ \gamma \circ p(*,0) = e_x(*)$ and $ \gamma \circ p(*,1) = e_y(*)$. As composition of continuous functions are continuous, $ \gamma \circ p$ is a homotopy between $ e_x$ and  $ e_y$.
+
+ $ (\impliedby):$ suppose $ e_x \simeq e_y$, \emph{i.e.} there exists a homotopy $ H: \{*\} \times I \to X$ s.t.\ $ H(*,0) = e_x(*) = x$ and  $ H(*,1) = e_y(*) = y$. Then let $i: I \to \{*\} \times I , t \mapsto (*,t)$ be the canonical inclusion which is continuous. Then $ H \circ i: I \to X$ is clearly a path between $ x$ and  $ y$.
+\end{problem}
+\begin{problem}[2]
+$ 1 \implies 2:$ suppose $ X$ is contractible,  \emph{i.e.} $ \text{id}_{ X} \simeq e_{x_0}$ via a homotopy $ H$. Then given a map $ f: X \to Y$, we see that
+\begin{align*}
+	f= f \circ \text{id}_{ X} \simeq f \circ e_{x_0} = e_{f(x_0)}
+\end{align*}
+via a homotopy $ f \circ H$.
+
+$ 2 \implies 3:$ suppose for a given space $ X$, every map $ f:X \to Y$ is null-homotopic for any $ Y$. In particular, $ \text{id}_{ X} \simeq e_{x_0}$ via a homotopy $ H$ when we let $ Y=X$. Then for any $ Y$ and a map $ f: Y \to X$, let $ x_0$ be any point in $ f(Y)$ and we see that
+\begin{align*}
+	f= \text{id}_{ X} \circ f \simeq e_{x_0} \circ f = e'_{x_0},
+\end{align*}
+where $ e'_{x_0}: Y \to X, y \mapsto x_0$, via the homotopy $ H': Y \times I \to X, (y,t) \mapsto H(f(y),t)$.
+
+$ 3 \implies 1:$ this is immediate by letting $ Y = X$ and considering  $ \text{id}_{ X}$, just like above.
+\end{problem}
+
+\begin{problem}[4]
+	We wish to exhibit a homeomorphism. Consider $ S^{n}$ for any $ n$ to be the unit sphere of $ \rr^{n+1}$. Define $ \phi: S^{m} * S^{n} \to S^{m+n+1} \subseteq \rr^{m+n+2}, [(x,t,y)] \mapsto \cos \left( \frac{t \pi}{2} \right) (x,0) + \sin \left( \frac{t \pi}{ 2} \right) (0,y)$. It is easy to verify that the image indeed has unit norm. The map is well-defined: at $ t=0$, the  $ y$-component vanishes so  $ \phi([(x,t,y_1)]) = \phi[(x,t,y_2)] = (x,0)$; $ t=1$ is similar, and that's all the nontrivial equivalence classes we need to check. The map is clearly continuous because projection and trig functions are continuous, and so are their compositions (with invoking universal property of quotient map). It is also a bijection. Given any  $ (a,b) \in S^{m+n+1}$, where $ a \in \rr^{m+1}$ and $ b \in \rr^{n+1}$, $ (a,b)$ is in one of the ``quadrant" of $ S^{m+n+1}$. Let $ x = \frac{a}{ \norm{ a} }$ or 0 if $ a=0$, $y = \frac{b}{ \norm{ b} }$ or 0 if $ b=0$, and $ t =\frac{2}{ \pi} \arctan \left( \frac{\norm{ b} }{\norm{ a} } \right) \in [0,1)$ (since we stay in a quadrant) or 1 if $ a=0$. Then the map $ (a,b) \mapsto [(x,t,y)]$ is $ \phi^{-1}$:
+\begin{align*}
+	\phi ^{-1} \circ \phi([x,t,y]) &= \phi ^{-1} \left( \cos \left( \frac{t \pi}{ 2} \right)x, \sin \left( \frac{t \pi}{ 2} \right) y \right)  \\
+				       &=\begin{cases}
+					       [x,t,y] & t \neq 0,1 \text{ or } x,y \neq 0 \\
+					       [x,0,0] & t = 0 \text{ or }y=0 \\
+					       [0,1,y] & t = 1 \text{ or } x=0 \\
+				       \end{cases}\\
+				       &= [x,t,y] 
+\end{align*}
+It is easy to verify the other direction. Thus, we have shown that $ \phi$ is a well-defined bijective continuous map. Since $ S^{m} * S^{n}$ is a quotient of the compact space $ S^{m} \times I \times S^{n}$ and therefore also compact, and $ S^{m+n+1}$ is Hausdorff, it follows that $ \phi$ is a homeomorphism as desired.
+~\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.6\textwidth]{./figures/join.png}
+	\caption{Visualizing $ \phi ^{-1}$.}
+\end{figure}
+\end{problem}
+\begin{problem}[5]
+For every $ n$, we see that the $ n$-skeleton is constructed by gluing two $ n$-cells, denoted  $ D_1^{n}$ and $D_2^{n}$, via characteristic maps $ \Phi_1^{n}$ and $ \Phi_2^{n}$. Then each $ n$-skeleton yields three $ n$-subcomplexes: $ \Phi_1^{n}(D_1^{n})$, $ \Phi_2^{n}(D_2^{n})$, and $ (S^{\infty})^{(n)}$. Enumerating over all $ n \in \nn$ gives all the subcomplexes of $ S^{\infty}$.
+\end{problem}
+\begin{problem}[7]
+For $ X \times Y$, we start with $ 0$-skeleton $ (X \times Y)^{(0)}$ as a collection of discrete points. Then inductively assuming we have the $ (n-1)$-skeleton  $ (X \times Y)^{(n-1)}$, we obtain an $ n$-cell $ D_{ \alpha}^{m} \times D_{ \beta}^{k}$ of $ X \times Y$ where $ D_{ \alpha}^{m}$ and $ D_{ \beta}^{n}$ are $ m$-cell and $ k$-cell of $ X$ and  $ Y$, respectively, and $ n=m+k$. Each of these $ n$-cell is glued to $ (X \times Y)^{(n-1)}$ via the attaching map $ \theta_{ \alpha \beta}$ constructed as follows:
+
+Let $ \phi_{ \alpha}: \partial D_{ \alpha}^{m} \to X^{(m-1)}$ and $ \psi_{ \beta}: \partial D_{ \beta}^{k} \to Y^{k-1}$ be the attaching maps, and $ \Phi_{ \alpha}$ and $ \Psi_{ \beta}$ be the corresponding characteristic maps. We see that the boundary of the $ n$-cell $ \partial (D_{ \alpha}^{m} \times D_{ \beta}^{k}) = ( \partial D_{ \alpha}^{m} \times D_{ \beta}^{k}) \cup (D_{ \alpha}^{m} \times \partial D_{ \beta}^{k})$, and we naturally obtain an attaching map on this domain as follows:
+\begin{align*}
+\theta_{ \alpha \beta} (x,y):= \begin{cases}	
+	(\phi_{ \alpha}(x), \Psi_{ \beta}(y)) & x \in \partial D_{ \alpha}^{m} \\
+	(\Phi_{ \alpha}(x), \psi_{ \beta}(y)) & y \in \partial D_{ \beta} ^{k}\\
+\end{cases}
+\end{align*}
+Since the intersection of the domains of two maps is $ \partial D_{ \alpha}^{m} \times \partial D_{ \beta}^{k}$ which is closed and they agree on the intersection as  $ (\phi_{ \alpha},\psi_{ \beta})$, $ \theta_{ \alpha \beta}$ is continuous by pasting lemma. Iterating over all $ \alpha$ and $ \beta$ this way, the resulting characteristic maps applied to all $ n$-cells of  $ X \times Y$ yield $ (X \times Y)^{(n)}$.
+
+Let $ S^{1}$ be built with a single 0-cell $ p$ and a single 1-cell $ \alpha$, with the attaching map $ \phi^{1}$ be gluing two endpoints of $ \alpha$ to $ p$. Then $ S^{1} \times S^{1}$ has the following CW structure:
+\begin{itemize}
+	\item 0-cell: $ \{p_1\} \times \{p_2\}$, a single point.
+	\item 1-cell: $ \alpha \times \{p_2\} $ and $ \{p_1\} \times \beta$. We obtain a wedge of two circles as the 1-skeleton via the attaching maps $ (\phi_{ \alpha}^{1}, \text{id}_{ p_2}) $ and $ (\text{id}_{ p_1}, \psi_{ \beta}^{1})$. We see that $ \phi_{ \alpha}^{1}$ and $ \psi_{ \beta}^{1}$ simply identify end points of $ \alpha$ and $ \beta$ respectively.
+	\item 2-cell: $ \alpha \times \beta$, a square, with boundary $ (\partial \alpha \times \beta) \cup (\alpha\times  \partial \beta) = (\{0,1\} \times \beta ) \cup ( \alpha \times \{0,1\} )$. The attaching map $ \theta_{ \alpha \beta}$ clearly identifies $\{0\} \times \beta \sim \{1\} \times \beta $ and $ \alpha \times \{0\} \sim \alpha \times \{1\} $ respectively via $ \phi_{ \alpha}^{1}$ and $ \psi_{ \beta}^{1}$ ( \emph{i.e.} the opposite sides of the boundary are identified) and applies characteristic maps ( \emph{i.e.} inclusion then quotient) on the identified $ \alpha$ and $ \beta$.
+\end{itemize}
+~\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.4\textwidth]{./figures/torus_cw.png}
+	\caption{The attaching map of the 2-cell.}
+\end{figure}
+\end{problem}
+
+\begin{problem}[8]
+	Define a binary opeartion on $ [X,G]$ by pointwise multiplication: given $ [f],[g] \in [X,G]$, $ f \cdot g (x):= f(x) \cdot g(x) \in G$. Let $ f_1,g_1$ be another representative via homotopies $ F,G$, then $ f_1 \cdot g_1 \simeq f \cdot g$ via the homotopy $ H(x,t):= F(x,t)G(x,t)$. Thus the binary operation is well-defined on the equivalence classes and we shall only use the representatives for the rest of the proof. Associativity is inherited from associativity of $ G$. We see that the map $ i: x \mapsto e$ is the identity, since $ (f \cdot i)(x) = f(x) \cdot e = f(x) = e \cdot f(x) = (i \cdot f)(x) $. Finally, given $ f\in [X,G]$, define $ f^{-1}: X \to G, x \mapsto (f(x))^{-1}$. Then clearly $ (f^{-1} \cdot f)(x) = f^{-1}(x) \cdot f(x) = (f(x))^{-1} \cdot f(x) = e = i(x) = f(x) \cdot (f(x))^{-1} = (f \cdot f^{-1})(x)$.
+
+	Given a map $ f: X \to Y$, $ g,h \in [Y,G]$,
+\begin{align*}
+	(f^* (g \cdot h))(x) &= ((g \cdot h) \circ f)(x) \\
+	&= (g \cdot h) (f(x)) \\
+	&= (g(f(x)) \cdot h(f(x))) && \text{ pointwise multi} \\
+	&= (g \circ f(x)) \cdot (h \circ f(x)) \\
+	&= (f^* (g)) (x) \cdot (f^* (h))(x) 
+\end{align*}
+Thus $ f^* $ is a homomorphism.
+\end{problem}
+\end{document}

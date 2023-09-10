@@ -1,0 +1,89 @@
+\documentclass[12pt,class=article,crop=false]{standalone} 
+\input{../preamble.tex}
+
+\begin{document}
+\section{Tangent Spaces}
+There is no linear structure on manifolds.
+
+\begin{eg}[tangent space on $ \rr^n$]
+$ T_p \rr^{n} = \{(p,q): q \in \rr^{n}\}$. This is a vector space. Note that $ T_p \rr^{n} \cong \rr^{n}, (p,q) \mapsto q-p$. This is canonical. We lose this canonical isomorphism in other manifolds.
+\end{eg}
+
+From the submanifold perspective:
+\begin{claim}
+$ \dim(T_pM) = n $.
+\end{claim}
+\begin{proof}
+\begin{align*}
+	\alpha &= \phi ^{-1} \circ  (\phi \circ  \alpha)\\
+	\alpha'(0)&= D_0 \phi ^{-1} (\phi \circ \alpha)'(0) 
+\end{align*}
+\begin{claim}
+$ \rank D_0 \phi ^{-1} = n$.
+\end{claim}
+Since $ \overline{\phi} \circ \phi ^{-1} = \text{id}_{ \phi(U)} $, by chain rule,
+\begin{align*}
+	D \overline{\phi} \circ D \phi ^{-1} = I
+\end{align*}
+which yields that $ \rank D \overline{\phi} \circ D \phi ^{-1} =  n$. It follows that $ \rank D \phi_^{-1} \geq n$ which yields equality.
+\end{proof}
+
+From the intrinsic perspective, we define $ d f_p: T_pM \to T_{f(p)}N$. Given $  v \in T_pM$, where $ v = \alpha'(0)$ for some curve $ \alpha$ that passes through $ p$. Then define
+ \begin{align*}
+	d f_p (v) := (f \circ \alpha)'(0)
+\end{align*}
+Exercise: If $ M = \rr^{n}$ and $ N = \rr^{m}$, then $ d f_p(v) $ reduces to the Jacobian at  $ p$ multiplying by  $ v$ (directional derivative).
+
+Define $ \gamma'(0)$ by operating on functions $ M \to \rr$:
+\begin{align*}
+	[\gamma'(0)](f) := (f \circ \gamma)'(0)
+\end{align*}
+So $ \gamma \sim \widetilde{ \gamma}$ iff $ [ \gamma(0)] f = [ \gamma'(0)]f$ for all $ f \in \mathcal{ F}(M)$ space of smooth functions on $ M$.
+
+ \begin{prop}
+$ T_pM$ is a vector space with natural operations and has the same dimension as that of the manifold.
+\end{prop}
+\begin{proof}
+\begin{align*}
+	[ \alpha'(0)] f &= (f \circ \alpha)'(0) \\
+	&= (f \circ x \circ x^{-1} \circ \alpha)'(0) \\
+	&= \sum_{ i= 1}^{ n} \frac{ \partial (f \circ x)}{ \partial x_i} ((x^{-1} \circ \alpha)^{i} )'(0)
+\end{align*}
+Define local coordinates via $ x: \rr^{n} \to M. x_i(t) = x(0,\ldots,0,t,0,\ldots0)$ at $ i$th entry. Then
+ \begin{align*}
+	 [x_i'(0)] f = (f \circ  x_i)'(0) = \frac{ \partial (f \circ x)}{ \partial x_i} (0)= \sum \lambda_i [x_i'(0)](f).
+\end{align*}
+So $ \alpha'(0)$ is a linear combination of $ (x_i)'(0)$. It remains to show they are linearly independent. Suppose $ \sum \lamdba_i x_i'(0) =0$.
+\end{proof}
+
+\begin{defn}
+Let $ f: M \to N$, $ p \in M$, define $ df_p ( \alpha'(0)) = (f \circ \alpha)'(0)$.
+\end{defn}
+Exercise: this is linear. If $ M = \rr^{n}$, $ N = \rr^{m}$, $ df_p$ is the Jacobian.
+
+\begin{thm}[Chain Rule]
+Let $ f: M \to N$ and $ g: N \to L$. Then
+\begin{align*}
+	d(g \circ f) _p = dg_{f(p)} \circ df_p.
+\end{align*}
+\end{thm}
+\begin{proof}
+\begin{align*}
+	d(g \circ f) ( \alpha'(0)) &= (g \circ f \circ \alpha)'(0) \\
+	&= dg( (f\circ \alpha)'(0)) \\
+	&= dg \circ df( \alpha'(0)) 
+\end{align*}
+\end{proof}
+
+\begin{coro}
+If $ M,N$ are diffeomorphic, then  $ \dim M = \dim N$.
+\end{coro}
+\begin{proof}
+Let $ f:M \to N$ be the diffeomorphism, then
+\begin{align*}
+	f \circ f^{-1} &= \text{id}_M  \\
+	df \circ df^{-1} &= I 
+\end{align*}
+Thus $ df$ is invertible and  $\dim M = \dim T_pM = \dim T_{f(p)}N = \dim N$.
+\end{proof}
+\end{document}

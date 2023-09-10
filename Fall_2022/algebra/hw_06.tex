@@ -1,0 +1,56 @@
+\documentclass[12pt]{article}
+\input{../preamble.tex}
+
+\begin{document}
+\centerline {\textsf{\textbf{\LARGE{Homework 6}}}}
+\centerline {Jaden Wang}
+\vspace{.15in}
+
+\begin{problem}[1]
+~\begin{enumerate}[label=(\arabic*)]
+	\item Suppose $ R$ is a local ring with the unique maximal ideal  $ M$. Given  $ r \in R - M$, we see that $ \langle r \rangle$ cannot be a proper ideal, otherwise $ \langle r \rangle \leq M$ since all proper ideals must be contained in this unique maximal ideal, contradicting that $ r \not\in M$. This forces $ \langle r \rangle = \langle 1 \rangle =R$. Hence $ r$ is a unit.
+	\item Let  $ M$ be the set of non-units of  $ R$ where $ M$ is an ideal. Suppose  $ M \leq J \leq R$. If there exists an  $ r \in J -M$, that means that $ r$ is a unit. Then  $R= \langle r \rangle \leq J$ so $ J=R$. Hence $ M$ is maximal. Uniqueness follows from the fact that any ideal not contained in $ M$ must have an element not in $ M$ so it cannot be proper (by argument above).
+	\item We wish to show that $ \langle 2 \rangle$ is precisely the set of non-units $ M$ in $ R$. Given $ 2 \frac{p}{q} \in \langle 2 \rangle$ where $ \frac{p}{q}$ is a reduced rational number with $ q$ odd, then  $ \frac{2p}{q} r = 1$ yields that  $ r= \frac{q}{2p}$ which clearly has even denominator. So $ 2 \frac{p}{q}$ cannot be a unit so $ \langle 2 \rangle \leq M$. Given any non-unit (reduced) $ \frac{m}{n} \in M$, it must be that $ m = 2k$ for some  $ k \in \zz$, otherwise if $ m$ is odd then $ \frac{n}{m} \in R$ is the inverse. So $ \frac{m}{n} \in \langle 2 \rangle$. Thus $ \langle 2 \rangle = M$. Then by part b, we obtain that $ R$ is a local ring with $ M$  as its maximal ideal.
+\end{enumerate}
+\end{problem}
+
+\begin{problem}[2]
+~\begin{enumerate}[label=(\alph*)]
+	\item Suppose $ x^{m} = 0$ for some $ m \in \zz^{+}$ and that $ yr =1$ for some $ r \in R$. Then it suffices to show that $ -(-y)^{m} \in \langle x+y \rangle$ since $ -(-y)^{m}$ is a unit (with inverse $ -(-r)^{m})$. Recall that $ x^{m} - (-y)^{m} = (x-(-y))A$ for some polynomial $ A$ in $ x,y$. Then $ A \in R$ so $ x^{m} - (-y)^{m} = -(-y)^{m} \in \langle 1 \rangle$.
+\item First $ N(R)$ is not empty since $0 $ is nilpotent. Given $ a,b \in N(R)$, where $ a^{m} = b^{n} = 0$. Then $ (a+b)^{mn+m+n} = 0$ by binomial theorem so it's closed under addition. It is clearly closed under negation. Given $ r \in R$, we see that $ (ar)^{m} = a^{m} r^{m} = 0 \cdot r^{m}=0$ so $ N(R)$ is an ideal.
+
+	Consider $ R = M_2(\rr)$. Clearly $ \begin{pmatrix} 0&1\\0&0 \end{pmatrix} $ and $ \begin{pmatrix} 0&0\\1&0 \end{pmatrix} $ are nilpotent but their sum is $ \begin{pmatrix} 0&1\\1&0 \end{pmatrix} $ which is full rank and invertible. So $ N(R)$ is not closed under addition so not an ideal.
+\item Suppose there exists $ rN(R) \in R /N(R)$ s.t.\ it is nilpotent,  \emph{i.e.} $ r^{m} \in N(R)$ for some positive integer $ m$. Then $ r^{m} = a$ for some nilpotent $ a$  s.t.\ $ a^{n}=0$. Hence $ r^{mn} = a^{n} = 0$, so $ r$ is nilpotent and  $ rN(R) = N(R)$. Hence the only nilpotent element of  $ R /N(R)$ is the identity  $ N(R)$.
+\item (collab with Ari, Griffin, Will) Suppose $ a \in R$ is not nilpotent and let $ \Sigma$ be the set of all ideals not containing $ a$-positive powers. Given any chain in this set $ I_1 \subseteq I_2 \subseteq \cdots$. Define $ I = \bigcup_{ i} I_i$. I claim that $ I$ is an ideal not containing  $ a$-positive powers. The fact that $ I$ is an ideal is routine. Since none of the  $ I_i$ contains $ a$-positive power, the union doesn't contain  $ a$-positive power either. Thus  $ I$ is clearly an upper bound of the chain. Then by Zorn's lemma, we have a maximal element $ P$ of $ \Sigma$. Note that $ P$ is an ideal not containing $ a$-positive power. Then suppose  $ x,y \not\in P$, since $ P$ is maximal,  $ \langle P,x \rangle$ and $ \langle P,y \rangle$ must contain $ a$-positive powers. That is, there exists  $ a,b,c,d \in R$ s.t.\ 
+	\begin{align*}
+		ap+bx &= a^{m}\\
+		cp'+dy &= a^{n} \\
+		\underbrace{ acpp'+bxcp+dyap}_{ \in P} + bdxy &= \underbrace{ a^{m+n} }_{ \not\in P} 
+	\end{align*}
+	This implies that $ (bd)xy \not\in P$. Since $ P$ is an ideal,  $xy \not\in P $ either. This proves that $ P$ is prime. Since $ P$ doesn't contain  $ a$-positive power it doesn't contain  $ a$. Thus we show that if $ a$ is not nilpotent, then there exists a prime ideal of $ R$ not containing $ a$. Thus the contrapositive is true: if all prime ideals of $ R$ contains some element $ x$, then  $ x$ is nilpotent. That is,  $ \bigcap_{ i} P_i \subseteq N(R) $.
+
+	Given $ x \in N(R)$, then $ x^{m}= x x^{m-1} = 0 \in \bigcap_{ i} P_i$. Since $ P_i$ are prime, either  $ x \in P_i$ or $ x^{m-1} \in P_i \ \forall \ i$. If $ x^{m-1} \in P_i$, we can rewrite it as $ x x^{m-2} \in P_i$ and repeat this process, which terminates because $ m$ is finite. Eventually we must have  $ x \in P_i \ \forall \ i$ so $ N(R) \subseteq \bigcap_{ i} P_i $.
+
+\end{enumerate}
+\end{problem}
+\begin{problem}[3]
+$ (i) \implies (ii):$ Suppose $ R$ has a unique prime ideal. 
+By 2(d), $ N(R)$ must be the unique prime ideal $ P$. Moreover, any maximal ideal is a prime ideal, so $ R$ has a unique maximal ideal. By 1(a), we see that every element in $ R - N(R) $ is a unit. Thus any element in $ R$ is either nilpotent or a unit.
+
+$ (ii) \implies (iii):$ Notice the set of non-units in $ R$ is simply $ N(R)$ which is an ideal by 2(b). Then by 1(b), $ N(R)$ is the unique maximal ideal of  $ R$ so $ R /N(R)$ is a field.
+
+ $ (iii) \implies (i):$ Since $ R /N(R)$ is a field,  $ N(R)$ is maximal. Since  $ N(R)$ is in the intersection of all prime ideals, given any prime ideal $ P$, we have $ N(R) \subseteq P$. Since $ N(R)$ is maximal, and prime ideals are proper, $ P = N(R)$. Hence $ N(R)$ is the unique prime ideal of  $ R$.
+\end{problem}
+\begin{problem}[4]
+	(collab with Ari, Will, Griffin): Suppose to the contrary that $ I \subseteq \bigcup_{ i} P_i $ but $ I \not \subseteq P_i \ \forall \ i$. We wish to prove by induction. If $ k=1$, then  $ I \subseteq P_1$ trivially holds. Suppose if $I \subseteq \bigcup_{ i= 1}^{k-1} P_i$, then $ I \subseteq P_i$ for some $ i$ when there are $ k-1$ prime ideals. To prove the inductive step, suppose that $ I \subseteq \bigcup_{ j= 1}^{k} P_j $ but $ I \not \subseteq  \bigcup_{ j \neq i} P_j $ and $ I \not \subseteq P_i$ for all $ 1\leq i \leq k$. This implies that for every $1\leq i \leq k$, there exists an  $ a_i \in I$ s.t.\ $ a_i \not\in \bigcup_{ j\neq i} P_j $ which forces $ a_i \in P_i$. Denote $ \wh{ a}_i = \prod_{j \neq i} a_j$. Notice that $ \wh{ a}_i \not\in P_i$ by construction. Now consider
+\begin{align*}
+	x &:=\sum_{ i= 1}^{ k} \prod_{ j\neq i} a_j.
+\end{align*}
+Since $ x \in I$, we have $ x \in P_n$ for some $1\leq n \leq k$. Since $ P_n$ is an ideal, $ r a_n \in P_n \ \forall \ r \in R$, so
+\begin{align*}
+	x &= \underbrace{ \left(\sum_{i \neq n} \wh{ a}_{i,n} \right) a_{n} }_{ \in P_{n} }  + \underbrace{ \wh{ a}_n }_{ \not\in P_{n}}\\
+	&\not\in P_n.
+\end{align*}
+This is a contradiction. So it must be that $ I \subseteq \bigcup_{ j \neq i} P_j $ or $ I \subseteq P_j$ for some $ j$. If it's the former we are done by inductive hypothesis. If it is the latter we are done immediately. Therefore by induction, for any $ k$, if $I \subseteq \bigcup_{ i= 1}^{k} P_i $, then $ I \subseteq P_i$ for some $ i$.
+\end{problem}
+\end{document}

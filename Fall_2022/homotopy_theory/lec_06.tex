@@ -1,0 +1,130 @@
+\documentclass[12pt,class=article,crop=false]{standalone} 
+\input{./preamble.tex}
+
+\begin{document}
+\section{Locally trivial fibrations}
+\begin{defn}
+A \allbold{fiber bundle} (or a \allbold{locally trivial fibration} or a \allbold{twisted product} or a \allbold{fibration}) is a 4-tuple $ (E,B,F,p)$ where $ E,B,F$ are topological spaces and  $ p: E \to B$ continuous s.t.\ $ \ \forall \ x \in B$, there exists an open set $ U \subseteq B$ containing $ x$ and a homeomorphism
+ \begin{align*}
+	\phi: p^{-1}(U) \to U \times F
+\end{align*}
+s.t.\ $ \pi_1 \circ \phi = p$ where $ \pi_1$ is projection onto first factor. Here $ E$ is called the  \allbold{total space}, $ B$ is  \allbold{base space}, $ F$ is the  \allbold{fiber}, $ p$ is the  \allbold{projection}, $ \phi$ is a \allbold{local trivialization}.     
+\end{defn}
+\begin{eg}
+~\begin{enumerate}[label=(\arabic*)]
+	\item $ E=B \times F$.
+	\item Mobius band: $ M= \rr^2 / (x,y) \sim (x+1,-y)$. Let $ q: \rr^2 \to M$ be the quotient map.
+	\item $ S^{2n-1}$ be the unit sphere in $ \cc^{n}$. Recall $ S^{1}$ the unit circle in $ \cc$ acts on $ \cc^{2n-1}$ by
+		\begin{align*}
+			S^{1} \times S^{2n-1} \to S^{2n-1}, (\lambda (z_1,\ldots,z_n)) \mapsto (\lambda z_1,\ldots,\lambda z_n).
+		\end{align*}
+		Exercise: $ S^{2n-1} / S^{1} \cong \cc P^{n-1}$.
+
+		Exercise: show $ (S^{2n-1}, \cc P^{n-1}, S^{1},p)$ is a fiber bundle.
+	\item If $ G$ is a Lie group, and $ H$ a compact subgroup of  $ G$, then  $ (G,G /H,H,p)$ is a fiber bundle where $ p$ is canonical projection. Exercise.
+\end{enumerate}
+\end{eg}
+\begin{eg}
+\begin{enumerate}[label=(\arabic*)]
+	\item $ O(n) = \{A \in GL(n, \rr): \langle Av, Aw \rangle = \langle v,w \rangle \} = \{A \in GL(n,\rr): A^{T} = A^{-1}\} $. And $ SO(n) = \{A \in O(n) : \det A = 1\} $. Recall from diff top that they are smooth manifold of dimension $ n(n-1) /2$.  $ O(n)$ has two components and  $ SO(n)$ is the component containing the identity. Exercise:  $ SO(1) = \{1\} $. $ SO(2) \cong S^{1}$. $ SO(3) \cong \rr P^3$.
+
+		Notice $ SO(n) \leq SO(n+1)$. Exercise: prove that  $ SO(n+1) / SO(n) \cong S^{n}$. Hint: note the 1st column of $ B \in SO(n+1)$ is a unit vector in $ \rr^{n+1}$.
+	\item Let $ V_{n,k}$ be orthonormal $ k$-frames (ordered $ k$ vectors) in  $ \rr^{n}$. Exercise: Steifel manifold $ V_{n,k} = O(n) / O(n-k)$. So $ V_{n,n} \cong O(n)$. $ V_{n,1} = S^{n-1}$. $ V_{n,n-1} \cong SO(n)$. Exercise: if $ k<n$, then  $ V_{n,k} \cong SO(n) / SO(n-k)$.
+	\item $ G_{n,k}$ is the $ k$-dimensional subspaces in  $ \rr^{n}$. Exercise: $ G_{n,k} = O(n) / O(n-k) \times O(k)$.
+	\item Recall the unitary group $ U(n) = \{A \in GL_{n, \cc}: \langle Av,Au \rangle = \langle v,u \rangle\} $ where $ \langle v,u \rangle = \overline{v} \cdot u$. Alternatively, $ U(n) = \{A \in GL(n, \cc) : \overline{A}^{T} = A^{-1}\} $. The special unitary group is $ SU(n) = \{A \in U(n): \det A =1\} $. From diff top, these are manifolds and $ \dim U(n) = n^2$ and $ \dim SU(n) = n^2-1$. Exercise: $ U(n) / SU(n) \cong S^{1}$. Exercise: $ U(1) \cong S^{1}$, $ SU(2) \cong S^3$, $ U(2) \cong S^3 \times S^{1}$. $ SU(n+1) / SU(n) \cong S^{2n+1}$. 
+	\item $ V_{n,k}( \cc) \cong U(n) / U(n-k)$.
+	\item $ G_{n,k}( \cc) \cong = U(n) / U(k) \times U(n-k)$.
+	\item If $ f: M \to N$ a smooth map, s.t.\ 
+		\begin{enumerate}[label=(\roman*)]
+			\item $ f$ is surjective
+			\item  $ f$ is a submersion
+			\item  $ f$ is proper  \emph{i.e.} preimage of compact set is compact.
+		\end{enumerate}
+		Then $ f^{-1}(p)$ where $ p$ is any point is a fiber bundle. This is Ehresmann's Theorem.
+	\item vector bundles are fiber bundles with fiber $ \rr^{k}$ or $ \cc^{k}$ with extra structure on the fibers. This includes the tangent bundles, cotangent bundles, normal bundles.
+	\item covering space is a bundle with discrete fiber.
+\end{enumerate}
+\end{eg}
+
+\begin{defn}
+Given a fiber bundle $ E \xrightarrow{ p} B$ and a map $ f: A \to B$, the \allbold{pull-back} of $ E$ to A is
+ \begin{align*}
+	f^* (E) = \{(a,e) \in A \times E: f(a) = p(e)\} . 
+\end{align*}
+\end{defn}
+\begin{align*}
+		p: f^* E \to A: (a,e) \mapsto a.
+\end{align*}
+
+Exercise:
+\begin{enumerate}[label=(\arabic*)]
+	\item Show $ f^* E \to A$ is a fiber bundle with the same fiber as $ E \to B$.
+	\item If $ A$ is a subset of  $ B$ and  $ f: A \to B$ is inclusion, then show $ f^* (E) \cong E|_A$ \emph{i.e.} $ E|_A = p^{-1}(A)$.
+	\item $ \widetilde{ f} : f^* E \to E, (a,e)\mapsto e$ is a bundle map so the diagram commutes.
+	\item If $ f: A \to B$ is constant and fiber of $ E$ is  $ F$, then  $ f^* E \cong A \times F$.
+	\item If $ E = B \times F$ then $ f^* E \cong A \times F$. 
+\end{enumerate}
+\begin{defn}
+If $ E \xrightarrow{ p} B $ are $ E' \xrightarrow{ p'} B $ are bundles, we say they are \allbold{bundle isomorphic} if there exists a homeomorphism $ h: E \to E'$ s.t.\  the diagram commutes. We denote $ E \cong E'$.
+\end{defn}
+
+\begin{thm}
+If $ f_i: A \to B$, $ i=0,1$ are homotopic and  $ A$ is locally compact and normal (\emph{e.g.} a CW complex), then  $ f_0^* E \cong f_1^* E$.
+\end{thm}
+\begin{proof}
+Let $ f_i: A \to B$ and homotopy $H: A \times I \to B$. Diagrams. Theorem 2 says there exists a homotopy $ \widetilde{ H}:$
+
+$ H^* E = \{(x,t,e) \in A \times I \times E: H(x,t) = p(e)\} $. Define 
+ \begin{align*}
+	\overline{H} ((x,e),t) = (x,t, \widetilde{ H}(x,e,t)).
+\end{align*}
+% https://q.uiver.app/?q=WzAsNyxbMCwwLCJmXzBeKkUgXFx0aW1lcyBJIl0sWzAsMSwiQSBcXHRpbWVzIEkiXSxbMSwwLCJFIl0sWzEsMSwiQiJdLFsyLDAsImZfMF4qRSBcXHRpbWVzIEkgIl0sWzIsMSwiQSBcXHRpbWVzIEkiXSxbMywwLCJIXipFIl0sWzAsMSwiXFxwaV8xIFxcdGltZXMgXFx0ZXh0e2lkfV9JIiwyXSxbMCwyLCJcXHRpbGRle0h9Il0sWzEsMywiSCJdLFsyLDMsInAiLDJdLFs0LDUsIlxccGlfMSBcXHRpbWVzIFxcdGV4dHtpZH1fSSIsMl0sWzQsNiwiXFxvdmVybGluZXtIfSJdLFs2LDUsIlxccGlfMSIsMV1d
+\[\begin{tikzcd}
+	{f_0^*E \times I} & E & {f_0^*E \times I } & {H^*E} \\
+	{A \times I} & B & {A \times I}
+	\arrow["{\pi_1 \times \text{id}_I}"', from=1-1, to=2-1]
+	\arrow["{\tilde{H}}", from=1-1, to=1-2]
+	\arrow["H", from=2-1, to=2-2]
+	\arrow["p"', from=1-2, to=2-2]
+	\arrow["{\pi_1 \times \text{id}_I}"', from=1-3, to=2-3]
+	\arrow["{\overline{H}}", from=1-3, to=1-4]
+	\arrow["{\pi_1}"{description}, from=1-4, to=2-3]
+\end{tikzcd}\]
+Exercise: $ \overline{H}$ is a bundle isomorphism.
+
+
+Restricting $ \overline{H}$ to $ f_0^* E \times \{1\}$ yields a bundle isomorphism. Notice $ \overline{H}(f_0^* E \times \{1\} ) = \{(x,1,e) \in A \times I \times E: H(x,1) = f_1(x) = p(e)\} =f_1^* E$. Hence $ f_0^* E \cong f_1^* E$.
+\end{proof}
+
+\begin{thm}[covering homotopy property]
+Let $ p: E \to B$ and $ q: Z \to Y$ be fiber bundles with the same fiber. Suppose $ B $ is locally compact and normal. Given  $ \widetilde{ h}_0: E \to Z, h_0: B \to Y$ s.t.\  the following diagram commutes,
+% https://q.uiver.app/?q=WzAsNCxbMCwwLCJFIl0sWzAsMSwiQiJdLFsxLDAsIloiXSxbMSwxLCJZIl0sWzAsMiwiXFx0aWxkZXtofV8wIl0sWzIsMywicSJdLFswLDEsInAiLDJdLFsxLDMsImhfMCJdXQ==
+\[\begin{tikzcd}
+	E & Z \\
+	B & Y
+	\arrow["{\tilde{h}_0}", from=1-1, to=1-2]
+	\arrow["q", from=1-2, to=2-2]
+	\arrow["p"', from=1-1, to=2-1]
+	\arrow["{h_0}", from=2-1, to=2-2]
+\end{tikzcd}\]
+and a homotopy $ H: B \times I \to Y$ of $ h_0$, then there exists a homotopy $ \widetilde{ H}: E \times I \to Z$ of bundle maps covering $ H$.
+\end{thm}
+\begin{proof}
+We assume $ B$ is compact (locally compact case is an exercise). Idea: break  $ Z$ into pieces where bundle is trivial  $ U \times F$. Here the theorem is clear. Then we put the homotopies together.
+
+Let $ \{V_{ \beta}\} $ be a cover of $ Y$ by locally trivializing charts so we have an isomorphism
+ \begin{align*}
+	q^{-1}(V_{ \beta}) \xrightarrow{ \phi _{ \beta}}  V_{ \beta} \times F
+\end{align*}
+$ \{H ^{-1}(V _{ \beta}\}) $ is an open cover of $ B \times I$ since $ B \times I$ is compact, we have a finite subcover $ \{U _{ \alpha} \times I_j\} $ covering $ B \times I$ s.t.\ $ H(U_{ \alpha} \times I_j) \subseteq V_{ \beta}$ for some $ \beta$. Note: $ H^* Z$ is trivial over $ U_{ \alpha} \times I_j$ since $ Z$ is trivial over  $ V_{ \beta}$. We can take the $ I_j$ to be segements. We will inductively lift $ H$ to  $ \widetilde{ H}: E \times [0,t_{k}] \to Z$. For each $ x \in B$ there exists neighborhoods  $ W,W'$  s.t.\ $ x \in W \subseteq \overline{W} \subseteq W'$ and $ \overline{W}' \subseteq U_i$ for some $ i$ by normal. There are finite number of $ \{W_i,W_i'\}_{i=1}^{s} $ s.t.\ $ \{W_i\} $ cover $ B$. By Urysohn's lemma, there exist maps  $ u_i: B \to [t_k,t_{k+1}]$ s.t.\ $ u_i(\overline{W}_i) = t_{k+1}$ and $ u_i(B - W_i') = t_k$. Set $ \tau_0(x) = t_k \ \forall \ x$ and $ \tau_i(x) = \max \{u_1(x),\ldots,u_i(x)\} $. So $ t_k = \tau_0(x) \leq \tau_1(x) \leq \ldots\leq \tau_s(x) = t_{k+1}$. Set $ B_i = \{(x,t) \in B \times I: t_k \leq t \leq \tau_i(x)\} $. Let $ E_i$ be the part of $ E \times I$ above $ B_i$. So $ E_0= E \times \{t_k\} \subseteq E_1 \subseteq \ldots \subseteq E_s = E \times [t_k, t_{k+1}]$. Assume we have $ \widetilde{ H}$ defined on $ E \times [0,t_k]$ so it is defined on $ E \times \{t_k\} = E_0$. We inductively extend $ \widetilde{ H}$ over $ E_i$. Note if $ (x,t) \in B_i - B_{i-1}$, then $ \tau_{i-1} < t \leq \tau_i(x)$. So $ u_i(x) > \tau_{i-1}(x)$. Thus $ x(,t) \in W_i' \times \{t_k,t_{k+1}\} $. By definition $ W_i' \times [t_k,t_{k+1}] \subseteq U_{ \alpha} \times I_j$. So $ H(B_i-B_{i-1}) \subseteq V_ \beta$ for some $ \beta$ and $ q^{-1}(V_ \beta) \xrightarrow{ \phi_{ \beta}} V_{ \beta} \times F$. Let $ \rho_{ \beta}: q^{-1}(V_{ \beta}) \to F$ be $ \phi_{ \beta}$ composed with projection. For $ (e,t) \in E_i - E_{i-1}$, let $ p(e) = x \in B$. Set $ \widetilde{ H}(e,t) = \phi_{ \beta}^{-1}(H(x,t), \rho_{ \beta}(\widetilde{ H}(e, \tau_{i-1}(x))))$. Exercise: show this extends $ \widetilde{ H}$ over $ E_i$.
+\end{proof}
+
+\begin{coro}
+If $ X$ is contractible and locally compact and normal, then any fiber bundle over  $ X$ is trivial,  \emph{i.e.} $ E \cong X \times F$.
+\end{coro}
+\begin{proof}
+X contractible means the identity map $ f_0$ is homotopy to the constant map $ f_1$. Therefore, $ f_0^* E \cong E \cong f_1^* E \cong X \times F $.
+\end{proof}
+
+
+\end{document}

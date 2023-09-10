@@ -1,0 +1,100 @@
+\documentclass[12pt]{article}
+\input{../preamble.tex}
+
+\begin{document}
+\centerline {\textsf{\textbf{\LARGE{Homework 5}}}}
+\centerline {Jaden Wang}
+\vspace{.15in}
+
+\begin{problem}[5]
+I claim that for any space $ X$ with a CW structure, we can put a CW structure on an $ n-$fold cover $ \widetilde{ X}$ that has $ n$ copies of $ k$-cells of  $ X$ for each  $ k$. The base case is clear: the fiber of any $ 0$-cell must have  $ n$ discrete points, which becomes  $ n$ 0-cells of  $ \widetilde{ X}$. For each $ 1$-cell of  $ X$, they must either leave or return to 0-cells. By local homeomorphisms, for each 0-cell upstairs we must have the same number of leaving and returning branches as downstairs. Therefore, we must have $ n$ 1-cells upstairs for each 1-cell downstairs to connect the leaving and returning branches. Now we can proceed with induction. Suppose the  $ k-1$ skeleton  of the covering has been built. We need to figure out how to attach  $ k$-cells to build $ k$-skeleton. But we know for each  $ k$-cell in the  $ k$th skeleton in  $ X$, we have a characterstic map  $ \Phi: e^{k} \to X$. Since $ e^{k}$ has trivial fundamental group, by the lifting criterion we can lift it to a characteristic map upstairs $ \widetilde{ \Phi}: e^{k} \to \widetilde{ X}$. Since we get a lift for each base point (0-cell) we choose, and there are $ n$ 0-cells upstairs to choose from per $ 0$-cell downstairs, we must get $ n$  $ e^{k}$ for each $ e^{k}$ downstairs. Doing this for all $ k$-cells downstairs complete the induction. This yields that $ \widetilde{ \ell}_k = n \ell_k$ for all $ k$. 
+
+Once we establish this, by definition of Euler characteristic, we have
+\begin{align*}
+	\chi (\widetilde{ X} ) = \sum_{ i= 0}^{ n} (-1)^{i} \widetilde{ \ell}_k = \sum_{ i= 0}^{ n} (-1)^{i} n \cdot \ell_k = n \chi (X)
+\end{align*}
+\end{problem}
+
+\begin{problem}[6]
+Recall that for an orientable surface $ S_g$ of genus $ g$, we can compute its Euler characteristic using the classical formula $ \chi(S_g) = V-E+F$. Using the usual triangulation of 1 vertex, $ 2g$ edges, and  $ 1$ face (corresponding to 1 0-cell,  $ 2g$ 1-cell, and  $ 1$ 2-cell), we see that  $ \chi(S_g) = 1-2g+1 = 2-2g$. 
+
+$ (\implies):$ By previous problem, we have
+\begin{align*}
+	2-2g  &= n(2-2h) \\
+	g&= n(h-1) +1
+\end{align*}
+\end{problem}
+
+$ (\impliedby):$
+First we construct a $ n$-fold covering space for the torus by $ p_n: S^{1} \times S^{1} \to S^{1} \times S^{1},((\cos \theta, \sin \theta),y) \mapsto ((\cos n \theta, \sin n \theta), y)$. Then as figure shows, we can simply add genus to the torus, and for each genus added, we would have to add $ n$ geni to the covering space. Therefore, using this construction, for a genus-$ n$ surface, the genus of this covering space is  $ n(h-1) + 1$.
+ ~\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\textwidth]{./figures/covering_surf.png}
+	\caption{Here we let $ g=n=3$.}
+\end{figure}
+
+\begin{problem}[7]
+$ \rr P^{n}$ is $ S^{n}$ with antipodal points identified. But if we think of $ S^{n}$ as two disks glued along the equator, by the identification of antipodal point, we can forget about one disk and just keep track of how the remaining disk behaves. Then $ \rr P^{n}$ is also just $ D^{n}$ with boundary $ S^{n-1}$ antipodal points identified. That is, we glue $ D^{n}$ along $ \rr P^{n-1}$, so the attaching map $ f_{\partial D^{n}}$ is exactly the quotient map $ q_{n-1}: S^{n-1} \to \rr P^{n-1}$. We can do this inductively to obtain a CW-structure: starting with a single 0-cell, get a circle or $ \rr P^{1}$ using a single 1-cell, and glue a single 2-cell via quotient map as attaching map to the 1-skeleton $ \rr P^{1}$, then glue a single 3-cell via quotient map to 2-skeleton $ \rr P^{2}$, and so on. This way, we have the following chain complex:
+\begin{align*}
+	0 \xrightarrow{ \partial_{n+1}} C_n= \langle e^{n} \rangle \xrightarrow{ \partial _n}  C_{n-1} = \langle e^{n-1} \rangle \to \cdots \to C_2 = \langle e^{2} \rangle \xrightarrow{ \partial _2} C_1 = \langle e^{1} \rangle \xrightarrow{ \partial _1}  C_0 = \langle * \rangle \to 0    .
+\end{align*}
+For any $ k < n$, the attaching map  $ f_{\partial e^{k+1}} = q_k$. We obtain a map $ g_k : S^{k} \to S^{k}$ by composing
+\begin{align*}
+	\partial e^{k+1} \xrightarrow{ q_k} \rr P^{k} \to \rr P^{k} / \rr P^{k-1} \cong S^{k}.  
+\end{align*}
+Then to compute the degree of $ g_k$, we shall use local degrees. Take $ y \in \inte S^{k}$, Then $ g_k^{-1}(y)$ is pretty much just the antipodal $ x, a_k(x)$ (where $ a_k:S^{k} \to S^{k}$ is the antipodal map) that got quotient to  $ y$. Let $ U \ni x,V \ni a_k(x)$ be two disjoint neighborhoods that get identified to the same neighborhood of  $ y$, \emph{i.e.} $ U = a_k(V)$. Then since $ g_k|_V \circ a_k = g_k|_U$, we see that $ \deg (g_k|_U) = \deg((g_k|_V) \circ a_k) = \deg g_k|_V \deg a_k =(-1)^{k+1} \deg g_k|_V $.
+\begin{align*}
+	\deg g_k = \deg g_k|_U + \deg g_k|_V = (1+(-1)^{k+1}) (\deg g_k|_U) .
+\end{align*}
+Since $ \deg g_k|_U$ is $ \pm 1$,  $ \deg g_k = 0$ if $ k$ is even and  $ \pm 2$ if  $ k$ is odd. So  $ \partial_{k+1}(e^{k+1}) = \deg g_k e^{k}$. Rather we shift the index so $ \partial_k(e^{k}) = \deg g_{k-1} e^{k-1}$ is 0 for $ k$ odd and  multiplication by $ \pm 2$ for $ k$ even. The sign doesn't affect homology, so WLOG assume positive 2. Then for $ k<n$, we have $ \ker \partial_k = 0$ for $ k$ even and  $ \zz$ for $ k$ odd,  $ \im \partial_{k+1} = 0$ for $ k$ even and  $ 2\zz$ for  $ k$ odd. Thus for $ k<n$,
+\begin{align*}
+	H_k(\rr P^{n}) &= \ker \partial_k / \im \partial_{k+1}\\
+		       &=\begin{cases}
+			       0 & k \neq 0 \text{ even}\\
+			       \zz /2 & $ k$  \text{ odd} \\
+			       \zz & $ k = 0$
+	\end{cases}
+\end{align*}
+If $ n$ is even, then  $ H_n(\rr P^{n}) = 0 / 0 =0$. If $ n$ is odd, then  $ H_n(\rr P^{n}) = \zz / 0 = \zz$.
+
+For $ \zz /2$ coefficients, the changes are that $ \ker \partial_k = \zz /2$ for $ k$ odd, and  $ \im \partial_{k+1} = 0$ for $ k$ odd. Thus for $ k<n$,
+\begin{align*}
+	H_k(\rr P^{n}) &= \ker \partial_k / \im \partial_{k+1}\\
+		       &=\begin{cases}
+			       0 & k \neq 0 \text{ even}\\
+			       \zz /2 & $ k=0$  \text{ or odd} \\
+	\end{cases}
+\end{align*}
+If $ n$ is even, then  $ H_n(\rr P^{n}) = 0 / 0 =0$. If $ n$ is odd, then  $ H_n(\rr P^{n}) = \zz /2 / 0 = \zz /2$.
+
+
+\end{problem}
+
+\begin{problem}[8]
+We start with a single 0-cell which generates $ \zz$. Suppose by induction we have built the $ (i-1)$-skeleton that gives the desired homology. For $ G_i$, since it is finitely generated abelian group, it is the direct sum of cyclic groups, either free as $ \zz$ or torsion as $ \zz /k$ for some $ k$. For each copy of $ \zz$, we attach $ e^{i}$ by the constant map to the 0-cell, \emph{i.e.} it gives an $ S^{i}$. For each $ \zz /k$ for some $ k$, do the same but also attached an $ e^{i+1}$ to the $ S^{i}$ by wrapping around $ k$-times. This way, we see that  $ C_i(X)$ is generated by one $ e^{i}$ per component of $ G_i$, plus one additional $ e^{i}$ per torsion component of $ G_{i-1}$. This is a wedge of $ S^{i}$ spheres (possibly filled). Clearly $ \ker \partial_i$ is the $ e^{i}$ that only come from $ G_i$, since the ones from $ G_{i-1}$ are all multiplication by $ k$ map which is injective. Similarly,  $ \im \partial_{i+1}$ is the image of multiplication by $ k$ maps into  $ e^{i}$ from torsion components, whereas the $ e^{i}$ from free part is not the boundary of any higher-dimensional cell so it remains free. That is, $ H_i(X) = G_i$.
+\end{problem}
+
+\begin{problem}[9]
+It goes without saying that CW superscript is omitted. The cellular chain complex of $ X$ is
+\begin{align*}
+	0 \xrightarrow{ \partial_3}  C_2 = \langle \sigma, \tau  \rangle  \xrightarrow{ \partial _2}  C_1 = \langle \gamma  \rangle \xrightarrow{ \partial _1}  C_0 = \langle * \rangle \to 0  .
+\end{align*}
+Clearly $ X$ is path-connected so $ H_0(X) = \zz$, and $ \partial _1 = 0$ so $ \ker \partial _1 = \langle \gamma \rangle$. We see that
+\begin{align*}
+	\partial _2( \sigma) = 2 \gamma, \partial _2( \tau) = 3 \gamma
+\end{align*}
+Thus $ \partial _2( \tau - \sigma) = \gamma$ meaning $ \partial _2$ is surjective. Thus $ H_1(X) = 0$. Finally, by the split short exact sequence, $ \ker \partial _2 \cong \zz$. Since $ \im \partial _3 = 0$, we have $ H_2(X) = \zz$.
+\end{problem}
+\begin{problem}[10]
+~\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.5\textwidth]{./figures/5_10.png}
+	\caption{Cell structure of $ X$.}
+\end{figure}
+The cellular chain complex of $ X$ is
+ \begin{align*}
+	0 \xrightarrow{ \partial _3} \langle \sigma, \tau \rangle \xrightarrow{ \partial _2} \langle \alpha, \beta, \gamma \rangle  \xrightarrow{ \partial _1} \langle p,q \rangle \to 0
+\end{align*}
+Again $ X$ is path-connected so  $ H_0(X) = \zz$. By taking the boundary with the orientations shown in the figure, we have $ \partial _1( \alpha) = - \partial _1( \beta) = \partial _1( \gamma) = p-q$. It follows that $ \ker \partial _1 = \langle \alpha+ \beta, \beta+ \gamma \rangle$. As shown in the figure, we see that $ \partial _2( \sigma) = \alpha+ \beta$ and $ \partial _2( \tau) = - \alpha- \beta$, so $ \im \partial _2 = \langle \alpha + \beta \rangle$ and $ \ker \partial _2 \cong\zz$. It follows that $ H_1(X) = \langle \beta+ \gamma \rangle \cong \zz$ and $ H_2(X) = \zz$.
+\end{problem}
+\end{document}

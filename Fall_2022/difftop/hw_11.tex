@@ -1,0 +1,50 @@
+\documentclass[12pt]{article}
+\input{../preamble.tex}
+
+\begin{document}
+\centerline {\textsf{\textbf{\LARGE{Homework 11}}}}
+\centerline {Jaden Wang}
+\vspace{.15in}
+\begin{problem}[3.2.13]
+By the Jordan-Brouwer Separation Theorem, the compact hypersurface $ S$ separate the Euclidean space into an outside and inside, where each component in open since the hypersurface is closed. Thus for every point on the hypersurface, the outward normal vector is well-defined. Thus we can choose a basis of the tangent space s.t.\ the determinant with the outward normal vector is positive. This allows us to orient the whole hypersurface.
+
+Alternatively, the inside and the hypersurface together forms a manifold with boundary with the same dimension as $ \rr^{n}$. So it inherits an orientation from $ \rr^{n}$ and induces a boundary orientation on the hypersurface.
+\end{problem}
+\begin{problem}[3.2.20]
+Consider the central circle $ S$ of Mobius strip which is obviously orientable (with the induced boundary orientation from disk which inherits orientation from $ \rr^2$). Since $ S$ has codimension 1 in a Mobius strip, by Exercise 3.2.18,  we have that $ S$ is globally definable by an independent function. However, by Exercise 2.4.19, we know  $ S$ is not definable by an independent function, a contradiction. It must be that the assumption is false: \emph{i.e.} Mobius strip cannot be orientable.
+\end{problem}
+
+\begin{problem}[3.2.26]
+Since manifold $ X$ is simply connected, it is path-connected. So there exists a path  $ \gamma$ that connects $ x,y$. Take an open cover of  $ \gamma(I)$ where each is diffeomorphic to a ball. Since $ \gamma(I)$ is compact, there exists a finite subcover $ \{B_i\} _{i=1}^{n}$ and we order them by the position of their centers along the path. It is easy to see that in order to form a subcover, any two adjacent balls must overlap with each other. Fix an orientation on $ B_1 \ni x$. Since $ B_1$ and $ B_2$ overlaps, it induces an orientation on $ B_2$ that makes the derivative of the transition map $ d(\phi_2 \circ \phi ^{-1})$ having positive determinant. We successively orient all the balls this way, yielding an orientation of $ T_yX$. Now suppose we take another path  $ \gamma'$ from $ x$ to  $ y$. Since $ X$ is simply connected, there exists a homotopy $ H: I \times I \to X$ between $ \gamma$ and $ \gamma'$. That is, for each fixed $ t \in I$, $ H(x,t)$ is a path between $ x,y$ with balls as above. Thus for every such path, there exists a neighborhood $ (t_1,t_2)$ of $ t$ s.t.\ all paths in between this interval are completely contained in the balls of $ H(x,t)$ and thus have the same orientation. That is, orientation is locally constant. Since  $ X$ is connected, we have that the orientation is globally constant and thus  $ X$ is orientable.
+\end{problem}
+
+\begin{problem}[3.3.2]
+\begin{enumerate}[label=(\alph*)]
+	\item Let $ f:S^{k} \to S^{k}, x\mapsto -x$ be the antipodal map. Let $ \widetilde{ f}: B^{k+1} \to B^{k+1}: x \mapsto -x$ considered as an endomorphism of $ \rr^{n+1}$. Note $ \det d\widetilde{ f} = \det (-I) =  (-1)^{n}$. So $ \widetilde{ f}$ is orientation-preserving if $ n$ is even, and orientation-reversing, if  $ n$ is odd. Thus  $ f$ is orientation-preserving on the induced boundary orientation if  $ n$ is even and so on.
+	\item Done in previous homework.
+	\item This immediately follows from the mentioned exercises. The gist is that non-vanishing vector field allows us to construct a homotopy between antipodal map and identity on the sphere. But by degree consideration in previous parts, this can only happen for odd degree.
+	\item No because the key step is to show that for even degrees the antipodal map has degree -1 so it cannot be homotopic to the identity map.
+\end{enumerate}
+\end{problem}
+
+\begin{problem}[3.3.9]
+$ (\implies):$ this direction follows immediately from the fact that intersection number is invariant under homotopy.
+
+$ (\impliedby):$ suppose $ f,g: S^{k} \to S^{k}$ and $ \deg f = \dg g=n$. Consider the universal cover $ (\rr,0)$ of $ (S^{1},s_0)$ with covering map $ p$. Since $ \rr$ is simply connected, by the lifting criterion we obtain lifted paths $ \widetilde{ f}, \widetilde{ g}: S^{1} \to \rr$ s.t.\ $ f= p \circ \widetilde{ f}$ and $ g= p \circ \widetilde{ g}$. By the same degree, both lifted paths have the same endpoint $n$ in $ \rr$. Since $ \rr$ is contractible, $ \widetilde{ f} \sim \widetilde{ g}$ by straightline homotopy $ \widetilde{ H}: S^{1} \times I \to \rr$. Then $ H:= p \circ \widetilde{ H}$ is a homotopy between $ f$ and  $ g$.
+\end{problem}
+
+\begin{problem}[3.6.2]
+	We use the same trick from last homework. Since $ z$ is a regular value and  $ B$ is compact,  $ \# f^{-1}(z) = n$ is finite. Let $ U_1,\ldots,U_n$ be disjoint local charts of the preimages and let $ B_i \subseteq U_i$ be a closed ball containing a regular point for each $ i$. Further restrict the balls if necessary so that their images is contained in the ball around $ z$ in Exercise 1. Define  $ B' = B - \bigsqcup_{ i=1}^{n} \inte B_i$ and let $ f':=f|_{B'}$. Define $ u(x)=\frac{f'(x)-z}{\norm{ f'(x)-z}  }$ on $ \partial B'$. We see that $u$ extends to $ B'$ because $ f(x) \neq z$ on  $ B'$ by construction. Let $ \partial g:= f$ restricted to the boundary of the balls $ B_i$. By the Boundary Theorem,  $ W(\partial f',z) = W(\partial f,z) - W(\partial g,z) = 0$. By Exercise 1, $ \sum_{y \in f^{-1}(z)} \sgn y = W(\partial g,z)$, and the statement follows.
+\end{problem}
+\begin{problem}[3.6.8]
+$ (\implies):$ this direction follows immediately from the fact that the statement is true for intersection number and degree is defined by intersection number.
+
+$ (\impliedby):$ Suppose $ f: \partial W \to S^{k}$ with $ \dg f = 0$. Viewing $ S^{k}$ as the unit sphere of $ R^{k+1}$, and by Problem 7, we obtain an extension $ F: W \to \rr^{k+1}$ where $ \partial F = f$. Since $ \partial F=f$ misses the origin, $ \partial F  \pitchfork \{0\}$. Thus by the corollary of Extension Theorem for transversality, there exists $ G: W \to \rr^{k+1}$ s.t.\ $ G \pitchfork \{0\} $ and $g:= \partial G = f$. Note that $ f=g: \partial W \to S^{k} \subseteq  \rr^{k+1} \setminus \{0\}$. Since $ W$ is compact and has dimension  $ k+1$,  $ G^{-1}(0)$ is a finite set of points. Let $ (U,\phi)$ be a chart for $ \inte W$ and let $ B$ be a closed ball contained in  $ \phi(U) \subseteq \rr^{k+1}$. Then by the corollary of isotopy lemma, there exists a diffeomorphism $ h: W \to W$ that moves finite points of $ G^{-1}(0)$ into $\phi ^{-1}(\inte B)$ leaving $ \partial W$ fixed. Define $ \widetilde{ B} := h^{-1} \circ \phi ^{-1}(B) \subseteq W$. Notice that $ 0$ is still a regular value of $H:=G \circ h^{-1} \circ \phi ^{-1}: B \to \rr^{k+1}$ unaffected by the diffeomorphisms. 
+
+Define $ W' := W - \inte (\widetilde{ B})$. Then $ \partial W' = \partial W \sqcup  \partial \widetilde{ B} = \partial W \sqcup  h^{-1} \circ \phi ^{-1}(\partial B)$. Moreover, since $ G^{-1}(0)$ do not lie in $ W'$ by construction, $ G':=G|_{W'}: W' \to \rr^{k+1}\setminus  \{0\} $ is well-defined. Then $ \partial G': \partial W' \to \rr^{k+1} \setminus \{0\} $ is simply a piecewise function with $\partial G'|_{\partial W} = g$ and $ \widetilde{ g}:= \partial G'|_{\partial \widetilde{ B}} =\partial H \circ \phi \circ h$. 
+
+Let $ u:= \frac{\partial G'}{ \norm{ \partial G'} }: \partial W' \to S^{k} \subseteq  \rr^{k+1} \setminus \{0\} $. Since $ \partial G'(x) \neq 0$ by construction, we see that $ u$ extends to  $ W'$. By Boundary Theorem, $W(\partial G',0):= \dg u = 0$. Since $ \dg g=0$ and $ u = g$ (since $ g$ maps to  $ S^{k}$) on $ \partial W$ we have $ \dg u|_{ \partial W} = 0$. It follows that $ \dg u|_{ \partial \widetilde{ B}} = \dg u - \dg u|_{\partial W} = 0-0=0$ by the definition of degree as intersection number. Thus by definition, the winding number $ W(\widetilde{ g},0) = 0$. Since the winding number is invariant under diffeomorphisms $ h,\phi$, $ W(\partial H,0)=0$.
+
+By the corollary of 4, $ \partial H: \partial B \to \rr^{k+1} \setminus \{0\} $ is nullhomotopic via the homotopy $ \Gamma$. Then we can smoothly extend this to the entire ball by $\widetilde{ H}: B \to \rr^{k+1} \setminus \{0\} , tx\mapsto \Gamma(x,t)$, where $ x \in \partial B$ and clearly every point in $ B$ can be expressed as $ tx$ where $ t \in I$. This way, we replace $ H$ on  $ B$ by $ \widetilde{ H}$ and they agree on $ \partial B$. Redefine $ G$ to be  $ \widetilde{ H} \circ h^{-1} \circ \phi ^{-1}$. We see that $ \Phi:=\frac{G}{\norm{ G} }: W \to S^{k}$ is well-defined and is the extension we seek since $ f = \partial \Phi$.
+\end{problem}
+\end{document}

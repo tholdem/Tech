@@ -1,0 +1,78 @@
+\documentclass[12pt,class=article,crop=false]{standalone} 
+\input{../preamble.tex}
+
+\begin{document}
+\section{Characteristic Classes}
+There is another way to think of Steifel-Whitney classes:
+\begin{thm}
+There exists a unique function $ w_i: \text{Vect}(M) \to H^{i}(M;\zz /2 )$, where $ \text{Vect}(M) $ is the set of vector bundles over $ M$, for all  $ M$ and $ i$ satisfying
+ \begin{enumerate}[label=(\arabic*)]
+	\item $ w_i(f^* E) = f^* (w_i(E)) \ \forall \ f: M \to N$
+	\item $ w_0(E) =1, w_1(E) = 0 \ \forall \ i > $ fiber dimension of $ E$.
+	\item  $ w(E_1 \oplus E_2) = w(E_1) \smile w(E_2)$ where $ w(E)=1+w_2(E)+w_2(E)+ \ldots$. $ E_1 \oplus E_2$ has fibers the direct sum of fibers of $ E_1$ and $ E_2$. That is, given $(E,M,\rr^{m}),(E,N,\rr^{n})$ we get $ (E_1 \times E_2,M \times N, \rr^{m} \times \rr^{n})$. If $ M=N$, let $ \Delta: M \to M \times M$ be the diagonal map. Define $ E_1 \oplus E_2 = \Delta^* (E_1 \times E_2)$.
+	\item $ w_1( \gamma_n) \neq 0$ where $ \gamma_n$ is the universal line bundle over $ \rr P^{n}$.
+\end{enumerate}
+\end{thm}
+For 4 recall
+\begin{align*}
+	\gamma_n=\{(\ell,v) \in \rr P^{n}+ \rr^{n+1}: v \in\ell\} .
+\end{align*}
+Exercise: $ \gamma_n$ is a line bundle over $ \rr P^{n}$.
+
+Recall $ H^{i}(\rr P^{n}; \zz /2) \cong \zz /2 \ \forall \ 0 \leq i \leq n$. So 4) implies  $ w_1( \gamma_n)$ generates $ H^{1}(\rr P^{n}l \zz /2)$.
+
+get $ \gamma$ over $ \rr P^{\infty}$ and 4) implies $ w_i( \gamma) \neq 0$.
+
+Exercise:
+\begin{enumerate}[label=(\arabic*)]
+	\item $ i: \rr P^{n} \to \rr P^{m}$ we get $ i^* ( \gamma_m) = \gamma_n$. If $ w_1( \gamma_1) \neq 0$ then true for $ \gamma_n \ \forall \ n$.
+	\item Show $ \rr P^{1} \cong S^{1}$ and $ \gamma_1$ is infinite Mobius band. This is non-orientable, so from above $ w_1( \gamma_1) \neq 0$.
+\end{enumerate}
+It remains to prove part 3 and uniqueness in the theorem. First we look at some consequences.
+
+Easy consequences:
+\begin{enumerate}[label=(\arabic*)]
+	\item If $ E_1 \cong E_2$ then $ w_i(E_1) = w_i(E_2) \ \forall \ i$ by 1.
+	\item If $ E$ is a trivial bundle, then  $ w_i(E) = 0 \ \forall \ i>0$. This follows from obstruction theory. Let's check using Theorem 5. 
+		If $ E \to M$ is trivial, let $ f: M to \{x_0\} $, then $ f^* (\{x_0\} \times \rr^{n}) = E$. So $ w_i(E) = f^* (w_i(\{x_0\} \times \rr^{n} )) = 0$.
+	\item If $ E'$ is a trivial bundle and  $ E$ any vector bundle then
+		 \begin{align*}
+			w_i(E \oplus E') = w_i(E)
+		\end{align*}
+		from 3.
+\end{enumerate}
+Recall Whitney showed that any $ n$-manifold embeds in  $ \rr^{2n}$ and immerses in $ \rr^{2n-1}$.
+\begin{thm}
+If $ \rr P^{2^{r}}$ is immersed in $ \rr^{2^{r}+k}$ then $ k$ must be at least  $ 2^{r}-1$.
+\end{thm}
+That is, Whitney's Theorem cannot be improved for all manifolds.
+
+Note: if $ f: M^{n} \to \rr^{k}$ is an embedding, then we have the normal bundle of $ f(M^{n})$ :
+\begin{align*}
+	\nu(M) = \{v \in T_x \rr^{k}: v \perp T_x M \ \forall \ x \in f(M)\} .
+\end{align*}
+And $ TM \oplus \nu(M) = T\rr^{k}|_M = M \times \rr^{k}$.
+
+Exercise: show $ \nu(M)$ is well-defined if $ f$ is just an immersion and we still have
+ \begin{align*}
+	TM \oplus \nu(M) = f^* T\rr^{k} = M \times \rr^{k}.
+\end{align*}
+
+\begin{thm}
+If $ M$ is the boundary of a compact manifold  $ W$, then all Stiefel-Whitney numbers are zero.
+\end{thm}
+
+\begin{remark}
+The converse is also true by Thom.
+\end{remark}
+
+\begin{defn}
+Given two unoriented manifolds $ M_1$ and $ M_2$, we say they are \allbold{unoriented cobordant} if there exists a compact manifold $ W$  s.t.\ $ \partial W = M_1 \cup M_2$. 
+\end{defn}
+
+\begin{coro}
+Two closed, connected manifolds $ M_1$ and $ M_2$ are unoriented cobordant iff they have the same Stiefel-Whitney numbers. 
+\end{coro}
+
+
+\end{document}

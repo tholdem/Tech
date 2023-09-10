@@ -1,0 +1,91 @@
+\documentclass[12pt]{article}
+\input{../preamble.tex}
+
+\begin{document}
+\centerline {\textsf{\textbf{\LARGE{Homework 7}}}}
+\centerline {Jaden Wang}
+\vspace{.15in}
+\begin{problem}[1.5.4]
+	Since $ X \pitchfork Z$, $ X \cap Z$ is a manifold.
+	Let $ y \in X \cap Z$ and given $ [ \gamma] \in T_y(X \cap Z)$, we know that $ \gamma: [- \epsilon, \epsilon] \to X \cap Z$, $ \gamma(0)=y \in X \cap Z$. Since the base point of this class of smooth curves is in both $ X$ and  $ Z$, $ [ \gamma]$ is also an equivalence class of smooth curves in $ X$ and  $ Z$ as well so  $ [ \gamma] \in T_y X$ and $ T_y Z$, \emph{i.e.} their intersection. Given $ [c] \in T_y X \cap T_y Z$, then $ c: [- \epsilon, \epsilon] \to Y$ and $ c: [- \epsilon, \epsilon] \to Z$ and therefore $ c: [- \epsilon, \epsilon] \to Y \cap Z$. Since the base point $ y$ is in both  $ X$ and  $ C$ and therefore  $ y \in X \cap Z$, we have $[c] \in T_y (X \cap Z)$.
+\end{problem}
+\begin{problem}[7]
+We need a fact from Exercise 1.5.5: the tangent space to the preimage of $ Z$ is the preimage of the tangent space of  $ Z$. The proof is self-evident boring set containment argument similar to 1.5.4, so we leave it as an exercise for the undergrad.
+
+$ (\implies):$ Suppose $ f \pitchfork g^{-1}(W)$. Since $ g \pitchfork W$, $ g^{-1}(W)$ is a submanifold of $ Y$ and $ dg_{y}(T_y Y) + T_{g(y)} W = T_{g(y)} Z $. Moreover, $df_x (T_x X) + T_{f(x)}  g^{-1}(W) = T_{f(x)} Y$. Applying $ dg_{f(x)}$ to both sides yields
+\begin{align*}
+	dg_{f(x)} (df_x (T_x X)) + T_{f(x)} g^{-1}(W)) &= dg_{f(x)} (T_{_f(x)} Y) \\
+	dg_{f(x)} (df_x (T_x X)) + dg_{f(x)} (T_{f(x)} g^{-1}(W)) &= dg_{f(x)} (T_{f(x)} Y) && \text{ linearity} \\
+	dg_{f(x)} (df_x (T_x X)) + T_{g(f(x))} W &= dg_{f(x)} (T_{f(x)}Y)\\
+	d(g \circ f)_x (T_x X)) + T_{g \circ f(x)} W &= dg_{f(x)} (T_{f(x)}Y) + T_{g \circ f(x)} W && + \text{ means span} \\
+	d(g \circ f)_x (T_x X)) + T_{g \circ f(x)} W &= T_{g \circ f(x)} Z 
+\end{align*}
+
+$ (\impliedby):$ We wish to prove the contrapositive: suppose $ f \not \pitchfork g^{-1}(W)$, that is, there exists a vector $ [v] \in T_{f(x)}Y$ that is not in $ df_x(T_x X) + T_{f(x)}g^{-1}(W)$, then as we apply $ dg_{f(x)} ([v])$ which is an element of $ T_{g \circ f(x)}Z$, then I claim that it is not in $ d(g \circ f)_x (T_x X) + T_{g \circ f(x)} W$. We already know that $ dg_{f(x)}([v]) \not\in T_{g \circ f(x)} W$ because $[v] \not\in T_{f(x)} g^{-1}(W)$. It remains to check that it is not in the first term (since any component $dg_{f(x)} ([v])$ that is in  $ T_{g \circ f(x)}W$ comes from $ T_{f(x)}g^{-1}(W)$ so WLOG we just need to show the other component is not in the first term).
+
+Suppose to the contrary that $ dg_{f(x)}([v]) \in d(g \circ f)_x(T_x X)$, then there exists a vector $ [y] \in df_x(T_x X)$ s.t.\ $ dg_{f(x)}([y]) = dg_{f(x)} ([v])$. That means $ [v] = [y]+ \ker dg_{f(x)}$. But clearly $ \ker dg_{f(x)} \subseteq T_{f(x)}g^{-1}(W)$ since $ T_{g \circ f(x)}W$ contains 0. Hence $ [v] \in df_x(T_x X) + T_{f(x)}g^{-1}(W)$, a contradiction. Therefore, $ dg_{f(x)}([v]) \not\in d(g \circ f)_x (T_x X) + T_{g \circ f(x)}W$ and thus $ g \circ f \not \pitchfork W$.
+\end{problem}
+
+\begin{problem}[1.5.11]
+Let $ C$ be a closed set of  $ \rr^{k}$, then there exists a smooth function $ f:\rr^{k} \to \rr$ s.t.\ $ C = f^{-1}(0)$. Consider the function $ g: \rr^{k+1} \to \rr, (x_1,\ldots,x_{k},x_{k+1}) \mapsto f(x_1,\ldots,x^{k}) + x_{k+1}$.  I claim that $ 0$ is a regular value of  $ g$. Indeed, the Jacobian of this function is $ (df,1)$ which has full rank for any point. Therefore, $ M:= g^{-1}(0)$ is a submanifold of $ \rr^{k+1}$. Now consider
+\begin{align*}
+	M \cap \rr^{k} &= \{x \in \rr^{k+1}: x_{k+1} = 0, g(x)= f(x_1,\ldots,x_k)+x_{k+1}=0\}  \\
+	&= \{x \in \rr^{k+1} : f(x_1,\ldots,x_k) = 0\}  \\
+	&= \{f^{-1}(0)\}  \\
+	&= C
+\end{align*}
+as desired.
+\end{problem}
+
+\begin{problem}[1.6.7]
+We prove by induction. Denote $ I_n$ to be the $ n \times n$ identity matrix. For $ k=1$, we see that by choosing a basis of $ \rr^2$, the antipodal map  $ S^{1} \to S^{1}, x \mapsto -x$ can be described by $-I$. Then
+\begin{align*}
+	\begin{pmatrix} \cos(\pi t)& \sin(\pi t)\\ \sin(\pi t)& \cos(\pi t) \end{pmatrix} 
+\end{align*}
+is a homotopy between the identity map $ I$ and antipodal map $ -I$. 
+
+Now assume that the identity $ I_k$ is homotopic to the antipodal map $ -I_k$ for odd $ k$ via some homotopy $ H: S^{k} \times I \to S^{k}$. Then for the next odd number $ k+2$,
+\begin{align*}
+	\begin{pmatrix} H_t&0&0\\0& \cos(\pi t)& \sin(\pi t) \\ 0&\sin(\pi t)& \cos(\pi t) \end{pmatrix} 
+\end{align*}
+is a homotopy between $ I_{k+2}$ and $ -I_{k+2}$. Hence we show that identity and antipodal maps are homotopic for all odd $ k$.
+\end{problem}
+
+\begin{problem}[1.6.8]
+	First, we consider the case where the manifold is path-connected. Note that since any manifold is locally diffeomorphic to $ \rr^{n}$, it is locally path-connected since $ \rr^{n}$ is. This allows us to use path-connectedness and connectedness interchangably by Munkres Theorem 25.5. Since $ f$ is a diffeomorphism, it is also a local diffeomorphism and an embedding onto  $ N$. Therefore for any homotopy of $ f$, there exist  $ \epsilon_1, \epsilon_2>0$ that preserve these properties under perturbation. Let $ \epsilon= \min( \epsilon_1, \epsilon_2)$, then $ f_t:M \to N$ is a local diffeomorphism and an embedding for any $ t \in [0, \epsilon)$. Given any open set $ U$ of $ M$, let  $ U_m$ denotes the neighborhood of  $ m$ where  $ f_t$ is a local diffeomorphism. Then  $ U=\bigcup_{ m \in U} U \cap U_m$. Notice $ f_t$ is also a diffeomorphism restricted to  $ U \cap U_m$ which is open so $ f_t(U)$ is a union of open sets which is open. That is,  $ f_t$ is an open map. In particular,  $ f_t(M)$ is open. Since $ M$ is compact,  $ f_t(M)$ is also compact. Since  $ N$ is Hausdorff,  $ f_t(M)$ is closed so $ N-f_t(M)$ is open. This implies that $ f_t(M)$ and $ N- f_t(M)$ form a separation of  $ N$. But since $ N$ is connected, and clearly $ f_t(M)$ as an embedding is not empty so this forces $ f_t(M) = N$. That is, $ f_t(M)$is a surjective embedding so it is a diffeomorphism onto  $ N$.
+
+	Now suppose  $ M$ has multiple path components. Then since $ f$ is a diffeomorphism, it must map path components of  $ M$ to path components of  $ N$ in a bijective way. Together with the fact that homotopy can never cross path components, we are allowed to consider one pair of components at a time so the above result applies. Since $ M$ is compact, the path components must be finite (or each component would require at least one open set in any covering and we would not have finite subcover). , it suffices to take the minimum of the $ \epsilon$ yielded from each path component from above and we are done.
+\end{problem}
+
+\begin{problem}[1.7.11]
+Since $ a$ is a nondegenerate critical point of  $ f$, by Morse Lemma, there exists a local coordinate system $ x=(x_1,\ldots,x_n)^{T}$ s.t.\ 
+\begin{align*}
+f=f(a) + x^{T}Hx,
+\end{align*}
+where $ H$ is the nondegenerate Hessian of  $ f$ under this coordinate system. Notice that $ H$ is symmetric so it is also diagonalizable, \emph{i.e.} $ H=P ^{-1}D P = P^{T} D P $ where $ D$ has nonzero eigenvalues $ \lambda_1,\ldots, \lambda_n$ on the diagonal. Let $ \epsilon_i = \sgn (\lambda_i)$. Then
+ \begin{align*}
+	 H &= P^{T} \begin{pmatrix} \sqrt{ |\lambda_1|} &0& \cdots&0\\0& \sqrt{ |\lambda_2|} & \cdots & 0\\ \vdots &0 &\ddots & 0 \\ 0& 0&\cdots& \sqrt{ \lambda_n} \end{pmatrix} \begin{pmatrix} \epsilon_1 &0& \cdots&0\\0& \epsilon_2 & \cdots & 0\\ \vdots &0 &\ddots & 0 \\ 0& 0&\cdots& \epsilon_n \end{pmatrix} \begin{pmatrix} \sqrt{ |\lambda_1|} &0& \cdots&0\\0& \sqrt{ |\lambda_2|} & \cdots & 0\\ \vdots &0 &\ddots & 0 \\ 0& 0&\cdots& \sqrt{ \lambda_n} \end{pmatrix} P\\
+	 &=: (P^{T} \Lambda) E (\Lambda P) \\
+	 &= (\Lambda P)^{T} E (\Lambda P) \\
+	 &=: \widetilde{ P}^{T} E \widetilde{ P}  
+\end{align*}
+Since each $ |\lambda_i|>0$, the diagonal matrix $ \Lambda$ and thus $ \widetilde{ P}$ is invertible. Let $ \widetilde{ x} = \widetilde{ P}  x$. Since $ \widetilde{ P}$ is a linear isomorphism, $ \widetilde{ x}$ is also a local coordinate. Under this local coordinate, we see that
+\begin{align*}
+	f = f(a) + \widetilde{ x}^{T} E \widetilde{ x}
+\end{align*}
+as desired.
+\end{problem}
+
+\begin{problem}[1.7.14]
+We wish to use the lemma on page 42 of the book to show that the poles are the only critical points and they are nondegenerate (and therefore the height function $ h$ is a Morse function on $ S^{k-1}$). 
+
+First we consider the south pole $ S$. View $ S^{k-1}$ as a unit sphere inside $ \rr^{k}$ with the south pole at the origin so $ S=0$. Consider the height function restricted to $ S^{k-1} - N$ which is $ h_S: S^{k-1}-N \to \rr$, and the inverse stereographic projection $ g_S: \rr^{k-1} \to S^{k-1}-N$. We see that $ h_S=(h_S \circ g_S) \circ g_S^{-1}$. Since $ g_S^{-1}(0)=0$ (maps the south pole to the origin), by lemma it suffices to consider the critical points of $ h_S \circ g_S: \rr^{k-1} \to \rr, x \mapsto \frac{4+ \norm{ x}^2 }{4- \norm{ x}^2}$. By the quotient rule, its derivative is
+\begin{align*}
+	d (h_S \circ g_S)(x) &= \frac{2\norm{ x}(4- \norm{ x}^2 ) - (4+ \norm{ x}^2 )(-2 \norm{ x} )}{(4- \norm{ x}^2 )^2 }\\
+	&= \frac{16 \norm{ x} }{ (4- \norm{ x}^2 )^2} .
+\end{align*}
+By basic geometry, $ \norm{ x}^2 = 4 \iff x=(0,\ldots,0,2)=N$, the derivative is well-defined everywhere. It equals zero iff the numerator is zero iff $ \norm{ x} =0$ iff $ x=0=S$ by positive definiteness of the norm. Hence  $ S$ is the unique critical point. Again by the positive definiteness of the norm, the Jacobian of the derivative, \emph{i.e.} the Hessian of $ h_S \circ g$, must also be positive definite. Thus $ S$ is nondegenerate as well. Hence by lemma, $ S$ is the unique critical point of  $ h$ restricted to one chart and it is nondegenerate.
+
+By a similar argument, we can view $ S^{k-1}$ as the unit sphere with normal pole at the origin. Consider $ h_N:S^{k-1} -S \to \rr$ and inverse stereographic projection $ g_N: \rr^{k-1} \to S^{k-1} -S$. The composition $ h_N \circ g_N: \rr^{k-1} \to \rr, x \mapsto \frac{4- \norm{ x}^2 }{4+ \norm{ x}^2}$. This time we have negative definition Hessian. So $ N$ is the unique critical point of  $ h$ restricted to the other chart and it is also nondegenerate. That is all the critical points of  $ h$ and both are nondegenerate so  $ h$ is a Morse function of  $ S^{k-1}$.
+\end{problem}
+\end{document}

@@ -1,0 +1,118 @@
+\documentclass[12pt]{article}
+\input{../preamble.tex}
+
+\begin{document}
+\centerline {\textsf{\textbf{\LARGE{Homework 2}}}}
+\centerline {Jaden Wang}
+\vspace{.15in}
+\begin{problem}[5]
+Show that $ \text{SO}( n+1) / \text{SO}( n) = S^{n}$.
+
+Notice that we can identify any element $ X \in \text{SO}( n) $ by
+\begin{align*}
+	\begin{pmatrix} 1& 0 \\ 0 & X \end{pmatrix} \in \text{SO}(n+1) .
+\end{align*}
+Under the quotient, this matrix is in the same equivalence class as the identity matrix.
+
+For a matrix $ A$, let  $ A_i$ denotes its $ i$th column and let $ \overline{A}$ denote the matrix formed by all its columns but the first column. Consider the map $ \phi: \text{SO}(n+1) / \text{SO}(n) \to S^{n}, [A] \mapsto A_1$. Let's show that this map is well-defined. Let $ [A]=[B]$. This is equivalent to $ [A^{-1}][B] = [I]$. Since $ A^{T}= A^{-1}$, we have $ A^{T}B = C$ where $ C = \begin{pmatrix} 1&0\\0& X \end{pmatrix} $ for some $ X \in \text{SO}( n) $. Let $ a_i,b_i$ denotes the entries of $ A_1$ and $ B_1$ respectively. Then by matching entries, we see that $ [A]=[B]$ if and only if the followings hold:
+\begin{enumerate}[label=(\arabic*)]
+	\item $ a_1b_1 + \cdots + a_n b_n =1 $.
+	\item $ A_1^{T} B_j = 0$ and $ A_i^{T}B_1 =0$ for $ i,j \neq 1$.
+	\item $ \overline{A} ^{T} \overline{B}$ is in $ \text{SO}( n) $.
+\end{enumerate}
+But since $ a_1^2+ \cdots + a_n^2 = 1$ and $ b_1^2+ \cdots + b_n^2 = 1$, we have
+\begin{align*}
+	a_1^2 + \cdots + a_n^2 + b_1^2+ \cdots + b_n^2 - 2(a_1b_1 + \cdots a_nb_n) &= 1+1-2 =0 \\
+	(a_1-b_1)^2 + \cdots + (a_n - b_n)^2 &= 0 
+\end{align*}
+Thus we obtain that $ a_i = b_i$, and therefore $ A_1 = B_1$, making the map well-defined.
+
+Surjectivity of $ \phi$ is clear as any unit vector in $ \rr^{n+1}$ can be in the first column of a special orthogonal matrix. Suppose $ A_1 = B_1$, then we use the same trick above to obtain 1. Number 2 follows from definition of orthogonal matrix. Since the first entry of all columns are zeros except for the first column, we see that $ \overline{A}$ can be identified as the $ n \times n$ lower right minor of $ A$ (likewise for $ \overline{B}$ ). Since these columns are orthonormal, both $ \overline{A}$ and $ \overline{B}$ can be identified as elements of $ \text{SO}( n) $. Hence $ A^{T} \in \text{SO}( n) $ and therefore $ A^{T} B \in \text{SO}( n) $. Hence we show that $ A,B$ satisfy all three conditions, so  $ [A] = [B]$, proving injectivity. Thus  $ \phi$ is a well-defined bijection.
+
+\end{problem}
+\begin{problem}[6]
+\begin{enumerate}[label=(\arabic*)]
+	\item Suppose $ E \xrightarrow{ p} B $ is a bundle with fiber $ F$, we want to show that given a map $ A \xrightarrow{ f} B $, $ f^* E \xrightarrow{ \pi_1} A$ is a bundle with fiber $ F$, where $ \pi_1$ is projection onto 1st factor.
+
+		Given $ a \in A$, we wish to find a neighborhood of $ a$ with trivial localization. Consider  $ b = f(a) \in B$. Then there exists a neighborhood $ U$ of  $ b$  s.t.\ $ p ^{-1}(U) \xrightarrow{ \phi} U \times F$ is an homeomorphism. Notice $ f^{-1}(U)$ is an open neighborhood of $ a$. I claim that  $ \psi: \pi_1(f^{-1}(U)) \to f^{-1}(U) \times F, (a,e) \mapsto (a, p_2 \circ \phi(e))$ is a homeomorphism with inverse $ \psi ^{-1}: f^{-1}(U) \times F \to \pi_1 ^{-1}(f^{-1}(U)), (a,x) \mapsto (a, \phi ^{-1}(f(a),x)))$. Continuity of both maps is clear. Let's check bijectivity:
+\begin{align*}
+	\psi ^{-1} \circ \psi(a,e) &= \psi ^{-1}(a,p_2 \circ \phi(e)) \\
+	&= (a, \phi ^{-1}(f(a),p_2 \circ \phi(e))) \\
+	&= (a, \phi ^{-1}(p(e), p_2 \circ \phi(e))) \\
+	&= (a, \phi ^{-1}(p_1 \circ \phi(e), p_2 \circ \phi(e))) \\
+	&= (a,e) 
+\end{align*}
+The other direction is similar. Hence $ f^* E \xrightarrow{ \pi_1}A $ is also a bundle with fiber $ F$.
+\item If  $ f$ is the inclusion map, then  $ f^* E = \{(a,e): p(e) = a\}$. Since $ E|_A:= p ^{-1}(A) = \{e \in E: p(e) \in A\}$. We see that $ \pi_2: f^* E \to E|_A, (a,e) \mapsto e$ and $\pi_2 ^{-1}:E|_A \to f^* E, e \mapsto (p(e),e)$ are inverses and clearly continuous. Hence $ f^* E \cong E|_A$.
+\item It is easy to see $ \pi_2: f^* E \to E$ is a bundle map by part 1.
+\item If $ f: A \to B, a \mapsto b_0$ is the constant map, then $ f^* E = \{(a,e): p(e) = b_0\}= \{(a,e): e \in p ^{-1}(b_0)\} = A \times p ^{-1}(b_0) = \pi_1^{-1}(A)$. Since $ (f^* E,A,F, \pi_1)$ is a bundle, it has local trivialization around $ f^{-1}(U)$ where $ U$ is the neighborhood of  $ b_0$ from part 1. But $ f^{-1}(U) = A$. Hence $f^* E = \pi_1^{-1}(A) \cong A \times F$ by part 1.
+\item Since $ E =B \times F$ is the trivial bundle, we can take $ B$ to be the neighborhood  $ U$ from part 1. Hence  $\pi_1^{-1}(f^{-1}(B)) = \pi_1^{-1}(A) =f^* E \cong A \times F$.
+\end{enumerate}
+\end{problem}
+
+\begin{problem}[7]
+\begin{enumerate}[label=(\arabic*)]
+	\item Show that if $ B$ is covered by open sets  $ \{U_{ \alpha}\} $ and we have $ \tau_{ \alpha \beta}: (U_{ \alpha} \cap U_{ \beta}) \to \text{Homeo}(F)$, then there exists a bundle $ E$ over  $ B$ realizing this data as transition maps.
+
+		Define  $ E = \bigsqcup_{ \alpha}U_{ \alpha} \times F / \sim$ where $ U_{ \alpha} \times F \ni (x,y) \sim (x',y') \in U_{ \beta} \times F$ iff $ x=x'$ and  $ \tau_{ \beta \alpha}y=y'$. Let $ p: E \to B$ be projection onto first coordinate. This is well-defined since the first coordinate is unique in each equivalence class. Then given $ x \in B$, it is in some $ U_{ \alpha}$, and $ p^{-1}(U_{ \alpha}) = \{[(x',y)] \in E: x' \in U_{ \alpha}\} = U_{ \alpha} \times F / \sim $. But since $ U_{ \alpha} \times F \ni (x,y) \sim (x',y') \in U_{ \alpha} \times F$ iff $ x=x'$ and  $ \tau_{ \alpha \alpha}(x) y = \text{id}_{ F}(y) = y = y'$, we see that $ U_{ \alpha} \times F /\sim \ \cong U_{ \alpha} \times F$ by $ \phi_{ \alpha}$ mapping any equivalence class to its unique representative in $ U_{ \alpha} \times F$. Hence we have local trivialization at $ U_{ \alpha}$. Thus $ E$ is a bundle over  $ B$.
+
+		Notice $ \phi_{ \beta} \circ \phi_{ \alpha}^{-1}: (U_{ \alpha} \cap U_{ \beta}) \times F \to (U_{ \alpha} \cap U_{ \beta}) \times F$ is exactly mapping the representative of an equivalence class in $ U_{ \alpha} \times F $ to its representative in $ U_{ \beta} \times F$. Then we immediately see from the definition of $ \sim$ that the map is $ (x,y) \mapsto (x, \tau_{ \beta \alpha}(x)y)$.
+	\item Show that $ P_E$ is a principal  $ G$-bundle.
+
+Define a right action of  $ G$ on  $ P_E$ by 
+ \begin{align*}
+	 [(x,g)].\widetilde{ g} = [(x, g \widetilde{ g})].
+\end{align*}
+First we show it is well-defined. Given representatives $(x,g) \in U_{ \alpha} \times G, (x,g') \in U_{ \beta} \times G$ where  $ \tau_{ \beta \alpha}(x)g=g'$, clearly $ \tau_{ \beta \alpha}(x) (g) = g' \widetilde{ g}$ so $ (x,g \widetilde{ g}) \sim (x, g' \widetilde{ g})$. Next we show it preserves fibers. Given $ x \in B$, let $ \pi: P_E \to B$ be projection to 1st factor. Then $ \pi ^{-1}(x) = \{[(x,g)]: g \in G\} = \{x\} \times G /\sim  $. Since $ G$ acts trivially on the first factor and the action is well-defined on the second factor, it clearly preserves the fiber. Moreover, right multiplication is transitive so given  $ [(x,g)]$ and  $ [(x,g')]$, we see that $ \widetilde{ g}=g^{-1}g'$ would do the job. Finally, given $ [(x,g)] \in \{x\} \times G / \sim \subseteq U_{ \alpha} \times G /\sim $ for some $ \alpha$, suppose $ [(x,g)].\widetilde{ g} = [(x,g\widetilde{ g})] = [(x,g)]$. Then
+\begin{align*}
+	\tau_{ \alpha \alpha}(g) &= g \widetilde{ g} \\
+	\text{id}_{ G} (g)&= g \widetilde{ g} \\
+	g &= g \widetilde{ g} \\
+	e_G &= \widetilde{ g} 
+\end{align*}
+Hence the action is free. Thus $ P_E$ is a principal  $ G$-bundle.
+
+\end{enumerate}
+\end{problem}
+
+\begin{problem}[8]
+	\begin{enumerate}[label=(\arabic*)]
+		\item A principal $ G$-bundle is trivial iff it admits a section.
+
+ $ (\implies):$ Suppose $ P = B \times G$. Then the inclusion map $ i: B \to B \times G, b \mapsto (b,1_G)$ is a section where $ p \circ s= \text{id}_{ B}$.
+ 
+ $ (\impliedby):$ Suppose $ P$ is a principal  $ G$-bundle and admits a section  $ s: B \to P$ s.t.\ $ p \circ s = \text{id}_{ B}$. Then I claim that $ \phi: B \times G \to P, (b,g) \mapsto s(b).g$ and $ \phi ^{-1}: P \to B \times G, e \mapsto (p(e), g)$ where $ g=(\pi_2 (s \circ p(e)))^{-1} \pi_2(e)$ ( \emph{i.e.} $ s \circ p(e).g =e$) are well-defined inverses and are continuous.
+
+ First, $ s(b) \in p^{-1}(b)$ as $ p(s(b)) = b$. Since the action preserves fiber, $ s(b).g \in p^{-1}(b)$ so $ p (s(b).g) =b$. Since $e, s \circ p(e) \in p^{-1}(p(e))$, and the action is transitive on $ p^{-1}(p(e))$, there exists a  $ g \in G$ s.t.\ $ s \circ p(e).g = e$.
+\begin{align*}
+	\phi ^{-1} \circ \phi(b,g) &=\phi ^{-1} (s(b).g) \\
+	&= (p(s(b).g), g')\\
+	&= (b,g') 
+\end{align*}
+where $ s ( p(s(b).g)).g' = s(b).g'= s(b).g$. Since the action is free on $ p^{-1}(b)$, we have $ g'=g$. It follows that $ \phi ^{-1} \circ \phi = \text{id}_{ B \times G}$. The other direction is similar. Since $ s$ is continuous and $ G$ is a topological group of homeomorphisms ( \emph{i.e.} group operation and inversion are continuous),  $ \phi$ and $ \phi ^{-1}$ are continuous. 
+\item If $ E$ is a vector bundle, show that sections of  $ E$ is the same as  $ \text{GL}_{ n}(\rr) $-equivariant maps $ v: \mathcal{ F}(E) \to \rr^{n}$, \emph{i.e.} $ v(y.g) = g^{-1}(v(y))$.
+
+	Given $ s : B \to E$ and $ y \in E$ which is a point $ x \in B$ with a full-rank matrix or $ n$-frame attached. Define $ v(y) = s(p(y))$, which is a vector in $ \rr^{n}$ attached to $ x$ expressed under the $ n$-frame basis, so that $ v: \mathcal{ F}(E) \to \rr^{n}$. Then we see that  $ y.g$ is simply changing the  $ n$-frame to a new one by multiplying $ g$ on the right, then the coordinates of $ v(y)$ under this new basis must change contravariantly,  \emph{i.e.} $ v(y).g = g^{-1}(v(y))$. This is exactly $ v(y.g) = g^{-1}(v(y))$.
+
+	Given a $ \text{GL}_{ n}(\rr) $-equivariant map $ v: \mathcal{ F}(E) \to \rr^{n}$ where $ v(y.g) = g^{-1}(v(y))$. We wish to define a section $ s: B \to E$, \emph{i.e.} $ p \circ s = \text{id}_{ B}$. 
+
+	I claim that $ E \cong \mathcal{ F}(E) \times \rr^{n} /G$, where $ G$ acts on the product componentiwse as above. First notice given any $ x \in B$, $ \pi ^{-1}(x) / G$ has a single orbit since $ G$ acts  transitively on the fiber. Let $ \phi: E \to  \mathcal{ F}(E) \times \rr^{n} / G, (x,a) \mapsto ([r],v([r]))$, where $ r$ is any representative of the single equivalence class $ \pi ^{-1}(p(e)) / G$. Since $ v$ is  $ G$-equivariant,  $ v$ is well-defined on $ \pi ^{-1}(x) /G$. Also define $ \phi ^{-1}: \mathcal{ F}(E) \times \rr^{n} / G \to E, [([x,g],a)] \mapsto (x,ga)$. This is well-defined because for another representative $([x,g],a).g' = ([x,g].g',a.g') = ([x,gg'],g^{-1}'a)$, it is sent to $(x,gg' g'^{-1}a  ) = (x,ga)$ (the inner equivalence class has a unique representative in the fiber). We can check that they are indeed inverses. Given $ e=(x,a) \in E$, let $ r=(x,g') \in \pi ^{-1}(x)$. Then $ r.g'^{-1} = (x,g'g^{-1})=(x,e_G) \in [r]$. Hence we can always use $ (x,e_G)$ as the representative for  $ [r]$. Since $ v(r)$ and  $ a$ are both vectors of  $ \rr^{n}$, there exists an invertible matrix $ g \in G$ s.t.\ $ ga = v(r)$ or $ a=g^{-1}v(r)$. Now we have
+	\begin{align*}
+		\phi ^{-1} \circ \phi(x,a) &= \phi ^{-1} ([r],v([r])\\
+					 &= (x,e_G v([r])) \\
+					 &= (x,v([r.g]) \\
+					 &= (x,g^{-1}v([r]) \\
+					 &= (x,a)
+	\end{align*}
+
+	This way, we simply define  $ s: B \to E, x \mapsto \phi ^{-1} ([x,g],a)$ where we pick any $ g \in G$, $ a \in \rr^{n}$. Then
+	\begin{align*}
+		p \circ s(x) &= p \circ \phi ^{-1}([x,g],a) \\
+		&= p(x,ga) \\
+		&= x 
+	\end{align*}
+So $ s$ is indeed a section.
+\end{enumerate}
+\end{problem}
+
+\end{document}

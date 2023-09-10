@@ -1,0 +1,94 @@
+\documentclass[12pt]{article}
+\input{../preamble.tex}
+
+\begin{document}
+\centerline {\textsf{\textbf{\LARGE{Homework 1}}}}
+\centerline {Jaden Wang}
+\vspace{.15in}
+
+\begin{problem}[1]
+Show that the mapping cylinder $ C_f \simeq Y$.
+\end{problem}
+\begin{proof}
+	We wish to find a homotopy equivalence. Note that any equivalent class in $ C_f$ has a single element except for $ [(x,0)] = [f(x)]$, so we just implicitly treat it as a single element. Define $ \phi: C_f \to Y$ as the following: crush any $ (x,t) \in X \times I$ to $(x,0)$ and then project to its equivalent class $ [(x,0)]$. Since $ (x,0) \sim f(x)$, there is a unique element $ f(x) \in Y$ in this equivalence class so we let $ \phi$ map $ [f(x)]$ to $ f(x)$; for any $ y \in Y$, each equivalence class $ [y]$ has a single element so $ [y]\mapsto y$ is well-defined and agrees with the other definition on the intersection. Define $ \iota:Y \to C_f, y \mapsto [y]$. We see that given $ (x,t) \in X \times I$,
+	\begin{align*}
+		\iota \circ \phi([x,t]) &= \iota(f(x)) \\
+				       &= [f(x)] \\
+				       &= [(x,0)] \\
+				       &= \text{id}_{ X} \times e_0 ([x,t]) \\
+		\iota \circ \phi([y]) &= \iota(y) = [y] = \text{ id}_{ C_f}|_{Y}
+\end{align*}
+Since $ I$ is contractible, there exists a homotopy $ G$ s.t.\ $ \text{id}_{C_f }|_{X \times I}= \text{id}_{ X} \times \text{id}_{ I} \simeq \text{id}_{ X} \times e_0$. By the pasting lemma, we can paste $ G$ with the constant homotopy on  $ \text{id}_{ C_f}|_{Y}$ to get a homotopy between  $ \text{id}_{ C_f}$ and $ \iota \circ \phi$. Given $ y \in Y$, we have
+\begin{align*}
+		\phi \circ \iota (y) &= \phi([y]) \\
+		&= y \\
+		&= \text{ id}_{ Y}(y) 
+	\end{align*}
+Thus $ \phi, \iota$ yields a homotopy equivalence and $ C_f \simeq Y$.
+\end{proof}
+Moreover, let $ j$ be the injection  $ X \to C_f, x \mapsto (x,1)$. Show that $ j \simeq \iota \circ f$.
+\begin{proof}
+	Given $ x \in X$, $ \iota \circ f:x \mapsto [(x,0)]$ which is an injection from $ X$ to  $ C_f$ as well. Clearly the identity homotopy $ (x,t) \mapsto (x,t)$ is a homotopy between the two injections so $ j \simeq \iota \circ f$.
+\end{proof}
+\begin{problem}[2]
+Show that
+	\begin{align*}
+	\phi:	[X,Y]_0 \times [X,Y]_0 \to [X, Y\times Y]_0, ([f],[g]) \mapsto [f \times g].
+	\end{align*}
+	is well-defined and a bijection. 
+\end{problem}
+
+
+Surjectivity is clear. Well-definedness and injectivity follows immediately from the following claim:
+
+\begin{claim}
+$ (f_1,g_1) \sim (f_2,g_2) \iff f_1\times g_1 \sim' f_2 \times g_2$.
+\end{claim}
+\begin{proof}
+$ (\implies):$ this direction shows well-definedness. The equivalence relation $(f_1,g_1) \sim (f_2,g_2)$ is defined as $ f_1 \sim f_2$, $g_1 \sim g_2$, so let the respective homotopies be $ H_1$ and $ H_2$. Then by mapping into product, we obtain a continuous function $ H: X \times I \to Y \times Y$. It's clear that $ H$ is a homotopy between  $ f_1 \times g_1 $ and $ f_2 \times g_2$.
+
+$ (\impliedby):$ this direction shows injectivity. Suppose $ f_1 \times g_1 \sim' f_2 \times g_2$, \emph{i.e.}  $ [f_1 \times g_1] = [f_2 \times g_2]$, then we have a homotopy $ H: X \times I \to Y \times Y$. Composing $ H$ with the projection functions  $ \pi_1$ and $ \pi_2$ clearly yield homotopies between $ f_1$ and $ f_2$, $ g_1$ and $ g_2$. Thus $ [(f_1,g_1)] = [(f_2,g_2)]$.
+
+\end{proof}
+
+\begin{problem}[3]
+\begin{lem}
+For any pointed $ (Y,y_0)$, its suspension $ \sum Y$ is an  H'-space.
+\end{lem}
+\end{problem}
+\begin{proof}
+	Define $ \mu: \Sigma Y \to \Sigma Y \vee \Sigma Y$ by collapsing $ Y \times \{\frac{1}{2}\} $ in $ \Sigma Y$. Then $ p_1 \circ \mu \simeq \text{id}_{ \Sigma Y}$ because we can use straight-line homotopy on $ Y \times I$ to move $ Y \times [\frac{1}{2},1]$ to $ Y \times \{1\} $ and then collapse it to a point. Likewise for $ p_2 \circ \mu$.
+
+	Similarly, for $ (\mu \vee \text{id}_{ \Sigma Y}) \circ \mu \simeq ( \text{id}_{ \Sigma Y} \vee \mu) \circ \mu$, one collapses $ Y \times  \{\frac{1}{2}\} $ and $ Y \times \{\frac{1}{4}\} $, the other collapses $ Y \times \{\frac{1}{2}\} $ and $ Y \times \{\frac{3}{4}\} $. Straight-line homotopy moving $Y \times  \{\frac{1}{2}\}$ to $Y \times  \{\frac{3}{4}\}$ and moving $Y \times  \{\frac{1}{4}\}$ to $Y \times  \{\frac{1}{2}\}$ would do.
+
+Define $ \nu: \Sigma Y \to \Sigma Y, (y,t)\mapsto (y,1-t)$. Then $f:= (\text{id}_{ \Sigma Y} \vee \nu) \circ \mu \simeq e_0$ where $ e_0: \Sigma  Y \to \Sigma  Y, (y,t) \mapsto \{y_0\} \times I \cup Y \times \{0,1\} $. This is because fixing any $ y$, we see that  $ \nu$ forces $ \{y\}  \times I$ in the cylinder to have $ f(y,0) = f(y,1)$. That is, $ f( \{y\} \times I )$ yields a loop which we can continuously shrink to a constant loop. This allows it to remain in the base $ Y \times \{0\} $ which we then collapse to the base point, yielding the constant map.
+
+\end{proof}
+\begin{problem}[4]
+Compact-open topology:
+\begin{enumerate}[label=(\arabic*)]
+	\item This is skipped as it is not necessary for the proof of lemma.
+
+	\item 
+
+	$ (\implies):$ Suppose $ f: X \times Y \to Z$ is continuous. We wish to use the local continuity definition to show that $ F:X \to C^{0}(X,Y)$ is also continuous. Given $ x \in X$, take a neighborhood of $ f_x$ WLOG we use a subbasis element $ S(C_x,U_x)$ around $ f_x$ instead for convenience, where $ C_x$ is compact in  $ Y$ and  $ U_x$ is open in  $ Z$. Then $ f^{-1}(U_x)$ is an open set in $ X \times Y$ so it is also open in $ X \times C_x$. Since $ f_x(C_x) \subseteq U_x$, $ \{x\} \times C_x \in f^{-1}(U_x) \cap (X \times C_x)$, by the tube lemma, there exists a neighborhood $ W$ of  $ X$  s.t.\ $ \{x\} \times C_x \subseteq W \times C_x \subseteq f^{-1}(U_x) \cap (X \times C_x) $. Then we see that
+	\begin{align*}
+		F(W) &= \{f_w: w \in W| f_w(C_x) \subseteq U_x\}  \\
+		& \subseteq S(C_x,U_x)   
+	\end{align*}
+	Hence $ F$ is continuous.
+
+	$ (\impliedby):$ Suppose $ F$ is continuous and $ Y$ is locally-compact Hausdorff. Take  $ (x,y) \in X \times Y$ and let $ U$ be a neighborhood of  $ f(x,y)$ in  $ Z$. We wish to find a neighborhood $ W$ of  $ (x,y)$ s.t.\ $ f(W) \subseteq U$. First let $ U_y$ be any neighborhood around $ y$. Since  $ Y$ is locally compact Hausdorff, by Theorem 29.2 of Munkres, $ U_y$ admits an neighborhood  $ V_y$ around  $ y$  s.t.\ $C_y := \overline{V_y} \subseteq U_y$ and is compact. Since $ F$ is continuous,  $ F^{-1}(S(C_y,U))$ is open in $ X$. Then define $ W:= F^{-1}(S(C_y,U)) \times V_y $ which is a product of open sets so it is open in $ X \times Y$. Then
+	\begin{align*}
+		f(W) &= \{f(a,b) : (a,b) \in W\}  \\
+		&= \{f(a,b): (a,b) \in F^{-1}(S(C_y,U)) \times V_y \}  \\
+		&= \{f(a,b):f_a(C_y) \subseteq U, b \in V_y\}  \\
+		&\subseteq U && V_y \subseteq C_y
+	\end{align*}
+	So $ f$ is continuous.
+\item By part 2 and 3, both maps in the lemma are well-defined. The bijection follows easily.
+\end{enumerate}
+\end{problem}
+
+
+\end{document}

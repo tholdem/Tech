@@ -1,0 +1,86 @@
+\documentclass[12pt,class=article,crop=false]{standalone} 
+\input{../preamble.tex}
+
+\begin{document}
+\section{Structure gorups of fiber bundles}
+Given a local trivial fibration Diagram.
+\begin{align*}
+	\phi_2 \circ \phi_1 ^{-1} : (U_1 \cap U_2) \times F \to (U_1 \cap U_2) \times F, (x,y) \to (x,\tau_{21}(x)(y))
+\end{align*}
+where $ \tau_{21}:(U_1 \cap U_2) \to \text{Homeo}(F)$ (compact-open), which is called a \allbold{transition (or clutching) function}.
+
+\begin{remark}
+If $ \{(U_{ \alpha}, \phi_{ \alpha})\} $ is a collection of local trivializations s.t.\ $ B = \bigcup_{ \alpha} U_{ \alpha} $. Then the transition maps satisfy $ (*)$:
+\begin{align*}
+	\tau_{ \alpha \alpha}(x) &= \text{id}_{ F}\\
+	(\tau_{ \alpha \beta(x)})^{-1}&= \tau_{ \beta \alpha}(x) \\
+	\tau_{ \gamma \beta}(x) \circ \tau_{ \beta \alpha}(x) &= \tau_{ \gamma \alpha}(x)
+\end{align*}
+Exercise: show that if $ \{U_{ \alpha}\} $ is a cover of $ B$ by open sets and  $ \tau_{ \alpha \beta}:(U_{ \alpha} \cap U_{ \beta}) \to \text{Homeo}(F) $ are maps satisfying $ (*)$, then there exists a bundle  $ E$ over  $ B$ realizing this data as transition maps.
+
+Hint: let $ E = \bigsqcup_{ U_{ \alpha} \times F} / \sim$ where $ (x,y) \in U_{ \alpha} \times F \sim (x',y') \in U_{ \beta}\times F \iff x=x'$ and $ \tau_{ \beta \alpha}(x)(y)=y'$. There is an obvious projection $ p: E \to B$. Prove this is a bundle. 
+\end{remark}
+
+Exercise: find the transition maps for Diagram.
+
+ \begin{defn}
+Suppose $ G \subseteq \text{Homeo}(F) $ is a topological group. If diagram has a collection of transition functions
+\begin{align*}
+	\tau_{ \alpha \beta}: U_{ \alpha} \cap U_{ \beta} \to G,
+\end{align*}
+then we say $ E$ has  \allbold{structure group} $ G$. 
+
+If the transition functions do not map into $ G$ but can be homtoped through functions satisfying  $ (*)$ to one with image in  $ G$, then we say the structure group of  $ E$  \allbold{reduces} to $ G$. 
+\end{defn}
+
+\begin{remark}
+If $ G$ preserves some structure on $ F$, then the fibers of  $ p:E \to B$ will have this structure.
+\end{remark}
+\begin{eg}
+\begin{enumerate}[label=(\arabic*)]
+	\item If $ F = \rr^{n}$ and $ G= \text{GL}_{ n}( R) \subseteq  \text{Homeo}( \rr^{n}) $, then each fiber of a bundle with structure group $ G$ has a linear structure.
+	\item If  $ F = \rr^{n}$ and $ G = \text{GL}_{ n}^{+}(\rr) $, then fibers of $ F$ are oriented vector spaces so  $ E$ is an  \allbold{oriented vector bundle}.
+	\item If $ F = \rr^{n}$ and $ G = O(n)$. Then  $ E$ is a vector bundle with a metric (inner product). Note  $ O(n) \to \text{GL}_{ n}(\rr) $ (inclusion) is a homotopy equivalence. Hence all vector bundles admit metrics.
+	\item If $ F = \rr^{2n} = \cc^{n}$, then $ G = \text{GL}_{ n}( \cc) \iff E$ has a complex structure. $ G = U(n) \iff E$ has a Hermitian structure.
+	\item If $ F = \rr^{n}$ and $ G= \text{GL}_{k}( \rr) \times \text{GL}_{n-k}(\rr) \subseteq \text{GL}_{ n}( \rr) ,(A,B) \mapsto \begin{pmatrix} A&0\\0&B \end{pmatrix}  $, then $ E$ has a  $ G$-structure  $ \iff E \cong E_1 \oplus E_2$ where $ E_1$ is an $ \rr^{k}$-bundle, $ E_2$ is an $ \rr^{n-k}$-bundle. Similarly of $ G = \text{GL}_{n-k}(\rr) \subseteq \text{GL}_{ n}(\rr) $, then $ E$ has a  $ G$-structure  $ \iff E \cong E^{1} \oplus \rr^{k}$ where $ E^{1}$ is an $ \rr^{n-k}$-bundle.
+\end{enumerate}
+\end{eg}
+
+Question: when can we reduce the structure group?
+
+\begin{defn}
+If $ G$ is a Lie group (topological group), then a bundle  diagram is a  \allbold{principal $ G$-bundle} if there exists a smooth (or continuous) right $ G$-action  $ P \times G \to P$  s.t.\ 
+\begin{enumerate}[label=(\arabic*)]
+	\item action preserves fibers, \emph{i.e.} $ y \in p ^{-1}(x) \implies y . g \in p ^{-1}(x) \ \forall \ x,y,g$.
+	\item $ G$ acts freely and transitively on  $ p ^{-1}(x) \ \forall \ x$.
+\end{enumerate}
+\end{defn}
+\begin{remark}
+This can also be defined as a smooth manifold $ P$ with a smooth right  $ G$-action that is free and proper, \emph{i.e.} for the map $ P \times G \to P \times P, (p,g) \mapsto (p.g,p)$ preimages of compact sets are compact.
+\end{remark}
+
+\begin{eg}
+\begin{enumerate}[label=(\arabic*)]
+	\item If $ (E,B,F,p)$ is a bundle with structure group  $ G$, then there is a cover of  $ B$ by local trivialization  $ \{(U_{ \alpha}, \phi_{ \alpha}\} $ with transition functions $ \tau_{ \alpha \beta} : (U_{ \alpha} \cap U_{ \beta}) \to G$ we can construct a principal $ G$-bundle as follows
+		 \begin{align*}
+			P_E = \bigsqcup_{ \alpha} U_{ \alpha} \times G / \sim
+		\end{align*}
+		when $ (x,g) \in U_{ \alpha} \sim (x',g') \in U_{ \beta} \times G \iff x=x'$ and $ \tau_{ \beta \alpha}(x) g= g'$. Exercise: show this is a principal $ G$-bundle.
+
+		If $ E$ is a vector bundle then  $ P_E$ is a principal  $ \text{GL}_{ n}( \rr) $-bundle. It is called the \allbold{frame bundle} because you can think of points in the fibers of $ P_E$ as frames for the fibers of  $ E$. Exercise: think through this. We denote this $ \mathcal{ F}(E)$. Note $O(n) \simeq \text{GL}_{ n}(\rr) $ so we could take $ \mathcal{ F}(E)$ to be a principal $ O(n)$-bundle.
+	\item diagram is a principal  $ S^{1}$-bundle.
+	\item Regular covering spaces are of a manifold are principal bundles. Exercise: check this and what are fibers? Can an irregular cover be a principal bundle?
+\end{enumerate}
+\end{eg}
+
+Exercise:
+\begin{enumerate}[label=(\arabic*)]
+	\item Show a prinicpal $ G$-bundle is trivial iff it admits a section.
+	\item If  $ E$ is a vector bundle, the sections of  $ E$ are the same as  $ \text{GL}_{ n}(\rr) $-equivariant maps $ v: \mathcal{ F}(E) \to \rr^{n}$, \emph{i.e.} $ v(y.g) = g^{-1} v(y)$. Hint: given $ s: B \to E$ then for each $ y \in \mathcal{ F}(E)$, let $ v(y) = s(p(y))$ expressed in the frame  $ y$. Then $ p: \mathcal{ F}(E) \to B$. This allows us to turn sections into functions which are easier to work with.
+\end{enumerate}
+
+Given $ P \to B$ a principal $ G$-bundle, and  $ \rho: G \to G'$ is a homomorphism, where $ G' \subseteq \text{Homeo}( F) $. Then we can construct an $ F$-bundle with structure group  $ G'$ as follows
+ \begin{align*}
+	P \times _{\rho} F = P \times F / (p.g, f) \sim (p,\rho(g)f)
+\end{align*}
+\end{document}

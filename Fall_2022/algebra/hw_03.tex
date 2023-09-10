@@ -1,0 +1,91 @@
+\documentclass[12pt]{article}
+\input{../preamble.tex}
+
+\begin{document}
+\centerline {\textsf{\textbf{\LARGE{Homework 3}}}}
+\centerline {Jaden Wang}
+\vspace{.15in}
+\begin{problem}[1]
+Since $ G$ acts transitively, the orbit of any  $ a \in A$ is all of $ A$, so  $ |A| = |G:G_a|$. Since  $ |A|>1$, the index of  $ G_a$ is at least 2. Recall that for any $ b=g_b.a$ for some $ g_b \in G$, $ G_b = g_b G_a g_b^{-1}$. Let $S := \bigcup_{ b \in A} g_b G_a g_b ^{-1} \subseteq G$. By exercise 2.1.8, the union of subgroups is a subgroup iff they are contained in one of them. If the union is indeed a subgroup, then $S= G_b$ for some  $ b \in A$. Since the index of $ G_b$ is at least 2, there exists some  $ g \in G \setminus G_b$ which doesn't fix any point by definition of union. If $ S$ is not a subgroup, then since  $ G$ is a group, clearly  $ S \subsetneq G$ so there exists a $ g \in G\setminus S$.
+\end{problem}
+\begin{problem}[2]
+~\begin{enumerate}[label=(\alph*)]
+	\item First we consider all types of symmetries of a cube. As we did in class, there are 24 of them.
+		\begin{table}[H]
+			\centering
+			\caption{Cube}
+			\begin{tabular}{c|c|c|c}
+				type& cycle decomp & \# cycles & elements of this type\\
+				\hline
+				\hline
+				id&(1)(2)(3)(4)(5)(6)(7)(8)&8&1\\
+				\hline
+				90 upright rot & (1234)(5678)&2& 6\\
+				\hline
+				180 upright rot & (13)(24)(57)(68)&4&3 \\
+				\hline
+				120 diag rot & (123)(456)(7)(8)&4&8\\
+				\hline
+				180 semidiag rot & (17)(28)(34)(56)&4&6
+			\end{tabular}
+		\end{table}
+		So by Burnside, the total distinct ways are
+		\begin{align*}
+			\frac{1}{24}(k^{8}+6k^2 + 3 k^{4}+8k^{4}+6k^{4}) = \frac{1}{24} (k^{8}+ 17k^{4}+6k^2)
+		\end{align*}
+	\item 
+		\begin{table}[H]
+			\centering
+			\caption{Tetrahedron}
+			\begin{tabular}{c|c|c|c}
+				type& cycle decomp & \# cycles & elements of this type\\
+				\hline
+				\hline
+				id&(1)(2)(3)(4)&4&1\\
+				\hline
+				120 upright rot & (123)(4)&2& 8\\
+				\hline
+				grand rot & (12)(34)&2& 3\\
+			\end{tabular}
+		\end{table}
+		So total distinct ways are
+		\begin{align*}
+			\frac{1}{12} (k^{4}+11k^{2})
+		\end{align*}
+\end{enumerate}
+\end{problem}
+\begin{problem}[3]
+Consider $ S_n$ acting on itself by conjugation. Notice that two elements $ \sigma, \tau$ commute iff $ \sigma \tau \sigma^{-1} = \tau$, that is, $ \tau$ is a fix point of the action of $ \sigma$ by conjugation. Therefore, the number of fixed points of $ \sigma$ action is the same as the number of elements commuting with $ \sigma$. By Burnside lemma,
+\begin{align*}
+	\# \mathcal{ O} = \frac{1}{|S_n|} \sum_{ \sigma \in S_n} f( \sigma)
+\end{align*}
+But since conjugacy classes of $ S_n$ are simply distinct cycle types, $ | \mathcal{ O}| = p(n)$. Also notice that the probability $ p_ \sigma$ of fixing an  $ \sigma$ and picking another element commuting with it is precisely $ \frac{ f(\sigma)}{|S_n|}$. Since we assume naive probability for picking elements, the probability for picking two such elements is just the average probability of fixing one and picking another. That is, 
+\begin{align*}
+p = \frac{1}{|S_n|} \sum_{ \sigma \in S_n} p_ \sigma = \frac{1}{n!} \sum_{ \sigma \in S_n} \frac{f( \sigma)}{|G| } = \frac{p(n)}{ n!}.
+\end{align*}
+\end{problem}
+
+\begin{problem}[4]
+If $ H \trianglelefteq G$, then $ gHg^{-1} = H \ \forall \ g \in G$ so $ n_H =1$. Otherwise,  $ G$ acts on  $ H$ by conjugation and $n_H = | \mathcal{ O}| = |G: G_H|$. Notice that for any $ h \in H$, $ hHh^{-1} = H$, so $ H \leq G_H$. Therefore,  $n_H= |G:G_H|$ divides  $ |G:H| = p$ so it is 1 or  $ p$. But if $ n_H = 1$,  $ gHg^{-1} = H \ \forall \ g \in G$ which shows that $ H$ is normal, a contradiction. So it must be that  $ n_H = p$.
+\end{problem}
+\begin{problem}[5]
+~\begin{enumerate}[label=(\alph*)]
+	\item First $ |S_5| =5!= 120 = 2^3 \cdot 3 \cdot 5$. So the Sylow 2-subgroups are conjugates of order 8. By Sylow, $ n_2 $ divides $ 15$. We already know that $ S_4$ has three distinct copies of $ D_8$ and there are $ \binom{5}{4} =5$ distinct copies of $ S_4$ in $S_5$. Thus $n_2$ is at least $ 3\times 5 = 15$. Thus it must be 15. (To form $ D_8$ in $ S_4$, we just need to pick any 4-cycle as the rotation. The reflection comes from one of the transposition in the square of this 4-cycle which is a double transposition. This completely determines $ D_8$. There are $ 3!=6$ distinct 4 cycles in  $ S_4$. Since each $ D_8$ requires two, we have $ 6 /2 = 3$ copies of  $ D_8$ in $ S_4$).
+	\item We know that for the $ S_4$ copy on $ \{1,2,3,4\} $, the $ V_4$ of double transpositions $e, (1,3)(2,4)$ $(1,2)(3,4), (1,4)(2,3)$, a 4 cycle and its inverse $ (1,2,3,4),(1,4,3,2)$, and two single transpositions $ (1,3),(2,4)$. Similarly, $ S_4$ on $ \{1,2,3,5\}$ yields another $ D_8$. We simply conjugate one by $ (4,5)$ to obtain the other.
+\end{enumerate}
+\end{problem}
+
+\begin{problem}[6]
+~\begin{enumerate}[label=(\alph*)]
+	\item Since $ p$ is an odd prime, any  $ P \in Syl_{ p}( D_{2n}) $ cannot contain any reflection or 2 would divide $ p$ by Lagrange. Therefore, any element in  $ P$ is a power of rotation  $ r$. The smallest such power is clearly a generator of  $ P$ so  $ P$ is cyclic. Since $ r$ commutes with its powers, $ rPr^{-1} = P$. Since $ sr^{i}s = r^{-i}$, $ s$acts on  $ P$ as inversion which is clearly an automorphism so  $ sPs ^{-1} =P$. Since $ r,s$ generates  $ D_{2n}$, we see that $ P \trianglelefteq D_{2n}$.
+	\item Let $ n = 2^{k}m$ so given $ P \in Syl_{ 2}( D_{2n}) $, $ |P| = 2^{k+1}$. Since $ o(r) = n = 2^{k}m$, we see that $ o(r^{m})= 2^{k}$ so $ r^{m}$ must be in some Sylow 2-groups and so does its powers. Moreover, all reflections must also be evenly distributed in Sylow 2-groups FIX: since conjugation preserves cycle type). We see that $ \langle s,r^{m} \rangle$ consists of elements of the form $ s^{i}(r^{m})^{j}$ where $ i=0,1$,  $0 \leq j \leq 2^{k} -1$. That is, the order of the group is $ 2^{k}$ rotations and $ 2^{k}$ reflections with a total order of $ 2^{k+1}$. This is precisely the order of a Sylow 2-subgroup. Thus, each Sylow 2-subgroup contains $ 2^{k}$ reflections, so $ n_2 = 2^{k}m / 2^{k} = m$.
+\end{enumerate}
+\end{problem}
+
+\begin{problem}[7]
+~\begin{enumerate}[label=(\alph*)]
+	\item $ |G|=pqr,p<q<r$. By Sylow,  $ n_r | pq$ and  $ n_r = 1 \bmod r$. Since $p<q<1+kr $ for  $ k >0$,  it must be that  $ n_r = 1$ or  $ pq$. Suppose  $ n_r = pq$. Then by Lagrange we know these prime order groups all intersect trivially so we have $ pq(r-1)$ distinct nontrivial elements from these groups. Now consider  $ n_q |pr$ and  $ n_q = 1 \bmod q$. Again since $ p<1+kq$ for  $ k>0$, $ n_q = 1,r,pr$. Suppose $ n_q = r$. Then we have  $ (q-1)r \geq pr > pq$ additional nontrivial distinct elements. That is, there are  $ pq(r-1)+(q-1)r > pq(r-1) + pq = pqr$ distinct elements from these two Sylow subgroups alone, a contradiction. Hence at least one of them must unique and thus is normal, which implies that  $ G$ is not simple.
+	\item Since at least one of them is normal, if $ R$ is normal we are done. If  $ P \trianglelefteq G$, then $ G /P$ is a quotient group. Let  $ \overline{S} \in Syl_{ r}( G /P)$. Then $ \overline{n}_r = 1$ or $ p$ and  $ \overline{n}_r = 1 \bmod r$. Since $ p \neq 1 \bmod r$ as $ p<r$, we have  $ \overline{n}_r = 1$ so $ \overline{S} \trianglelefteq G/P$. By the 4th isomorphism theorem, there exists a corresponding subgroup $ S \trianglelefteq G$ s.t.\ $ S / P = \overline{S}$. We see that $ |S| = |\overline{S}||P| = pr$. Therefore, $P \leq S $ and there exists an $ R \in Syl_{ r}( G) $ s.t.\  $ R \leq S$. Since $ P \trianglelefteq G$, $ PR$ is a subgroup and $ PR \leq S$. Since $ P \cap R = \{e\} $, by prime and Lagrange $ |PR| = pr / 1 = pr = |S|$ so $ PR = S$ and thus $ PR \trianglelefteq G$. Now, let $ n_r'$ be the number of Sylow $ r$-subgroups in $ PR$. Then $ n_r'= 1$ or $ p$ and $ n_r' = 1 \bmod r$ so $ p<r$ forces $ n_r'=1$. That is, $ R$ is the unique subgroup of order $ r$ of  $ PR$ and therefore characteristic in $ PR$. By ``transitivity'' of characteristic subgroups of a normal subgroup, $ R \trianglelefteq G$ as desired. The case when $ Q \trianglelefteq G$ is similar.
+\end{enumerate}
+\end{problem}
+\end{document}

@@ -1,0 +1,265 @@
+\documentclass[12pt,class=article,crop=false]{standalone} 
+\input{./preamble.tex}
+
+\begin{document}
+\section{Serre fibration}
+\begin{defn}
+A continuous map $ p: E \to B$ is called a \allbold{fibration} (or a \allbold{Serre fibration}) if it has the homotopy lifting property (HLP). That is, given a function $ \widetilde{ g}: Y \to E$ and a homotopy $ G: Y \times I \to B$ of $ p \circ \widetilde{ g}$. Then there exists a homotopy $ \widetilde{ G}: Y \times I \to E$ s.t.\ $ p \circ \widetilde{ G} = G$. In other words, the following diagram commutes:
+% https://q.uiver.app/?q=WzAsNCxbMSwwLCJFIl0sWzEsMSwiQiJdLFswLDEsIlkgXFx0aW1lcyBJIl0sWzAsMCwiWSBcXHRpbWVzIFxcezBcXH0iXSxbMCwxLCJwIl0sWzIsMCwiXFx0aWxkZXtHfSIsMix7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dLFsyLDEsIkciLDJdLFszLDAsIlxcdGlsZGV7Z30iXSxbMywyLCIiLDAseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJob29rIiwic2lkZSI6InRvcCJ9fX1dXQ==
+\[\begin{tikzcd}
+	{Y \times \{0\}} & E \\
+	{Y \times I} & B
+	\arrow["p", from=1-2, to=2-2]
+	\arrow["{\tilde{G}}"', dashed, from=2-1, to=1-2]
+	\arrow["G"', from=2-1, to=2-2]
+	\arrow["{\tilde{g}}", from=1-1, to=1-2]
+	\arrow[hook, from=1-1, to=2-1]
+\end{tikzcd}\]  
+\end{defn}
+\begin{remark}
+A locally trivial fibration is a fibration because $ Y \to Y, y\mapsto y$ is a bundle with fiber a point.
+% https://q.uiver.app/?q=WzAsNCxbMCwwLCJFIl0sWzAsMSwiQiJdLFsxLDAsIlkiXSxbMSwxLCJZIl0sWzAsMiwiXFx0aWxkZXtofV8wIl0sWzIsMywiXFx0ZXh0e2lkfV9ZIl0sWzAsMSwicCIsMl0sWzEsMywiaF8wIl1d
+\[\begin{tikzcd}
+	E & Y \\
+	B & Y
+	\arrow["{\tilde{h}_0}", from=1-1, to=1-2]
+	\arrow["{\text{id}_Y}", from=1-2, to=2-2]
+	\arrow["p"', from=1-1, to=2-1]
+	\arrow["{h_0}", from=2-1, to=2-2]
+\end{tikzcd}\]
+So we get a homotopy lifting by Theorem 2.
+\end{remark}
+
+\begin{thm}
+If $ p: E \to B$ is a Serre fibration, and $ x_0,x_1 \in B$ are in the same path component, then $ p^{-1}(x_0) \simeq p ^{-1}(x_1)$.
+\end{thm}
+\begin{proof}
+Let $ F_i= p ^{-1}(x_i)$ and $ \gamma$ a path from $ x_0 $ to $ x_1$. Diagram. So HLP gives a homotopy $ A^{ \gamma} : F_0 \times I \to E$ and $ A_1^{ \gamma} : F_0 \to F_1$.
+\begin{claim}
+	If $ \gamma_0 , \gamma_1$ are homotopic rel end points, then $ A^{ \gamma_0}$ and $ A^{ \gamma_1}$ are homotopic and hence $ A_1^{ \gamma_0} \simeq A_1^{ \gamma_1}$. 
+\end{claim}
+
+Let $ H: I \times I \to B$ be homotopy $ \gamma_0$ to $ \gamma_1$. Consider $ \Lambda: F_0 \times I \times I \to B, ( e,s,t)\mapsto H(s,t)$. 
+~\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\textwidth]{./figures/homotopy_claim.png}
+\end{figure}
+
+Define $ F_0 \times I \{0\} = A^{ \gamma_0} $, $ F_0 \times I \times \{1\} = A^{ \gamma_1} $, and $ F_0 \times \{0\} \times I = (e,0,s)\mapsto e $. Let $ C = (I \times \{0,1\} ) \cup (\{0\} \times I) \subseteq I \times I$, there exists a homeo taking $ C$ to  $ I \times \{0\} $.  
+Diagram. Compose with $ \text{id}_{ F_0} \times f^{-1}$ to get $ \widetilde{ \Lambda}$. Diagrams. So $ \widetilde{ \Lambda}$ is a homotopy from $ A^{ \gamma_0}$ to $ A^{ \gamma_1}$. Thus $ \widetilde{ \Lambda}|_{F_0 \times \{1\} \times I}$ is a homotopy $ A_1^{ \gamma_0}$ to $ A_1 ^{ \gamma_1}$.
+
+Now consider $A_1^{ \gamma}, A_1^{ \gamma^{-1}}: F_1 \to F_0$. Note that $ A_1^{ \gamma} \circ A_1^{ \gamma ^{-1}}: F_1 \to F_1$ is a lifting of homotopy $ \gamma * \overline{\gamma} \simeq$ constant path rel end points. Hence
+	\begin{align*}
+		A_1^{ \gamma} \circ A_1^{ \overline{ \gamma}} \simeq \text{id}_{ F_0}.
+	\end{align*}
+	The other direction follows similarly so we prove the theorem.
+\end{proof}
+\begin{remark}
+This theorem says that although the lifted homotopies aren't unique, they are homotopic.
+\end{remark}
+
+\begin{eg}
+Let $ (X,x_0)$ be a based topological space. Set $ P(X) = C((I, \{0\}) , (X,x_0))$ (all paths that starts with $ x_0$ ), often called the \allbold{path space}, and $ p: P(X) \to X, \gamma\mapsto \gamma(1)$. 
+\end{eg}
+\begin{lem}
+In the case above, $p:P(X) \to X$ is a fibration and $ P(X)$ is contractible.
+\end{lem}
+\begin{proof}
+We need to check HLP so the diagram commutes.
+% https://q.uiver.app/?q=WzAsNCxbMSwwLCJQKFgpIl0sWzEsMSwiWCJdLFswLDEsIlkgXFx0aW1lcyBJIl0sWzAsMCwiWSBcXHRpbWVzIFxcezBcXH0iXSxbMCwxLCJwIl0sWzIsMCwiXFx0aWxkZXtGfSIsMix7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dLFsyLDEsIkYiLDJdLFszLDAsImZfMCJdLFszLDIsIiIsMCx7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Imhvb2siLCJzaWRlIjoidG9wIn19fV1d
+\[\begin{tikzcd}
+	{Y \times \{0\}} & {P(X)} \\
+	{Y \times I} & X
+	\arrow["p", from=1-2, to=2-2]
+	\arrow["{\tilde{F}}"', dashed, from=2-1, to=1-2]
+	\arrow["F"', from=2-1, to=2-2]
+	\arrow["{f_0}", from=1-1, to=1-2]
+	\arrow[hook, from=1-1, to=2-1]
+\end{tikzcd}\]
+
+We need to define $ \widetilde{ F}: Y \times I \to P(X)$.
+
+For $ (y,s) \in Y \times I$, 
+\begin{align*}
+\widetilde{ F}(y,s) : I \to X, t \mapsto \begin{cases}
+	f_0(y) \left( \frac{2t}{2-s } \right) & t \in \left[ 0, \frac{2-s}{ 2} \right]\\
+	F(y,2t-2+s) & t \in \left[ \frac{2-s}{ 2} ,1\right] 
+\end{cases}
+\end{align*}
+\begin{enumerate}[label=(\arabic*)]
+	\item Note this path is well-defined:
+\begin{align*}
+	f_0(y) \left( \frac{2(2-s) /2}{2-s } \right) &= f_0(y)(1) \\
+	F(y,2(2-s) /2 -2+s) &= F(y,0)
+\end{align*}
+and since $ p \circ f_0 = F$ they are the same.
+\item $ \widetilde{ F}(y,0) (t) = f_0(y)(t)$.
+\item $ \widetilde{ F}(y,s)(0) = f_0(y)(0) = x_0$.
+\item $ p \circ \widetilde{ F}(y,s) = \widetilde{ F}(y,s)(1) = F(y,s)$. 
+\end{enumerate}
+So $ \widetilde{ F}$ is a lift of $ F$. Now for contractibility, we have
+\begin{align*}
+	H:P(X) \times I \to P(X), (\gamma,s) \mapsto \gamma((1-s)t).
+\end{align*}
+This is a strong deformation retraction to one point.
+\end{proof}
+\begin{remark}
+Since $ p ^{-1}(x_0)$ is all paths that also end with $ x_0$, $ p ^{-1}(x_0) = \Omega(X)$ the loop space. So by Theorem 3, $ p ^{-1}(x) \simeq \Omega(X) \ \forall \ x \in X$ if $ X$ is path-connected. Diagram.
+\end{remark}
+\begin{eg}
+	Given $ f: X \to Y$, we saw earlier that $ f$ is homotopic to an inclusion. Recall if  $ C_f = X\times I \cup Y / (x,0) \sim f(x)$ the mapping cylinder, then $ Y \sim C_f$. And diagram. So up to homotopy we can assume $ X \subseteq Y$. Now let $ E = (C(I, \{0\} ),(Y,X))$ which are all paths in $ Y$ that starts in  $ X$. Let  $ B = C(\{0,1\}, \{0\} ,(Y,X) ) = X \times Y$.
+
+	Exercise: show that $ E \to Y, \gamma \mapsto \gamma(1)$ is a fibration (almost the same as lemma 5). Note $ E \simeq X$ (same as $ P(X)$ contractible). So the diagram holds. Hence  $ f \simeq j \simeq p$ a fibration. Hence we have the slogan:
+	
+	Any map is a fibration upto homotopy.
+\end{eg}
+
+\begin{lem}
+If $ (E,B,F,p)$ is a fibration, then  $ \pi_n(E,F) \cong \pi_n(B)$.
+\end{lem}
+\begin{proof}
+Let $ b_0$ be a base point in $ B$ where  $ F=p ^{-1}(b_0)$ and $ e_0 \in F \subseteq E$. Given $ f:(D^{n}, \partial D^{n}) \to (E,F)$, we have $ p \circ f: (D^{n}, \partial D^{n}) \to (B,b_0)$. So $ p$ induces a map  $ p_*: \pi_n(E,F) \to \pi_n(B)$. Exercise: $ p_*$ is well-defined and a homomorphism.
+ \begin{claim}
+$ p_*$ is surjective.
+\end{claim}
+Given $ g \in \pi_n(B)$, think of $ D^{n} = D^{n-1} \times I$. Define
+\begin{align*}
+	\widetilde{ g}_0: (D^{n-1} \times \{0\} ) \to E, x\mapsto e_0
+\end{align*}
+So $ g$ is a homotopy of  $ p \circ \widetilde{ g}_0$ so HLP implies there exists $ \widetilde{ g}: D^{n-1} \times I \to E$ lifting $ g$. Since  $ p \circ \widetilde{ g}( \partial (D^{n-1} \times I)) = \{b_0\} $, so $ \widetilde{ g}(\partial (D^{n-1} \times I)) \subseteq F = p^{-1}(b_0)$. So $ \widetilde{ g} \in \pi_n(E,F)$. Clearly $ p \circ \widetilde{ g} = g$.
+\begin{claim}
+$ p_*$ is injective.
+\end{claim}
+Suppose $ p_*([f]) =[0] \in \pi_n(B)$, \emph{i.e.} $ p \circ f \simeq$ constant $ b_0$ map. Let $ H:(D^{n}, \partial D^{n}) \times I \to (B,b_0)$ be the homotopy where $ H(x,0)= p \circ f(x)$. So by HLP, there exists $ \widetilde{ H}: (D^{n}, \partial D^{n}) \times I to E$. As previous, $ \widetilde{ H}(\partial D^{n-1}\times I) \subseteq F$ and $ \widetilde{ H}(D^{n} \times \{1\} ) \subseteq F$. So $ \widetilde{ H}$ is a homotopy from $ f$ to a map with image in  $ F$, so  $ [f] = [0] \in \pi_n(E,F)$ by lemma I.16.
+\end{proof}
+
+\begin{coro}
+If $ (E,B,F,p)$ is a fibration, then we get a long exact sequence
+ \begin{align*}
+	\cdots \to \pi_n(F) \xrightarrow{ i_*} \pi_n(E) \xrightarrow{ p_*} \pi_n(B) \xrightarrow{ \partial } \pi_{n-1} (F) \to \cdots   
+\end{align*}
+where $ i$ is inclusion and  $ \pi_n(B) \cong \pi_n(E,F) \xrightarrow{ \partial } \pi_{n-1}(F) $.
+\end{coro}
+\begin{proof}
+Theorem I.17 gives the long exact sequence and we simply replace $ \pi_n(E,F)$ with $ \pi_n(B)$.
+\end{proof}
+
+\begin{coro}
+$ \pi_k(S^{2n+1}) \cong \pi_k( \cc P^{n})$ for $ k>2$. In particular,  $ \pi_3(S^2= \cc P^{1}) \cong \pi_3(S^3) \cong \zz$.
+\end{coro}
+\begin{proof}
+Recall we have the Hopf fibrations. So
+\begin{align*}
+	\pi_k(S^{1}) \to \pi_k(S^{2n+1}) \to \pi_k( \cc P^{n}) \to \pi_{k-1}(S^{1})
+\end{align*}
+Since $ \rr$ is the universal cover of $ S^{1}$, we know $ \pi_k(S^{1}) \cong \pi_k(\rr) = 0$ for $ k\geq 2$. So for  $ k>0$ we have  $ k-1 >1$ so
+ \begin{align*}
+	0 \to \pi_k(S^{2n+1}) \to \pi_k( \cc P^{n}) \to 0
+\end{align*}
+\end{proof}
+Note
+\begin{align*}
+	0= \pi_2(S^3) \to \pi_2(S^2) \to \pi_1(S^{1}) = \zz \to \pi_1(S^3) =0
+\end{align*}
+So we know this without Hurewicz.
+
+\begin{coro}
+$ X$ is path connected, then
+ \begin{align*}
+	\pi_k(X) \cong \pi_{k-1}( \Omega(X)).
+\end{align*}
+\end{coro}
+Note: we already know this from Cor I.8.
+\begin{proof}
+Since $ (P(X),X, \Omega(X),)$ is a fibration and $ P(X)$ is contractible so  $ \pi_k(P(X)) =0$. Hence
+\begin{align*}
+	\to \pi_k(P(X)) \to \pi_k(X) \to \pi_{k-1}(\Omega(X)) \to \pi_{k-1} (P(X))
+\end{align*}
+\end{proof}
+\begin{coro}
+$ \pi_k(O(n-1)) \cong \pi_k(O(n))$ for $ k<n-2$.
+ $ \pi_k(U(n)) \cong \pi_k(U(n-1))$ for $ k<2n-2$.
+\end{coro}
+\begin{proof}
+Recall $ (O(n),S^{n-1},O(n-1))$ is a fibration.
+\begin{align*}
+	\pi_{k+1} (S^{n-1}) \to \pi_{k} (O(n-1)) \to \pi_{k} (O(n)) \to \pi_{k} (S^{n-1})
+\end{align*}
+since $ k+1 <n-1$ so we have iso. Similar for  $ U(n)$.
+\end{proof}
+\begin{remark}
+This corollary implies that for large $ n$,  $ \pi_k(O(n))$ is independent of $ k$ for  $ k$ small. Can we compute this?
+
+We have inclusions  $ O(1) \to O(2) \to \cdots$. Let $ O = \lim_{ n \to \infty} O(n) = \bigcup_{ n =1}^{\infty} O(n)$. Similar for $ U$. Then the corollary yields  $ \pi_k(O) \cong \pi_k(O(n))$ if $ n > k+2$ and  $ \pi_k(U) \cong \pi_k(U(n))$ if $ n> k+2 /2$.
+\end{remark}
+
+\begin{thm}[Bott Perodicity]
+$ \pi_k(O) \cong \pi_{k+8}(O)$.
+$ \pi_k(U) \cong \pi_{k+2}(U)$.
+\end{thm}
+
+\begin{remark}
+Use $ (O(n),\{\pm 1\}, \text{SO}( n) , \det)$ is a bundle so $ \pi_k( \text{SO}( n) ) \cong \pi_k(O(n)) \ \forall \ k >0$. Similarly $ (U(n),S^{1}, \text{SU}( n) ,)$. So $ \pi_k( \text{SU}( n) ) \cong \pi_k(U(n)) \ \forall \ k>1$.
+\end{remark}
+
+Recall $ V_{n,k} \cong O(n) /O(n-k)$ are the $ k$-frames in  $ \rr^{n}$ and $ V_{n,k}( \cc) \cong U(n) / U(n-k)$.
+\begin{coro}
+\begin{align*}
+ \pi_j(V_{n,k}) \cong \begin{cases}
+	 0 & j<n-k\\
+	 \zz & j=n-k \text{ even or } k=1\\
+	 \zz /2 & j=n-k \text{ odd}\\ 
+ \end{cases}
+ \pi_jV_{n,k}( \cc) \cong \begin{cases}
+	 0& j \leq 2(n-k)\\
+	 \zz & j=2(n-k)+1\\
+ \end{cases}
+\end{align*}
+\end{coro}
+\begin{proof}
+Recall $ V_{n+1,k+1} = O(n+1) / O(n-k) = \text{SO}((n+1) / \text{SO}(n-k)  $. Since $ \text{SO}( n) \subseteq \text{SO}(n+1) $, we have $ V_{n,k} \subseteq V_{n+1,k+1}$ as quotient groups. Diagram.
+
+Let's start with $ k=1$. Diagram.
+ \begin{align*}
+	\pi_j(S^{n}) \xrightarrow{ \partial } \pi_{j-1} (S^{n-1}) \to \pi_{j-1} (V_{n+1,2}) \to \pi_{j-1}(S^{n})
+\end{align*}
+If $ j \leq n-1$ then  $ \pi_j(S^{n}) =0 = \pi_{j-1}(S^{n})$ so $ \pi_{j-1}(V_{n+1,2}) \cong \pi_{j-1}(S^{n-1}) = 0$. For $ j=n$ we get
+ \begin{align*}
+	\pi_n(S^{n}) \cong \zz \xrightarrow{ \partial } \pi_{n-1} (S^{n-1}) \cong \zz \to \pi_{n-1}(V_{n+1,2}) \to 0
+\end{align*}
+So $ \pi_{n-1}(V_{n+1,2}) \cong \pi_{n-1}(S^{n-1}) / \im \partial $. Recall we define  $ \partial $ by taking $ f:(D^{n}, \partial D^{n}) \to (S^{n},s_0) \in \pi_n(S^{n})$ lfiting to get $ \widetilde{ f}: (D^{n}, \partial D^{n}) \to (V_{n+1,2},F)$ taking $ \widetilde{ f}|_{\partial D^{n}}: \partial D^{n} \to S^{n-1}$. So we have
+\begin{align*}
+	\partial ([f]) = \widetilde{ f} |_{ \partial D^{n}}: \partial D^{n} \to S^{n-1}.
+\end{align*}
+
+Fact:
+\begin{enumerate}[label=(\arabic*)]
+	\item There exists a vector field $ v$ on  $ S^{n}$ with a single zero at $ s_0$, its index is 0 if $ n$ odd and  $ 2$ if  $ n$ even. Index: for an isolated zero of a vector field $ v$, take a small sphere  $ S_{ \epsilon}^{n-1}$. Then we have a map $ S_{ \epsilon}^{n-1} \to S^{n-1}, x\mapsto \frac{v(x)}{ |v(x)|}$. Then the index is just the degree of this map.
+	\item If  $ f:(D^{n},\partial D^{n}) \to S^{n}$ is the quotient map, then it generates $ \pi_n(S^{n})$, and $ \widetilde{ f}: S^{n} - \{s_0\} \to V_{n+1,2} $,
+		\begin{align*}
+			\widetilde{ f}(x) = \left( x, \frac{v(x)}{ |v(x)|} \right) 
+		\end{align*}
+		is a lift of $ f $ to $ V_{n+1,2}$. Note $ p \circ \widetilde{ f} = f$.
+	\item index of $ v$ is the degree of  $ \widetilde{ f}|_{ \partial D^{n}}: \partial D^{n} \to S^{n-1}$, so
+		\begin{align*}
+			\partial [f] = \deg (\widetilde{ f}|_{ \partial D^{n}}) [g]
+		\end{align*}
+		where $ [g]$ is generator of  $ \pi_{n-1}(S^{n-1})$.
+\end{enumerate}
+Hence we prove $ k=1$ case.
+
+Assume this is true for  $ k$ and we show  $ k+1$.
+
+So
+\begin{align*}
+	\pi_{j+1}(S^{n}) \to \pi_j(V_{n,k}) \to \pi_j(V_{n+1,k+1}) \to \pi_j(S^{n})
+\end{align*}
+for $ j<n-k$ we have  $ \pi$
+for $ j=n-k$,
+ \begin{align*}
+ 	\pi_j(V_{n+1,k+1}) \cong \pi_j(V_{n,k})
+ \end{align*}
+ $ V_{n,k}( \cc)$ is similar.
+\end{proof}
+
+\end{document}

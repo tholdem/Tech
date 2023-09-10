@@ -1,0 +1,44 @@
+\documentclass[12pt]{article}
+\input{../preamble.tex}
+
+\begin{document}
+\centerline {\textsf{\textbf{\LARGE{Homework 5}}}}
+\centerline {Jaden Wang}
+\vspace{.15in}
+\begin{problem}[9.1]
+Suppose $ df_p $ has rank  $ k$, this means that  $ df_p$ maps  $ T_pM$ to a  $ k$-dimensional subspace of  $ T_pN$. Then the matrix representation of  $ df_p$ would have $ k$-pivots after row reduction so the  $ k \times k$ upper left submatrix has nonzero determinant. So take an open interval $ I$ between this number and 0.
+
+Let $ (U,\phi)$ be a chart around $ p$ and $ (V,\psi)$ be a chart around $ f(p)$. Then $F:= \psi \circ f \circ \phi ^{-1}: \rr^{m} \to \rr^{n}$. Then $ dF_p: T_p \rr^{m} \to T_p \rr^{n}$ is just the derivative of $ F$ at  $ p$ and can be identified as an element of $ L(\rr^{m}, \rr^{n})$. It's easy to see that $\rank dF_p = \rank df_p = k$. Since $ f,\phi ^{-1},\psi$ are smooth, $ F$ is smooth and so are all of its derivatives. In particular, $ F': \rr^{m} \to L(\rr^{m}, \rr^{n}), p \mapsto dF_p$ is continuous. Then by identifying $ dF_p$ with a matrix representation where the first $ k$-columns are linearly independent (since it has rank $ k$), we can take the determinant of its upper $ k\times k$ minor. Denote this function by $ \det_k $. Now we have a chain of composing continuous functions, denoted by $ g: U \to \rr$:
+\begin{align*}
+	M \supseteq U \xrightarrow{ \phi} \rr^{m} \xrightarrow{ F'} L(\rr^{m}, \rr^{n}) \xrightarrow{ \det_k}   \rr .
+\end{align*}
+Since $ dF_p$ has rank  $ k$, $ \det_k(dF_p) = a \neq 0$. WLOG suppose $ a>0$ and let  $ I:=(0,a)$. Therefore, $ g^{-1}(I)$ is open in $ U$. That is, there exists an open set $ V \subseteq M$ s.t.\ $ V \cap U = g^{-1}(I)$. Since intersection of open sets is open, $ g^{-1}(I)$ is open in $ M$. By the way we define $ g$, we see that the differential has rank  $ k$ everywhere in $ g^{-1}(I)$, as desired.
+\end{problem}
+
+
+\begin{problem}[9.3]
+Since $ q$ is a regular value of  $ f$,  by the regular value theorem, $ f^{-1}(q)$ is a submanifold of dimension $ \dim M - \dim N = 0$ so it is a set of points. Since N is Hausdorff, $ \{q\} $ is closed in $ N$ so by continuity of  $ f$,  $ f^{-1}(q)$ is also closed. Since $ M$ is compact, the closed subspace $ f^{-1}(q)$ must also be compact (Theorem 26.2 of Munkres). Take any $ p \in f^{-1}(q)$, since $ \rank df_p = \dim N = \dim M$, $ df_p$ is a linear isomorphism so  $ f$ is a local diffeomorphism at  $ p$. That is, each $ p$ has a neighborhood that is diffeomorphic to a neighborhood of $ q$. We see that each of these neighborhood contains exactly one point (otherwise the diffeomorphism wouldn't be 1-1) and all of them together form a cover of $ f^{-1}(q)$. Since $ f^{-1}(q)$ is compact, we can find a finite subcover. Since each neighborhood contains exactly one point, $ f^{-1}(q)$ must only have finite number of points.
+
+Denote these points as $ \{p_i\}_{i=1}^{n} $ and the respective disjoint neighborhoods as $ \{V_i\}_{i=1}^{n}$. Let $ \{U_i\}_{i=1}^{n} $ be the corresponding diffeomorphic neighborhood of $ q$ and set $U:= \bigcap_{ i= 1}^{ n}  U_i$, which is still an open neighborhood of $ q$. Now denote $C := M - \bigcup_{ i= 1}^{ n} V_i$ which is closed. Since $ M$ is compact,  $ C$ is also compact. Then  $ f(C)$ is compact and therefore closed since  $ N$ is Hausdorff. Hence  $ N - C$ is open so  $ \widetilde{ U} := U \cap (N-C)$ is open. Take any $ q' \in \widetilde{ U}$, we see that $ f^{-1}(q')$ must have one point in each $ V_i$ by local diffeomorphism and nowhere else outside $ V_i$. Therefore we have $ \#f^{-1}(q') = \#f^{-1}(q) = n$.
+\end{problem}
+
+\begin{problem}[9.5]
+In exercise 8 of Lecture Notes 5, we have already shown that  $ dP_z(w) = \theta_z ^{-1}(P'(z) \theta_z(w))$ where $ P'(z)$ can be expressed as the Jacobian of  $ P$ at  $ z$.
+
+$ (\implies):$ if $ z$ is a singular point of  $ P$, then  $\rank dP_z=0,1$. But by the Cauchy-Riemann equations, $ \det dP_z = \left( \frac{\partial u}{ \partial x} \right)^2 + \left( \frac{ \partial u}{\partial y } \right)^2$, which is positive definite. Hence $ \det dP_z = 0$ iff  $ dP_z = 0$ which is equivalent to  $ P'(z) = 0$ so  $ z$ is a root of  $ P'(z)$.
+
+$ (\impliedby):$ suppose $ z$ is a root of  $ P'(z)$. Then  $ dP_z(w) = P'(z)w = 0 w = 0$ so  $ \rank dP_z = 0 \neq 2$, so  $ z$ is a singular point.
+\end{problem}
+
+\begin{problem}[9.6]
+Since any boundary point $ p$ of $ M$ cannot be mapped to the interior of  $ H^{m}$, $ p$ must have a neighborhood $ U_p$ that is mapped homeomorphically by $ \phi$ into the boundary $ \rr^{m-1} \times \{0\} \cong \rr^{m-1}$. This yields a well-defined homeomorphism $ \phi|_{ U_p}: U_p \to \phi(U_p) \subseteq \rr^{m-1}$. That is, $ \partial M$ is locally homeomorphic to an open subset of $ \rr^{m-1}$. Since $ \partial M$ as a subspace of $ M$ inherits Hausdorff and second-countable, we show that $ \partial M$ is a $ (m-1)$-manifold. Since no point in $ \partial M$ is locally homeomorphic to the boundary of $ H^{m-1}$, we see that $ \partial M$ has no boundary point and therefore no boundary.
+\end{problem}
+
+\begin{problem}[9.9]
+	Notice that any half-curve $ \gamma: [0, \epsilon) \to M$ or $ \gamma:(- \epsilon,0]$ with $ \gamma(0) = p$ can be smoothly extended to a curve $ \widetilde{ \gamma}:(- \epsilon, \epsilon) \to M$ with $ \widetilde{ \gamma}(0) =p$ (by just going straight along the tangent vector direction). It's therefore easy to see that equivalent classes of half-curves (elements of $ T_p H^{m}$) yield the same tangent space at $ p$ as the equivalent classes of curves (elements of $ T_p U$), \emph{i.e.} $ T_p H^{m} = T_p U$. Observe $ df_p:T_p H^{m}= T_p U \to T_pM, \frac{d}{dt}\bigg|_{t=0} p+tv \mapsto \frac{d}{dt}\bigg|_{t=0} f(p+tv)$ and $ d \widetilde{ f}_p: T_pU \to T_pM, \frac{d}{dt}\bigg|_{t=0} p+tv \mapsto \frac{d}{dt}\bigg|_{t=0} \widetilde{ f}(p+tv)$. Since we already know that $ f = \widetilde{ f}$ on $ U \cap H^{m}$ of $ p$, by taking $ \epsilon$ small enough s.t.\ $ p+tv \in U \cap H^{m}$, $ \widetilde{ f}(p+tv) = f(p+tv)$ $ \ \forall \ t \in [0, \epsilon)$, so they have the same derivative at $ p$ (by extension of half-curve this is well-defined). Thus we have $ df_p([v]) = d \widetilde{ f}_p([v])$ and they thus equal as functions.
+\end{problem}
+
+\begin{problem}[9.13]
+First, $ f^{-1}(q)$ is a submanifold of $ \dim (m-n)$. $ df_p: T_pM \to T_pN$ has rank $ n$ so its null space has dimension  $ (m-n)$.  Since every point in $ f^{-1}(q)$ maps to $ q$, this is a constant map so its derivative is 0,  \emph{i.e.} $ df_p|_{f^{-1}(q)} = 0$. Thus $ T_p f^{-1}(q) \subseteq \ker df_p$. But since they have the same dimension, they must be isomorphic so we achieve equality $ T_p f^{-1}(q) = \ker df_p$.
+\end{problem}
+\end{document}

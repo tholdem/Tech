@@ -1,0 +1,18 @@
+\documentclass[12pt,class=article,crop=false]{standalone} 
+\input{../preamble.tex}
+
+\begin{document}
+\section{History}
+Hadamard wanted to minimize real-valued functions on ``infinite dimensional sets".
+\begin{eg}
+	Let $ D: A \to [0, \infty]$ by
+	\begin{align*}
+		D[u] = \int_{ a}^{ b} |u'(x)|^2 dx 
+	\end{align*}
+	where $ A = \{u \in \mathcal{ C}^{1}[a,b] : u(a)=u_a, u(b)=u_b\} $. What function in $ A$ minimizes the Dirichlet energy  $ D$?
+\end{eg}
+
+\begin{lem}[Fundamental Lemma of the Calculus of Variations]
+Let $ f \in L_{loc}^{1}$. If $ \int f \phi = 0$ for all $ \phi \in V$, then $ f=0$.
+\end{lem}
+\end{document}

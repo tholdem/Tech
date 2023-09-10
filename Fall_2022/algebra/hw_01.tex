@@ -1,0 +1,116 @@
+\documentclass[12pt]{article}
+\input{../preamble.tex}
+
+\begin{document}
+\centerline {\textsf{\textbf{\LARGE{Homework 1}}}}
+\centerline {Jaden Wang}
+\vspace{.15in}
+\begin{problem}[1]
+\begin{case}[1]
+If $ o(x),o(y) < \infty$, 
+Suppose that $ o(x) = k_1$ and $ o(y) = k_2$. Since $ y=g^{-1}xg$,
+\begin{align*}
+	y^{k_1} &= \underbrace{ (g^{-1}xg)(g^{-1}xg) \cdots (g^{-1}xg) }_{k_1 \text{ times}} \\ 
+	&= g^{-1} x^{k_1} g \\
+	&= g^{-1} e g \\
+	&= g^{-1} g \\
+	&= e 
+\end{align*}
+So $ k_2 \leq k_1$. Similarly, since $ x=gyg^{-1}$, we obtain that $ x^{k_2} = e$ so $ k_1 \leq k_2$. It follows that $ k_1 = k_2$.
+
+\end{case}
+
+FIX:
+\begin{case}[2]
+WLOG if $ o(x) = \infty$, suppose to the contrary that $ o(y)$ is finite,  \emph{i.e.} $ y^{k} =e$ for some $ k$. Then
+\begin{align*}
+	(g^{-1}xg)^{k} &= e \\
+	g^{-1} x^{k} g &= e \\
+	x^{k} g&= g \\
+	x^{k} &= e && \text{ identity is unique} 
+\end{align*}
+So $ x$ has finite order, a contradiction. Hence  $ o(x)=o(y)= \infty$.
+\end{case}
+Since $ ba = b(ab)b ^{-1}$, $ o(ab) = o(ba)$ by result above.
+
+\end{problem}
+
+\begin{problem}[2]
+~\begin{enumerate}[label=(\alph*)]
+	\item We know that $ \ell:=\lcm \left( o(x),o(y) \right) $ is the smallest number s.t.\ $ x^{\ell} =e = y^{\ell} $. Since $ x,y$ commutes, 
+		\begin{align*}
+			(xy)^{ \ell} = x^{ \ell} y ^{ \ell} = e e = e
+		\end{align*}
+		Thus by Proposition 2.3, $ o(xy) | \ell$.
+	\item Take $ x \neq e$ and $ y = x^{-1}$, clearly $ x,y$ commutes. Then $ o(xy) = o(e) = 1$ but $ \lcm \left( o(x),o(y) \right) = o(x) >1$ and 1 is a proper divisor.
+	\item No. Notice that $ (1,2) (1,3) = (1,3,2)$ has order 3 which doesn't divide $ \lcm \left( 2,2 \right) =2$.
+\end{enumerate}
+\end{problem}
+\begin{problem}[3]
+We know the presentation of $ D_{2n} = \langle s,r| r^{n} = s ^2 = e, srs = r^{-1} \rangle$. Note that we can ``commute" $ rs=s r^{-1} $ at the expense of an inverse. It follows that $ r^{k}s = s r^{-k}$. Let $ s^{i} r^{k}$ represents an arbitrary element of $ D_{2n}$ where $ 0\leq i \leq 1$ and  $ 0\leq k \leq n-1$. It suffices to find $ i,k$ such that it commutes with the generators  $ r$ and  $ s$. When $i=1$, in order to commute with $ r$ we must have
+\begin{align*}
+	s r^{k+1} &= rs r^{k} \\
+	s r^{k+1}&= sr^{k-1} \\
+r^2&= e
+\end{align*}
+But this can only happen in $ D_4$ which we ignore. For the remaining $ i=0$ case, clearly $ r^{k}$ commutes with $ r$. In order to commute with $ s$, we have
+		\begin{align*}
+			s r^{k}&= r^{k}s \\
+			sr^{k}&= s r^{-k} \\
+			r^{2k} &= e 
+		\end{align*}
+		This implies that $ n|2k \leq 2n-2$. This forces $ 2k=n$ or 0. If $ n$ is odd, we must have $ 2k=0 \implies k =0$, so the only element that commutes with everything is $ r^{0} =e$ and thus the center is trivial. If $ n$ is even, we have $k= \frac{n}{2}$ or $ k=0$, so the center contains  $ e$ and  $ r^{n /2}$ which is rotation by $ \pi$.
+
+BETTER:
+Show $ sr^{i}$ cannot be in the center.
+\end{problem}
+
+\begin{problem}[4]
+Given $ \sigma \in S_n$, we can decompose $ \sigma$ into disjoint cycles. Since disjoint cycles commute, and the length of each cycle equals its order, Problem 2 yields that  $ o( \sigma) | \ell$. But in order to get the identity permutation, the disjoint cycles must hit identity simultaneously as they do not interact with each other in this decomposition. Hence the order must be multiples of all cycle lengths, \emph{i.e.} $ \ell| o( \sigma)$ so $ o( \sigma) = \ell$ as they are natural numbers.
+\end{problem}
+
+\begin{problem}[5]
+	$ (\implies):$ Let $ \phi: G \to G, g \mapsto g^2$ be a homomorphism. Then for any $ g,h \in G$, $ ghgh = \phi(gh)= \phi(g)\phi(h) = gghh$. The cancellation law yields $ hg = gh$. Hence $ G$ is abelian.
+	
+	$ (\impliedby): $ Suppose $ G$ is abelian. Define the set map $ \phi:G \to G, g\mapsto g^2$. Then
+	 \begin{align*}
+	 	hg &= gh \\
+		ghgh &= g g hh \\
+		\phi(gh) &= \phi(g) \phi(h)
+	 \end{align*}
+	 So $ \phi$ is a homomorphism.
+\end{problem}
+
+\begin{problem}[6]
+Recall that $ A_4 \trianglelefteq S_4$ by index 2 and $ |A_4|=12$. Suppose there exists a normal subgroup $ N \trianglelefteq S_4$ with $ |N|=8$. Then $ NA_4 \trianglelefteq G$ (composite of normal subgroups is normal as $ ghkg^{-1} = (ghg^{-1})(gkg^{-1}) \in HK$) so $ NA_4 = A_4$ or $ S_4$. But since elements of $ N$ has orders dividing  $ |N|$, the possible orders are 1,2, and 4 which cannot be odd cycles. Thus  $ NA_4 = A_4$ as $ A_4$ contains all the even cycles (WRONG, even permutations). This forces $ N \leq A_4$. But 8 doesn't divide 12, a contradiction. Hence $ S_4$ has no such normal subgroup.
+
+FIX:
+A subgroup is normal iff it is the union of conjugacy classes. There are only five conjugacy classes here by cycle type. And we cannot form a normal subgroup of order 3 or 8 using these conjugacy classes.
+
+Any subgroup of order 3 in $ S_4$ must contain two 3-cycles with the same three symbols. Given any 3-cycle $ (a,b,c) \in S_4$, since conjugation preserves cycle type in the symmetric groups, conjugation by a 2-cycle containing the symbol $ d$ yields another 3-cycle containing $ d$ and takes  $ (a,b,c)$ out of the order 3 subgroup as they don't have the same symbols anymore. Thus there cannot be normal subgroups of order 3.
+\end{problem}
+
+\begin{problem}[7]
+Let $ \phi: \cc^{\times } \to \rr_{>0}, z \mapsto |z|$. This is a homomorphism by the property of complex multiplication in polar form. Since $ 1$ is the identity of  $ \rr_{>0}$, we have
+\begin{align*}
+	\ker \phi = \{z \in \cc^{\times }: \phi(z)=|z|=1\} = \mathbb{S}^{1}.
+\end{align*}
+Moreover, $ \phi$ is clearly surjective as any number in $ \rr_{>0}$ is also in $ \cc^{ \times }$ so $ \phi$ just map this number to itself. Thus $ \im \phi = \rr_{>0}$. By the first isomorphism theory, $ \cc^{\times } / \mathbb{S}^{1} \cong \rr_{>0}$.
+\end{problem}
+
+\begin{problem}[8]
+In collaboration with Will Hausmann: first consider $ \phi: G / H \cap K \to G / H \times G / K, g (H \cap K) \mapsto (gH,gK)$. Given $ g \in G$ and $ a \in H \cap K$, $ \phi(gaH \cap K) = (gaH,gaK) = (gH,gK)$ so $ \phi$ is well-defined. Given $ g_1 , g_2 \in G$, we see that
+\begin{align*}
+	(g_1 H, g_1 K) = (g_2 H, g_2 K) \\
+	g_1 g_2^{-1} \in H, g_1 g_2^{-1} \in K \\
+	g_1 g_2^{-1} \in H \cap K  \\
+	g_1 H \cap K = g_2 H \cap K
+\end{align*}
+So $ \phi$ is injective. Since the image is a subset of the codomain and order of direct product is the product of orders, $ |G:H \cap K| = |G /H \cap K| \leq |G:H||G:K| = mn$ which is the upper bound we seek.
+
+Since both $ |G: H|$ and $ |G: H \cap K|$ are finite and $ H \cap K \leq H$, it follows that $ |H: H \cap K| = |G: H \cap K| / |G:H| $ is finite so $ m $ divides $|G: H \cap K|$. Applying the same argument to $ K$ yields that $ n$ divides $|G: H \cap K|$. Since both $ m,n$ divide $ |G: H \cap K|$, $ \lcm \left( m,n \right) $ must also divide $ |G:H \cap K|$ which establishes the lower bound.
+
+NOTE:
+If $ H \leq K \leq G$, then given finite index of $ H,K$, $ |G:H| = |G:K||K:H|$ is always true even if $ |G|$ is infinite. We have a surjection $ G /H \to G /K$ and then check the set that gets map to coset $ K$ which is isomorphic to $ K /H$.
+\end{problem}
+\end{document}

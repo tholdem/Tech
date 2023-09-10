@@ -1,0 +1,94 @@
+\documentclass[12pt,class=article,crop=false]{standalone} 
+\input{../preamble.tex}
+
+\begin{document}
+\begin{problem}[4.7.1]
+	Since $ \partial [a,b] = b -a$, we see that by Stokes Theorem,
+\begin{align*}
+	\int_{[a,b]} df &= \int_{ \partial [a,b]} f \\
+	&= \int_{b-a} f \\
+	&= f(b) - f(a) 
+\end{align*}
+\end{problem}
+\begin{problem}[4.7.2]
+First note that
+\begin{align*}
+	d(fdx+gdy) &= d(fdx) + d(gdy) \\
+	&= df \wedge dx +0 + dg \wedge dy+0 \\
+	&= \frac{\partial f}{\partial x} dx \wedge dx + \frac{\partial f}{\partial y} dy \wedge dx + \frac{\partial g}{\partial x} dx \wedge dy + \frac{\partial g}{\partial y} dy \wedge dy\\
+	&= \left( \frac{\partial g}{\partial x} - \frac{\partial f}{\partial y}  \right) dx \wedge dy 
+\end{align*}
+Therefore, by Stokes Theorem,
+\begin{align*}
+	\int_{ \gamma} fdx + gdy &= \int_{W} d(fdx + gdy) \\
+	&= \int_W \left( \frac{\partial g}{\partial x} - \frac{\partial f}{\partial y}  \right) dx dy 
+\end{align*}
+\end{problem}
+
+\begin{problem}[4.7.3]
+Let $ \omega$ be the one from Exercise 4.4.14, then
+\begin{align*}
+	d \omega &= df_1 \wedge dx_2 \wedge dx_3 + 0 + 0 + df_2 \wedge dx_3 \wedge dx_1 + 0 + 0 + df_3 \wedge dx_1 \wedge dx_2 +0+0\\
+	&= \frac{\partial f_1}{\partial x_1} dx_1 \wedge dx_2 \wedge dx_3 + \frac{\partial f_2}{\partial x_2} dx_2 \wedge dx_3 \wedge  d x_1 + \frac{\partial f_3}{\partial x_3} dx_3 \wedge dx_1 \wedge dx_2 \\
+	&= \left( \frac{\partial f_1}{\partial x_1}+ \frac{\partial f_2}{\partial x_2} + \frac{\partial f_3}{\partial x_3}   \right) dx_1 \wedge dx_2 \wedge dx_3\\
+	&= \Div \ve{F} dx_1 \wedge dx_2 \wedge dx_3 
+\end{align*}
+By Exercise 4.4.14, we immediately have
+\begin{align*}
+d(\ve{F} \cdot \ve{n}\ dA) = d\omega.
+\end{align*}
+By Stokes Theorem,
+\begin{align*}
+	\int_{\partial W } (\ve{F} \cdot \ve{ n}) dA &= \int_W d \omega \\
+	&= \int_{W} \Div \ve{ F} dx_1 dx_2 dx_3 
+\end{align*}
+\end{problem}
+\begin{problem}[4.7.4]
+Recall that
+\begin{align*}
+	\curl \ve{ F} = \left( \frac{\partial f_2}{\partial x_3} - \frac{\partial f_3}{\partial x_2}, \frac{\partial f_3}{\partial x_1} -\frac{\partial f_1}{\partial x_3}, \frac{\partial f_1}{\partial x_2}- \frac{\partial f_2}{\partial x_1} \right) =: (g_1,g_2,g_3)
+\end{align*}
+Again by Exercise 4.4.14,
+\begin{align*}
+	(\curl \ve{ F} \cdot \ve{ n}) dA = g_1 dx_2 \wedge dx_3+ g_2 dx_3 \wedge dx_1 \wedge g_3 dx_1 \wedge dx_2 =: \omega.
+\end{align*}
+Moreover, we see that
+\begin{align*}
+	d(f_1 dx_1 + f_2 dx_2 + f_3 dx_3) &= df_1 \wedge dx_1 + df_2 \wedge dx_2 + df_3 \wedge dx_3 \\
+	&= \frac{\partial f_1}{\partial x_2} dx_2 \wedge dx_1 + \frac{\partial f_1}{\partial x_3} dx_3 \wedge dx_1 + \cdots  \\
+	&= \omega 
+\end{align*}
+Therefore by Stokes,
+\begin{align*}
+	\int_S (\curl \ve{ F} \cdot \ve{ n} ) dA &= \int_S \omega \\
+	&= \int_{ \partial S} f_1 dx_1 + f_2 dx_2 + f_3 dx_3 
+\end{align*}
+\end{problem}
+
+\begin{problem}[4.7.7]
+Since $ \omega$ is exact, there exists a $ (k-1)$-form $ \omega'$ s.t.\ $ d \omega' = \omega$. By Stokes Theorem,
+\begin{align*}
+	\int_{X} \omega = \int_{ \partial X} \omega' = \int_{ \O} \omega' = 0.
+\end{align*}
+\end{problem}
+\begin{problem}[4.7.8]
+Since $ \omega$ is a closed $ k$-form,  $ d \omega = 0$. Let $ F: W \to Y$ be the extension of $ f$. Then $ \partial F(W) = F(\partial W) = f(X)$. Thus we have
+ \begin{align*}
+	\int_X f^* \omega &= \int_{f(X)} \omega \\
+	&= \int_{ \partial F(W)} \omega \\
+	&= \int_{F(W)} d\omega && \text{Stokes} \\
+	&= \int_{F(W)} 0 =0
+\end{align*}
+\end{problem}
+
+\begin{problem}[4.7.9]
+Let $ H: X \times I \to Y$ be the homotopy between $ f_0$ and $ f_1$. Since $ X$ is boundaryless,  $ \partial (X \times I) = X \times \{1\} - X \times \{0\}=: X_1 - X_0 $. Define $ f= f_0$ on $ X_0 $ and $ f= f_1$ on $ X_1$. Since $ f$ extends to  $ H$, by Exercise 8 we have
+\begin{align*}
+	\int_{\partial (X \times I)} f^*\omega &= 0 \\
+	\int_{X_1 - X_0} f^* \omega &= 0 \\
+	\int_{X_1} f^* \omega - \int_{X_0} f^* \omega&= 0 && X_0,X_1 \text{ are disjoint} \\
+	\int_{X_1} f^* \omega &= \int_{X_0} f^* \omega\\
+	\int_X f_1^* \omega &= \int_{X} f_0^* \omega  
+\end{align*}
+\end{problem}
+\end{document}

@@ -1,0 +1,49 @@
+\documentclass[12pt]{article}
+\input{../preamble.tex}
+
+\begin{document}
+\centerline {\textsf{\textbf{\LARGE{Homework 9}}}}
+\centerline {Jaden Wang}
+\vspace{.15in}
+\begin{problem}[2.3.11]
+	Move $ X$ around until it satisfies the assumption.  Since $ x$ is a 1-submanifold,  take a neighborhood $ U$ of $ 0$ so that $ \phi: \phi ^{-1}(X) \subseteq \rr \to X \cap U \subseteq \rr^2$ is a diffeomorphism. Let $ \pi: X \cap U \to \rr, (x,y)\mapsto x$ be the projection to $ x$-axis. Then define $f:= \pi \circ \phi: \phi ^{-1}(X) \subseteq \rr \to \rr$. It is easy to see that $ df_p$ has rank 1 and therefore full rank for all  $ p \in \phi ^{-1}(X)$ by chain rule. That is, $ df_0$ is invertible. Consider the map $ F:X \cap U \to \Gamma(f),x\mapsto (x,f(x))$. The Jacobian of $ F$ at $ 0$ is simply $ \begin{pmatrix} I&0\\0&df_0 \end{pmatrix} $ which is invertible. Hence by IFT, there exists a neighborhood $ V$ of  $ 0$  s.t.\ $ F$ is a local diffeomorphism with $ F^{-1}$ being injective. That is, if  $ x_1 = x_2$, then $ f(x_1) = f(x_2)$ so $ f$ is a well-defined function on the Euclidean space, and  $ X= \Gamma(f)$ on $ U \cap V$.
+
+	We wish to find a point $ y$ in $ \rr^2$ s.t.\ some $ q \in h^{-1}(y)$ makes $ dh_q $ not a submersion. First, notice that for any point $\overline{x} \in X \cap U \cap V$, we can represent it by the graph $\overline{x}= (x,f(x))$ for some $ x \in \rr$. The tangent space can be identified as the tangent line to the curve, which is spanned by $ (1,f'(x))$. The set of vectors in $ \rr^2$ normal to $ T_{\overline{x}}X$ is the line spanned by $ (-f'(x),1)$ by analytic geometry. So an element in $ NX$ is  $ ((x,f(x)),c(-f'(x),1))$ for some  $x, c \in \rr$. Then the normal bundle map becomes $ h: ((x,f(x)),c(-f'(x),1)) \mapsto (x-cf'(x),f(x)+c)$. Then $ dh$ is simply the derivative wrt to $ x$, which is $ (1-cf''(x),f'(x))$. Since we are given that $ f''(0)\neq 0$ and $ f'(0)=0$, we quickly see that setting $ x=0$, $c=\frac{1}{f''(0)} $, and $q= ((0,f(0)),\frac{1}{f''(0)}(-f'(0),1))$ makes $ dh_q$ not a submersion as it is the zero map. Hence  $ y=(0,f(0))+\frac{1}{f''(0)}(-f'(0),1) = (0,\frac{1}{ \kappa(p)})$ is a focal point as desired.
+\end{problem}
+
+\begin{problem}[2.3.14]
+	Given an equivalent class of smooth curves $ [ \gamma]$ based at $ z \in Z$, since $ 0$ is in any subspace, and any curve in $ N(Z;Y)$ is determined by specifying a curve on each factor, we have the equivalence class of smooth curves $ [ (\gamma,0)]$ based at $ (z,0)$. Then $ d \sigma_{(z,0)}:[ ( \gamma,0)] \mapsto [ \sigma \circ ( \gamma,0)] = [ \gamma]$ so $ \sigma$ is a submersion.
+	 \begin{align*}
+		\sigma^{-1}(z) = \{(z',v) \in N(Z;Y): \sigma(z',v)= z' = z\} = \{(z,v): v \in T_zY, v \in T_zZ\}. 
+	\end{align*}
+	That is, it is the orthogonal complement of $ T_zZ$.
+\end{problem}
+\begin{problem}[2.4.4]
+First we must assume $ Y$ is connected. As I said before, since manifold is locally path-connected, $ Y$ is also path-connected. Suppose $ f: X \to Y$ is homotopic to a constant function $ e_0: x \mapsto y_0$ for some $ y_0 \in Y$. If $ \dim X>0$, then $ \dim Z < \dim Y$. Hence there exists a $ y \not\in Z$. Let $ \gamma$ be a path between $ y_0$ and $ y$. Then we see that  $ f \simeq e: x \mapsto y$ by composing the homotopy with the path. Since intersection number is invariant under homotopy, and $ y \not\in Z$, we have that $ I_2(f,Z) = I_2(e,Z) = 0$.
+\end{problem}
+
+\begin{problem}[2.4.5]
+Note that if $ \dim X>0$, it suffices to show that every $ f: X \to Y$ is homotopic to a constant map and then apply problem 4. Since $ Y$ is contractible, we have  $ 1_Y \simeq e_{y_0}$. But notice
+\begin{align*}
+	1_Y \circ f &\simeq e_{y_0} \circ f\\
+	f&\simeq \widetilde{ f}
+\end{align*}
+where $ \widetilde{ f}: X \to Y, x\mapsto y_0$ is a constant function, as desired.
+
+If $ \dim X=0$, $ X$ can be covered by using local diffeomorphism neighborhoods, so $ f$ maps  $ X$ to a union of open sets so $ \im f$ is open. It is also closed because $ \im f$ is compact and $ Y$ is Hausdorff. Hence $ \im f$ is clopen and by connectedness and nonemptyness (since $ f$ is a function)  $ \im f = Y$. But that means that $ \dim Y= \dim X = 0$, a contradiction.
+\end{problem}
+
+\begin{problem}[2.4.6]
+Suppose $ Y$ is a compact, contractible manifold. Then let  $ f: Y \to Y$ be the identity map. Let $ Z = \{y\} $ be a single point with  $ \dim Z =0$ which is closed. Then $ I_2(f,Z) = 0$ if $ \dim Y>0$ according to Problem 5. However, since $ Z \cap f(Y) = \{y\} $ so they intersect exactly once, a contradiction. This forces $ \dim Y = 0$. Since $ Y$ is compact,  $ Y$ must be a finite set of points. Since  $ Y$ is contractible, there exists a homotopy that maps finite points to a single point,  \emph{i.e.} finite paths from points to a single point contained in the manifold. Then the paths must be the trivial path or $ Y$ would be at least dimension 1. That is, $ Y$ must be a one-point space.
+\end{problem}
+
+\begin{problem}[2.4.10]
+Take any two transversal 1-manifolds in $ S^2$, then since $ S^2$ has no boundary, by classification of 1-manifold they must be loops. Homotop them so that one is contained in the north hemisphere and one is contained in the south hemisphere. Their intersection number mod 2 is clearly $ 0$. However, if we take a horizontal circle and a vertical circle in a torus, their intersection number mod 2 is 1. This is a structural difference so they cannot be diffeomorphic.
+\end{problem}
+
+\begin{problem}[2.4.17]
+We wish to use the Boundary Theorem to prove the No Retraction Theorem.
+
+Suppose $ X$ is a compact manifold with boundary, and suppose to the contrary that there is a smooth map  $ g: X \to \partial X$ s.t.\ $ \partial g: \partial X \to \partial X$ is the identity. In other words, the smooth map $ \partial g$ extends to all of $ X$. Let $ Z = \{z\} $ be a single point of $ \partial X$. Then clearly $ \partial g(\partial X) \cap Z = \{z\} $ so $ I_2(\partial g,Z)=1$. However, $ I_2( \partial g,Z) = 0$ by the Boundary Theorem, a contradiction.
+\end{problem}
+\end{document}

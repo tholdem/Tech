@@ -1,0 +1,58 @@
+\documentclass[12pt,class=article,crop=false]{standalone} 
+\input{../preamble.tex}
+
+\begin{document}
+\section{Overview}
+\begin{remark}
+Linearity in Banach spaces no longer comes with continuity. We have to specify bounded linear functions.
+\end{remark}
+
+We have four big analysis theorems: Hahn-Banach, contraction mapping, open mapping, and closed graph theorems.
+
+\begin{defn}
+	The \allbold{spectrum} of a bounded linear operator $ L$ is the set  $ \{\lambda \in \cc: L- \lambda \text{ id is not invertible} \} $.
+\end{defn}
+
+A major open problem of functional analysis is: given a continuous linear endomorphism $ L$ of a complex Hilbert space, does $ L$ have any invariant subspace?
+
+Examples: $ \ell^{p}$ spaces, $ L^{p}$ spaces, continuity spaces $ \mathcal{ C}^{k, \alpha}$, $ W^{k,p}$ Sobolev spaces.
+
+\begin{defn}
+An \allbold{inner product} $ \langle \cdot , \cdot  \rangle: X \times X \to F$ satisfies
+\begin{enumerate}[label=(\arabic*)]
+	\item $ \langle y,x \rangle = \overline{ \langle x,y \rangle}$.
+	\item $ \langle \alpha x+ \beta y,z \rangle = \alpha \langle x,z \rangle+ \beta \langle y,z \rangle$ for $ \alpha, \beta \in F$ and $ x,y,z \in X$.
+	\item $ \langle x,x \rangle \geq 0$ for $ x \in X$ with equality iff $ x = 0$.
+\end{enumerate}
+\end{defn}
+Notice that for $ \langle z, \alpha x + \beta y \rangle$, we can use the first axiom:
+\begin{align*}
+	\langle z, \alpha x + \beta y \rangle &= \overline{ \langle \alpha x + \beta y, z \rangle} \\
+	&= \overline{ \alpha \langle x,z \rangle + \beta \langle y,z \rangle} \\
+	&= \overline{ \alpha} \langle z,x \rangle + \overline{ \beta} \langle z,y \rangle \\
+\end{align*}
+So inner products are not linear in the second argument.
+
+Norms satisfy absolute homogeneity, positive definiteness, and triangle inequality.
+
+Any inner product yields a norm: $ \norm{ x} = \sqrt{ \langle x,x \rangle} $. Triangle inequality is shown by Cauchy-Schwarz inequality
+\begin{align*}
+	|\langle x,y \rangle| \leq \sqrt{\langle x,x \rangle} \sqrt{  \langle y,y \rangle}
+\end{align*}
+
+To prove Cauchy-Schwarz on complex numbers, for any $ \alpha \in \cc$,
+\begin{align*}
+	0 \leq \norm{ x+ \alpha y}^2 &= \norm{ x}^2+ \overline{ \alpha} \langle x,y \rangle + \alpha \langle y,x \rangle + | \alpha^2| \norm{ y}^2
+\end{align*}
+Take $ \alpha = - \frac{\langle x,y \rangle}{ \norm{ y}^2 }$, we have
+\begin{align*}
+	\norm{ x}^2 &= \frac{\overline{ \langle x,y \rangle}}{ \norm{ y}^2  } \langle x,y \rangle - \frac{\langle x,y \rangle}{ \norm{ y}^2 } \langle y,x \rangle + \frac{|\langle x,y \rangle|^2}{ \norm{ y}^{4} } \norm{ y}^2\\
+	&= \norm{ x}^2 - \frac{|\langle x,y \rangle|}{ \norm{ y}^2 } \geq 0 
+\end{align*}
+
+\begin{remark}
+The absolute homogeneity of the norm yields the symmetry of the induced metric by taking $ \alpha =-1$.
+\end{remark}
+
+
+\end{document}

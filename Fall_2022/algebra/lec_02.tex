@@ -1,0 +1,57 @@
+\documentclass[12pt,class=article,crop=false]{standalone} 
+\input{../preamble.tex}
+
+\begin{document}
+\begin{lem}[Burnside]
+Let $ G$ be a finite group,  $ A$ a $ G$-set. Define $ f: G to \nn$ by
+\begin{align*}
+	f(g) = \text{number of } \{a \in A: g.a = a\}.  
+\end{align*}
+Then the number of orbits is $ \frac{1}{|G|} \sum_{g \in G} f(g)$.
+\end{lem}
+\begin{proof}
+\begin{align*}
+	\frac{1}{|G|} \sum_{g \in G} f(g) &= \frac{1}{|G|} \sum_{g \in G} \sum_{a \in A: g.a=a} 1\\
+	&= \frac{1}{|G|} \sum_{a \in A} \sum_{g \in G: g.a=a} 1 \\
+	&= \sum_{a \in A} \frac{1}{|G|} |G_a| \\
+	&= \sum_{ a \in A} \frac{1}{|G.a|} && \text{ Orbit-Stablizer} \\
+	&= \sum_{ \# \text{ orbits}} 1
+\end{align*}
+where $ G.a$ is the orbit of  $ a$.
+\end{proof}
+
+\begin{eg}[1]
+How many different circular necklaces can be made using 6 beads, each having one of 4 different colors?
+
+$ G= D_{12}$ acts on $ A= \{ \text{4-colored labeled hexagons} \} $ which has order $ 4^{6}$. We wish to count the number of orbits. We'd rather count 12 ($ G$) instead of 4096 $ (A)$ so we use Burnside's lemma. First, we look at the action of $ G$ on  $ A^* $ which denotes the set of uncolored labeled hexagons.
+\begin{table}[H]
+	\centering
+	\begin{tabular}{c|c|c|c}
+		elements of $ G$& cycle decomp on $ A^* $ & \# cycles & # elements of this type\\
+		\hline
+		\hline
+		1&(1)(2)(3)(4)(5)(6)& 6 & 1\\
+		\hline
+		$ r$& (123456)&1&2\\
+		\hline
+		$ r^2$ & (135)(246) & 2 &2\\
+		\hline
+		$ r^3$ & (14)(25)(36) & 3&1\\
+		\hline
+		$ s$& (15)(24)(3)(6)&4&3\\
+		\hline
+		$ s r$ & (14)(23)(56) & 3 &3\\
+	\end{tabular}
+\end{table}
+Let $ f(g)$ be the number of fixed points of  $ g$ acting on  $ A$. This should be $ 4^{n}$ where $ n$ is the number of cycles in the table above. For example  $ f(r) = 4$ as all vertices must have the same color. So any labels in the same cycle must have the same color. By Burnside, the number of orbits is  $ \frac{1}{12} (4^{6}+2 \cdot 4^{1}+ 2 \cdot 4^{2}+ (1+3) \cdot 4^3 + 3 \cdot 4^{4}) = 430$. If we have $ k$ colors, then the formula is
+ \begin{align*}
+	\frac{1}{12} (k^{6}+3k^{4}+4k^3+2k^2+2k).
+\end{align*}
+\end{eg}
+
+\begin{eg}[2]
+How many ways are there to $ k$-color the faces of a cube?
+
+The group of symmetries is  $ S_4$. There are 5 types of symmetries: A1. identity B6. rotation about vertical axis 90 C3. 180 D8. spin 120 about diagonal E6. midpoint of two opposite edges 180. This is 24. To be convinced that this is all of them, we consider the action of $ S_4$ on the set of pairs of opposite vertices. We can show that this action is simple and transitive.
+\end{eg}
+\end{document}

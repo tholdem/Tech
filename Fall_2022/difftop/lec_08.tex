@@ -1,0 +1,69 @@
+\documentclass[12pt,class=article,crop=false]{standalone} 
+\input{../preamble.tex}
+
+\begin{document}
+\section{Homotopy and Stability}
+We require homotopy to be smooth maps in the category of smooth manifolds.
+\begin{defn}
+	Let $ f: X \to Y$, a \allbold{perturbation} of $ f$ is a homotopy  $ F: X \times [- \epsilon, \epsilon] \to Y$ s.t.\ $ F_0 = f$. 
+\end{defn}
+
+\begin{defn}
+A class of mappings $ X \to Y$ is \allbold{stable} if it is preserved under perturbations. 
+\end{defn}
+
+\begin{thm}
+The following mappings are stable:
+\begin{enumerate}[label=(\arabic*)]
+	\item Immersions
+	\item Submersions
+	\item local diffeomorphisms
+	\item transversal maps
+	\item embeddings
+\end{enumerate}
+\end{thm}
+\begin{proof}
+The first 4 came from semi-continuity of linear independence (rank).
+\end{proof}
+\begin{thm}
+Let $ X$ be compact, then any embedding $f: X \to Y$ is stable.
+\end{thm}
+\begin{proof}
+Since $ X$ is compact,  $ f$ is an 1-1 immersion. Let  $ F$ be a perturbation of  $ f$. Define  $ G: X \times I \to X \times I, G(x,t) = (F_t(x),t)$. Suppose that the injectivity of $ f$ is not stable wrt  $ F$. Then for all $ \epsilon>0$ we should be able to find distinct $ x$ and  $ y$ s.t.\ $ G(x,t) = G(y,t)$. Then let $ t_i \to 0$, we get a sequence $ x_i$ and $ y_i$ that satisfy above condition. Since $ X$ is compact, both sequences have a subsequence that converges to  $ x_0$  and  $ y_0$. Then
+ \begin{align*}
+	G(x_0,0) = G(y_0,0)
+\end{align*}
+by continuity.
+\end{proof}
+
+\section{Morse Functions}
+\begin{lem}[Morse]
+\begin{align*}
+	f(x_1,\ldots,x_n) = f() + x^{T} H x
+\end{align*}
+\end{lem}
+\begin{defn}
+If $ df_p = 0$, then the \allbold{index} $ i(f,p) $ is the number of negative eigenvalues of Hessian of  $ f$ at  $ p$. 
+\end{defn}
+\begin{remark}
+Any function $ f: M \to \rr$ became Morse after a perturbation.
+\end{remark}
+
+\begin{thm}
+Any Morse function has only finitely many critical points on compact manifold.
+\end{thm}
+\begin{proof}
+Let $ g = \left( \frac{d^2 f}{d {x_1 }^2}, \frac{d^2 f}{d {x_n }^2}   \right) $. Then $ d g_p = H_p f$. If $ p$ is not degenerate, then  $ \rank d g_p = n$ so $ g$ is locally 1-1, so  $ df_q \neq 0$, for  $ q$ near 0. 
+\end{proof}
+
+\begin{thm}
+Let $ f: M \to \rr$ be a Morse function. Then
+\begin{align*}
+	\Chi(M) = \sum_{ i= 0}^{ n} (-1)^{i} C_i
+\end{align*}
+where $ C_i$ is the number of critical points of index $ i$.
+\end{thm}
+\begin{eg}
+We can use height function.
+\end{eg}
+\end{document}

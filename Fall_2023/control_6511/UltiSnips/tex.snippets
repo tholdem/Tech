@@ -1,0 +1,125 @@
+global !p
+def math():
+	return vim.eval('vimtex#syntax#in_mathzone()') == '1'
+endglobal	
+
+context "math()"
+snippet ww "omega" iA
+\omega
+endsnippet
+
+context "math()"
+snippet WW "Omega" iA
+\Omega
+endsnippet
+
+context "math()"
+snippet oc "circ" A
+\circ 
+endsnippet
+
+context "math()"
+snippet stab "stablizer" A
+\Stab_{ $1}( $2) $0
+endsnippet
+
+context "math()"
+snippet supr "supremum" iA
+\sup\left\\{$1 \right\\} $0
+endsnippet
+
+context "math()"
+snippet infim "infimum" iA
+\inf\left\\{$1 \right\\} $0
+endsnippet
+
+context "math()"
+snippet 1nor "1 norm (custom command)" iA
+\norm{ $1}_1 $0
+endsnippet
+
+context "math()"
+snippet 2nor "2 norm (custom command)" iA
+\norm{ $1}_2 $0
+endsnippet
+
+context "math()"
+snippet infnor "infinity norm (custom command)" iA
+\norm{ $1}_{\infty} $0
+endsnippet
+
+context "math()"
+snippet lam "lambda" iA
+\lambda
+endsnippet
+
+context "math()"
+snippet cv "conv" iA
+\conv
+endsnippet
+
+context "math()"
+snippet ep "epi" iA
+\epi
+endsnippet
+
+context "math()"
+snippet af "aff" iA
+\aff
+endsnippet
+
+context "math()"
+snippet Be "epsilon ball" iA
+B_{ ${1:\epsilon}} ( $0 )
+endsnippet
+
+context "math()"
+snippet inte "interior" iA
+\inte 
+endsnippet
+
+context "math()"
+snippet dom "domain" iA
+\dom
+endsnippet
+
+context "math()"
+snippet suc "succ" iA
+\succ
+endsnippet
+
+context "math()"
+snippet pre "prec" iA
+\prec
+endsnippet
+
+snippet optprob "optimization problem standard form" bA
+\begin{align*}
+\min\quad &f_0(x) \\\
+\text{subject to } \quad &f_i(x) \leq 0, i = 1,\ldots,m \\\
+&h_i(x) = 0 , i = 1,\ldots,p
+\end{align*}
+endsnippet
+
+context "math()"
+snippet LL "Lagrangian" wA
+\mathscr{L}
+endsnippet
+
+context "math()"
+snippet LT "Laplace transform" wA
+\mathcal{L}\left\\{ ${1}\right\\} $0
+endsnippet
+
+context "math()"
+snippet iL "inverse Laplace transform" wA
+\mathcal{L}^{-1}\left\\{ ${1}\right\\} $0
+endsnippet
+
+context "math()"
+snippet '([A-Za-z])\.' "time derivative" wrA
+\dot{`!p snip.rv = match.group(1)`}
+endsnippet
+
+# vim:ft=snippets
+

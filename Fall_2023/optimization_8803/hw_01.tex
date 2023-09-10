@@ -1,0 +1,98 @@
+\documentclass[12pt]{article}
+\input{../preamble.tex}
+
+\begin{document}
+\centerline {\textsf{\textbf{\LARGE{Homework 1}}}}
+\centerline {Jaden Wang}
+\vspace{.15in}
+
+\begin{problem}[1.1.1]
+\begin{enumerate}[label=(\alph*)]
+	\item 
+	\begin{align*}
+	u^* &= -Q^{-1}S \\
+	    &= - \begin{pmatrix} -2&-1\\-1&-1 \end{pmatrix} \begin{pmatrix} 0\\1 \end{pmatrix}  \\
+	    &= \begin{pmatrix} 1\\1 \end{pmatrix} 
+\end{align*}
+Since $ Q < 0$,  $ u^* $ is a global maximum. Then
+\begin{align*}
+	L^* &= -\frac{1}{2} S^{T}Q^{-1}S= \frac{1}{2} S^{T}u^* \\
+	    &= \frac{1}{2} \begin{pmatrix} 0&1 \end{pmatrix} \begin{pmatrix} 1\\1 \end{pmatrix}  \\
+	&= \frac{1}{2} 
+\end{align*}
+\begin{align*}
+	L_u &= Qu + S \\
+	&= \begin{pmatrix} -u_1+u_2\\u_1-2u_2 + 1 \end{pmatrix}  
+\end{align*}
+\item
+\begin{align*}
+	u^* &= - \frac{1}{3} \begin{pmatrix} 2&-1\\-1&-1 \end{pmatrix} \begin{pmatrix} 0\\1 \end{pmatrix} \\
+	&= \begin{pmatrix} \frac{1}{3}\\\frac{1}{3} \end{pmatrix}  \\
+\end{align*}
+Since $ Q$ is indefinite,  $ u^* $ is a saddle point.
+\begin{align*}
+	L^* &= \frac{1}{2} S^{T} u^*  \\
+	    &= \frac{1}{2} \begin{pmatrix} 0&1 \end{pmatrix} \begin{pmatrix} \frac{1}{3} \\ \frac{1}{3} \end{pmatrix}  \\
+	    &= \frac{1}{6} 
+\end{align*}
+
+\begin{align*}
+	L_u &= Qu + S \\
+	&= \begin{pmatrix} -u_1+u_2\\u_1+2u_2+1 \end{pmatrix} 
+\end{align*}
+\end{enumerate}
+
+TODO
+\end{problem}
+\begin{problem}[1.1.2]
+We see that
+\begin{align*}
+Q= \begin{pmatrix} 2&-1\\-1&2 \end{pmatrix}, S= \begin{pmatrix} 3\\0 \end{pmatrix} 
+\end{align*}
+So
+\begin{align*}
+	x^* &= -Q^{-1}S = - \frac{1}{3} \begin{pmatrix} 2&1\\1&2 \end{pmatrix} \begin{pmatrix} 3\\0 \end{pmatrix}  \\
+	&= \begin{pmatrix} -2\\-1 \end{pmatrix}   
+\end{align*}
+So 
+
+
+\end{problem}
+
+\begin{problem}[1.1.3]
+\begin{align*}
+	\nabla f(x,y) = \begin{pmatrix} 2x\\4y^3 \end{pmatrix} 
+\end{align*}
+So $ \nabla f(0,0) = 0$, indeed a critical point. The Hessian is
+\begin{align*}
+	\nabla ^2 f(x,y) = \begin{pmatrix} 2&0\\0&12y^2 \end{pmatrix} 
+\end{align*}
+which is positive semidefinite and thus singular at the origin. 
+
+Since $ x^2 \geq 0$ and $ y^{4} \geq 0$, it is clear that $ f(x,y) \geq 0$. So  $ f(0,0)=0$ is indeed a minimum of  $ f$.
+\end{problem}
+
+\begin{problem}[1.2.1]
+The cost function is $ L(x,y) = \frac{1}{2} (x-20)^2 + \frac{1}{2}(y-30)^2$ and the constraint is $ F(x,y)= y-\sqrt{3}x = 0$. The Hamiltonian is
+\begin{align*}
+	H(x,y) = L(x,y)+ \lambda F(x,y).
+\end{align*}
+Then
+\begin{align*}
+	H_x &= x-20 - \sqrt{3} \lambda =0\\
+	H_y &= y-30 + \lambda = 0 \\
+	H_\lambda &= y- \sqrt{3} x=0 
+\end{align*}
+Solving this yields $ x = \frac{1}{2}(15\sqrt{3}+10) $ and $ y = \frac{1}{2}(45+10\sqrt{3}) $. The distance is then $ d^* = \sqrt{x^2+y^2} =36 $ miles. Thus the time is about $ 36 / 10 = 3.6$ hours.
+\end{problem}
+
+\begin{problem}[1.2.2]
+The cost function is $ L(x_3,y_3) = \frac{1}{2}(x_3-x_1)^2 + \frac{1}{2} (y_3-y_1)^2 + \frac{1}{2}(x_3-x_2)^2 + \frac{1}{2} (y_3-y_2)^2$. The constraint is $ F(x_3,y_3) = \frac{1}{2}(x_3-x_1)^2 + \frac{1}{2} (y_3-y_1)^2 - \frac{1}{2}(x_3-x_2)^2 - \frac{1}{2} (y_3-y_2)^2 =0$. Therefore,
+\begin{align*}
+	H_{x_3} &= x_3-x_1 + x_3-x_2 + \lambda(x_3-x_1) - \lambda (x_3-x_2)=0\\
+	H_{y_3} &= y_3-y_1 + y_3-y_2 + \lambda(y_3-y_1) - \lambda (y_3-y_2) \\
+	H_\lambda &= 0 
+\end{align*}
+Solving this yields $ x_3 = $
+\end{problem}
+\end{document}

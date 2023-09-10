@@ -1,0 +1,56 @@
+\documentclass[12pt]{article}
+\input{../preamble.tex}
+
+\begin{document}
+\centerline {\textsf{\textbf{\LARGE{Homework 10}}}}
+\centerline {Jaden Wang}
+\vspace{.15in}
+
+\begin{problem}[2.5.1]
+Since $ F(x)\neq z \ \forall \ x \in D$, we see that $ u:X \to S^{n-1}$ can be extended to all of $ D$. Hence by the boundary theorem,  $ W_2(f,z) = \deg_2(u) = 0$.
+\end{problem}
+
+\begin{problem}[2.5.2]
+Since $ y_i \in \inte B_i$, $ u_i: \partial B_i \to S^{n-1}, x\mapsto \frac{f_i(x)-z}{\norm{ f_i(x)-z}}$ is well-defined. And $ W_2(f_i,z) = \deg_2(u_i)$. Now consider the compact manifold (removing disjoint open balls remains closed and hence compact as a subspace) with boundary $ \widetilde{ D} := D - \bigcup_{ i= 1}^{\ell} \inte B_i$. Let $ \widetilde{ f}: \partial \widetilde{ D} = X \sqcup \bigsqcup_{ i=1}^{\ell} \partial B_i \to \rr^{n}$ be defined by $ f$ and  $ f_i$. Then define $ \widetilde{ u}$ as usual using $ \widetilde{ f}$ and let $ \widetilde{ F} = F|_{\widetilde{ D}}$. Since $ \widetilde{ F}$ clearly doesn't hit $ z$, we have
+\begin{align*}
+	W_2(\widetilde{ f},z) = \deg_2(\widetilde{ u}) = I_2(\widetilde{ u},z)=0
+\end{align*}
+Recall that $  I_2(\widetilde{ u},z)$ is the number mod 2 of points in $ \widetilde{ u}^{-1} (z)$. Since  $ \partial \widetilde{ D}$ is a disjoint unions of boundaries, we can compute the intersection number by summing the intersection numbers on each disjoint boundary (mod 2), as 
+\begin{align*}
+ \widetilde{ u}^{-1}(z) = (\widetilde{ u}|_{X})^{-1}(z) \sqcup \bigsqcup_{ i=1}^{n} (\widetilde{ u}|_{\partial B_i})^{-1}(z) = u^{-1}(z) \sqcup \bigsqcup_{ i=1}^{\ell} u_i^{-1}(z)
+\end{align*}
+Thus,
+\begin{align*}
+	I_2(u,z) + \sum_{ i= 1}^{ \ell} I_2(u_i,z) &= 0 \bmod 2\\ 
+	I_2(u,z)&=  - \sum_{ i= 1}^{ \ell} I_2(u_i,z)  \bmod 2\\
+	I_2(u,z) &= \sum_{ i= 1}^{ \ell}I_2(u_i,z)  \bmod 2\\
+	W_2(f,z) &= \sum_{ i= 1}^{ \ell}W_2(f_i,z)  \bmod 2
+\end{align*}
+\end{problem}
+
+\begin{problem}[2.5.12]
+By 8 we have a relation $ W_2(X,z_0) = W_2(X,z_1) + \ell \bmod 2$ where $ \ell$ is the intersection number of the ray from $ z_0$ passing through $ z_1$. By 9 we know that the winding number mod 2 of $ X$ around  $ z$ completely determines the component that  $ z$ is in. By 10 we know that the outside component has  $ W_2(X,z) = 0$. This implies that the points inside $ X$ has  $ W_2(X,z) = 1$. For any $ z$ and a ray from $ z$ transversal to $ X$, let $ z'$ be a point on the ray super far away that it is certainly outside $ X$ and there is no intersection with $ X$ from  $ z'$ to infinity. This allows $ \ell$ to be exactly the number of intersections of the ray with $ X$.
+
+$ (\implies):$ If $ z$ is inside  $ X$, then . We see that $ \ell = W_2(X,z) - W_2(X,z') = 1-0 = 1 \bmod 2$. So $ \ell$ is odd.
+
+$ (\impliedby):$ If $ \ell$ is odd, then $ W_2(X,z) = W_2(X,z') + \ell \bmod 2 = 0+ \ell \bmod 2 = 1$. So $ z$ is inside.
+\end{problem}
+
+\begin{problem}[2.6.1]
+Recall that  $ u:S^{k} \to S^{k}, \frac{f(x)}{ \norm{ f(x)} }$ is well-defined iff $ f:S^{k} \to \rr^{k+1}$ doesn't hit the origin. Moreover, $ f(-x) = -f(x)$ iff $ u(-x) = -u(x)$ \emph{i.e.} $ u$ carries antipodal points to antipodal points. Then $ W_2(f,0) = \deg_2(u) =1$. So they are equivalent statements.
+\end{problem}
+\begin{problem}[2.6.2]
+Let $ f:S^{1} \to S^{1}$ satisfy $ f(-x) = -f(x)$. So
+\begin{align*}
+	(\cos g(t+ \pi), \sin g(t+\pi)) &=  f(\cos (t+ \pi), \sin(t+ \pi))\\
+					&= f(-\cos t, -\sin t)\\ 
+					&= -f(\cos t, \sin t)\\ 
+					&= (-\cos g(t), - \sin g(t))
+\end{align*}
+Hence we have $ \cos g(t+\pi) = -\cos g(t) = \cos (g(t)+q\pi)$ where $ q$ is odd. Therefore,  $ g(t+\pi) = g(t) + q\pi$. The sin part yields the same relation. We see that  $ g(t+2\pi) = g(t+\pi + \pi) = g(t+\pi) + q\pi = g(t)+ 2q \pi$ so this is exactly the $ q$ described by Exercise 2.4.8. It follows that $ \deg_2(f) = q \bmod 2 =1$ since $ q$ is odd.
+\end{problem}
+
+\begin{problem}[2.6.3]
+Since $ p_1,\ldots,p_n$ are homogeneous polynomials of odd degree, their polynomial functions $ f_1,\ldots,f_n: \rr^{n+1} \to \rr$ are odd functions, \emph{i.e.} $ f_i(-x) = -f_i(x)$. Define $ g_i:= f_i|_{S^{n}}$. Then by corollary of Boruk-Ulam,  $ g_i$'s must possess a common root, say $ v$, in $ S^{n}$. But if $ v$ is a root of $ g_i$, it is a root of $ f_i$, and any scalar multiple $ tv$ of $ v$ is also a root of $ f_i$ due to homogeneous degrees. Hence they share a line of roots $ tv$.
+\end{problem}
+\end{document}

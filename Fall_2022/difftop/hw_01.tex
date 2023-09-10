@@ -1,0 +1,38 @@
+\documentclass[12pt]{article}
+\input{../preamble.tex}
+
+\begin{document}
+\centerline {\textsf{\textbf{\LARGE{Homework 2}}}}
+\centerline {Jaden Wang}
+\vspace{.15in}
+
+\begin{problem}[2.1.5.1]
+Clearly $ S^{n}$ is Hausdorff as any two points on the sphere can be embedded into $ \rr^{n+1}$ and be separated by two open balls there which yields two open sets of sphere in the subspace topology. As we have seen in class, the two charts of stereographic projection ($ U_N$ and  $ U_S$) yield the local homeomorphism condition. By Theorem 1.4.8, since $ S^{n}$ is compact, it is a manifold.
+\end{problem}
+
+\begin{problem}[2.1.5.2]
+Subspace topology of the open subset inherits Hausdorff and second-countable properties of the manifold. The same atlas used for the manifold work for the open subset to establish local homeomorphism after restricting the domain to the intersection with the open subset.
+\end{problem}
+
+\begin{problem}[2.1.5.3]
+If both $ M,N$ are manifolds, then two separate two points we just need to separate each entry individually using the Hausdorff property of  $ M,N$, so the product is Hausdorff. Clearly the countable basis of  $ M,N$ together form a countable basis of the product so it is second-countable. Clearly the ``product charts" $ \phi \times \psi$ gives local diffeomorphisms to open sets of $ \rr^{m} \times \rr^{n}$. Since $ \dim M = m$ and $\dim N = n$, the model space for $ M \times N$ is clearly $ \rr^{m} \times \rr^{n}$ as we apply their respective charts to each component. Hence $\dim (M \times N) = \dim (\rr^{m}\times \rr^{n}) = m+n$.
+\end{problem}
+\begin{problem}[1.4]
+\begin{enumerate}[label=(\alph*)]
+	\item Let $ \phi: x \mapsto \frac{ax}{ \sqrt{a^2-|x|^2} }$ and $ \psi: y \mapsto \frac{ay}{\sqrt{a^2+|y|^2} } $. After some tedious computation that I don't want to type out, we check that they are indeed inverses. Both are smooth functions because they are compositions of smooth functions wrt their domains (notice the denominator is never zero due to openness). Therefore $ \phi$ is a diffeomorphism between the ball and $ \rr^{k}$.
+	\item Any open set in $ \rr^{k}$ is the union of open balls. If $ X$ is a  $ k$-dimensional manifold, given any point  $ p \in X$ and any chart $ (U, \phi)$ containing $ p$,  $ \phi(U)$ is an open set of $ \rr^{k}$ so it is the union of open balls. Choose the open ball that contains $ \phi(p)$ and take its preimage to obtain a neighborhood $ V$ of $ p$. This $ V$ is the neighborhood we seek. It is diffeomorphic to an open ball of  $ \rr^{k}$ and by part a is therefore diffeomorphic to $ \rr^{k}$.
+\end{enumerate}
+
+\end{problem}
+\begin{problem}[1.6]
+It's clear that polynomials are smooth. We see that $ f$ has an inverse  $ f^{-1} = x^{1 /3}$ since $ f^{-1} \circ f (x) = (x^3)^{1 /3} = 0$ and $ f \circ f^{-1}(x) = (x^{1 /3})^{3} = x$. So $ f$ is a smooth and bijective map between manifolds $ \rr^{1}$. However, $ f^{-1}$ is not smooth on the entire domain. Its first derivative $ (f^{-1})'(x) = \frac{1}{3} x^{-2 /3}$ has a discontinuity at $ 0$. Therefore,  $ f$ is such an example.
+\end{problem}
+
+\begin{problem}[1.7]
+Let the union of two coordinate axes be $ X$.  Suppose $ X$ is a manifold, for any atlas of $ X$, there exists at least one chart $ (U,\phi)$ that covers the origin. That is, $ U$ is a neighborhood of origin that is homeomorphic to an open subset of  $ \rr$ (since some open sets are clearly homeomorphic to $ \rr$). Notice that if we remove the origin from $ U$, then we increase the path components of  $ U$ by 3. However, if we remove any point of an open subset of $ \rr$, we increase path component by at most 1. This is a difference in topological property so such homeomorphism cannot exists. So $ X$ cannot be a manifold. 
+\end{problem}
+
+\begin{problem}[1.11]
+Suppose there exists a single chart atlas $ (S^{k}, \phi)$ such that $ \phi: S^{k} \to U \subseteq \rr^{k}$ is a diffeomorphism and $ U$ is open. Since $ S^{k}$ is compact, by continuity $ U$ is also compact. That implies $ U$ is closed by Heine-Borel. But the only clopen set of  $ \rr^{k}$ is $ \rr^{k}$ and $ \O$ and neither is compact, a contradiction. Hence we cannot construct an atlas using a single chart for $ S^{k}$.
+\end{problem}
+\end{document}

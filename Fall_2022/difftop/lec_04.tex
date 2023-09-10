@@ -1,0 +1,28 @@
+\documentclass[12pt,class=article,crop=false]{standalone} 
+\input{../preamble.tex}
+
+\begin{document}
+\section{Fundamental Theorem of Algebra}
+\begin{remark}
+If $ q \not\in f(M)$ then $ q$ is a regular value.
+\end{remark}
+
+\begin{eg}
+$ f:M \to N^{k}$, $ \rank (df_p) = k \implies \rank(df_q) = k \ \forall \ q \in U$, a neighborhood around $ p$. Use the rank theorem?
+\end{eg}
+\begin{eg}
+$ f: M \to N$, $ \dim M = \dim N$,  $ q$ is a regular value,  $ M$ is compact, then  $ f^{-1}(q)$ is finite and $ \# f^{-1}(q)$ is locally constant. Use the rank theorem to show that locally it is the identity so we can get a neighborhood around each point that disjoint from other points. By compactness it has to be finite. Locally constant comes from finite intersection of open sets is open.
+\end{eg}
+
+\begin{thm}[Fundamental Theorem of Algebra]
+Every nonconstant complex polynomial has a root.
+\end{thm}
+\begin{proof}
+$ P: \rr^2 \to \rr^2, z \mapsto \sum_{ i= 0}^{ n} a_i z^{i}$, let $ \pi_+: S^2 - N \to \rr^2$ be the stereographic projection. Define $ f: S^2 \to S^2$ by $ f(N) := N$,  $ f(p) = \pi_+^{-1} \circ P \circ \pi_+(p)$.
+\begin{claim}
+$ f$ is smooth.
+\end{claim}
+
+Note that $ p$ is a critical point of  $ f$,  \emph{i.e.} $ d_pf$ is singular iff $ d(\pi_+(p)(v))$, $ v\neq 0$ is a root of $ p'(z) \sum_{ i= 1}^{ n} a_i i z^{i-1}$. Thus the number of critical points is finite. Then all the regular points on $ S^2$ are just $ S^2 -$ finite points. Since any two critical point is path-connected, so $ \# f^{-1}(q)$ is constant on $ S^2 - $ finite set. This number cannot be zero everywhere as the polynomial is not constant. So it is nonzero everywhere. Hence $ \rank d_p f = 1$ so  $ f$ is onto.
+\end{proof}
+\end{document}

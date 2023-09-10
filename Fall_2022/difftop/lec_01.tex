@@ -1,0 +1,43 @@
+\documentclass[12pt,class=article,crop=false]{standalone} 
+\input{../preamble.tex}
+
+\begin{document}
+\section{Smooth Manifolds}
+
+We can define smooth functions from any set $ X \subseteq \rr^{n}$ if we can extend domain of $ f$ to an open set $ U$  s.t.\ $ X \subseteq U$ so that $ \overline{f}$ is smooth.
+
+Transition maps need to be smooth in order to define smooth maps between manifolds. It has to be independent of choice of charts. Exercise: show this.
+
+\begin{lem}
+$ \psi \circ f \circ \phi ^{-1} $ is smooth iff $ \widetilde{ \psi} \circ  f \circ  \widetilde{\phi}^{-1}$.
+\end{lem}
+\begin{proof}
+\begin{align*}
+	\widetilde{ \psi} \circ f \circ \widetilde{ \phi} ^{-1} &= \widetilde{ \psi} \circ  \psi ^{-1} \circ (\psi \circ f \circ \phi^{-1}) \circ \phi  \circ \widetilde{ \phi}^{-1}
+\end{align*}
+which is a composition of smooth functions.
+\end{proof}
+
+\begin{eg}
+$ S^{n-1}$ with atlas stereographic projection. $ U^{+} = S^{n-1} - N$ and $ U^{-} = S^{n-1} - S$. We have $ \pi^{+}: U^{+} \to \rr^{n-1}$ and $ \pi^{-}: U^{-} \to \rr^{n-1}$. We can compute that the transition map $ \pi^{-} \circ \pi^{+} ^{-1}(z) = \frac{z}{|z|^{2}}$ which is the inversion map. Or we can show that $ y = \frac{1}{x}$ using elementary geometry.
+\end{eg}
+Facts:
+\begin{enumerate}[label=(\arabic*)]
+	\item Open subset of manifold is a manifold.
+	\item If $ M,N$ are manifolds, so are their product.
+\end{enumerate}
+\begin{eg}
+\begin{enumerate}[label=(\arabic*)]
+	\item $ \mathcal{ M}^{n \times m}$ the space of $ n \times m$ matrices.
+	\item $ GL_n$ is an open subset of  $ \mathcal{ M}^{n\times n}$, which has dimension $ n^2$.
+	\item $ T^{n}  = S^{1} \times \cdots \times S^{1}$ the n-dimensional torus.
+	\item $ RP^{n}$. $ U \subseteq RP^{n}$ is open if $ U \cap S^{n}$ is open. Let $ U_i \subseteq RP^{n}$ be the lines which intersect $ x_i=1$. Define $ \phi_i: U_i \to \rr^{n}, \phi_i(\ell)= \ell \cap \{x_i=1\} $ and drop the last coordinate. Another way is to identify antipodal points.
+\end{enumerate}
+
+\begin{thm}
+IF $ G$ is a group of homeomorphisms acting freely and properly discontinuously etc (nicely), then  $ M /G$ is again a manifold.
+\end{thm}
+\end{eg}
+
+
+\end{document}

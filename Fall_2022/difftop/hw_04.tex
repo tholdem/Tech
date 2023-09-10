@@ -1,0 +1,60 @@
+\documentclass[12pt]{article}
+\input{../preamble.tex}
+
+\begin{document}
+\centerline {\textsf{\textbf{\LARGE{Homework 4}}}}
+\centerline {Jaden Wang}
+\vspace{.15in}
+\begin{problem}[1]
+$ f$ is 1-1 continuous so it is an immersion and is bijective onto its image $ f(X)$. By Theorem 26.6 of Munkres, $ f$ is a homeomorphism onto $ f(X)$ so it is an embedding.
+\end{problem}
+\begin{problem}[4]
+	Since $ f$ is a product map of polynomials, it is continuous. Let $ \widetilde{ f}$ denotes the map with domain restricted to the unit sphere in  $ \rr^3$ and codomain restricted to its image, which remains continuous. Suppose $ (x_1y_1,y_1z_1,x_1z_1,x_1^2+2y_1^2+3z_1^2) =(x_2y_2,y_2z_2,x_2z_2,x_2^2+2y_2^2+3z_2^2)$. In the case when none of the entries is zero, since $ x_1 = \frac{x_2y_2}{y_1 } = \frac{x_2z_2}{ z_1}$, combining with $ y_1 z_1 = y_2 z_2$  we obtain that $ z_1^2 = z_2^2$ so $ z_1 = \pm z_2$. Then $ y_1 = \pm y_2$ and $ x_1 = \pm x_2$ (the signs must be all + or all -). These solutions are consistent with the 4th entry so they are all valid. Whenever there is at least one entry that is zero, WLOG assume $ x_1 = 0$, this forces that either $ x_2$ or $ y_2$ to be zero and either $ x_2$ or $ z_2$ to be zero. Suppose $ x_2 \neq 0$, then $ y_2 = z_2 =0$, which forces that either $ y_1$ or $ z_1$ to be zero. WLOG suppose $ y_1=0$, then by the relation that $ x^2+y^2+z^2=1$, we obtain $ z_1=x_2=1$. Thus in the 4th entry we have
+\begin{align*}
+	0^2+2 \cdot 0^2+ 3 z_1^2 &= x_2^2 + 2 \cdot 0^2 + 3 \cdot 0^2\\
+	3 &= 1,
+\end{align*}
+a contradiction. Thus $ x_1=0$ forces $ x_2 = 0 = \pm x_1$. 
+
+	Taken both cases together, for any $ q \in \widetilde{ f}(S^2)$, $ \widetilde{ f}^{-1}(q) = \{ \pm p\}$ for some $ p$ in  $ S^2$. That is, if we quotient $ S^2$ by the antipodal action of $ \zz_2$, we obtain a map $ g: S^2 / \sim \to \widetilde{ f}(S^2)$, which again is continuous by the universal property of quotient topology. But $ \rr P^2 = S^2 / \sim$ so we have found a well-defined continuous map from $ \rr P^2$ into $ \rr^{4}$. It is clearly injective and surjective onto its image per the argument above, so it remains to show that $ g$ is a homeomorphism. By Corollary 22.3 of Munkres, it suffices to show that $ \widetilde{ f}$ is a quotient map. By Exercise 22.2(b), it suffices to show that there exists a continuous map $ h:\widetilde{ f}(S^2) \to S^2$ s.t.\ $ \widetilde{ f} \circ h = \text{id}_{ \widetilde{ f}(S^2)} $.  Given $ (a,b,c,d) \in \widetilde{ f}(S^2)$, we want to recover $ x,y,z$ in terms of  $ a,b,c,d$. Define  $ A=\sqrt{d-1+2\sqrt{2} b} $ and $ B = \sqrt{3-d+2\sqrt{2}a } $. Then we can check that
+	\begin{align*}
+x &=\frac{\sqrt{2}(d-2) }{2(A-B) } - \frac{A-B}{ 2\sqrt{2} } \\
+y &= \frac{a}{x} \\
+		z &= \frac{A-B}{2\sqrt{2}  }+\frac{\sqrt{2}(d-2) }{2(A-B) }
+	\end{align*}
+	does the job (using the relation that $ x^2+y^2+z^2=1$). Then the map $ h:(a,b,c,d)\mapsto (x,y,z)$ is clearly continuous as the composition of continuous functions and gives us the identity (no need to worry about dividing by 0 since we know such $ x,y,z$ exist as $ (a,b,c,d)$ is in the image). It follows that $ g$ is a homemomorphism onto its image so it is an embedding.
+
+	Alternatively, we could use the fact that since $ \rr P^2$ is the quotient of a compact space and therefore compact, and $ \rr^{4}$ is Hausdorff so any subspace is Hausdorff, since $ g$ is already bijective continuous, it is a homeomorphism by Munkres Theorem 26.6.
+
+\end{problem}
+\begin{problem}[7.16]
+I claim that $ 1$ is a regular value of  $ g:TM \to \rr$. Given $ p \in g^{-1}(1)$, $ \rank dg_p = 0$ or $1 $. Suppose $ \rank dg_p = 0$, then it has to send everything to 0, but since $ g_p$ is an inner product, it is positive definite and cannot be constant so the derivative cannot be 0. Hence $ \rank dg_p =1$ and $ 1$ is a regular value of  $ g$. Thus  $ g^{-1}(1)$ is a $ 2n-1$ manifold which is the unit tangent bundle.
+\end{problem}
+\begin{problem}[8.5]
+Suppose $ X \subseteq M$ is measure zero. Then for any $ p \in M$, denote the chart given by the definition $ (U_p, \phi_p)$ s.t.\ $ \phi_p(U_p \cap X)$ has measure zero. Clearly these charts form an atlas for $ M$. By Exercise 8, we can obtain a countable atlas  $ (U_i,\phi_i)$. Given any arbitrary chart $(V,\psi) $ of $ M$, $ V = \bigcup_{ i \in \nn} U_i$. Then $ \psi \circ \phi_i ^{-1}: \phi_i(U_i) \cap \psi(V) \subseteq \rr^{n} \to \rr^{n}$ is smooth. Thus we can apply Lemma 4 and obtain:
+\begin{align*}
+	 \psi \circ \phi_i ^{-1} (\phi_i(U_i \cap X) \cap \phi_i(U_i \cap V)) &= \psi (U_i \cap X \cap V) 
+\end{align*}
+has measure zero. Then we see that
+\begin{align*}
+	\psi(V \cap X) \subseteq \bigcup_{ i \in \nn} \psi(U_i \cap X \cap V) 
+\end{align*}
+Since countable union of measure zero sets are measure zero, $ \psi(V \cap X)$ is also measure zero by monotonicty.
+\end{problem}
+\begin{problem}[8.8]
+	Given an arbitrary atlas $ \mathcal{ A} = \{(U_{ \alpha}, \phi_{ \alpha}): \alpha \in J\} $ of a manifold $M$, since $ M$ is second-countable, by Theorem 30.3 of Munkres, it is a Lindelof space. Therefore, there exists a countable subcover $ \mathcal{ A'}$ of $ \mathcal{ A}$ that serves as a countable atlas.
+\end{problem}
+\begin{problem}[8.11]
+$ (\implies)$: The derivative of $ \pi_u(x)$ at $ p$ is the unique linear operator $ d_{\pi_u}: T_p M \to \rr^{n-1}$ satisfying the following
+\begin{align*}
+	\lim_{ t \to 0} \frac{\pi_u(x+tv) -(\pi_u(x)+ td_{\pi_u}(v))}{ t} = 0
+\end{align*}
+where $ v \in T_pM \cong \rr^{n} \subseteq \rr^{N}$. Notice
+\begin{align*}
+	\frac{1}{t}(x+tv - \langle x+tv,u \rangle u - x - \langle x,u \rangle u ) &= \frac{x}{t}+v- \langle \frac{x}{t},u \rangle u - \langle v,u \rangle u - \frac{x}{t} -\langle \frac{x}{t},u \rangle u \\
+	&= v- \langle v,u \rangle u 
+\end{align*}
+Alternatively, projection is a linear operator so its derivative is just itself. Therefore, it's easy to see that $ d_{\pi_u}(v) = v- \langle v,u \rangle u$. Now we have $ u \not\in T_pM$ iff $ u$ and  $ v$ are linearly independent iff $ t u -v \neq 0 , v \neq 0, \ \forall \ t \in \rr$ iff $ d_{\pi_u}$ doesn't send any nonzero vector in $ T_pM$ to 0 iff $ \ker d_{\pi_u}$ iff it is not singular at $ p$ onto its image.
+$ (\impliedby):$ 
+\end{problem}
+\end{document}

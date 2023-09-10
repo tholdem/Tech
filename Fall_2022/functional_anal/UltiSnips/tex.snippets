@@ -1,0 +1,102 @@
+global !p
+def math():
+	return vim.eval('vimtex#syntax#in_mathzone()') == '1'
+endglobal	
+
+context "math()"
+snippet ww "omega,cs" iA
+\omega
+endsnippet
+
+context "math()"
+snippet WW "Omega,cs" iA
+\Omega
+endsnippet
+
+context "math()"
+snippet OO "fancy O" iA
+\mathcal{O}
+endsnippet
+
+context "math()"
+snippet supr "supremum" iA
+\sup\left\\{$1 \right\\} $0
+endsnippet
+
+context "math()"
+snippet infim "infimum" iA
+\inf\left\\{$1 \right\\} $0
+endsnippet
+
+context "math()"
+snippet xra "" iA
+\xrightarrow{ $1} $0
+endsnippet
+
+context "math()"
+snippet rwbox "box topology of R^w" iA
+(\rr^\omega, \text{BOX}) $0
+endsnippet
+
+context "math()"
+snippet rwprod "product topology of R^w" iA
+(\rr^\omega, \text{PROD}) $0
+endsnippet
+
+context "math()"
+snippet pxbox "box topology of R^w" iA
+(\prod X_\alpha, \text{BOX}) $0
+endsnippet
+
+context "math()"
+snippet pxprod "product topology of R^w" iA
+(\prod X_\alpha, \text{PROD}) $0
+endsnippet
+
+context "math()"
+snippet bsc "big square cup" iA
+\bigsqcup_{ $1}
+endsnippet
+
+context "math()"
+snippet mb "mathbb" iA
+\mathbb{ $1} $0
+endsnippet
+
+context "math()"
+snippet kb "mathbbm k" iA
+\mathbbm{k} $0
+endsnippet
+
+context "math()"
+snippet gr "grassmannian" iA
+\text{Gr}_{${1: k}}(${2: V}) $0
+endsnippet
+
+context "math()"
+snippet gl "general linear group" iA
+\text{GL}_{${1: n}}(${2: R}) $0
+endsnippet
+
+context "math()"
+snippet o+ "direct sum" A
+\oplus $0
+endsnippet
+
+context "math()"
+snippet ox "tensor product" A
+\otimes $0
+endsnippet
+
+context "math()"
+snippet dt| "derivative" iA
+\frac{d}{dt}\bigg|_{t=${1: 0}} $0
+endsnippet
+
+context "math()"
+snippet iso "isomorphic" A
+\cong $0
+endsnippet
+
+# vim:ft=snippets
+
