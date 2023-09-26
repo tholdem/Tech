@@ -1,5 +1,5 @@
 # Fdb version 3
-["pdflatex"] 1695689448 "hw02.tex" "hw02.pdf" "hw02" 1695689450
+["pdflatex"] 1695691306 "hw02.tex" "hw02.pdf" "hw02" 1695691308
   "../preamble.tex" 1680742601 10265 6504d051a7f4bba9929111a03ed39077 ""
   "/etc/texmf/web2c/texmf.cnf" 1659229984 475 c0e671620eb5563b2130f56340a5fde8 ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
@@ -278,9 +278,9 @@
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1686228898 2799047 cc3d6f051618ff8a5d87a02f35d96f51 ""
   "figures/feasible_region.png" 1695334733 25527 ef26f6e07b2ec26178a059afc8d3674f ""
   "figures/gradient.png" 1695689345 66974 8d7f88495d7eb986b344922e1ae87189 ""
-  "hw02.aux" 1695689450 2716 b29a9259727786e8d04ecac8c7ec56bd "pdflatex"
-  "hw02.out" 1695689449 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
-  "hw02.tex" 1695689444 11909 75bc97dca3a0dbd90f3aef73de413763 ""
+  "hw02.aux" 1695691307 2716 9c7384ec0d19e8be036a418d077f0f87 "pdflatex"
+  "hw02.out" 1695691307 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
+  "hw02.tex" 1695691292 11909 ffd24b3797a042caa9cfa73c659943c0 ""
   (generated)
   "hw02.aux"
   "hw02.log"
