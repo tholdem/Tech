@@ -1,10 +1,10 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2023.6.8)  10 SEP 2023 21:05
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2023.6.8)  25 SEP 2023 20:50
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**hw01.tex
-(./hw01.tex
+**hw02.tex
+(./hw02.tex
 LaTeX2e <2021-11-15> patch level 1
 L3 programming layer <2022-01-21> (/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
 Document Class: article 2021/10/04 v1.4n Standard LaTeX document class
@@ -998,46 +998,83 @@ Package thmtools Info: Key `mdframed' (with value `style=mdblackbox')
 (thmtools)             is not a known style key.
 (thmtools)             Will pass this to every \declaretheorem
 (thmtools)             that uses `style=thmblackbox' on input line 332.
+) (/usr/share/texlive/texmf-dist/tex/latex/sectsty/sectsty.sty
+Package: sectsty 2002/02/25 v2.0.2 Commands to change all sectional heading styles
+
+
+LaTeX Warning: Command \underbar  has changed.
+               Check if current package is valid.
+
+
+LaTeX Warning: Command \underline  has changed.
+               Check if current package is valid.
+
+) (/usr/share/texlive/texmf-dist/tex/latex/listings/listings.sty
+\lst@mode=\count356
+\lst@gtempboxa=\box136
+\lst@token=\toks52
+\lst@length=\count357
+\lst@currlwidth=\dimen317
+\lst@column=\count358
+\lst@pos=\count359
+\lst@lostspace=\dimen318
+\lst@width=\dimen319
+\lst@newlines=\count360
+\lst@lineno=\count361
+\lst@maxwidth=\dimen320
+ (/usr/share/texlive/texmf-dist/tex/latex/listings/lstmisc.sty
+File: lstmisc.sty 2020/03/24 1.8d (Carsten Heinz)
+\c@lstnumber=\count362
+\lst@skipnumbers=\count363
+\lst@framebox=\box137
+) (/usr/share/texlive/texmf-dist/tex/latex/listings/listings.cfg
+File: listings.cfg 2020/03/24 1.8d listings configuration
+))
+Package: listings 2020/03/24 1.8d (Carsten Heinz)
+ (/usr/share/texlive/texmf-dist/tex/latex/base/alltt.sty
+Package: alltt 2021/01/29 v2.0g defines alltt environment
+) (/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
+File: lstlang1.sty 2020/03/24 1.8d listings language file
 )
-LaTeX Font Info:    Trying to load font information for T1+lmr on input line 4.
+LaTeX Font Info:    Trying to load font information for T1+lmr on input line 28.
  (/usr/share/texmf/tex/latex/lm/t1lmr.fd
 File: t1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
-) (./hw01.aux)
-\openout1 = `hw01.aux'.
+) (./hw02.aux)
+\openout1 = `hw02.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 4.
-LaTeX Font Info:    ... okay on input line 4.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 4.
-LaTeX Font Info:    ... okay on input line 4.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 4.
-LaTeX Font Info:    ... okay on input line 4.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 4.
-LaTeX Font Info:    ... okay on input line 4.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 4.
-LaTeX Font Info:    ... okay on input line 4.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 4.
-LaTeX Font Info:    ... okay on input line 4.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 4.
-LaTeX Font Info:    ... okay on input line 4.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 4.
-LaTeX Font Info:    ... okay on input line 4.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 4.
-LaTeX Font Info:    ... okay on input line 4.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 28.
+LaTeX Font Info:    ... okay on input line 28.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 28.
+LaTeX Font Info:    ... okay on input line 28.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 28.
+LaTeX Font Info:    ... okay on input line 28.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 28.
+LaTeX Font Info:    ... okay on input line 28.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 28.
+LaTeX Font Info:    ... okay on input line 28.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 28.
+LaTeX Font Info:    ... okay on input line 28.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 28.
+LaTeX Font Info:    ... okay on input line 28.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 28.
+LaTeX Font Info:    ... okay on input line 28.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 28.
+LaTeX Font Info:    ... okay on input line 28.
  (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count356
-\scratchdimen=\dimen317
-\scratchbox=\box136
-\nofMPsegments=\count357
-\nofMParguments=\count358
-\everyMPshowfont=\toks52
-\MPscratchCnt=\count359
-\MPscratchDim=\dimen318
-\MPnumerator=\count360
-\makeMPintoPDFobject=\count361
-\everyMPtoPDFconversion=\toks53
+\scratchcounter=\count364
+\scratchdimen=\dimen321
+\scratchbox=\box138
+\nofMPsegments=\count365
+\nofMParguments=\count366
+\everyMPshowfont=\toks53
+\MPscratchCnt=\count367
+\MPscratchDim=\dimen322
+\MPnumerator=\count368
+\makeMPintoPDFobject=\count369
+\everyMPtoPDFconversion=\toks54
 )
-Package hyperref Info: Link coloring ON on input line 4.
+Package hyperref Info: Link coloring ON on input line 28.
  (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2021-04-02 v2.47 Cross-referencing by name of section
  (/usr/share/texlive/texmf-dist/tex/latex/refcount/refcount.sty
@@ -1045,14 +1082,14 @@ Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
 ) (/usr/share/texlive/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty
 Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
-\c@section@level=\count362
+\c@section@level=\count370
 )
-LaTeX Info: Redefining \ref on input line 4.
-LaTeX Info: Redefining \pageref on input line 4.
-LaTeX Info: Redefining \nameref on input line 4.
- (./hw01.out) (./hw01.out)
+LaTeX Info: Redefining \ref on input line 28.
+LaTeX Info: Redefining \pageref on input line 28.
+LaTeX Info: Redefining \nameref on input line 28.
+ (./hw02.out) (./hw02.out)
 \@outlinefile=\write5
-\openout5 = `hw01.out'.
+\openout5 = `hw02.out'.
 
 
 *geometry* driver: auto-detecting
@@ -1090,92 +1127,115 @@ LaTeX Info: Redefining \nameref on input line 4.
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
 Package caption Info: Begin \AtBeginDocument code.
+Package caption Info: listings package is loaded.
 Package caption Info: End \AtBeginDocument code.
 (/usr/share/texlive/texmf-dist/tex/latex/translations/translations-basic-dictionary-english.trsl
 File: translations-basic-dictionary-english.trsl (english translation file `translations-basic-dictionary')
 )
-Package translations Info: loading dictionary `translations-basic-dictionary' for `english'. on input line 4.
-LaTeX Font Info:    Trying to load font information for T1+lmss on input line 5.
+Package translations Info: loading dictionary `translations-basic-dictionary' for `english'. on input line 28.
+\c@lstlisting=\count371
+LaTeX Font Info:    Trying to load font information for T1+lmss on input line 29.
  (/usr/share/texmf/tex/latex/lm/t1lmss.fd
 File: t1lmss.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-Package hyperref Info: bookmark level for unknown problem defaults to 0 on input line 8.
-LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 11.
+Package hyperref Info: bookmark level for unknown problem defaults to 0 on input line 33.
+LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 34.
  (/usr/share/texmf/tex/latex/lm/ot1lmr.fd
 File: ot1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Trying to load font information for OML+lmm on input line 11.
+LaTeX Font Info:    Trying to load font information for OML+lmm on input line 34.
  (/usr/share/texmf/tex/latex/lm/omllmm.fd
 File: omllmm.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 11.
+LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 34.
  (/usr/share/texmf/tex/latex/lm/omslmsy.fd
 File: omslmsy.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 11.
+LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 34.
  (/usr/share/texmf/tex/latex/lm/omxlmex.fd
 File: omxlmex.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <12> on input line 11.
+(Font)              <12> on input line 34.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8> on input line 11.
+(Font)              <8> on input line 34.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 11.
-LaTeX Font Info:    Trying to load font information for U+esvect on input line 11.
+(Font)              <6> on input line 34.
+LaTeX Font Info:    Trying to load font information for U+esvect on input line 34.
  (/usr/share/texlive/texmf-dist/tex/latex/esvect/uesvect.fd
 File: uesvect.fd 
 )
-LaTeX Font Info:    Trying to load font information for U+msa on input line 11.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 34.
  (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 11.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 34.
  (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Trying to load font information for U+stmry on input line 11.
+LaTeX Font Info:    Trying to load font information for U+stmry on input line 34.
  (/usr/share/texlive/texmf-dist/tex/latex/stmaryrd/Ustmry.fd)
-LaTeX Font Info:    Trying to load font information for U+rsfs on input line 11.
+LaTeX Font Info:    Trying to load font information for U+rsfs on input line 34.
  (/usr/share/texlive/texmf-dist/tex/latex/jknapltx/ursfs.fd
 File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
 )
 
 LaTeX Font Warning: Font shape `U/stmry/b/n' undefined
-(Font)              using `U/stmry/m/n' instead on input line 11.
+(Font)              using `U/stmry/m/n' instead on input line 34.
 
 [1
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2] [3] [4]
-Overfull \hbox (13.98901pt too wide) in paragraph at lines 132--133
-[]\T1/lmr/m/n/12 Explicitly, $\OML/lmm/m/it/12 g\OT1/lmr/m/n/12 (\OML/lmm/m/it/12 a\OT1/lmr/m/n/12 ) = (\OML/lmm/m/it/12 ah[] \OMS/lmsy/m/n/12 ^^@ \OML/lmm/m/it/12 pa[]h[]\OT1/lmr/m/n/12 )(\OML/lmm/m/it/12 ah[] \OMS/lmsy/m/n/12 ^^@ \OML/lmm/m/it/12 qa[]h[]\OT1/lmr/m/n/12 )$ \T1/lmr/m/n/12 and $\OML/lmm/m/it/12 g[]\OT1/lmr/m/n/12 (\OML/lmm/m/it/12 a\OT1/lmr/m/n/12 ) = (\OML/lmm/m/it/12 h[] \OMS/lmsy/m/n/12 ^^@ \OT1/lmr/m/n/12 2\OML/lmm/m/it/12 ph[]a\OT1/lmr/m/n/12 )(\OML/lmm/m/it/12 h[]a \OMS/lmsy/m/n/12 ^^@
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2] [3]
+<./figures/gradient.png, id=35, 848.67062pt x 626.84187pt>
+File: ./figures/gradient.png Graphic file (type png)
+<use ./figures/gradient.png>
+Package pdftex.def Info: ./figures/gradient.png  used on input line 132.
+(pdftex.def)             Requested size: 328.82707pt x 242.87958pt.
+ [4 <./figures/gradient.png>]
+<./figures/feasible_region.png, id=44, 542.025pt x 369.38pt>
+File: ./figures/feasible_region.png Graphic file (type png)
+<use ./figures/feasible_region.png>
+Package pdftex.def Info: ./figures/feasible_region.png  used on input line 177.
+(pdftex.def)             Requested size: 281.85587pt x 192.08434pt.
+ [5]
+LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 183.
+ (/usr/share/texmf/tex/latex/lm/t1lmtt.fd
+File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
+) [6 <./figures/feasible_region.png>]
+Overfull \hbox (74.94452pt too wide) detected at line 240
+[]
  []
 
-<./figures/hw01_plot.png, id=59, 642.14906pt x 564.60938pt>
-File: ./figures/hw01_plot.png Graphic file (type png)
-<use ./figures/hw01_plot.png>
-Package pdftex.def Info: ./figures/hw01_plot.png  used on input line 151.
-(pdftex.def)             Requested size: 375.80544pt x 330.4373pt.
-[5] [6 <./figures/hw01_plot.png (PNG copy)>] (./hw01.aux)
+
+Overfull \hbox (74.67744pt too wide) detected at line 250
+[]
+ []
+
+[7] [8]
+Overfull \hbox (42.51329pt too wide) in paragraph at lines 280--281
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]  
+ []
+
+[9] (./hw02.aux)
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
-Package rerunfilecheck Info: File `hw01.out' has not changed.
+Package rerunfilecheck Info: File `hw02.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 34323 strings out of 478287
- 685689 string characters out of 5849290
- 944660 words of memory out of 5000000
- 51835 multiletter control sequences out of 15000+600000
- 509061 words of font info for 69 fonts, out of 8000000 for 9000
+ 36797 strings out of 478287
+ 718611 string characters out of 5849290
+ 1171158 words of memory out of 5000000
+ 54227 multiletter control sequences out of 15000+600000
+ 518350 words of font info for 73 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 129i,14n,134p,878b,1039s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/texmf/fonts/enc/dvips/lm/lm-rm.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathex.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-ec.enc}</usr/share/texmf/fonts/type1/public/lm/lmbx12.pfb></usr/share/texmf/fonts/type1/public/lm/lmex10.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi12.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi8.pfb></usr/share/texmf/fonts/type1/public/lm/lmr12.pfb></usr/share/texmf/fonts/type1/public/lm/lmr6.pfb></usr/share/texmf/fonts/type1/public/lm/lmr8.pfb></usr/share/texmf/fonts/type1/public/lm/lmssbx10.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy10.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on hw01.pdf (6 pages, 262726 bytes).
+ 129i,13n,134p,521b,3002s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/share/texmf/fonts/enc/dvips/lm/lm-ec.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-rm.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathex.enc}</usr/share/texmf/fonts/type1/public/lm/lmbx12.pfb></usr/share/texmf/fonts/type1/public/lm/lmex10.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi12.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi8.pfb></usr/share/texmf/fonts/type1/public/lm/lmr12.pfb></usr/share/texmf/fonts/type1/public/lm/lmr8.pfb></usr/share/texmf/fonts/type1/public/lm/lmssbx10.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy10.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy8.pfb></usr/share/texmf/fonts/type1/public/lm/lmtt10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/rsfs/rsfs10.pfb>
+Output written on hw02.pdf (9 pages, 252583 bytes).
 PDF statistics:
- 136 PDF objects out of 1000 (max. 8388607)
- 102 compressed objects within 2 object streams
- 36 named destinations out of 1000 (max. 500000)
- 18 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 219 PDF objects out of 1000 (max. 8388607)
+ 177 compressed objects within 2 object streams
+ 87 named destinations out of 1000 (max. 500000)
+ 23 words of extra memory for PDF output out of 10000 (max. 10000000)
 

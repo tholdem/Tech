@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2023.6.8)  10 SEP 2023 21:05
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2023.6.8)  19 SEP 2023 21:38
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1099,7 +1099,7 @@ LaTeX Font Info:    Trying to load font information for T1+lmss on input line 5.
  (/usr/share/texmf/tex/latex/lm/t1lmss.fd
 File: t1lmss.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-Package hyperref Info: bookmark level for unknown problem defaults to 0 on input line 8.
+Package hyperref Info: bookmark level for unknown problem defaults to 0 on input line 9.
 LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 11.
  (/usr/share/texmf/tex/latex/lm/ot1lmr.fd
 File: ot1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
@@ -1144,19 +1144,20 @@ File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
 LaTeX Font Warning: Font shape `U/stmry/b/n' undefined
 (Font)              using `U/stmry/m/n' instead on input line 11.
 
+Package hyperref Info: bookmark level for unknown case defaults to 0 on input line 35.
 [1
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2] [3] [4]
-Overfull \hbox (13.98901pt too wide) in paragraph at lines 132--133
-[]\T1/lmr/m/n/12 Explicitly, $\OML/lmm/m/it/12 g\OT1/lmr/m/n/12 (\OML/lmm/m/it/12 a\OT1/lmr/m/n/12 ) = (\OML/lmm/m/it/12 ah[] \OMS/lmsy/m/n/12 ^^@ \OML/lmm/m/it/12 pa[]h[]\OT1/lmr/m/n/12 )(\OML/lmm/m/it/12 ah[] \OMS/lmsy/m/n/12 ^^@ \OML/lmm/m/it/12 qa[]h[]\OT1/lmr/m/n/12 )$ \T1/lmr/m/n/12 and $\OML/lmm/m/it/12 g[]\OT1/lmr/m/n/12 (\OML/lmm/m/it/12 a\OT1/lmr/m/n/12 ) = (\OML/lmm/m/it/12 h[] \OMS/lmsy/m/n/12 ^^@ \OT1/lmr/m/n/12 2\OML/lmm/m/it/12 ph[]a\OT1/lmr/m/n/12 )(\OML/lmm/m/it/12 h[]a \OMS/lmsy/m/n/12 ^^@
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
+Overfull \hbox (27.74667pt too wide) detected at line 72
+[]
  []
 
-<./figures/hw01_plot.png, id=59, 642.14906pt x 564.60938pt>
-File: ./figures/hw01_plot.png Graphic file (type png)
-<use ./figures/hw01_plot.png>
-Package pdftex.def Info: ./figures/hw01_plot.png  used on input line 151.
-(pdftex.def)             Requested size: 375.80544pt x 330.4373pt.
-[5] [6 <./figures/hw01_plot.png (PNG copy)>] (./hw01.aux)
+[2]
+Overfull \hbox (14.12053pt too wide) in paragraph at lines 75--76
+[]\T1/lmr/m/it/12 Case \T1/lmr/m/n/12 (2)\T1/lmr/m/it/12 . []\T1/lmr/m/n/12 If $\OML/lmm/m/it/12 y > \OT1/lmr/m/n/12 0$\T1/lmr/m/n/12 , then the equa-tion is el-lip-tic. Sup-pose $\OML/lmm/m/it/12 ^^^\OT1/lmr/m/n/12 (\OML/lmm/m/it/12 x; y\OT1/lmr/m/n/12 ) = \OML/lmm/m/it/12 ^^^[]\OT1/lmr/m/n/12 (\OML/lmm/m/it/12 x; y\OT1/lmr/m/n/12 ) + \OML/lmm/m/it/12 i^^^[]\OT1/lmr/m/n/12 (\OML/lmm/m/it/12 x; y\OT1/lmr/m/n/12 ) =$\T1/lmr/m/n/12 constant,
+ []
+
+[3] [4] [5] [6] (./hw01.aux)
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
@@ -1164,18 +1165,18 @@ Package rerunfilecheck Info: File `hw01.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 34323 strings out of 478287
- 685689 string characters out of 5849290
- 944660 words of memory out of 5000000
- 51835 multiletter control sequences out of 15000+600000
- 509061 words of font info for 69 fonts, out of 8000000 for 9000
+ 34284 strings out of 478287
+ 685168 string characters out of 5849290
+ 961660 words of memory out of 5000000
+ 51817 multiletter control sequences out of 15000+600000
+ 519303 words of font info for 72 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 129i,14n,134p,878b,1039s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/texmf/fonts/enc/dvips/lm/lm-rm.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathex.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-ec.enc}</usr/share/texmf/fonts/type1/public/lm/lmbx12.pfb></usr/share/texmf/fonts/type1/public/lm/lmex10.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi12.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi8.pfb></usr/share/texmf/fonts/type1/public/lm/lmr12.pfb></usr/share/texmf/fonts/type1/public/lm/lmr6.pfb></usr/share/texmf/fonts/type1/public/lm/lmr8.pfb></usr/share/texmf/fonts/type1/public/lm/lmssbx10.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy10.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on hw01.pdf (6 pages, 262726 bytes).
+ 129i,15n,134p,605b,1020s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-rm.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-ec.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathex.enc}</usr/share/texmf/fonts/type1/public/lm/lmbx12.pfb></usr/share/texmf/fonts/type1/public/lm/lmex10.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi12.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi6.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi8.pfb></usr/share/texmf/fonts/type1/public/lm/lmr12.pfb></usr/share/texmf/fonts/type1/public/lm/lmr6.pfb></usr/share/texmf/fonts/type1/public/lm/lmr8.pfb></usr/share/texmf/fonts/type1/public/lm/lmri12.pfb></usr/share/texmf/fonts/type1/public/lm/lmssbx10.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy10.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy8.pfb>
+Output written on hw01.pdf (6 pages, 183237 bytes).
 PDF statistics:
- 136 PDF objects out of 1000 (max. 8388607)
- 102 compressed objects within 2 object streams
- 36 named destinations out of 1000 (max. 500000)
- 18 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 115 PDF objects out of 1000 (max. 8388607)
+ 81 compressed objects within 1 object stream
+ 15 named destinations out of 1000 (max. 500000)
+ 13 words of extra memory for PDF output out of 10000 (max. 10000000)
 

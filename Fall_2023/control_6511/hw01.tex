@@ -7,7 +7,8 @@
 \vspace{.15in}
 \begin{problem}[1]
 \begin{enumerate}[label=(\alph*)]
-	\item $ \mathcal{ D}$ is not closed and therefore not compact as it is missing the limit point $ 4 \pi$. Weierstrass theorem only applies to compact sets. The infimum of $ f( \mathcal{ D})$ is achieved as minimum by $ f\left( \frac{3}{2} \pi \right) = -1$. $ \mathcal{ D}$ is convex as any type of interval contains all line segments between any two points. $ f$ is not convex since its epigraph (region above the sine wave) is clearly not a convex set (take two points in different ''vallys", and the line segment is not contained in the epigraph.) Global, strictly global, local, strictly local, and isolated local minimizers all coincide in this case. They are $-\frac{5}{2}\pi, -\frac{1}{2} \pi, \frac{3}{2}\pi, \frac{7}{2} \pi$.
+Given that the responses are repetitive, I give more details in part (a) and give briefer explanations elsewhere.
+	\item $ \mathcal{ D}$ is not closed and therefore not compact as it is missing the limit point $ 4 \pi$. Weierstrass theorem only applies to compact sets. The infimum of $ f( \mathcal{ D})$ is achieved as minimum by $ f\left( \frac{3}{2} \pi \right) = -1$. $ \mathcal{ D}$ is convex as any type of interval contains all line segments between any two points. $ f$ is not convex since its epigraph (region above the sine wave) is clearly not a convex set (take two points in different ''valleys", and the line segment is not contained in the epigraph.) Global, strictly global, local, strictly local, and isolated local minimizers all coincide in this case. They are $-\frac{5}{2}\pi, -\frac{1}{2} \pi, \frac{3}{2}\pi, \frac{7}{2} \pi$.
 	\item $ \mathcal{ D}$ is closed since $ \rr$ is clopen. But it is not compact as it is not bounded. Thus Weierstrass doesn't apply. The infimum is $1- \sup| \arctan x| = 1 - \frac{\pi}{ 2}$. The minimum doesn't exist, implying that minimizers also don't exist. $ \mathcal{ D}$ is convex but $ f$ is not as its epigraph is not.
 	\item  $ \mathcal{ D}$ is not closed as it is missing the limit point 0. Thus it is not compact and Weierstrass doesn't apply. The infimum is achieved as minimum by $ f(4.49) = -0.22$.  $ \mathcal{ D}$ is an open interval and thus convex but $ f$ is not since it is still a wave and its epigraph is not convex.
 	\item  $ \mathcal{ D}$ is closed because it contains all its limit points. It is also compact since it is bounded (or it clearly always admits a finite subcover). Thus Weierstrass applies. The infimum is achieved as minimum by $ f(0) = 0$.  $ \mathcal{ D}$ is clearly not convex so $ f$ is not convex as convex function requires the domain to be convex. Its global and strictly global minimizer is 0, and every nonzero point in the domain is a local, strictly local, and isolated local minimizer of  $ f$, whereas 0 is everything but an isolated local minimizer.
@@ -15,6 +16,7 @@
 \end{problem}
 
 \begin{problem}[2]
+Eigenvalues (positive definiteness) are computed by MATLAB.
 \begin{enumerate}[label=(\alph*)]
 	\item Converting to matrix form, we have
 	\begin{align*}
@@ -32,12 +34,6 @@
 	\end{align*}
 \end{enumerate}
 Since $ A$ is not positive semidefinite, we cannot apply the quadratic minimization lemma.
- \begin{align*}
-f^* &= c - \frac{1}{4}b^{T}A^{-1}b\\
-	    &= -8 - \frac{1}{4} \begin{pmatrix} -3&1 \end{pmatrix} \frac{-4}{9}\begin{pmatrix} 0&-\frac{3}{2}\\-\frac{3}{2}&2 \end{pmatrix} \begin{pmatrix} -3\\1 \end{pmatrix}  \\
-	    &=-8+\frac{11}{9} = - \frac{61}{9} 
-\end{align*}
-
 \end{problem}
 \begin{problem}[3]
 \begin{enumerate}[label=(\roman*)]
@@ -49,7 +45,7 @@ f^* &= c - \frac{1}{4}b^{T}A^{-1}b\\
 
 \begin{problem}[4]
 \begin{enumerate}[label=(\roman*)]
-	\item The feasible cone is itself: $ \{(x,y):y \geq 0\} $.
+	\item The feasible cone coincides with itself: $ \{(x,y):y \geq 0\} $.
 	\item The feasible cone is $ \{(x,y):x < 0\} \cup \{(0,0)\}$,
 	\item The slope of the tangent line at $ x=3$ is 6. The feasible cone is $ \{(x,y): y > 6x\} \cup \{(0,0)\}  $.
 \end{enumerate}
@@ -153,7 +149,7 @@ Thus $ f$ is G\^{a}teaux differentiable.
 ~\begin{figure}[H]
 	\centering
 	\includegraphics[width=0.8\textwidth]{./figures/hw01_plot.png}
-	\caption{The red dot is (0,0). The function behaves erratically near the origin so there is no neighborhood where it can be a local minimizer.}
+	\caption{The domain is $ [-0.01.0.01] \times [-0.01,0.01]$ and the red dot indicates $(0,0)$. This shows that the function behaves erratically near the origin so there is no neighborhood where it can be a local minimizer.}
 \end{figure}
 \end{enumerate}
 \end{problem}

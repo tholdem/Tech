@@ -1,0 +1,176 @@
+\documentclass[12pt]{article}
+\input{../preamble.tex}
+
+\begin{document}
+\centerline {\textsf{\textbf{\LARGE{Homework 1}}}}
+\centerline {Jaden Wang}
+\vspace{.15in}
+
+\begin{problem}[1.4.3]
+The coefficient matrix of second order terms is
+\begin{align*}
+	A = \begin{pmatrix} 3&-1&0\\-1&2&-1\\0&-1&3 \end{pmatrix} 
+\end{align*}
+Spectral theorem yields
+\begin{align*}
+	O^{T}AO &= \diag \{4,3,1\}, \text{ where } O = \begin{pmatrix} \frac{1}{\sqrt{3} }& -\frac{1}{\sqrt{2} }& \frac{1}{\sqrt{6} }\\-\frac{1}{\sqrt{3} } & 0 & \frac{2}{\sqrt{6} }\\ \frac{1}{\sqrt{3} }& \frac{1}{\sqrt{2} } & \frac{1}{\sqrt{6} } \end{pmatrix}    \\
+	U^{-1}AU &= \diag \{1,1,1\}, \text{ where } U = \begin{pmatrix} \frac{2}{\sqrt{3} }& -\frac{\sqrt{3} }{\sqrt{2} }& \frac{1}{\sqrt{6} }\\-\frac{2}{\sqrt{3} } & 0 & \frac{2}{\sqrt{6} }\\ \frac{2}{\sqrt{3} }& \frac{\sqrt{3} }{\sqrt{2} } & \frac{1}{\sqrt{6} } \end{pmatrix}  \\
+\end{align*}
+Thus by a change of basis via $ U$, under the change of variables  $ \begin{pmatrix} r\\s\\t \end{pmatrix}  =U^{-1} \begin{pmatrix} x\\y\\z \end{pmatrix}  $, where $ U^{-1} = \begin{pmatrix} \frac{\sqrt{3} }{6 }& - \frac{\sqrt{3} }{ 6}& \frac{\sqrt{3} }{ 6} \\ - \frac{\sqrt{6} }{ 6}&0& \frac{\sqrt{6} }{ 6}\\ \frac{\sqrt{6} }{ 6} & \frac{\sqrt{6} }{ 3} & \frac{\sqrt{6} }{ 6}  \end{pmatrix} $.
+
+By the chain rule, the derivative of $ u$ under basis  $ u_x, u_y, u_z$ is $ Du$ under basis  $ u_r,u_s,u_t$ composed with Jacobian of this change of variable, which is evidently $ U^{-1}$. That is
+\begin{align*}
+	\begin{pmatrix} u_x &u_y&u_z \end{pmatrix} &= U^{-1} \begin{pmatrix} u_r&u_s&u_t \end{pmatrix}  \\
+	u_x &= \frac{\sqrt{3} }{ 6} u_r  -\frac{\sqrt{3} }{ 6}  u_s  + \frac{\sqrt{3} }{ 6}  u_t \\
+	u_y&= - \frac{\sqrt{6} }{ 6}u_r + \frac{\sqrt{6} }{ 6} u_t
+\end{align*}
+Thus, the standard form is
+\begin{align*}
+	u_{rr} + u_{ss} + u_{tt} - \frac{5 \sqrt{6}+ \sqrt{3}  }{6 }u_r + \frac{\sqrt{3} }{ 6}u_s + \frac{5\sqrt{6}-\sqrt{3}  } { 6}u_t +10 u\left( U (r,s,t) \right) =0
+\end{align*}
+\end{problem}
+
+\begin{problem}[1.4.7]
+We see that $ a=1,b=0,c=y$, so  $ d= ac - b^2 = y$. 
+\begin{case}[1]
+If $ y<0$, then we have the hyperbolic case.  Let $ s = s(x,y)$ and  $ t = t(x,y)$  s.t.\ the Jacobian of this change of variable is invertible. Then the linear principal part becomes $ L_0u = a^* u_{ss}+ 2b^* u_{st} +c^* u_{tt} $, where
+\end{case}
+\begin{align*}
+	\begin{cases}
+		a^* = s_x^2+ y s_y^2\\
+		b^* = s_x t_x + y s_yt_y \\
+		c^* = t_x^2+yt_y^2 \\
+	\end{cases}
+\end{align*}
+To convert to standard form, we want $ a^* =c^* =0$ and $ b^* \neq 0$, which indeed makes the equation hyperbolic. Then $ s,t$ has to satisfy the following equation
+ \begin{align*}
+	\phi_x^2 + y \phi_y^2 =0
+\end{align*}
+Suppose $ \phi(x,y)=$constant, \emph{i.e.} a level set, then $ y$ can locally be expressed as a function of  $ x$ (or the other way around).  Thus if $ \phi_y \neq 0$, by implicit differentiation we have
+\begin{align*}
+	D\phi = \phi_x + \phi_y \frac{d y}{d x} &= 0 \\
+	\frac{d y}{d x} &= - \frac{\phi_x}{ \phi_y} 
+\end{align*}
+Thus we have the following ODE:
+\begin{align*}
+	\left( \frac{d y}{d x}  \right) ^2+y &= 0 \\
+\frac{dy}{ \sqrt{-y} }&= \pm dx \\
+2\sqrt{-y}  &= \mp x +C 
+\end{align*}
+Thus we have
+\begin{align*}
+	\phi_1(x,y) = x + 2\sqrt{-y} = c_1 , \ \phi_2(x,y) = - x + 2\sqrt{-y} = c_2. 
+\end{align*}
+The Jacobian of the change of variable is invertible, so we let $ s=\phi_1$ and $ t = \phi_2$. Then $ s_x =1$, $ s_y = t_y = -(-y) ^{-\frac{1}{2}}$, $ t_x = -1, s_{yy} = t_{yy} = -\frac{1}{2} (-y)^{-\frac{3}{2}} $. Then $ u_x = u_s s_x + u_t t_x = u_s - u_t$ and $ u_y = u_s s_y + u_t t_y = - (-y)^{-\frac{1}{2}}(u_s + u_t)$. $ u_{x x} = u_{ss} s_x^2 +2u_{st} s_xt_x +u_s s_{xx} + u_{tt}t_x^2 +u_ts_{x x} =  u_{ss}+u_{tt}-2u_{st}$ and $ u_{yy} = u_{ss}s_y^2+2u_{st}s_yt_y + u_{tt}t_y^2 + u_s s_{yy} + u_t t_{yy} =(-y)^{-1} (u_{ss} +u_{tt}+2u_{st}) - \frac{1}{2} (-y)^{-\frac{3}{2}}(u_s + u_t)$.
+Therefore, the equation becomes
+\begin{align*}
+u_{ss} + u_{tt} - 2u_{st} + y(-y)^{-1} (u_{ss}+u_{tt}+2u_{st})- \frac{1}{2} y (-y)^{-\frac{3}{2}} (u_s+u_t) -\frac{1}{2\sqrt{-y} }(u_s+u_t) &= 0 \\
+-4u_{st} + \left(\frac{1}{ 2 \sqrt{-y}} - \frac{1}{2\sqrt{-y} } \right)(u_s+u_t)&= 0 \\
+u_{st}&= 0 \\
+u_t &= g(t) \\
+u(s,t) &= f(s) + g(t) 
+\end{align*}
+for some function $ f(s)$ and  $ g(t)$.
+\begin{case}[2]
+If $ y>0$, then the equation is elliptic. Suppose  $ \phi(x,y) = \phi_1(x,y) + i\phi_2(x,y) =$constant, then we have
+\begin{align*}
+	\frac{d y}{d x} &= \pm i \sqrt{y}  \\
+	\sqrt{y} &= \pm \frac{1}{2} i x +C  
+\end{align*}
+Thus $ \phi_1(x,y) = 2\sqrt{y} $ and $ \phi_2(x,y) = x$. The Jacobian is invertible so let $ s = 2\sqrt{y} $ and $ t = x$. Then we have  $ s_x = t_y = 0$,  $ s_y = y^{-\frac{1}{2}} = \frac{2}{s}$, and $ t_x = 1$. Thus
+ \begin{align*}
+	a^*  = 0 + y y^{-1} &= 1 \\
+	c^* = 1^2+0 &= 1 
+\end{align*}
+Moreover, $ u_y = u_s s_y+u_t t_y = \frac{2}{s} u_s$. Thus, the standard form is
+\begin{align*}
+	u_{ss} + u_{tt} + \frac{2}{s}u_s = 0
+\end{align*}
+\end{case}
+\begin{case}[3]
+If $ y = 0$, the equation is parabolic. The equation becomes
+\begin{align*}
+	u_{x x} + \frac{1}{2}u_y =0
+\end{align*}
+which is already in standard form.
+\end{case}
+\end{problem}
+
+\begin{problem}[1.4.9a]
+We see that $ a=1$, $b=2$, and  $ c=3$. Then $ d= ac -b^2 = -1$ which means the equation is hyperbolic. 
+\begin{align*}
+	\begin{cases}
+		a^* = s_x^2 + 4 s_xs_y+3s_y^2 =0\\
+		b^* = s_x t_x + 2(s_x t_y + s_y t_x) + 3 s_yt_y\\
+		c^* = t_x^2 + 4 t_xt_y + 3 t_y^2 =0
+	\end{cases}
+\end{align*}
+As before, we solve the ODE
+\begin{align*}
+	\left( \frac{d y}{d x}  \right)^2 + 4 \frac{d y}{d x} +3 &= 0 \\
+	\frac{d y}{d x} &= 3 \text{ or }1  \\
+	y = 3x+C \text{ or } y &= x+C  
+\end{align*}
+Thus $ \phi_1(x,y)= -3x+y = c_1$ and $ \phi_2(x,y) = -x+y= c_2$. The Jacobian is invertible so we let $ s = -3x+y$ and  $ t = -x+y$. Then  $ s_x = -3$,  $ s_y=t_y=1$, and $ t_x = -1$. Thus  $ b^* = 3+2(-3-1)+3= -2$. Moreover, $ u_x = u_s s_x + u_t t_x = -3u_x -u_t$ and  $ u_y = u_s s_y + u_t t_y = u_s + u_t$. Thus the standard form is
+ \begin{align*}
+	-4 u_{st} + 3(-3u_s - u_t) - (u_s+u_t) +2u &= 0 \\
+	u_{st} - \frac{5}{2} u_s + u_t - \frac{1}{2} u &= 0 
+\end{align*}
+Now suppose that $ u = v e^{\lambda s + \mu t} =: v w$. Then
+\begin{align*}
+	u_s &= v_s w + \lambda vw  \\
+	u_t &= v_t w + \mu vw \\
+	u_{st} &= v_{st}w+ \mu v_s w + \lambda v_t w + \lambda \mu vw 
+\end{align*}
+To eliminate first order terms, the sum of their coefficients must be zero. That is,
+\begin{align*}
+	\mu -\frac{5}{2} &= 0 \\
+	\lambda + 1 &= 0 
+\end{align*}
+So $ \mu = \frac{5}{2}$ and $ \lambda=-1$. Thus the standard form becomes
+\begin{align*}
+	v_{st}w -\frac{5}{2} vw + \frac{5}{2}vw + \frac{5}{2}vw- \frac{1}{2} vw &= 0 \\
+	(v_{st}-2vw) w &= 0 \\
+	v_{st} - 2vw &= 0 && w > 0
+\end{align*}
+\end{problem}
+
+\begin{problem}[1.4.11]
+We see that
+\begin{align*}
+	u_t &= v_t w + vw_t \\
+	u_x &= v_x w + vw_x \\
+	u_{x x} &= v_{ xx} w + 2v_xw_x + vw_{x x}
+\end{align*}
+The equation becomes
+\begin{align*}
+	v_t w+vw_t - v_{x x}w-2v_xw_x - vw_{x x} + a v_xw + avw_x + bvw &= f(x,t) \\
+	(v_t- v_{x x})w + v(w_t-w_{x x}+aw_x+bw) + v_x(aw-2w_x) &= f(x,t) 
+\end{align*}
+To obtain the desired form, the following must be true:
+\begin{align*}
+	w_t -w_{x x}+ aw_x + bw &= 0 \\
+	aw-2w_x &= 0 \\
+	w &\neq 0 
+\end{align*}
+Thus we have $ w_x = \frac{a}{2}w$ which yields $ w=g(t) e^{\frac{a}{2}x}$. Then $ w_{x x} = \frac{a^2}{ 4} g(t) e^{\frac{a}{2}x}$. Thus
+\begin{align*}
+	w_t &= \left(\frac{a^2}{ 4}- \frac{a^2}{ 2} - b \right) w  \\
+	w(x,t) &= \exp \left( \left(-\frac{a^2}{ 4}-b \right)t+ \frac{a}{2}x  \right)  \neq 0
+\end{align*}
+\end{problem}
+
+\begin{problem}[1.4.12]
+Since $ u_t = \widetilde{ u}' \cdot \left( - \frac{x}{2} \right) t^{-\frac{3}{2}} $ and $ u_{x x} = \frac{1}{t} \widetilde{ u}''$. Let $ y:= \frac{x}{\sqrt{t} }$, then the ODE is
+\begin{align*}
+	-\frac{x}{t^{\frac{3}{2}}} \widetilde{ u}' - \frac{a^2}{ t}\widetilde{ u}'' &= 0 \\
+	-\frac{1}{t} (y \widetilde{ u}' + a^2 \widetilde{ u}'') &= 0 \\
+	a^2 \widetilde{ u}'' + y \widetilde{ u}' &= 0 \\
+	u(y) &= c_1 \sqrt{ \frac{\pi}{2 }} a \text{ erf}\left( \frac{y}{ \sqrt{2} a} \right) +c_2    
+\end{align*}
+via substitution and integration by parts. Since $ u(0,t) = \widetilde{ u}(0) = 0$, we have that $ c_2 = 0$. Since $ u(x,0)=u_0$, and $ \lim_{ t \to 0} \widetilde{ u} = c_1 \sqrt{\frac{\pi}{ 2}}a \cdot 1 $, we have  $ c_1 = \frac{u_0}{ a} \sqrt{\frac{2}{\pi}} $. Thus
+\begin{align*}
+	u(y) = u_0 \text{ erf}\left( \frac{y}{\sqrt{2} a} \right).  
+\end{align*}
+\end{problem}
+\end{document}
