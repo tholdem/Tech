@@ -1,0 +1,127 @@
+\documentclass[12pt]{article}
+\input{../preamble.tex}
+
+\begin{document}
+\centerline {\textsf{\textbf{\LARGE{Homework 2}}}}
+\centerline {Jaden Wang}
+\vspace{.15in}
+\begin{problem}[2.1(i)]
+The initial curve can be parameterized: $x_0=s, y_0=s^2, z_0=u(x_0,y_0)= s^2$. Let us check it is not characteristic. The characteristic equation is $ a \sigma_0 + b \sigma_1 = 0$, where $ ( \sigma_0, \sigma_1)$ is the outward normal to the characteristic curve which has tangent $ (a,b)$. Thus we don't want the initial curve to have tangent parallel to  $ (a,b)$. And $ (a,b)$ for initial curve is parameterized by  $ (s,s ^2)$. We check
+ \begin{align*}
+	 \det \begin{pmatrix} s& s ^2\\1 & 2s \end{pmatrix} = 2s ^2-s ^2 = s ^2 \neq 0 \iff s \neq 0,
+\end{align*}
+which is always true or we wouldn't have an initial curve. We can safely proceed to solve
+\begin{align*}
+	\begin{cases}
+		\frac{d x}{d t} = x, x(0) = s&\implies x= s e^{t}\\
+		\frac{d y}{d t} =y, y(0) = s ^2& \implies y= s ^2 e^{t}\\
+		\frac{d z}{d t} = c=z+1, z(0) = s ^2& \implies z= (s ^2+1)e^{t}\\
+	\end{cases}
+\end{align*}
+We have $ s=\frac{y}{x}$ and $ e^{t} = \frac{x^2}{ y}$. So the solution is $u(x,y)= \left( \frac{y^2}{x^2}+1 \right) \frac{x^2}{y}-1 = y+\frac{x^2}{y}-1$.
+\end{problem}
+\begin{problem}[2]
+We shall use the method of integrating factor. Multiplying the PDE by $ e^{ct}$ yields
+\begin{align*}
+	e^{ct} u_t + e^{ct} b \cdot D_x u +c e^{ct} u&= 0 \\
+	\left( e^{ct}u \right)_t + e^{ct} b \cdot D_x u &= 0 && \text{ product rule}  \\
+	\left( e^{ct}u \right)_t + b \cdot D_x \left( e^{ct}u \right)  &= 0 && e^{ct}\text{ can be treated as constant}  \\
+	e^{ct}u&= g(x-tb) && \text{linear transport solution}\\
+	u&= g(x-tb) e^{-ct} && e^{ct} \neq 0 
+\end{align*}
+
+\end{problem}
+
+\begin{problem}[3]
+This is Burger's equation. The initial curve is parameterized as $t_0=0, x_0=s, z_0 = \frac{1}{1+s ^2}$. We see that
+\begin{align*}
+	\det \begin{pmatrix}   1&u\\0&1 \end{pmatrix} \neq 0 
+\end{align*}
+Then ODEs are
+\begin{align*}
+	\frac{dt}{ d \tau} &= 1, t(0)=0 \implies t = \tau\\
+	\frac{dx}{ d \tau} &= u, x(0) = s \implies x(t)= s+ \frac{1}{1+s^2}t =x_0+tu(x_0,0)\\
+	\frac{dz}{ d \tau} &= 0, z(0) = \frac{1}{1+s ^2} \implies z(t) = \frac{1}{1+s ^2} = u(x_0,0)
+\end{align*}
+Therefore, $ u(x,t)$ is completely determined by  $ x_0$. The solution blows up when $ w:=u_x$ tends to infinity. We see
+ \begin{align*}
+	0=\left( u_t+uu_x \right) _x &= u_{xt} + u_x ^2 + uu_{xx} \\
+	&= w_t+w^2+uw_x 
+\end{align*}
+Moreover, on the characteristic line $ x(t)= x_0+tu(x_0,0)$, we have
+\begin{align*}
+	\frac{d}{dt}(w) &= w_t + w_x \frac{d x}{d t}  \\
+	&= w_t + w_x u(x_0,0)
+\end{align*}
+Combining the two equations, we have the following ODE on the characteristic line:
+\begin{align*}
+	\begin{cases}
+		\dot{w} &= -w^2\\
+		w(x_0,0) &= \left( \frac{1}{1+x_0^2} \right)' = -\frac{2x_0}{ (1+x_0^2)^2}
+	\end{cases}
+\end{align*}
+Solving this yields
+\begin{align*}
+	w^{-1}&= t - \frac{(1+x_0^2)^2}{ 2x_0}
+\end{align*}
+so $ w$ blows up when  $ t= \frac{(1+x_0^2)^2}{  2x_0}$. To find the first time it blows up, \emph{i.e.} minimum time, we set
+\begin{align*}
+	t' = \frac{ 8x_0^2(1+x_0^2)-2(1+x_0^2)^2}{ 4x_0^{2}} &=0\\
+	2(3x_0^{4}+2x_0^2-1) &= 0 \\
+	x_0 &= \pm \frac{1}{\sqrt{3} } \\
+	t &= \pm \frac{8}{ 3 \sqrt{3}}
+\end{align*}
+We can easily see from the graph that minimum is achieved at $ t= \frac{8}{ 3 \sqrt{3}}$.
+\end{problem}
+\begin{problem}[4]
+	First, since $ (x,y)$ is the outward normal vector of the unit circle, the condition  $ \begin{pmatrix} a&b \end{pmatrix} \begin{pmatrix} x\\y \end{pmatrix} >0$ means that $ (a,b)$ also points outward from the tangent line at $ (x,y)$. This means that for a small $ t$, $ (x-ta,y-tb) \in \inte \Omega$.
+
+Since $ \Omega$ is compact, $ u$ achieves maximum and minimum. Suppose the minimum is achieved at $ \inte \Omega$. Then necessary condition says $ \begin{pmatrix} u_x\\u_y \end{pmatrix}  = \begin{pmatrix} 0\\0 \end{pmatrix} $, which yields $ u(x,y) = au_x+bu_y = 0$. Thus by definition of minimum, $ u(x,y) \geq 0$ for all $ x,y$. Likewise, if maximum is achieved at the interior, then $ u(x,y) \leq 0$. We have four cases:
+ \begin{case}[1] If both maximum and minimum are achieved in the interior, we have $ u \equiv 0$ immediately.
+\end{case}
+\begin{case}[2] If only minimum is in the interior, then $ u(x,y) \geq 0$. Let  $ (x^* ,y^* ) \in \partial \Omega$ denotes the maximizer. If $ u(x^* ,y^* ) = 0$, then $ u \equiv 0$. Suppose  $ u(x^* ,y^* )>0$, then by Taylor's theorem, since $ u \in C^{1}$,
+\begin{align*}
+	u(x^* -ta,y^* -tb) &= u(x^* ,y^* )-t \begin{pmatrix} a(x^* ,y^* ) & b(x^* ,y^* )\end{pmatrix} \begin{pmatrix} u_x(x^* ,y^* ) \\u_y(x^* ,y^* )\end{pmatrix} + r_1(t) \\
+	&= u(x^* ,y^* ) + t \underbrace{ u(x^* ,y^* )}_{>0 }  + r_1(t)
+\end{align*}
+where $ \lim_{ t \to 0}  \frac{r_1(t)}{t } = 0$. Thus we can find a small enough $ t$  s.t.\ $ tu(x^* ,y^* )+r_1(t) >0$, contradicting that $ u(x^* ,y^* )$ is the maximum.
+\end{case}
+
+\begin{case}[3]
+Similarly, if only maximum is in the interior, then $ u(x,y) \leq 0$. Let  $ (x_* ,y_* ) \in \partial \Omega$ denotes the minimizer. If $ u(x_* ,y_* ) = 0$, then $ u \equiv 0$. Suppose  $ u(x_* ,y_* )<0$, then by Taylor's theorem, since $ u \in C^{1}$,
+\begin{align*}
+	u(x_* -ta,y_* -tb) &= u(x_* ,y_* )-t \begin{pmatrix} a(x_* ,y_* ) & b(x_* ,y_* )\end{pmatrix} \begin{pmatrix} u_x(x_* ,y_* ) \\u_y(x_* ,y_* )\end{pmatrix} + r_1(t) \\
+	&= u(x_* ,y_* ) + t \underbrace{ u(x_* ,y_* )}_{<0 }  + r_1(t)
+\end{align*}
+where $ \lim_{ t \to 0}  \frac{r_1(t)}{t } = 0$. Thus we can find a small enough $ t$  s.t.\ $ tu(x_* ,y_* )+r_1(t) <0$, contradicting that $ u(x_* ,y_* )$ is the minimum.
+\end{case}
+\begin{case}[4]
+Suppose both maximum and minimum are achieved on $ \partial \Omega$. Let $ (x_* ,y_* )$ denotes the minimizer and $ (x^* ,y^* )$ denotes the maximizer. Then we have two subcases. If $ u(x_* ,y_* ) \geq 0$, this reduces to case 2. The remaining case is $u(x_*,y_*) <0$. But this is exactly the condition we need for the Taylor argument to work in case 3.
+\end{case}
+Hence, for all cases, we have $ u \equiv 0$.
+
+I am aware of another proof where if a maximum is on the boundary, then the function is non-decreasing near the maximizer, so by continuity the derivative of $ u$ along outward tangent of the characteristic curve (which is exactly $ -u$) must be non-negative, so the maximum must be non-positive. Likewise for the minimum. But I already did it using Taylor's theorem so I omit it.
+\end{problem}
+
+\begin{problem}[5]
+The initial curve $ \gamma_0$ is $ x_0^2+y_0^2=a^2$, and $ z_0=y$. The problem is not well-posed but we shall solve it anyway. The ODEs are
+\begin{align*}
+\begin{cases}
+	\frac{d x}{d t} =y\\
+	\frac{d y}{d t} =x\\
+	\frac{d z}{d t} =0
+\end{cases}
+\end{align*}
+The first two ODEs yield
+\begin{align*}
+	x \frac{d x}{d t} + y \frac{d y}{d t} = xy - xy &= 0 \\
+	\frac{d}{dt} \left( \frac{1}{2} \left( x^2+y^2 \right)  \right) &= 0 \\
+	x(t)^2+y(t)^2 &= C 
+\end{align*}
+Thus by the initial condition, $ C = a^2$. Moreover, the third ODE yields $ z = u = C_1$. By the initial condition, $ u \equiv y$. However, at point $ (a,0)$, we see that
+ \begin{align*}
+	y u_x - xu_y = y \cdot 0 - x \cdot 1 = -x = -a \neq 0,
+\end{align*}
+a contradiction. Therefore, such solution doesn't exist.
+\end{problem}
+\end{document}

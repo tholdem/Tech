@@ -2,17 +2,19 @@
 \input{./preamble.tex}
 
 \begin{document}
+\section{Motivation}
+Let $ S_g$ denote the closed oriented (smooth) surface of genus $ g \geq 2$ and let $ \Mod(S_g)$ denote its mapping class group. To understand $ \Mod(S_g)$, it is natural to ask what its cohomology is. This is especially an important question because cohomology classes of the mapping class group of $ S_g$ exactly corresponds to characteristic classes of  $ S_g$-bundles. However, we know relatively little about $ H^{k}(\Mod(S_g))$ for all possible $ k$ and  $ g$. One family that is completely known to us is within the \emph{stable range} when $ k \leq 2 \left\lfloor \frac{g}{3} \right \rfloor$. Madsen and Weiss \cite{TODO} proved that the \emph{tautological classes} $ \kappa_i$ which coincides with the Miller-Morita-Mumford (MMM) characteristic classes $ e_i$ generate $ H^{k}(\Mod(S_g))$ as a polynomial algebra in this range. The purpose of this paper is to understand these $ e_i$ and show that in particular $ e_1$ is non-trivial.
 \section{Background}
-
 \begin{defn}
-Let $ A$ be an abelian group and  $ k$ be a natural number. A \allbold{characteristic class of $ S_g$-bundles of degree  $ k$ with coefficients in  $ A$} is a natural transformation from the functors $ \Surf_g(-): \textsf{pchTop}^{op} \to \textsf{Set}$ to $ H^{k}(-;A): \textsf{pchTop}^{op} \to \textsf{Set}  $, where $ \textsf{pchTop} $ denotes the homotopy category of topological spaces with objects restricted to paracompact spaces (up to homotopy equivalence).
+Let $ A$ be an abelian group and  $ k$ be a natural number. A \allbold{characteristic class of $ S_g$-bundles of degree  $ k$ with coefficients in  $ A$} is a natural transformation from the functor $ \Surf_g(-): \textsf{pchTop}^{op} \to \textsf{Set}$ to the cohomology functor $ H^{k}(-;A): \textsf{pchTop}^{op} \to \textsf{Set}  $, where $ \Surf_g(M)$ outputs the set of isomorphism classes of  $ S_g$-bundles with base $ M$ and $ \textsf{pchTop} $ denotes the full subcategory of the homotopy category of topological spaces $ \textsf{hTop}$ with objects restricted to (homotopy classes of) paracompact spaces.
 \end{defn}
-Since any manifold is paracompact, we do not need to concern ourselves with the technicality of paracompactness.
+Since any manifold is paracompact, we can ignore this technicality for the purpose of this paper. Moreover, if the categorical language is not familiar to the reader, it suffices to understand a characteristic class as a cohomology class of the base that is natural with respect to bundle pullbacks. That is, if $f$ is a bundle map between two bundles $ F \to E_1 \to M_1$ and $ F \to E_2 \to M_2$, then $ f^* ( \alpha(E_2)) = \alpha(f^* E_2) = \alpha(E_1) $. Note that the last equality is a property of bundle maps.
 \begin{prop} \label{prop:charclass}
 The set of characteristic classes of $ S_g$-bundles of degree $ k$ with coefficients in $ \zz$ is in bijection with  $ H^{k}(\Mod(S_g);\zz)$.
 \end{prop}
-Since by Mike Hutchings, 
-\begin{prop}
+
+The following proposition enables us to switch back and forth between algebraic formalism and geometric intuition. See the notes of Mike Hutchings \cite{TODO} for a proof. 
+\begin{prop} \label{prop:cupintersection} 
 	Let $ X^{n}$ be a closed oriented smooth manifold and suppose $ A^{n-i},B^{n-j}$ are oriented smooth submanifolds of $ X$. Let  $ [A]^* \in H^{i}(X;\zz), [B]^* \in H^{j}(X:\zz)$ respectively denote the Poincar\'{e} duals to the fundamental classes of $ A$ and  $ B$ included into $ X$. Then we have
 	\begin{align*}
 		[A]^* \smile [B]^* = [A \cap B]^* \in H^{i+j}(X;\zz).
@@ -20,14 +22,14 @@ Since by Mike Hutchings,
 That is, the cup product is the Poincar\'{e} dual to intersection.
 \end{prop}
 
-In particular, when $ i+j =n$, then the intersection class is just an integer, which we call the intersection number.
+In particular, when $ i+j =n$, then the intersection class is just an integer, which we call the intersection number. Also, we will use the notation $ [A]^* $ to denote the Poincar\'{e} dual to a fundamental class $ [A]$ throughout the paper.
 
 \begin{defn}
 The \allbold{vertical tangle bundle} $ \rr^{2} \to V \to E$ of a surface bundle $ S_g \to E \xrightarrow{ \pi}  M$ is defined to be $ V= \{(v,e) \in TE: d\pi_e(v) = 0 \in T_e M\} $.
 \end{defn}
 We can think of $ V$ as the contribution of tangents of fibers to the tangent bundle  $ TE$. Since the rest of the tangent bundle comes from the tangents of base space, we have $ TE \cong \pi^* TM \oplus V$, where $ \oplus $ is the Whitney sum of vector bundles.
 
-When $ V$ is orientable, there exists an Euler class  $ e(V) \in H^{2}(E;\zz)$. For each $ i \in \nn$, we can take cup products of $ e(V)$ to obtain  $ e^{i+1}(V) \in H^{2i+2}(E;\zz)$. Therefore, when $ \dim  M = 2i$, $ e^{i+1}(V)$ lives in the top cohomology group of $ E$ and thus is an integer.  From the intersection perspective, since the Euler class represents the zero locus of a section $ E \to V$ (\emph{i.e.} a vertical vector field), $ e^{i+1}$ can be understood as the intersection number of the zero loci of $ i+1$ vertical vector fields. Since the zero section of $ V$ can be identified with $ E$, the intersection lives in $ E$ as well so it is represented by a class in $ H^{2i+2}(E;\zz)$.
+When $ V$ is orientable, there exists an Euler class  $ e(V) \in H^{2}(E;\zz)$. For each $ i \in \nn$, we can take cup products of $ e(V)$ to obtain  $ e^{i+1}(V) \in H^{2i+2}(E;\zz)$. Therefore, when $ \dim  M = 2i$, $ e^{i+1}(V)$ lives in the top cohomology group of $ E$ and thus is an integer.  From the intersection perspective, recall that for a vector bundle, the zero locus of a section (which is a vector field) is the transversal intersection of the vector field with the zero vector field. Since the Euler class here represents the zero locus of a vertical vector field $ E \to V$, $ e^{i+1}$ can be understood as the intersection number of the zero loci of $ i+1$ vertical vector fields. Since the zero vertical vector field of $ V$ can be identified with $ E$, the intersection lives in $ E$ as well. By a dimension count using transversality, the intersection is represented by a class in $ H^{2i+2}(E;\zz)$.
 
 Next, we introduce the Gysin homomorphism.
 \begin{defn}
@@ -38,8 +40,10 @@ Let $ N,M$ be two oriented closed manifolds and  $ f: N \to M$ be a map. The Gys
 where $ n = \dim N$, $ d = \dim N- \dim M$, and the isomorphisms represent Poincar\'{e} duality. The dual Gysin homomorphism $ f^!:H_p(M;\zz) \to H_{p+d}(N;\zz)$ is defined similarly.
 \end{defn}
 We see from the definition that the Gysin homomorphism is nothing but applying an induced map on the homology. Since homology classes are submanifolds, we can understand Gysin homomorphism geometrically by tracking what the map does to the submanifolds representing the homology classes.
+
+We finally introduce the main object of interest in this paper.
 \begin{defn}
-	Define \allbold{the $ i$th Mumford-Miller-Morita class (MMM class)} to be $ e_i(E) = \pi_!\left( e^{i+1} \right) \in H^{2i}(M;\zz)$.
+	Define \allbold{the $ i$th Miller-Morita-Mumford class (MMM class)} to be $ e_i(E) = \pi_!\left( e^{i+1} \right) \in H^{2i}(M;\zz)$.
 \end{defn}
 \begin{prop}
 The cohomology class $ e_i(E)$ is natural with respect to pullbacks. That is, if $ f$ is a bundle map shown in the diagram,
@@ -88,7 +92,7 @@ First, we introduce a crucial object for the construction in a somewhat colloqui
 The mental picture we want to have is the following:
 TODO
 
-Although for each $ i$, we have found a characteristic class $ e_i$ of surface bundles, this class is only interesting if it is not trivial, \emph{i.e.} corresponding to the zero class in $ H^{2i}(\Mod(S_g);\zz)$. Historically,  $ e_i$ is found to be nontrivial by a fact of Hirzebruch that for an oriented surface bundle $ E$ over an oriented closed surface $ M$, $ \langle e_i,[M] \rangle = 3 \sign(E)$, the signature of $ E$, and surface bundles with non-zero signatures have already been constructed by Atiya and Kodaira independently. We now present this construction.
+Although for each $ i$, we have found a characteristic class $ e_i$ of surface bundles, this class is only interesting if it is not trivial, \emph{i.e.} corresponding to the zero class in $ H^{2i}(\Mod(S_g);\zz)$. Historically, the first MMM class $ e_1$ is found to be non-trivial by a fact of Hirzebruch that says: for an oriented surface bundle $ E$ over an oriented closed surface $ M$, $ \langle e_1,[M] \rangle = 3 \sign(E)$, the signature of $ E$; luckily, surface bundles with non-zero signatures have already been constructed by Atiya and Kodaira independently. We now present this construction. We start with some important facts.
 
 \begin{lem} \label{lem:preimage} 
 	Let $ M^{n}$  be an closed oriented manifold and let $ \pi: \widetilde{ M} \to M$ be a finite covering, where the orientation of $ \widetilde{ M}$ is induced by $ M$. Suppose that $ B$ is a  $ (n-k)$-dimensional oriented submanifold of  $ M$, then  $ \pi^* [B]^* $ can be represented by the oriented submanifold $ \widetilde{ B} = \pi ^{-1}(B)$ of $ \widetilde{ M}$.
@@ -102,11 +106,11 @@ The following proposition is the main tool we need to construct an interesting m
 
 Let us begin the construction. We start with $ M_1 = S_{g_1}$. Let $ (M_2, \rho_1)$ be a $ m$-fold cyclic covering of  $ M_1$, \emph{i.e.} its deck transformation group is a cyclic group of order $ m$, generated by  $ \sigma$. By a fact of Euler characteristic of covering spaces, $ 2- 2g_2 =\chi(M_2) = m \chi(M_1) = m (2-2g_1)$ so $ g_2 = 1+m(g_1-1)$.
 
-Since any normal subgroup of $ \pi_1(M_2)$ gives a regular covering of $ M_2$, let $ (M_3, \rho_2)$ be such covering induced by the kernel $ K$ of the surjective map
+Since any subgroup of $ \pi_1(M_2)$ gives a covering of $ M_2$, let $ (M_3, \rho_2)$ be such covering induced by the kernel $ K$ of the surjective map
 \begin{align*}
 	\pi_1(M_2) \twoheadrightarrow H_1(M_2; \zz) \twoheadrightarrow H_1(M_2;\zz /m).
 \end{align*}
-Since $ H_1(M_2 ; \zz) = \zz^{2g_2}$, $ H_1(M_2; \zz /m) \cong H_1(M_2;\zz) \otimes \zz /m$ by the universal coefficient theorem. Therefore, the first isomorphism theorem yields that $ [\pi_1(M_2):K] = |H_1(M_2;\zz /m)|= m^{2g_2}$. That is, $ M_3$ is a $ m^{2g_2}$-fold covering of $ M_2$. Then $ 2-2g_3 = m^{2g_2}(2-2g_2)$ which gives $ g_3 = 1+m^{2g_2}(g_2-1)$.
+Since $ H_1(M_2 ; \zz) = \zz^{2g_2}$, $ H_1(M_2; \zz /m) \cong H_1(M_2;\zz) \otimes \zz /m \cong \left( \zz /m \right)^{2g_2} $ by the universal coefficient theorem. Therefore, the first isomorphism theorem yields that $ [\pi_1(M_2):K] = |H_1(M_2;\zz /m)|= m^{2g_2}$. That is, $ M_3$ is a $ m^{2g_2}$-fold covering of $ M_2$. Then $ 2-2g_3 = m^{2g_2}(2-2g_2)$ which gives $ g_3 = 1+m^{2g_2}(g_2-1)$.
 
 Now consider the trivial bundle $ M_3 \times M_2$ where $ M_2$ is viewed as the fiber. For $ i=0,\ldots,m-1$, the map $ \sigma^{i} \rho_2 : M_3 \to M_2$ projects a point down to $ M_2$ and then permutes it to a point in the fiber of $ \rho_1$. Therefore, the graph $ \Gamma_i$ of $ \sigma^{i} \circ \rho_2$ lives in $ M_3 \times M_2$ and is disjoint from all other $ i$'s. Let $ D$ be the (disjoint) union of all  $ \Gamma_i$ so by the properties of graph, it is a submanifold of codimension 2. We now aim to construct a branched cover over $ M_3 \times M_2$ with $ D$ being the ramification locus. By \cref{prop:divisible}, it suffices to show that  $ [D]$ is divisible by  $ m$ in  $ H_2(M_3 \times M_2; \zz)$ or equivalently show that $ [D]_m^* $ vanishes in  $ H^2(M_3 \times M_2; \zz /m)$.
 
@@ -210,10 +214,9 @@ which yields $ a=1-m$.
 \end{enumerate}
 \end{proof}
 
-From now on, with an abuse of notation, we shall use the (co)homology class, its Poincar\'{e} dual, and the integer it represents (if applicable) interchangeably.
+From now on, with an abuse of notation, we shall interchangeably write the (co)homology class, its Poincar\'{e} dual, and the integer it represents (if applicable).
 
-Geometrically, $ e_i(E)$ projects the intersection of zero loci of $ i+1$ vertical vector fields, which lives in $ E$, down to the base $ M$. Since intersection number is invariant under small perturbation, we can always perturb the vertical vector fields so that intersection points always lie in distinct fibers. This way, an intersection point downstairs corresponds to exactly one intersection point upstairs, and we have $ e_i(E) = e^{i+1}$.
-$ e_i(E) = \pi_!\left( e^{i+1}(V) \right)$. It suffices to show that $ e^{i+1}(E)$ is non-trivial.
+Geometrically, $ e_i(E)$ projects the intersection of zero loci of $ i+1$ vertical vector fields, which lives in $ E$, down to the base $ M$. Since intersection number is invariant under small perturbation, we can always perturb the vertical vector fields so that intersection points always lie in distinct fibers. This way, an intersection point downstairs corresponds to exactly one intersection point upstairs, and we have $ e_i(E) = \pi_!\left( e^{i+1}(V) \right) = e^{i+1}$ as a number. Hence, it suffices to show that $ e^{i+1}(E)$ is non-trivial.
 
 \begin{thm}
 The first MMM class $ e_1$ is a nontrivial characteristic class.
@@ -240,8 +243,8 @@ Now we compute
 \begin{align*}
 	I \left( \widetilde{ D}, \widetilde{ D} \right) &= \left[ \widetilde{ D} \right] ^* \smile  \left[ \widetilde{ D} \right] ^*\\
 							&= \frac{1}{m} f^* [D]^* \smile \frac{1}{m} f^* [D]^*  && \text{ \cref{lem:compute} (i)}  \\
-							&= \frac{1}{2m} f^* \left( [D]^*  \smile [D]^* \right)  && \text{ naturality} \\
-							&= \frac{1}{2m} f^* I(D,D) \\
+							&= \frac{1}{m^2} f^* \left( [D]^*  \smile [D]^* \right)  && \text{ naturality} \\
+							&= \frac{1}{m^2} f^* I(D,D) && \text{\cref{prop:cupintersection}} \\
 							&= \frac{1}{m}I(D,D) && \text{ \cref{lem:compute}(i)} 
 \end{align*}
 

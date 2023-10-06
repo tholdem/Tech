@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2023.6.8)  25 SEP 2023 20:17
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2023.6.8)  29 SEP 2023 11:24
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1170,70 +1170,60 @@ Package caption Info: End \AtBeginDocument code.
 File: translations-basic-dictionary-english.trsl (english translation file `translations-basic-dictionary')
 )
 Package translations Info: loading dictionary `translations-basic-dictionary' for `english'. on input line 4.
-Package mdframed Info: mdframed detected package amsthm 
- changed the theorem header of amsthm
-(mdframed)              on input line 8.
-LaTeX Font Info:    Trying to load font information for T1+lmss on input line 8.
- (/usr/share/texmf/tex/latex/lm/t1lmss.fd
-File: t1lmss.fd 2009/10/30 v1.6 Font defs for Latin Modern
-)
-
-./MMM_class.tex:8: Package xcolor Error: Undefined color `ForestGreen'.
-
-See the xcolor package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.8 L
-     et $ A$ be an abelian group and  $ k$ be a natural number. A \allbold{c...
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-Package hyperref Info: bookmark level for unknown defn defaults to 0 on input line 8.
-LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 8.
-(/usr/share/texmf/tex/latex/lm/ot1lmr.fd
+LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 6.
+ (/usr/share/texmf/tex/latex/lm/ot1lmr.fd
 File: ot1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Trying to load font information for OML+lmm on input line 8.
+LaTeX Font Info:    Trying to load font information for OML+lmm on input line 6.
  (/usr/share/texmf/tex/latex/lm/omllmm.fd
 File: omllmm.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 8.
+LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 6.
  (/usr/share/texmf/tex/latex/lm/omslmsy.fd
 File: omslmsy.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 8.
+LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 6.
  (/usr/share/texmf/tex/latex/lm/omxlmex.fd
 File: omxlmex.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <12> on input line 8.
+(Font)              <12> on input line 6.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8> on input line 8.
+(Font)              <8> on input line 6.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 8.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 8.
+(Font)              <6> on input line 6.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 6.
  (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 8.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 6.
  (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Trying to load font information for U+esvect on input line 8.
+LaTeX Font Info:    Trying to load font information for U+esvect on input line 6.
  (/usr/share/texlive/texmf-dist/tex/latex/esvect/uesvect.fd
 File: uesvect.fd 
 )
-LaTeX Font Info:    Trying to load font information for U+stmry on input line 8.
+LaTeX Font Info:    Trying to load font information for U+stmry on input line 6.
  (/usr/share/texlive/texmf-dist/tex/latex/stmaryrd/Ustmry.fd)
-LaTeX Font Info:    Trying to load font information for U+rsfs on input line 8.
+LaTeX Font Info:    Trying to load font information for U+rsfs on input line 6.
  (/usr/share/texlive/texmf-dist/tex/latex/jknapltx/ursfs.fd
 File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
 )
 
 LaTeX Font Warning: Font shape `U/stmry/b/n' undefined
-(Font)              using `U/stmry/m/n' instead on input line 8.
+(Font)              using `U/stmry/m/n' instead on input line 6.
 
+
+LaTeX Warning: Citation `TODO' on page 1 undefined on input line 6.
+
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 9.
+LaTeX Font Info:    Trying to load font information for T1+lmss on input line 9.
+(/usr/share/texmf/tex/latex/lm/t1lmss.fd
+File: t1lmss.fd 2009/10/30 v1.6 Font defs for Latin Modern
+)
 
 ./MMM_class.tex:9: Package xcolor Error: Undefined color `ForestGreen'.
 
@@ -1241,113 +1231,60 @@ See the xcolor package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.9 \end{defn}
-              
+l.9 L
+     et $ A$ be an abelian group and  $ k$ be a natural number. A \allbold{c...
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+Package hyperref Info: bookmark level for unknown defn defaults to 0 on input line 9.
+
+./MMM_class.tex:10: Package xcolor Error: Undefined color `ForestGreen'.
+
+See the xcolor package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.10 \end{defn}
+               
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
 
-./MMM_class.tex:9: Package xcolor Error: Undefined color `ForestGreen'.
+./MMM_class.tex:10: Package xcolor Error: Undefined color `ForestGreen'.
 
 See the xcolor package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.9 \end{defn}
-              
+l.10 \end{defn}
+               
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 11.
+(mdframed)              on input line 12.
 
-./MMM_class.tex:11: Package xcolor Error: Undefined color `MidnightBlue'.
+./MMM_class.tex:12: Package xcolor Error: Undefined color `MidnightBlue'.
 
 See the xcolor package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.11 \begin{prop} \label
+l.12 \begin{prop} \label
                         {prop:charclass}
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
-Package hyperref Info: bookmark level for unknown prop defaults to 0 on input line 11.
+Package hyperref Info: bookmark level for unknown prop defaults to 0 on input line 12.
 
-./MMM_class.tex:13: Package xcolor Error: Undefined color `TealBlue'.
-
-See the xcolor package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.13 \end{prop}
-               
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-Package mdframed Info: mdframed detected package amsthm 
- changed the theorem header of amsthm
-(mdframed)              on input line 16.
-
-./MMM_class.tex:16: Package xcolor Error: Undefined color `MidnightBlue'.
+./MMM_class.tex:14: Package xcolor Error: Undefined color `TealBlue'.
 
 See the xcolor package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.16 	L
-       et $ X^{n}$ be a closed oriented smooth manifold and suppose $ A^{n-i...
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-
-./MMM_class.tex:21: Package xcolor Error: Undefined color `TealBlue'.
-
-See the xcolor package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.21 \end{prop}
-               
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-Package mdframed Info: mdframed detected package amsthm 
- changed the theorem header of amsthm
-(mdframed)              on input line 26.
-
-./MMM_class.tex:26: Package xcolor Error: Undefined color `ForestGreen'.
-
-See the xcolor package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.26 T
-      he \allbold{vertical tangle bundle} $ \rr^{2} \to V \to E$ of a surfac...
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-
-./MMM_class.tex:27: Package xcolor Error: Undefined color `ForestGreen'.
-
-See the xcolor package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.27 \end{defn}
-               
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-
-./MMM_class.tex:27: Package xcolor Error: Undefined color `ForestGreen'.
-
-See the xcolor package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.27 \end{defn}
+l.14 \end{prop}
                
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
@@ -1355,355 +1292,434 @@ If that doesn't work, type  X <return>  to quit.
 [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
+
+LaTeX Warning: Citation `TODO' on page 2 undefined on input line 16.
+
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 34.
+(mdframed)              on input line 17.
 
-
-./MMM_class.tex:34: Package xcolor Error: Undefined color `ForestGreen'.
+./MMM_class.tex:17: Package xcolor Error: Undefined color `MidnightBlue'.
 
 See the xcolor package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.34 L
-      et $ N,M$ be two oriented closed manifolds and  $ f: N \to M$ be a map...
+l.17 \begin{prop} \label
+                        {prop:cupintersection}
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
 
-./MMM_class.tex:39: Package xcolor Error: Undefined color `ForestGreen'.
+./MMM_class.tex:23: Package xcolor Error: Undefined color `TealBlue'.
 
 See the xcolor package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.39 \end{defn}
-               
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-
-./MMM_class.tex:39: Package xcolor Error: Undefined color `ForestGreen'.
-
-See the xcolor package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.39 \end{defn}
+l.23 \end{prop}
                
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 42.
+(mdframed)              on input line 28.
 
-./MMM_class.tex:42: Package xcolor Error: Undefined color `ForestGreen'.
+./MMM_class.tex:28: Package xcolor Error: Undefined color `ForestGreen'.
 
 See the xcolor package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.42 	D
-       efine \allbold{the $ i$th Mumford-Miller-Morita class (MMM class)} to...
+l.28 T
+      he \allbold{vertical tangle bundle} $ \rr^{2} \to V \to E$ of a surfac...
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
 
-./MMM_class.tex:43: Package xcolor Error: Undefined color `ForestGreen'.
+./MMM_class.tex:29: Package xcolor Error: Undefined color `ForestGreen'.
 
 See the xcolor package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.43 \end{defn}
+l.29 \end{defn}
                
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
 
-./MMM_class.tex:43: Package xcolor Error: Undefined color `ForestGreen'.
+./MMM_class.tex:29: Package xcolor Error: Undefined color `ForestGreen'.
 
 See the xcolor package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.43 \end{defn}
-               
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-Package mdframed Info: mdframed detected package amsthm 
- changed the theorem header of amsthm
-(mdframed)              on input line 45.
-
-./MMM_class.tex:45: Package xcolor Error: Undefined color `MidnightBlue'.
-
-See the xcolor package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.45 T
-      he cohomology class $ e_i(E)$ is natural with respect to pullbacks. Th...
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-
-./MMM_class.tex:67: Package xcolor Error: Undefined color `TealBlue'.
-
-See the xcolor package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.67 \end{prop}
+l.29 \end{defn}
                
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
 [2]
-
-LaTeX Warning: cref reference format for label type `prop' undefined on input line 81.
-
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 86.
+(mdframed)              on input line 36.
 
-./MMM_class.tex:86: Package xcolor Error: Undefined color `ForestGreen'.
+
+./MMM_class.tex:36: Package xcolor Error: Undefined color `ForestGreen'.
 
 See the xcolor package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.86 	L
-       et $ M$ be an oriented smooth manifold and  $ B$ be an oriented subma...
+l.36 L
+      et $ N,M$ be two oriented closed manifolds and  $ f: N \to M$ be a map...
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
 
-./MMM_class.tex:87: Package xcolor Error: Undefined color `ForestGreen'.
+./MMM_class.tex:41: Package xcolor Error: Undefined color `ForestGreen'.
 
 See the xcolor package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.87 \end{defn}
+l.41 \end{defn}
                
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
 
-./MMM_class.tex:87: Package xcolor Error: Undefined color `ForestGreen'.
+./MMM_class.tex:41: Package xcolor Error: Undefined color `ForestGreen'.
 
 See the xcolor package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.87 \end{defn}
+l.41 \end{defn}
+               
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 46.
+
+./MMM_class.tex:46: Package xcolor Error: Undefined color `ForestGreen'.
+
+See the xcolor package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.46 	D
+       efine \allbold{the $ i$th Miller-Morita-Mumford class (MMM class)} to...
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+./MMM_class.tex:47: Package xcolor Error: Undefined color `ForestGreen'.
+
+See the xcolor package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.47 \end{defn}
+               
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+./MMM_class.tex:47: Package xcolor Error: Undefined color `ForestGreen'.
+
+See the xcolor package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.47 \end{defn}
+               
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 49.
+
+./MMM_class.tex:49: Package xcolor Error: Undefined color `MidnightBlue'.
+
+See the xcolor package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.49 T
+      he cohomology class $ e_i(E)$ is natural with respect to pullbacks. Th...
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+./MMM_class.tex:71: Package xcolor Error: Undefined color `TealBlue'.
+
+See the xcolor package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.71 \end{prop}
                
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
 [3]
+
+LaTeX Warning: cref reference format for label type `prop' undefined on input line 85.
+
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 93.
+(mdframed)              on input line 90.
 
-
-./MMM_class.tex:93: Package xcolor Error: Undefined color `MidnightBlue'.
+./MMM_class.tex:90: Package xcolor Error: Undefined color `ForestGreen'.
 
 See the xcolor package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.93 \begin{lem} \label
+l.90 	L
+       et $ M$ be an oriented smooth manifold and  $ B$ be an oriented subma...
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+./MMM_class.tex:91: Package xcolor Error: Undefined color `ForestGreen'.
+
+See the xcolor package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.91 \end{defn}
+               
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+./MMM_class.tex:91: Package xcolor Error: Undefined color `ForestGreen'.
+
+See the xcolor package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.91 \end{defn}
+               
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+[4]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 97.
+
+
+./MMM_class.tex:97: Package xcolor Error: Undefined color `MidnightBlue'.
+
+See the xcolor package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.97 \begin{lem} \label
                        {lem:preimage}
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
-Package hyperref Info: bookmark level for unknown lem defaults to 0 on input line 93.
+Package hyperref Info: bookmark level for unknown lem defaults to 0 on input line 97.
 
-./MMM_class.tex:95: Package xcolor Error: Undefined color `TealBlue'.
+./MMM_class.tex:99: Package xcolor Error: Undefined color `TealBlue'.
 
 See the xcolor package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.95 \end{lem}
+l.99 \end{lem}
               
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 97--98
+Underfull \hbox (badness 10000) in paragraph at lines 101--102
 
  []
 
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 98.
+(mdframed)              on input line 102.
 
-./MMM_class.tex:98: Package xcolor Error: Undefined color `MidnightBlue'.
+./MMM_class.tex:102: Package xcolor Error: Undefined color `MidnightBlue'.
 
 See the xcolor package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.98 \begin{prop} \label
-                        {prop:divisible}
+l.102 \begin{prop} \label
+                         {prop:divisible}
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
 
-./MMM_class.tex:100: Package xcolor Error: Undefined color `TealBlue'.
+./MMM_class.tex:104: Package xcolor Error: Undefined color `TealBlue'.
 
 See the xcolor package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.100 \end{prop}
+l.104 \end{prop}
                 
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
-[4]
-
-LaTeX Warning: cref reference format for label type `prop' undefined on input line 111.
-
 [5]
 
-LaTeX Warning: cref reference format for label type `lem' undefined on input line 135.
+LaTeX Warning: cref reference format for label type `prop' undefined on input line 115.
+
+[6]
+
+LaTeX Warning: cref reference format for label type `lem' undefined on input line 139.
 
 
-LaTeX Warning: cref reference format for label type `prop' undefined on input line 145.
+LaTeX Warning: cref reference format for label type `prop' undefined on input line 149.
 
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <17.28> on input line 147.
+(Font)              <17.28> on input line 151.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 147.
+(Font)              <10> on input line 151.
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 147.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `subscript' on input line 147.
+(hyperref)                removing `math shift' on input line 151.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 147.
+(hyperref)                removing `subscript' on input line 151.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 151.
 
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 148.
+(mdframed)              on input line 152.
 
-./MMM_class.tex:148: Package xcolor Error: Undefined color `MidnightBlue'.
+./MMM_class.tex:152: Package xcolor Error: Undefined color `MidnightBlue'.
 
 See the xcolor package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.148 \begin{lem} \label
+l.152 \begin{lem} \label
                         {lem:compute}
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
 
-./MMM_class.tex:168: Package xcolor Error: Undefined color `TealBlue'.
+./MMM_class.tex:172: Package xcolor Error: Undefined color `TealBlue'.
 
 See the xcolor package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.168 \end{lem}
+l.172 \end{lem}
                
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
-[6]
-
-LaTeX Warning: cref reference format for label type `lem' undefined on input line 172.
-
 [7]
-Overfull \hbox (33.42088pt too wide) detected at line 189
+
+LaTeX Warning: cref reference format for label type `lem' undefined on input line 176.
+
+[8]
+Overfull \hbox (33.42088pt too wide) detected at line 193
 []
  []
 
-[8]
+[9]
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 219.
+(mdframed)              on input line 222.
 
 
-./MMM_class.tex:219: Package xcolor Error: Undefined color `MidnightBlue'.
+./MMM_class.tex:222: Package xcolor Error: Undefined color `MidnightBlue'.
 
 See the xcolor package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.219 T
+l.222 T
        he first MMM class $ e_1$ is a nontrivial characteristic class.
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
-Package hyperref Info: bookmark level for unknown thm defaults to 0 on input line 219.
+Package hyperref Info: bookmark level for unknown thm defaults to 0 on input line 222.
 
-./MMM_class.tex:220: Package xcolor Error: Undefined color `TealBlue'.
+./MMM_class.tex:223: Package xcolor Error: Undefined color `TealBlue'.
 
 See the xcolor package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.220 \end{thm}
+l.223 \end{thm}
                
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
 
-LaTeX Warning: cref reference format for label type `lem' undefined on input line 224.
+LaTeX Warning: cref reference format for label type `lem' undefined on input line 227.
 
 
-LaTeX Warning: cref reference format for label type `lem' undefined on input line 234.
+LaTeX Warning: cref reference format for label type `lem' undefined on input line 237.
 
 
-LaTeX Warning: cref reference format for label type `lem' undefined on input line 234.
+LaTeX Warning: cref reference format for label type `lem' undefined on input line 237.
 
-[9]
+[10]
 
-LaTeX Warning: cref reference format for label type `lem' undefined on input line 246.
-
-
-LaTeX Warning: cref reference format for label type `lem' undefined on input line 246.
+LaTeX Warning: cref reference format for label type `lem' undefined on input line 249.
 
 
-LaTeX Warning: cref reference format for label type `lem' undefined on input line 246.
+LaTeX Warning: cref reference format for label type `prop' undefined on input line 249.
 
 
-LaTeX Warning: cref reference format for label type `lem' undefined on input line 246.
+LaTeX Warning: cref reference format for label type `lem' undefined on input line 249.
 
-[10] (./MMM_class.aux)
+
+LaTeX Warning: cref reference format for label type `lem' undefined on input line 249.
+
+
+LaTeX Warning: cref reference format for label type `prop' undefined on input line 249.
+
+
+LaTeX Warning: cref reference format for label type `lem' undefined on input line 249.
+
+[11] (./MMM_class.aux)
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
 
 LaTeX Warning: There were undefined references.
 
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
 Package rerunfilecheck Info: File `MMM_class.out' has not changed.
-(rerunfilecheck)             Checksum: F271D44077920FCE7C2B35318F7B0D8A;457.
+(rerunfilecheck)             Checksum: 6C079427AA87DDE4B84B803FC232F5C5;550.
  ) 
 Here is how much of TeX's memory you used:
- 37788 strings out of 478287
- 769774 string characters out of 5849290
+ 37793 strings out of 478287
+ 769851 string characters out of 5849290
  1037387 words of memory out of 5000000
- 55228 multiletter control sequences out of 15000+600000
+ 55231 multiletter control sequences out of 15000+600000
  550239 words of font info for 99 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 129i,19n,134p,950b,1272s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/texmf/fonts/enc/dvips/lm/lm-rm.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathex.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-ec.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathit.enc}</usr/share/texmf/fonts/type1/public/lm/lmbx12.pfb></usr/share/texmf/fonts/type1/public/lm/lmex10.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi12.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi8.pfb></usr/share/texmf/fonts/type1/public/lm/lmmib10.pfb></usr/share/texmf/fonts/type1/public/lm/lmr12.pfb></usr/share/texmf/fonts/type1/public/lm/lmr6.pfb></usr/share/texmf/fonts/type1/public/lm/lmr8.pfb></usr/share/texmf/fonts/type1/public/lm/lmri12.pfb></usr/share/texmf/fonts/type1/public/lm/lmss12.pfb></usr/share/texmf/fonts/type1/public/lm/lmssbx10.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy10.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy6.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on MMM_class.pdf (10 pages, 249994 bytes).
+ 129i,19n,134p,1091b,1272s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/share/texmf/fonts/enc/dvips/lm/lm-rm.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-ec.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathex.enc}</usr/share/texmf/fonts/type1/public/lm/lmbx12.pfb></usr/share/texmf/fonts/type1/public/lm/lmex10.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi12.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi8.pfb></usr/share/texmf/fonts/type1/public/lm/lmmib10.pfb></usr/share/texmf/fonts/type1/public/lm/lmr12.pfb></usr/share/texmf/fonts/type1/public/lm/lmr6.pfb></usr/share/texmf/fonts/type1/public/lm/lmr8.pfb></usr/share/texmf/fonts/type1/public/lm/lmri12.pfb></usr/share/texmf/fonts/type1/public/lm/lmss12.pfb></usr/share/texmf/fonts/type1/public/lm/lmssbx10.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy10.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy6.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on MMM_class.pdf (11 pages, 255985 bytes).
 PDF statistics:
- 196 PDF objects out of 1000 (max. 8388607)
- 149 compressed objects within 2 object streams
- 43 named destinations out of 1000 (max. 500000)
- 37 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 204 PDF objects out of 1000 (max. 8388607)
+ 156 compressed objects within 2 object streams
+ 45 named destinations out of 1000 (max. 500000)
+ 45 words of extra memory for PDF output out of 10000 (max. 10000000)
 
