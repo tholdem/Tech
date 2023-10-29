@@ -105,7 +105,29 @@ Thus,
 	u(t) = -bp = -b \cdot \left( - \frac{x_0}{b^2 t_f} \right) e^{at}  = \frac{x_0}{ b t_f} e^{at}
 \end{align*}
 \end{problem}
-
+\begin{problem}[3]
+We see that $ \Phi(t) = \frac{1}{2}(x(t)-1)^2$ and the Hamiltonian is
+\begin{align*}
+	H = \frac{1}{2} (x^2+u^2)+pu .
+\end{align*}
+The adjoint equation is
+\begin{align*}
+	\dot{p}= -H_x = x
+\end{align*}
+The first-order condition says
+\begin{align*}
+	H_u = u +p=0 \implies u = -p .
+\end{align*}
+Since $ x(2)$ is free, we have the transversality condition
+ \begin{align*}
+	p(2) = \Phi_x(2) = x(2)-1 .
+\end{align*}
+Thus we have two boundary conditions for two differential equations. Mathematica yields
+\begin{align*}
+	u(t) = -p(t) = \frac{\sin(1-t)}{\cos 1 - \sin 1 }.
+\end{align*}
+The associated cost is $ 14.9283$.
+\end{problem}
 \begin{problem}[5]
 The cost has the Meyer form $ J = t_f$ so  $ \Phi(t) = t$. The Hamiltonian is
 \begin{align*}
