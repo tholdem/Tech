@@ -1,0 +1,126 @@
+\documentclass[12pt]{article}
+\input{../preamble.tex}
+
+\begin{document}
+\centerline {\textsf{\textbf{\LARGE{Homework 4}}}}
+\centerline {Jaden Wang}
+\vspace{.15in}
+\begin{problem}[1]
+\begin{enumerate}[label=(\alph*)]
+The Hamiltonian of the problem is given by
+\begin{align*}
+	H(x_1,x_2,u,p_1,p_2) = \frac{1}{2} u ^2+ p_1x_2+p_2(u-x_2). 
+\end{align*}
+The adjoint equations are given by
+\begin{align*}
+	\dot{p_1} &= -H_{x_1} = 0 \\
+	\dot{p_2} &= -H_{x_2} = p_2-p_1
+\end{align*}
+The first-order condition demands
+\begin{align*}
+	H_u = u+p_2 &= 0\\
+	u&= -p_2 
+\end{align*}
+Plugging this into the differential equations yield
+\begin{align*}
+	\dot{x_1} &= x_2 \\
+	\dot{x_2} &= -x_2-p_2 \\
+\end{align*}
+Together with the adjoint equations, we have 4 first-order equations and require 4 boundary conditions.
+\item Since all initial and final times and states are fixed, we have 4 boundary conditions $ x_1(0)=x_2(0)=0$, $ x_1(3)=1$, and $ x_2(3)=2$. Mathematica yields
+\begin{align*}
+	u(t) &= \frac{6e^{3+t}+6e^{t}-e^{6}+4e^{3}-3}{e^{6}+4e^{3}-5}\\
+	&=-0.6811 + 0.2642 e^{t}.
+\end{align*}
+\item When $ x_2(3)$ is free, in its place we instead have the transversality condition $ p_2(3) = 0$. This yields the solution
+\begin{align*}
+	u(t) &= -\frac{2e^3(e^{t}-e^{3})}{3e^{6}+4e^3-1 }\\
+	&= 0.6256 - 0.0311e^{t} \\
+\end{align*}
+\item I would add a final penalty term $ \Phi$:
+\begin{align*}
+	\mathcal{ J} = \underbrace{ \frac{1}{2} \left( (x_1(3)-1)^2+(x_2(3)-2)^2 \right)  }_{\Phi(3) } + \frac{1}{2} \int_0^3 u^2 dt .
+\end{align*}
+Then instead of $ p_1(3)=p_2(3)=0$, we have
+\begin{align*}
+	p_1(3) &= \Phi_{x_1}(3) = x_1(3)-1 \\
+	p_2(3) &= \Phi_{x_2}(3) = x_2(3)-2 \\
+\end{align*}
+Then new control is
+\begin{align*}
+	u(t) &= \frac{8e^{3+t}+6e^{t}+e^{6}+4e^3-3}{7e^{6}+8e^3-7}\\
+	&= 0.1615+0.056 e^{t} .
+\end{align*}
+We see that $ x_1(3) = 0.8385$ and $ x_2(3) = 0.7142$, which are not very close to $ (1,2)$. To improve accuracy, I would increase the weight of the penalty term. We see that the cost in part (a) is  $ 4.2859$. The cost as a function of the weight coefficient  $ c$ is shown in the figure below:
+
+
+\item It is clear that $ \Psi = \begin{pmatrix} 2&5 \end{pmatrix} $. By transversality condition from Equation 5.234, we have the boundary conditions
+\begin{align*}
+	\begin{pmatrix} -p_1(3)\\-p_2(3) \end{pmatrix} &= \begin{pmatrix} 2\\5 \end{pmatrix} \lambda 
+\end{align*}
+Together with the initial conditions $ x_1(0)=x_2(0)=0$ and the terminal condition $ 2 x_1(3) + 5x_2(3) = 20$, we have 5 boundary conditions for 4 differential equations and an unknown $ \lambda$. This allows us to solve by Mathematica and obtain the optimal control:
+\begin{align*}
+	u(t)=-p_2(t)= 1.4341+0.1071 e^{t}
+\end{align*}
+\item We have the same $\Psi $ but $ h(t) = 20 +\frac{t^2}{ 2}$ so $ \dot{h}(t_f) = t_f$. When $ t_f$ is also free, based on Equation 5.234 we have the transversality conditions
+\begin{align*}
+	\begin{pmatrix} H(t_f)\\ -p_1(t_f)\\-p_2(t_f) \end{pmatrix} &= \begin{pmatrix} -t_f\\ 2\\5 \end{pmatrix} \lambda 
+\end{align*}
+Note that by plugging in $ u=-p_2$, we have
+\begin{align*}
+	H &= -\frac{1}{2} p_2^2+(p_1-p_2)x_2\\
+	H(t_f)&= -\frac{25}{2} \lambda + 3x_2(t_f) = -t_f 
+\end{align*}
+Together with two initial conditions and the terminal condition
+\begin{align*}
+	2x_1(t_f) +5x_2(t_f) = 20 + \frac{t_f^2}{ 2},
+\end{align*}
+we have a total of 6 boundary conditions to match the 4 differential equations and two unknowns $ \lambda$ and $ t_f$. Mathematica yields
+\end{enumerate}
+\end{problem}
+\begin{problem}[2]
+The Hamiltonian is
+\begin{align*}
+	H = \frac{1}{2} u^2 + p(ax+bu)
+\end{align*}
+The adjoint equation is
+\begin{align*}
+	\dot{p} = -H_x = ap \implies p(t) = C e^{at}.
+\end{align*}
+And the first-order condition is
+\begin{align*}
+	H_u = u+bp = 0 \implies u=-bp
+\end{align*}
+Thus
+\begin{align*}
+	\dot{x} = ax-b^2p = ax - b^2 C e^{at}, \quad x(0)=x_0,x(tf) = 0
+\end{align*}
+We have $ x(t) = b^2 C t e^{at} + A e^{at}$, $ x(0) = A = x_0$, and
+\begin{align*}
+	x(t_f) = b^2 C t_f e^{at_f} + x_0 e^{at_f} &= 0 \\
+	C &= - \frac{x_0}{ b^2 t_f}
+\end{align*}
+Thus,
+\begin{align*}
+	u(t) = -bp = -b \cdot \left( - \frac{x_0}{b^2 t_f} \right) e^{at}  = \frac{x_0}{ b t_f} e^{at}
+\end{align*}
+\end{problem}
+
+\begin{problem}[5]
+The cost has the Meyer form $ J = t_f$ so  $ \Phi(t) = t$. The Hamiltonian is
+\begin{align*}
+	H(x,y,p_1,p_2) &= p_1 r \cos \beta + p_2 r \sin \beta .
+\end{align*}
+The adjoint equations are
+\begin{align*}
+	\dot{p_1} &= -H_x = - p_1 \frac{x}{r} \cos \beta - p_2 \frac{x}{r} \sin \beta \\
+	\dot{p_2} &= -H_y = p_1 \frac{y}{r} \cos \beta - p_2 \frac{x}{r} \sin \beta 
+\end{align*}
+First-order condition yields
+\begin{align*}
+	H_{\beta} = -p_1 r \sin \beta + p_2 r \cos \beta &= 0 \\
+	\tan \beta &= \frac{p_2}{p_1} 
+\end{align*}
+Since $ t_f$ is free, transversality demands $ H(t_f) = - \Phi_t(t_f) = -1$ and 
+\end{problem}
+\end{document}

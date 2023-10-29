@@ -1,0 +1,160 @@
+\documentclass[12pt]{article}
+\input{../preamble.tex}
+
+\begin{document}
+\centerline {\textsf{\textbf{\LARGE{Midterm}}}}
+\centerline {Jaden Wang}
+\vspace{.15in}
+
+\begin{problem}[1]
+\begin{enumerate}[label=(\alph*)]
+	\item 
+First we augment the domain $ D = \rr^{n+m}$ and let $ \overline{f}(\overline{x}) := f(x)$ and $ \overline{g}_i(\overline{x}) := g_i(x)+ \epsilon_i$ where $ \overline{x} = (x, \epsilon)$. Let $ \overline{F} = \begin{pmatrix} \overline{f}\\\overline{g} \end{pmatrix} $. Then
+\begin{align*}
+	\nabla \overline{F}(\overline{x}) = \begin{pmatrix} f'(x)& 0\\g'(x) & I_m \end{pmatrix} 
+\end{align*}
+where $ I_m$ is the $ m\times m$ identity matrix. Let the constrained domain $ D_0:= \{(x, \epsilon) \in \rr^{n} \times \rr^{m}: \epsilon \succeq 0\} = \rr^{n} \times \rr_+^{m}$. Suppose $ \overline{x}_0$ is a local minimizer. We see that $ \fcone(D_0,\overline{x}_0) = D_0 = \fcone(\rr^{n},x) \times \fcone(\rr_+^{m}, \epsilon)$ (which is already convex). Thus for any $ \overline{\xi} \in \fcone(D_0, \overline{x}_0)$, we have $ \overline{\xi} = (\eta, \xi) \in \fcone(\rr^{n},x) \times \fcone(\rr_+^{m}, \epsilon)$. Notice that $ \fcone( \rr_+^{m}, \epsilon) $ depends on whether $ \epsilon_i=0$ \emph{i.e.} at the boundary. If $ \epsilon_i$ is in the interior \emph{i.e.} $ \epsilon_i > 0$, then $ \fcone( \rr_+, \epsilon_i)  = \rr$. Otherwise, whenever $ \epsilon_i=0$, the feasible cone of $ i$th factor of $ \rr$ becomes $ \rr_+$.
+
+First-order necessarily condition demands that
+\begin{align*}
+	\begin{pmatrix} \mu& \lambda^{T} \end{pmatrix} \nabla \overline{F}(\overline{x}_0) \overline{ \xi} &\geq 0\\
+	\begin{pmatrix} \mu f'(x_0) + \lambda^{T}g'(x_0) & \lambda^{T}\end{pmatrix} \begin{pmatrix} \eta\\ \xi \end{pmatrix}  &\geq 0\\
+	[\mu f'(x_0) + \lambda^{T}g'(x_0)] \eta + \lambda^{T} \xi &\geq 0.
+\end{align*}
+By setting $ \eta = 0$, we have $ \lambda^{T} \xi \geq 0$. Notice that whenever $ \epsilon_i > 0$, $ \xi_i \in \rr$ so by choosing other $ \xi_j = 0$, it forces $ \lambda_i = 0$. Whenever $ \epsilon_i = 0$ \emph{i.e.} $ g_i(x_0)=0$, $ \xi_i \geq 0$ so by choosing other $ \xi_j =0$, it forces $ \lambda_i \geq 0$. In either case, we have $ \lambda_i g_i(x_0) = 0 $ and $ \lambda \succeq 0$. Since $ \eta \in \rr^{n}$, by setting $ \xi = 0$ and plugging in $ \eta \neq 0$ and $ -\eta$, we have $ \mu f'(x_0) + \lambda^{T} g'(x_0) = 0$. This leads to the first-order necessary condition for the inequality constraint optimization problem: if $ x_0 \in \rr^{n}$ is a local minimizer of the problem, there exists $ \mu \in \{0,1\} $ and $ \lambda \in \rr^{m}$ such that they are not both zero and such that
+\begin{align*}
+	\mu f'(x_0) + \lambda^{T}g'(x_0) &= 0 \\
+	\lambda_i g_i(x_0) &= 0 \\
+	\lambda& \succeq 0.
+\end{align*}
+\item The Lagrangian for the augmented problem is
+\begin{align*}
+	\mathscr{L}(\overline{x},\mu,\lambda) = \mu \overline{f}(\overline{x}) + \lambda^{T} \overline{g}(\overline{x})
+\end{align*}
+According to Theorem 3.39, for the augmented problem we define
+\begin{align*}
+	J(\overline{x}_0):= \{\zeta=(\eta,\xi) \in \fcone( D_0, \overline{x}_0): f'(x_0) \eta \leq 0 \text{ and } g'(x_0) \eta + \xi = 0 \}. 
+\end{align*}
+We see that when $ \epsilon_i>0$, $ \xi_i \in \rr$, so we can always achieve $ g_i'(x)\eta + \xi_i =0$, so we can remove this inactive constraint $ g_i(x)$ in our consideration of $ J$ (and thus second-order conditions). 
+
+When  $ \epsilon_i=0$ (active constraint, assume $ \lambda_i>0$), $ \xi_i \geq 0$, thus we have $ g_i'(x) \eta \leq 0$. Moreover, from previous part we know that by choosing $ \xi = 0$, we have
+ \begin{align*}
+	 [\mu f'(x_0)+\lambda^{T}g'(x_0)] \eta \geq 0
+\end{align*}
+Thus if $ f'(x_0) \eta \leq 0$, $ \mu f'(x_0) \eta \leq 0$ as well, which forces $ \lambda^{T} g'(x_0) \eta \geq 0$. Since $ \eta$ is any vector in the half-hyperplane that forms obtuse angle from $ f'(x_0)$, we must have $ \lambda_i g_i'(x_0) \eta \geq 0$ (otherwise we can just tweak to values of $ \eta$ to make the negative entry dominates). Since $ \lambda_i>0$, we have $ g_i'(x_0) \eta \geq 0$ and thus $ g_i'(x_0) \eta = 0$. Thus we eliminated $ \xi$ from the condition so $ J$ reduces to
+\begin{align*}
+	J(\overline{x}_0)=J(x_0)= \{\eta \in \fcone( \rr^{n}, x_0)=\rr^{n}: f'(x_0) \eta \leq 0 \text{ and } g_i'(x_0) \eta = 0 \ \forall \ g_i(x_0)=0, \lambda_i>0 \}. 
+\end{align*}
+Moreover, we see that
+\begin{align*}
+	\mathscr{L}_{\overline{x}} &= \mu \overline{f}_{\overline{x}}(\overline{x}) + \lambda^{T} \overline{g}_{\overline{x}}(\overline{x}) \\
+				   &= \mu \begin{pmatrix} f_x(x)&0 \end{pmatrix} + \lambda^{T} \begin{pmatrix} g_x(x) & I_m \end{pmatrix}  \\
+	\mathscr{L}_{\overline{x}\overline{x}} &= \mu \begin{pmatrix} f_{x x}(x)&0\\0&0 \end{pmatrix} + \lambda^{T} \begin{pmatrix} g_{x x}(x)&0\\0&0 \end{pmatrix}  \\
+					       &= \begin{pmatrix}  \mathscr{L}_{x x}&0\\0&0 \end{pmatrix} 
+\end{align*}
+so $ \xi$ again becomes irrelevant. Thus the second-order necessary condition from Theorem 3.39 reduces to: let $ f:\rr^{n} \to \rr$ and $ g:\rr^{n} \to \rr^{m}$ be $ C^2$. If $ x_0$ is a local minimizer of the inequality constrained minimization problem, then for all $ \eta \in J(x_0)$, there exists nonzero $ (\mu,\lambda) \in \{0,1\} \times \rr^{m} $ such that it satisfies the first-order conditions in (a), and
+\begin{align*}
+	\eta^{T} \mathscr{L}_{x x}(x_0,\mu,\lambda)\eta \geq 0.
+\end{align*}
+\end{enumerate}
+\end{problem}
+
+\begin{problem}[2]
+From homework and $ D=Av^2+BL^2 = Av^2+ B(mg)^2$, we have
+\begin{align*}
+	F(m,v(m),v'(m))&= \frac{c v}{ Av^2+B(mg)^2} \left( 1+\frac{m}{c} v' \right) \\
+	\frac{\partial F}{\partial v} &= \frac{-Acv^2+Bc(mg)^2}{(Av^2+B(mg)^2)^2 } = \frac{-c(Av^2-B(mg)^2)}{(Av^2+B(mg)^2)^2 }\\
+	\frac{\partial F}{\partial v'} &= \frac{mv}{Av^2+B(mg)^2} \\
+	\frac{d}{dm} \frac{\partial F}{\partial v'} &= \frac{v+mv'}{ Av^2+ B(mg)^2} -\frac{mv(2Avv'+2Bmg^2)}{ (Av^2+B(mg)^2)^2} \\
+	&= \frac{v+mv'}{ Av^2+ B(mg)^2} - \frac{2Av^2v'+2B(mg)^2v}{(A v^2+B(mg)^2)^2 } \\
+	&= \frac{(v-mv')(Av^2-B(mg)^2)}{(Av^2+B(mg)^2)^2 } 
+\end{align*}
+Euler-Lagrange demands that
+\begin{align*}
+	F_v &= \frac{d}{dm} F_{v'}\\
+	(v-mv'+c)(Av^2-B(mg)^2) &= 0 && \text{ denominator}>0 \\
+	\frac{dv}{v+c} = \frac{dm}{m} &\text{ or } Av^2=B(mg)^2\\ 
+	v(m)=C_1m-c &\text{ or } v(m) = mg \sqrt{\frac{B}{A}}  
+\end{align*}
+Since $ c$ is a positive constant, the first equation would imply that the velocity is negative when mass is zero, which makes no physical sense. It follows that the extremal is $ v(m) = mg \sqrt{\frac{B}{A}} $. Since the problem intuitively should have a maximum, and this is the only candidate, this must be the maximizer.
+
+\end{problem}
+
+\begin{problem}[3]
+For simplicity, write $ T(v) = Av^2+\frac{B}{Cv^2}$ where $ A,B,C>0$ are corresponding constants. We see that the domain of  $ T$ is implicitly  $ \rr_{++}$ which is a convex set. Since $ Av^2$ and $ \frac{B}{Cv^2}$ are clearly strictly convex in this domain based on their epigraphs, their sum which is $ T$ is also strictly convex (clear from definition of convex functions): if $ f=g+h$ where $ g,h$ are strictly convex functions, then
+ \begin{align*}
+	 f(tx+(1-t)y) &= g(tx+(1-t)y)+ h(tx+(1-t)y)\\ 
+		      &< tg(x)+(1-t)g(y)+ th(x)+(1-t)h(y)\\ 
+		      &= t(g+h)(x) + (1-t)(g+h)(y) = tf(x)+(1-t)f(y)
+\end{align*}
+First order condition is
+\begin{align*}
+	T'(v) = 2Av-\frac{2B}{ Cv^3} &= 0 \\
+	2ACv^{4} -2B &= 0 && C>0,v>0\\
+	v^*  &= \sqrt[4]{\frac{B}{AC}}  
+\end{align*}
+Since $ T''(v) = 2A + \frac{6B}{Cv^{4} } >0$ for all $ v$, we see that  $ v^* $ is a strict local minimizer. Since $ T$ is strictly convex, Theorem 1.30 gives that  $ v^* $ is a global minimizer and Proposition 1.31 states that this is the unique global minimizer. Let $ C_p := C_{D_{par}}$, we have
+\begin{align*}
+	T(v^* ) &= A \sqrt{\frac{B}{AC}} + \frac{B}{C\sqrt{\frac{B}{AC}}  } = \sqrt{\frac{AB}{ C}} + \sqrt{\frac{AB}{ C}} = 2\sqrt{C_p K W^2}  \\
+	C_L &= \frac{W}{Cv^2} = \sqrt{\frac{C_p}{ K}}  \\
+	C_D &= C_p + KC_L^2 = 2 C_p \\
+	C_L / C_D &= \frac{1}{2 \sqrt{K C_p} } 
+\end{align*}
+\end{problem}
+
+\begin{problem}[4]
+First, if $ a_1=a_2=0$, the function is constantly zero so every $ (x_1,x_2)$ that satisfies the constraint is a global minimizer. So we assume at least one $ a_i \neq 0$.
+
+Suppose $ \mu=1$. If $ \lambda =0$, the constraint vanishes so the nonzero linear function goes to $ -\infty$ and has no minimum, so we need $ \lambda\neq 0$. When $ \mu=0$, $ \lambda \neq 0$ by assumption. Thus in either case, $ \lambda \neq 0$.
+\begin{align*}
+	\mathscr{L}(x,\mu,\lambda) &= \mu(a_1x_1+a_2x_2)+ \lambda(b_1x_1^2+b_2x_2^2) =0\\
+	\mathscr{L}_x&= \begin{pmatrix} \mu a_1+2\lambda b_1 x_1\\ \mu a_2+2 \lambda b_2 x_2\end{pmatrix} = \begin{pmatrix} 0\\0 \end{pmatrix}  
+\end{align*}
+
+Assume that $ b_1 \neq 0$. Then we can use the constraint to solve $ x_1^2 =- \frac{b_2}{ b_1} x_2^2 $. If $ -\frac{b_2}{ b_1} \geq 0$, then $ x_1 = \pm\sqrt{-\frac{b_2}{ b_1}} x_2$ and $ f$ becomes a linear equation in  $ x_2$ with no constraint. Since at least one $ a_i \neq 0$, this unconstrained linear function goes to $ -\infty$, there is no solution. Now suppose $ -\frac{b_2}{b_1}<0$, then $ x_1^2 = -\frac{b_2}{b_1} x_2^2 \leq 0$ so $ x_1^2 =0$. This forces $ x_1=x_2=0$. Since $ g'(0,0) = \begin{pmatrix} 0\\0 \end{pmatrix} $, the solution is abnormal. This candidate satisfies the first-order conditions for $ \mu=0$. Thus $ \lambda$ can be any nonzero number. The second order condition requires that $ \mathscr{L}_{x x}(x,0,\lambda) \succ 0$ since null space of  $ g'$ is  $ \rr^2$. We see that
+\begin{align*}
+	\mathscr{L}_{x x} = \begin{pmatrix} 2b_1 \lambda&0\\0& 2b_2 \lambda \end{pmatrix} 
+\end{align*}
+which can be made positive definite since $ \frac{b_2}{b_1} >0$ and we can choose $ \lambda \neq 0$ so that $ \lambda b_1 >0$. It is thus a strict local minimizer. Then the minimum of $ f$ is 0 in this case.
+
+By symmetry of the problem, the case when $ b_2\neq 0$ is the same. It remains to check when $ b_1 =b_2=0$. But this means that the nonzero linear function is unconstrained and goes to $ -\infty$.
+
+Hence, the only solution to the nontrivial minimization problem is when $ b_1 \neq 0$ or $ b_2 \neq 0$ with $ f(0,0)=0$.
+\end{problem}
+
+\begin{problem}[5]
+\begin{enumerate}[label=(\alph*)]
+	\item 
+We have
+\begin{align*}
+	F(t,x,\dot{x}) &= \frac{1}{2}((\dot{x}-x)^2- \alpha x^2) \\
+	F_x &= -\dot{x} + (1- \alpha)x\\
+	F_{\dot{x}} &= \dot{x}-x
+\end{align*}
+Euler-Lagrange demands
+\begin{align*}
+	\frac{d}{dt} F_{\dot{x}} &= \ddot{x} - \dot{x} =-\dot{x}+(1- \alpha) x\\
+	\ddot{x} &= -( \alpha-1) x\\
+	x(t) &= A \cos \sqrt{ \alpha-1}t + B \sin \sqrt{ \alpha-1}t &&  \alpha>1  \\
+	x(0) &= A+0 = 0
+\end{align*}
+Thus the extremal trajectory is $ x(t) = B \sin \sqrt{ \alpha-1}t, B \in \rr $. It can be verified by direct integration that $ J$ is 0 for any  $ B$.
+\item We see that $ F_{\dot{x}\dot{x}} = 1 >0$ so the accessory minimization problem is regular. For  $ \alpha=2$ and  $ T=\pi$, we have $ F_x = -x-r$, $F_{x x}=-1 $, $ F_r = r-x$,  $ F_{r r}= 1$, and $ F_{xr}=-1$. Let the perturbation be $ f$. Then
+\begin{align*}
+	\omega(t,x,r) = -\frac{1}{2} f^2-f \dot{f}+\frac{1}{2} \dot{f}^2
+\end{align*}
+The Legendre condition requires
+\begin{align*}
+	\omega_f &= \omega_{rt} + \omega(rf) \dot{f} + \omega_{r r} \ddot{f}\\
+	-f -\dot{f} &= -\dot{f} + \ddot{f}-\dot{f} + \ddot{f}\\
+	2 \ddot{f} -\dot{f} + f &= 0 \\
+	f(t) &= e^{\frac{t}{4}} \left( C \cos \frac{\sqrt{7} }{ 4}t + D \sin \frac{\sqrt{7} }{ 4}t \right)  \\
+	f(0) &= C = 0 \\
+	f(\pi) &= D e^{\frac{\pi}{4}} \sin \frac{\sqrt{7} \pi}{ 4} =0  \implies D = 0
+\end{align*}
+Thus $ f(t) \equiv 0$ and there is no conjugate point between  $ [0,\pi]$ as everything vanishes in that interval. 
+\end{enumerate}
+\end{problem}
+
+
+\end{document}

@@ -1,0 +1,101 @@
+\documentclass[12pt]{article}
+\input{../preamble.tex}
+
+\begin{document}
+\centerline {\textsf{\textbf{\LARGE{Homework 3}}}}
+\centerline {Jaden Wang}
+\vspace{.15in}
+\begin{problem}[1]
+For each fixed $ x \in \Omega$,  we need to find the solution $ h(x,y)$ of the following boundary value problem
+\begin{align*}
+\begin{cases}
+	-\Delta_y h(x,y) =0 &  \text{ in }  \Omega\\
+	h(x,y) = \Phi(y-x) & \text{ on }  \partial \Omega
+\end{cases}
+\end{align*}
+The intuition is that $ \Phi(y-x)$ has a singularity at $ y=x$ which is in the first quadrant, but $ h$ cannot have singularity so we wish to reflect $ \Phi$ about the boundary to remove the singularity and agree on the boundary. There are three reflections we can do along the boundary: $ \overline{x} = (x_1,-x_2)$, $ \widetilde{ x} = (-x_1,x_2)$, and $ x' = (-x_1,-x_2)$. We see that $ \Phi(y-\overline{x})$ agrees with $ \Phi(y-x)$ on horizontal piece of the boundary; $ \Phi(y-\widetilde{ x})$ agrees on the vertical piece of the boundary. However, simply adding them together wouldn't work since for one piece of the boundary, we want the other to vanish. The trick is to substract $ \Phi(y-x')$, \emph{i.e.} $ h(x,y):= \Phi(y-\overline{x})+\Phi(y-\widetilde{ x})-\Phi(y-x')$. This way, we see that when we are on the vertical boundary $ y_1=0$, $ \Phi(y-\overline{x}) = \Phi(-x_1,y_2+x_2)$ and $ \Phi(y-x') = \Phi(x_1,y_2+x_2)$. Since $ \Phi(x) = -\frac{1}{2 \pi} \log |x|$, we see that they coincide so $ h(x,y) = \Phi(y-\widetilde{ x})$, as desired. The same argument applies to the horizontal boundary. Therefore, the Green function is $ G(x,y) = \Phi(y-x)-\Phi(y-\overline{x})-\Phi(y-\widetilde{ x}) + \Phi(y-x')$.
+\end{problem}
+\begin{problem}[2]
+\begin{enumerate}[label=(\alph*)]
+	\item Since the complex function $z \mapsto  z^{n}$ is holomorphic, its real and imaginary parts $ \rho^{n} \cos n \theta, \rho^{n} \sin n \theta $ where $ z = \rho e^{\theta}$ are both harmonic. Thus, if we set $u(\rho,\phi) =\frac{A}{r} \rho \cos \phi$, we know it is harmonic and it agree with the boundary condition.
+	\item We see that $u(\rho,\phi)= A+ \frac{B}{r} \rho \sin \phi$ is the sum of a constant which is harmonic and a harmonic function so it is harmonic, and it agrees with boundary condition.
+\end{enumerate}
+\end{problem}
+
+\newpage
+\begin{problem}[3]
+Since $B$ is a bounded set, $ |f| \in C^{0}$ achieves its maximum in  $ \overline{B}$. Define $ w_{\pm} = u \pm \max_{B} |f| \cdot  \frac{|x|^2}{ 2n}$. Since $ \frac{\partial |x|^2}{\partial x_i} = 2x_i$, we see that $ \Delta \frac{|x|^2}{2n } = \frac{1}{2n} \cdot 2n =1 $. Thus we have
+\begin{align*}
+	-\Delta w_{\pm} &= -\Delta u \mp \max_{B} |f|\\
+	&= \begin{cases}
+		f- \max_{B}|f| \leq 0\\
+		f + \max_{B}|f| \geq 0
+	\end{cases} 
+\end{align*}
+This means that $ w_+$ is subharmonic and  $ w_{-}$ is superharmonic. By the representative formula, we know that $ w_+(x) \leq (w)_{B(x,r)}$ and $ w_{-}(x) \geq (w)_{B(x,r)}$ for all $ x \in B$ and valid $ r$.Then we can show the maximum principle for subharmonic and superharmonic functions, which states that the maximum of $ w_+$ and minimum of $ w_{-}$ are on the boundary. Notice we have
+\begin{align*}
+	\max_B u &\leq \max_B u + \max_B |f| \cdot \frac{|x|^2}{2n }\\
+	&= \max_{B} w_+ \\
+	&= \max_{\partial B} w_+  \\
+	&= \max_{\partial B} g + \frac{1}{2n}\max_{B} |f| && |x|=1 \text{ on }\partial B 
+\end{align*}
+and
+\begin{align*}
+	-\min_{B} u &\leq - \left(  \min_{B} u - \max_{B}|f| \cdot  \frac{|x|^2}{2n } \right)  \\
+	&= - \min_B w_{-} \\
+	&= - \min_{\partial B}w_{-} \\
+	&= - \min_{ \partial B}g + \frac{1}{2n} \max_{B}|f| && |x|=1 \text{ on } \partial B 
+\end{align*}
+It follows that
+\begin{align*}
+	\max_B |u| &\leq \max_{\partial B} |g| + \frac{1}{2n} \max_B |f| \\
+	&\leq \max_{ \partial B} |g| + \max_B |f|  
+\end{align*}
+\newpage
+\begin{problem}[4]
+Recall that the Poisson formula gives
+\begin{align*}
+	u(x) = \int_{\partial \rr_+^{n}} K(x)g(y)\ dy, \quad K(x,y) = \frac{2x_n}{ n \alpha(n)} \frac{1}{|x-y|^{n}}.
+\end{align*}
+To show $ Du$ is unbounded near  $ x=0$, it suffices to show that some directional derivative is unbounded at $ x=0$. The directional derivative along $ e_n$ at $ x=0$ is
+\begin{align*}
+	\lim_{ t \to 0^{+}} \frac{u(te_n)-u(0)}{ t}&= \lim_{ t \to 0^{+}} \int_{\partial \rr_+^{n}} \frac{2}{n \alpha(n)} \frac{1}{((t-y_n)^2+ |y|^2)^{n /2 }} g(y) dy\\
+	&= \frac{2}{n \alpha(n)} \int_{ \partial \rr_+^{n}} \frac{1}{ |y|^{n}} g(y)\ dy\\
+	&= \frac{2}{n \alpha(n)} \left(\int_{B(0,1) \subseteq \rr^{n-1}} \frac{1}{|y|^{n}} |y| dy + \int_{B(0,1)^{c}} \frac{1}{|y|^{n}}g(y) dy \right) 
+\end{align*}
+For the first term, since $ B(0,1)$ is an  $ n-1$ dimension ball, we have $dy = |y|^{n-2} d|y| $ (just like in $ 2$-dim,  $dy = rdr $). 
+\begin{align*}
+	\int_{1}^{0} \frac{|y|^{n-2}}{|y|^{n-1}} d|y| &= \log |y| \bigg|_1^0 \\
+	&\to \infty 
+\end{align*}
+For the second term, since $ g(y)$ is bounded, 
+\begin{align*}
+	\int_{B(0,1)^{c}} \frac{1}{|y|^{n}} g(y) dy &\leq \int_{B(0,1)^{c}} \frac{1}{|y|^{n}} |g(y)| dy \\
+	&\leq M \int_{1}^\infty \frac{1}{|y|^2} d|y|   \\
+	&= -M  \frac{1}{|y|}\bigg|_1^{\infty} \\
+	&= M 
+\end{align*}
+so the sum diverges.
+\end{problem}
+\newpage
+\begin{problem}[5]
+First we notice that $v(x)$ is continuous on $ \overline{\Omega}_+$ and $ \overline{\Omega}_{-}$ and they agree on the boundary $ T$. By the pasting lemma,  $ v(x)$ is continuous in  $ \Omega:= \Omega_+ \cup T \cup \Omega_{-}$.
+
+Second, we check that in $ \Omega_{-}$, $ v_{x_n} = u_{x_n}$ and $v_{nn}:= v_{x_{nn}} = -u_{x_{nn}}$. Thus
+\begin{align*}
+	\Delta v &= \sum_{ i= 1}^{ n-1} -u_{ii} + v_{nn} \\
+	&= \sum_{ i= 1}^{ n} -u_{ii} \\
+	&= - \Delta u = 0
+\end{align*}
+So $ v$ is harmonic in  $ \Omega_{-}$. Since we are given that $ v$ is harmonic in $ \Omega_{+}$, it remains to check that $ v$ is harmonic on  $ T$. Given  $ x \in T$ and any valid $ r>0$, notice that the lower hemisphere of the sphere  $ \partial B(x,r)$ is exactly the reflection of the upper hemisphere about $ x_n=0$.
+ \begin{align*}
+	 A \cdot  (v)_{ \partial B(x,r)} &= \int_{\partial B \cap \Omega_+} v(y) S_y + \int_{\partial B \cap \Omega_{-}} v(y) S_y && A \text{ surface area} \\
+			&= \int_{\partial B \cap \Omega_+} u(y) S_y + \int_{\partial B \cap \Omega_{-}} v(y) S_y \\
+			&= \int_{\partial B \cap \Omega_+} (u(y) - u(y)) S_y && \text{reflect up and }  y_n = 0\\
+			&= 0 \\
+			&= u(x) 
+\end{align*}
+Since mean-value principle is satisfied for any $ x \in T$, we have shown that $ v$ is harmonic on the entire  $ \Omega$.
+\end{problem}
+\end{problem}
+\end{document}
