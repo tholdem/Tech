@@ -32,11 +32,24 @@ Together with the adjoint equations, we have 4 first-order equations and require
 	u(t) &= \frac{6e^{3+t}+6e^{t}-e^{6}+4e^{3}-3}{e^{6}+4e^{3}-5}\\
 	&=-0.6811 + 0.2642 e^{t}.
 \end{align*}
+~\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.3\textwidth]{./figures/4.1.png}
+	\includegraphics[width=0.3\textwidth]{./figures/4.2.png}
+	\includegraphics[width=0.3\textwidth]{./figures/4.3.png}
+\end{figure}
 \item When $ x_2(3)$ is free, in its place we instead have the transversality condition $ p_2(3) = 0$. This yields the solution
 \begin{align*}
 	u(t) &= -\frac{2e^3(e^{t}-e^{3})}{3e^{6}+4e^3-1 }\\
 	&= 0.6256 - 0.0311e^{t} \\
 \end{align*}
+~\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.3\textwidth]{./figures/4.4.png}
+	\includegraphics[width=0.3\textwidth]{./figures/4.5.png}
+	\includegraphics[width=0.3\textwidth]{./figures/4.6.png}
+\end{figure}
+
 \item I would add a final penalty term $ \Phi$:
 \begin{align*}
 	\mathcal{ J} = \underbrace{ \frac{1}{2} \left( (x_1(3)-1)^2+(x_2(3)-2)^2 \right)  }_{\Phi(3) } + \frac{1}{2} \int_0^3 u^2 dt .
@@ -51,8 +64,24 @@ Then new control is
 	u(t) &= \frac{8e^{3+t}+6e^{t}+e^{6}+4e^3-3}{7e^{6}+8e^3-7}\\
 	&= 0.1615+0.056 e^{t} .
 \end{align*}
+~\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.3\textwidth]{./figures/4.7.png}
+	\includegraphics[width=0.3\textwidth]{./figures/4.8.png}
+	\includegraphics[width=0.3\textwidth]{./figures/4.9.png}
+\end{figure}
 We see that $ x_1(3) = 0.8385$ and $ x_2(3) = 0.7142$, which are not very close to $ (1,2)$. To improve accuracy, I would increase the weight of the penalty term. We see that the cost in part (a) is  $ 4.2859$. The cost as a function of the weight coefficient  $ c$ is shown in the figure below:
-
+~\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.4\textwidth]{./figures/4.10.png}
+	\caption{We see that as the weight increases, the cost approaches that of the cost (orange) in part (a) asymptotically.}
+\end{figure}
+And we indeed see that the solution ends much closer to $ (1,2)$ when the weight is high:
+~\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.4\textwidth]{./figures/4.11.png}
+	\caption{Blue is optimal path from part (a), green is part (c) with weight 100, and orange is part (c) with weight 1.}
+\end{figure}
 
 \item It is clear that $ \Psi = \begin{pmatrix} 2&5 \end{pmatrix} $. By transversality condition from Equation 5.234, we have the boundary conditions
 \begin{align*}
@@ -62,6 +91,14 @@ Together with the initial conditions $ x_1(0)=x_2(0)=0$ and the terminal conditi
 \begin{align*}
 	u(t)=-p_2(t)= 1.4341+0.1071 e^{t}
 \end{align*}
+~\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.3\textwidth]{./figures/4.12.png}
+	\includegraphics[width=0.3\textwidth]{./figures/4.13.png}
+	\includegraphics[width=0.3\textwidth]{./figures/4.14.png}
+	\caption{We see that the solution indeed ends at the constraint.}
+\end{figure}
+
 \item We have the same $\Psi $ but $ h(t) = 20 +\frac{t^2}{ 2}$ so $ \dot{h}(t_f) = t_f$. When $ t_f$ is also free, based on Equation 5.234 we have the transversality conditions
 \begin{align*}
 	\begin{pmatrix} H(t_f)\\ -p_1(t_f)\\-p_2(t_f) \end{pmatrix} &= \begin{pmatrix} -t_f\\ 2\\5 \end{pmatrix} \lambda 
@@ -127,6 +164,46 @@ Thus we have two boundary conditions for two differential equations. Mathematica
 	u(t) = -p(t) = \frac{\sin(1-t)}{\cos 1 - \sin 1 }.
 \end{align*}
 The associated cost is $ 14.9283$.
+\end{problem}
+
+\begin{problem}[4]
+\begin{enumerate}[label=(\alph*)]
+\item Since the cost $ \mathcal{ J} = t_f$, we have $ \Phi(t) = t$ and the Hamiltonian is
+	\begin{align*}
+		H= p_1(t) \cos \theta (t) + p_2(t) \sin \theta(t) + p_3(t) u(t) + p_4(t) v(t)
+	\end{align*}
+\item The adjoint equations are
+\begin{align*}
+	\begin{pmatrix} \dot{p_1}\\\dot{p_2}\\\dot{p_3}\\ \dot{p_4} \end{pmatrix} = \begin{pmatrix} -H_u\\-H_v\\-H_x\\-H_y \end{pmatrix} = \begin{pmatrix} p_3\\p_4\\0\\0 \end{pmatrix} 
+\end{align*}
+\item Since $ t_f, u(t_f),v(t_f)$ are free, by Equation 5.234 we have  the transversality conditions
+	\begin{align*}
+		H(t_f) + \Phi_t(t_f) = 0 \implies H(t_f) = -1 \\
+		p_1(t_f) = \Phi_u = 0\\
+		p_2(t_f) = \Phi_v = 0 .
+	\end{align*}
+\item Notice that $ p_3,p_4$ are constants, so $ p_1(t) = p_3t$ and $ p_2(t) = p_4t$ by the zero boundary conditions. First-order condition yields
+\begin{align*}
+	H_\theta = -p_1 \sin \theta(t) + p_2 \cos \theta(t) &= 0 \\
+	\tan \theta^*(t)  &= \frac{p_2(t)}{ p_1(t)} = \frac{p_4}{ p_3}
+\end{align*}
+which is a constant! So are $ \cos \theta^* $ and $ \sin \theta^* $. Thus by the initial conditions $u(0)= \cos \gamma_0, v(0) = \sin \gamma_0$, we have $ u(t) = \cos \theta^* t$ and $ v(t) = \sin \theta^* $. By the initial conditions $x(0)=y(0)=0$, we have $ x(t) = \frac{1}{2} \cos \theta^* t^2 + \cos \gamma_0 t$ and $ y(t) = \frac{1}{2} \sin \theta^* t^2+ \sin \gamma_0 t$. By the terminal condition $ x(t_f)=x_f$ and  $ y(t_f)=0$, we have 
+\begin{align*}
+	x_f -\cos \gamma_0 t_f &= \frac{1}{2} \cos \theta^* t_f^2\\
+	- \sin \gamma_0 t_f &= \frac{1}{2} \sin \theta^* t_f^2 
+\end{align*}
+Squaring both sides and adding the two equations together, we obtain the equation as desired:
+\begin{align*}
+	x_f^2-2\cos \gamma_0 t_f + (\cos \gamma_0^2+\sin \gamma_0^2) t_f^2 &= \frac{1}{4} (\cos^2\theta^* +\sin^2\theta^* )t_f^{4}\\
+	4x_f^2-8 \cos \gamma_0 t_f + 4t_f^2 - t_f^{4} &= 0 
+\end{align*}
+So $ t_f$ must be the minimum positive solution of this equation.
+\item By the above equation,
+\begin{align*}
+	\cos \theta^* &= 2\left(\frac{x_f}{t_f^2}+\frac{\cos \gamma_0}{ t_f}\right) \\
+	\theta^* &= \arccos \left( 2\left(\frac{x_f}{t_f^2}+\frac{\cos \gamma_0}{ t_f^}\right)  \right)  
+\end{align*}
+\end{enumerate}
 \end{problem}
 \begin{problem}[5]
 The cost has the Meyer form $ J = t_f$ so  $ \Phi(t) = t$. The Hamiltonian is
