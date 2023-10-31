@@ -87,7 +87,7 @@ And we indeed see that the solution ends much closer to $ (1,2)$ when the weight
 \begin{align*}
 	\begin{pmatrix} -p_1(3)\\-p_2(3) \end{pmatrix} &= \begin{pmatrix} 2\\5 \end{pmatrix} \lambda 
 \end{align*}
-Together with the initial conditions $ x_1(0)=x_2(0)=0$ and the terminal condition $ 2 x_1(3) + 5x_2(3) = 20$, we have 5 boundary conditions for 4 differential equations and an unknown $ \lambda$. This allows us to solve by Mathematica and obtain the optimal control:
+Together with the initial conditions $ x_1(0)=x_2(0)=0$ and the terminal condition $ 2 x_1(3) + 5x_2(3) = 20$, we have 5 boundary conditions for 4 differential equations and an unknown $ \lambda$. This allows us to solve by Mathematica. We pre-solve $ p_1,p_2$ for easier code: $ p_1(t) \equiv -2 \lambda$ and $ p_2(t) = -3 \lambda e^{-t_f=-2} e^{t} - 2 \lambda$. We obtain the optimal control:
 \begin{align*}
 	u(t)=-p_2(t)= 1.4341+0.1071 e^{t}
 \end{align*}
@@ -184,7 +184,7 @@ Thus for this problem, we have
 
 Thus we have two boundary conditions for two differential equations. Mathematica yields
 \begin{align*}
-	x(t) = \frac{\lambda \cos (2-t) + \cos t - \lambda \cost t + \lambda \sin (2-t)}{ \cos 2 - \sin 2 }.
+	x(t) = \frac{\lambda \cos (2-t) + \cos t - \lambda \cos t + \lambda \sin (2-t)}{ \cos 2 - \sin 2 }.
 \end{align*}
 Solving $ x(0) = x(2)$, we obtain  $ \lambda = \frac{\cos(2)-1}{ 2 \cos 2 + \sin 2-2} \approx 0.7364$.
 \begin{align*}
@@ -264,4 +264,6 @@ Now we compute
 				\dot{\beta} &=  \frac{x}{r} sin \beta - \frac{y}{r} \cos \beta
 \end{align*}
 \end{problem}
+
+\includepdf[pages=-]{HW4_Mathematica.pdf}
 \end{document}
