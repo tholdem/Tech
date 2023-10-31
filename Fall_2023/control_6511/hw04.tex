@@ -134,7 +134,7 @@ The Hamiltonian is
 \end{align*}
 The adjoint equation is
 \begin{align*}
-	\dot{p} = -H_x = ap \implies p(t) = C e^{at}.
+	\dot{p} = -H_x = -ap \implies p(t) = C e^{-at}.
 \end{align*}
 And the first-order condition is
 \begin{align*}
@@ -142,16 +142,16 @@ And the first-order condition is
 \end{align*}
 Thus
 \begin{align*}
-	\dot{x} = ax-b^2p = ax - b^2 C e^{at}, \quad x(0)=x_0,x(tf) = 0
+	\dot{x} = ax-b^2p = ax - b^2 C e^{-at}, \quad x(0)=x_0,x(tf) = 0
 \end{align*}
-We have $ x(t) = b^2 C t e^{at} + A e^{at}$, $ x(0) = A = x_0$, and
+We have $ x(t) = \frac{b^2}{2a} C e^{-at} + A e^{at}$, $ x(0) = \frac{b^2C}{2a } + A = x_0$ so $ A = x_0 - \frac{b^2C}{ 2a}$, and
 \begin{align*}
-	x(t_f) = b^2 C t_f e^{at_f} + x_0 e^{at_f} &= 0 \\
-	C &= - \frac{x_0}{ b^2 t_f}
+	x(t_f) = \frac{b^2}{2a} C e^{-at_f} + \left( x_0 - \frac{b^2C}{ 2a} \right) e^{at_f} &= 0 \\
+C &=  \frac{2a x_0 e^{at_f}}{b^2(e^{at_f}-e^{-at_f})}
 \end{align*}
 Thus,
 \begin{align*}
-	u(t) = -bp = -b \cdot \left( - \frac{x_0}{b^2 t_f} \right) e^{at}  = \frac{x_0}{ b t_f} e^{at}
+	u(t) = -bp = -b \cdot \left( \frac{2a x_0 e^{at_f}}{b^2(e^{at_f}-e^{-at_f})}\right) e^{-at}  = -\frac{2a x_0 e^{at_f}}{b(e^{at_f}-e^{-at_f})} e^{-at}
 \end{align*}
 \end{problem}
 \begin{problem}[3]
@@ -161,7 +161,7 @@ With the mixed constraint $ \psi(x_0,x_f) = x_f - x_0 = 0$, we can turn $ x_0,x_
 \end{align*}
 The adjoint equation is
 \begin{align*}
-	\dot{p}= -H_x = x
+	\dot{p}= -H_x = -x
 \end{align*}
 The first-order condition says
 \begin{align*}
@@ -184,14 +184,13 @@ Thus for this problem, we have
 
 Thus we have two boundary conditions for two differential equations. Mathematica yields
 \begin{align*}
-	x(t) = \frac{\lambda \cos (2-t) + \cos t - \lambda \cos t + \lambda \sin (2-t)}{ \cos 2 - \sin 2 }.
+	x(t) = \frac{1}{2} e^{-2-t} \left( 1-e^{2t}(\lambda-1) - \lambda + 2e^2 \lambda \right) .
 \end{align*}
-Solving $ x(0) = x(2)$, we obtain  $ \lambda = \frac{\cos(2)-1}{ 2 \cos 2 + \sin 2-2} \approx 0.7364$.
+Solving $ x(0) = x(2)$, we obtain  $ \lambda$ which is a huge number. Mathematica gives
 \begin{align*}
-	u(t) &= -p(t) = \frac{\lambda (\cos(2-t)-\sin(2-t)-\sin t)+ \sin t}{\cos 2 - \sin 2 }\\
-	&= 0.5556 (\cos(2-t)-\sin(2-t)) + 0.1989 \sin t
+	u(t) &= -p(t) = -0.3491 e^{-t} + 0.0472 e^{2t}.
 \end{align*}
-The associated cost is $ 1.8506$.
+The associated cost is $ 0.3018$.
 \end{problem}
 
 \begin{problem}[4]

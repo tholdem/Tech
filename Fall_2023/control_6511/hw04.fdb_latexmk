@@ -1,5 +1,5 @@
 # Fdb version 3
-["pdflatex"] 1698717016 "hw04.tex" "hw04.pdf" "hw04" 1698717016
+["pdflatex"] 1698722116 "hw04.tex" "hw04.pdf" "hw04" 1698722116
   "../preamble.tex" 1698716778 10423 1f98e5e54651bbf7e4bff152cf6b92a1 ""
   "/etc/texmf/web2c/texmf.cnf" 1659229984 475 c0e671620eb5563b2130f56340a5fde8 ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
@@ -270,7 +270,7 @@
   "/usr/share/texmf/web2c/texmf.cnf" 1644012257 39432 7155514e09a3d69036fac785183a21c2 ""
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1659278953 4379155 98693266ff65f58d9f98aff394de12d2 ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1686228898 2799047 cc3d6f051618ff8a5d87a02f35d96f51 ""
-  "HW4_Mathematica.pdf" 1698716726 164151 72688c27eed9d875c4fc373b93237eb6 ""
+  "HW4_Mathematica.pdf" 1698722098 164946 1b87bc5be53308ac3b914706af9dd483 ""
   "figures/4.1.png" 1698623026 7812 f8c7715aba5c876106249ecb10aea3cc ""
   "figures/4.10.png" 1698623106 5629 9a2e5ec84d1d567469a73623b6d78598 ""
   "figures/4.11.png" 1698623112 10470 1cc2e3d1d3fefec87c43fec6a616699a ""
@@ -288,9 +288,9 @@
   "figures/4.7.png" 1698623078 7648 877c379f85e4dcfc1b68f2b41989df6e ""
   "figures/4.8.png" 1698623084 8181 ed573aaa77bf4d1132845d663580b2b8 ""
   "figures/4.9.png" 1698623092 5442 3b3b92bb69a90b8ffd984132f8a87a2e ""
-  "hw04.aux" 1698716819 2582 87d1ab8e3afa11f828119f419951a864 "pdflatex"
-  "hw04.out" 1698716819 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
-  "hw04.tex" 1698717014 11797 363f1fa46175f9f1dd53a249c90de049 ""
+  "hw04.aux" 1698722037 2582 87d1ab8e3afa11f828119f419951a864 "pdflatex"
+  "hw04.out" 1698722036 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
+  "hw04.tex" 1698722032 11871 ee41e19d96999ca84510a391f599a3cf ""
   (generated)
   "hw04.aux"
   "hw04.log"
