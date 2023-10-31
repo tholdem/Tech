@@ -1,5 +1,5 @@
 # Fdb version 3
-["pdflatex"] 1698634875 "hw04.tex" "hw04.pdf" "hw04" 1698634875
+["pdflatex"] 1698710501 "hw04.tex" "hw04.pdf" "hw04" 1698710501
   "../preamble.tex" 1697897648 10401 5aed4615796c2e0eb75b00fc9711dffe ""
   "/etc/texmf/web2c/texmf.cnf" 1659229984 475 c0e671620eb5563b2130f56340a5fde8 ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
@@ -278,9 +278,9 @@
   "figures/4.7.png" 1698623078 7648 877c379f85e4dcfc1b68f2b41989df6e ""
   "figures/4.8.png" 1698623084 8181 ed573aaa77bf4d1132845d663580b2b8 ""
   "figures/4.9.png" 1698623092 5442 3b3b92bb69a90b8ffd984132f8a87a2e ""
-  "hw04.aux" 1698634840 2233 4e8d1fd1d2e0af1be8d98b925a55f76c "pdflatex"
-  "hw04.out" 1698634840 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
-  "hw04.tex" 1698634874 9238 625d201adfc8b52e2a0715b4fe939465 ""
+  "hw04.aux" 1698710481 2414 6b19dff34f0ed6200db3f6b51aba03b2 "pdflatex"
+  "hw04.out" 1698710481 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
+  "hw04.tex" 1698710500 11251 9127b6aef7e23750963537ab054d7010 ""
   (generated)
   "hw04.aux"
   "hw04.log"

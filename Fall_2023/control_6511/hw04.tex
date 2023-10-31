@@ -14,17 +14,17 @@ The Hamiltonian of the problem is given by
 The adjoint equations are given by
 \begin{align*}
 	\dot{p_1} &= -H_{x_1} = 0 \\
-	\dot{p_2} &= -H_{x_2} = p_2-p_1
+	\dot{p_2} &= -H_{x_2} = p_2-p_1 .
 \end{align*}
 The first-order condition demands
 \begin{align*}
 	H_u = u+p_2 &= 0\\
-	u&= -p_2 
+	u&= -p_2 .
 \end{align*}
 Plugging this into the differential equations yield
 \begin{align*}
 	\dot{x_1} &= x_2 \\
-	\dot{x_2} &= -x_2-p_2 \\
+	\dot{x_2} &= -x_2-p_2 .
 \end{align*}
 Together with the adjoint equations, we have 4 first-order equations and require 4 boundary conditions.
 \item Since all initial and final times and states are fixed, we have 4 boundary conditions $ x_1(0)=x_2(0)=0$, $ x_1(3)=1$, and $ x_2(3)=2$. Mathematica yields
@@ -57,7 +57,7 @@ Together with the adjoint equations, we have 4 first-order equations and require
 Then instead of $ p_1(3)=p_2(3)=0$, we have
 \begin{align*}
 	p_1(3) &= \Phi_{x_1}(3) = x_1(3)-1 \\
-	p_2(3) &= \Phi_{x_2}(3) = x_2(3)-2 \\
+	p_2(3) &= \Phi_{x_2}(3) = x_2(3)-2 
 \end{align*}
 Then new control is
 \begin{align*}
@@ -143,7 +143,7 @@ Thus,
 \end{align*}
 \end{problem}
 \begin{problem}[3]
-We see that $ \Phi(t) = \frac{1}{2}(x(t)-1)^2$ and the Hamiltonian is
+With the mixed constraint $ \psi(x_0,x_f) = x_f - x_0 = 0$, we can turn $ x_0,x_f$ into free variables by adding a term with Lagrange multiplier. Let $ \Phi(x_0,x_f) = \phi(x_f) + \lambda \psi(x_0,x_f)= \frac{1}{2}(x(t_f)-1)^2 + \lambda(x_f - x_0)$. The Hamiltonian is
 \begin{align*}
 	H = \frac{1}{2} (x^2+u^2)+pu .
 \end{align*}
@@ -155,15 +155,31 @@ The first-order condition says
 \begin{align*}
 	H_u = u +p=0 \implies u = -p .
 \end{align*}
-Since $ x(2)$ is free, we have the transversality condition
+Since both $x(0), x(2)$ is free, from Equation 5.234 we have the transversality condition
  \begin{align*}
-	p(2) = \Phi_x(2) = x(2)-1 .
+	 (\Phi_{x_0}+p ^{T}(t_0)) \delta x_0 + (\Phi_{x_f}- p ^{T}(t_f)	\delta x_f = 0
 \end{align*}
+where $ \delta x_0$ and $ \delta x_f$ can take any value. This forces that
+\begin{align*}
+	\Phi_{x_0} + p ^{T}(t_0) &=0 \\
+	\Phi_{x_f} - p ^{T}(t_f) &= 0 
+\end{align*}
+Thus for this problem, we have
+\begin{align*}
+	p(0) &= -\Phi_{x_0} = -(- \lambda ) = \lambda\\
+	p(2) &= \Phi_{x_f} = x(2) -1 + \lambda  
+\end{align*}
+
 Thus we have two boundary conditions for two differential equations. Mathematica yields
 \begin{align*}
-	u(t) = -p(t) = \frac{\sin(1-t)}{\cos 1 - \sin 1 }.
+	x(t) = \frac{\lambda \cos (2-t) + \cos t - \lambda \cost t + \lambda \sin (2-t)}{ \cos 2 - \sin 2 }.
 \end{align*}
-The associated cost is $ 14.9283$.
+Solving $ x(0) = x(2)$, we obtain  $ \lambda = \frac{\cos(2)-1}{ 2 \cos 2 + \sin 2-2} \approx 0.7364$.
+\begin{align*}
+	u(t) &= -p(t) = \frac{\lambda (\cos(2-t)-\sin(2-t)-\sin t)+ \sin t}{\cos 2 - \sin 2 }\\
+	&= 0.5556 (\cos(2-t)-\sin(2-t)) + 0.1989 \sin t
+\end{align*}
+The associated cost is $ 1.8506$.
 \end{problem}
 
 \begin{problem}[4]
@@ -215,11 +231,25 @@ The adjoint equations are
 	\dot{p_1} &= -H_x = - p_1 \frac{x}{r} \cos \beta - p_2 \frac{x}{r} \sin \beta \\
 	\dot{p_2} &= -H_y = p_1 \frac{y}{r} \cos \beta - p_2 \frac{x}{r} \sin \beta 
 \end{align*}
-First-order condition yields
+Note that $ \dot{p_2} = \frac{y}{x} \dot{p_1}$. First-order condition yields
 \begin{align*}
 	H_{\beta} = -p_1 r \sin \beta + p_2 r \cos \beta &= 0 \\
 	\tan \beta &= \frac{p_2}{p_1} 
 \end{align*}
-Since $ t_f$ is free, transversality demands $ H(t_f) = - \Phi_t(t_f) = -1$ and 
+Thus we obtain $ p_2 = \tan \beta p_1$. Moreover, we see that
+\begin{align*}
+	p_2 \cos \beta - p_1 \sin \beta &= \frac{p_2p_1 - p_1 p_2}{ \sqrt{p_1^2+p_2^2} } \\
+	&= 0 .
+\end{align*}
+Now we compute
+\begin{align*}
+	0=\frac{d}{dt} H_{ \beta} &= \dot{r} (-p_1 \sin \beta + p_2 \cos \beta) + r\left( -\frac{d}{dt}(p_1 \sin \beta) + \frac{d}{dt}(p_2 \cos \beta) \right)  \\
+				0&=0 + r \left( -\dot{p_1} \sin \beta - p1 \cos \beta \dot{\beta} + \dot{p_2} \cos \beta - p_2 \sin \beta \dot{\beta} \right)   \\
+				0&= -\dot{p_1} \sin \beta - p1 \cos \beta \dot{\beta} + \frac{y}{x} \dot{p_1} \cos \beta - p_1\tan \beta \sin \beta \dot{\beta} \\
+				p_1 (cos \beta + \tan \beta \sin \beta) \dot{ \beta} &= \dot{p_1} \left( - \sin \beta + \frac{y}{x} \cos \beta \right)  \\
+				p_1 (cos \beta + \tan \beta \sin \beta) \dot{ \beta} &= \left( p_1 \frac{x}{r} \cos \beta + \tan \beta p_1 \frac{x}{r} \sin \beta \right)  \left( \sin \beta - \frac{y}{x} \cos \beta \right)  \\
+				\dot{\beta}&= \frac{x}{r} \left( \sin \beta - \frac{y}{x} \cos \beta \right)  \\
+				\dot{\beta} &=  \frac{x}{r} sin \beta - \frac{y}{r} \cos \beta
+\end{align*}
 \end{problem}
 \end{document}
