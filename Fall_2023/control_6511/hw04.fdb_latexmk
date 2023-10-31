@@ -1,5 +1,5 @@
 # Fdb version 3
-["pdflatex"] 1698710501 "hw04.tex" "hw04.pdf" "hw04" 1698710501
+["pdflatex"] 1698715516 "hw04.tex" "hw04.pdf" "hw04" 1698715516
   "../preamble.tex" 1697897648 10401 5aed4615796c2e0eb75b00fc9711dffe ""
   "/etc/texmf/web2c/texmf.cnf" 1659229984 475 c0e671620eb5563b2130f56340a5fde8 ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
@@ -270,6 +270,9 @@
   "figures/4.12.png" 1698623122 7262 3c2a9b6b65395f782ba8b8c98af2a006 ""
   "figures/4.13.png" 1698623128 7647 a2fea45ad0e6f23d81bc6d91a36743b7 ""
   "figures/4.14.png" 1698623134 7419 ab5d6681145044e6fd22d7ccc11aa638 ""
+  "figures/4.15.png" 1698715440 7235 39a7683d2648b9bd6ac6be679f9fc867 ""
+  "figures/4.16.png" 1698715444 7655 b7b09b1daf7f02bb2bf557da91cf1527 ""
+  "figures/4.17.png" 1698715448 6649 2c0470f211fee6c7af1f4d6fc06c4d2e ""
   "figures/4.2.png" 1698623034 7909 8a8c500171763723d11eb44ed54f3e9e ""
   "figures/4.3.png" 1698623042 7272 30c57a8091585448dfab3a03a896fa67 ""
   "figures/4.4.png" 1698623052 7502 7dd1b032e48dfe8958fa1b7f3d0d69ca ""
@@ -278,9 +281,9 @@
   "figures/4.7.png" 1698623078 7648 877c379f85e4dcfc1b68f2b41989df6e ""
   "figures/4.8.png" 1698623084 8181 ed573aaa77bf4d1132845d663580b2b8 ""
   "figures/4.9.png" 1698623092 5442 3b3b92bb69a90b8ffd984132f8a87a2e ""
-  "hw04.aux" 1698710481 2414 6b19dff34f0ed6200db3f6b51aba03b2 "pdflatex"
-  "hw04.out" 1698710481 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
-  "hw04.tex" 1698710500 11251 9127b6aef7e23750963537ab054d7010 ""
+  "hw04.aux" 1698715340 2414 586f5666c1dbedeb2e58dd78a0287b3f "pdflatex"
+  "hw04.out" 1698715340 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
+  "hw04.tex" 1698715515 11606 684cd6d432f2268806266ca42dea096a ""
   (generated)
   "hw04.aux"
   "hw04.log"
