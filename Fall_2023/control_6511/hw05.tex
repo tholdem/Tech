@@ -1,0 +1,69 @@
+\documentclass[12pt]{article}
+\input{../preamble.tex}
+
+\begin{document}
+\centerline {\textsf{\textbf{\LARGE{Homework 5}}}}
+\centerline {Jaden Wang}
+\vspace{.15in}
+\begin{problem}[1]
+\begin{align*}
+	J(u) = \frac{1}{2} cx^2(t_f) + \frac{1}{2} \int_0^{t_f} u^2(t) dt
+\end{align*}
+Let $ \phi(x_f) = \frac{1}{2}c x_f^2$. The Hamiltonian is
+ \begin{align*}
+	H =\frac{1}{2} u^2 + p u
+\end{align*}
+\end{problem}
+\begin{problem}[3]
+The Hamiltonian is
+ \begin{align*}
+	H = u +p(- \alpha x+u) = (p+1)u - \alpha p x
+\end{align*}
+So the switching function is $ p+1$. Since the Hamiltonian is linear in $ u$, we want to use the Pontryagin maximum principle. To minimize $ H(x^* ,u,p^* ,t)$, we want to make  $ (p+1)u$ as negative as possible. Thus
+ \begin{align*}
+	u^* = \begin{cases}
+		m & p^* <-1\\
+		0& p^* >-1
+	\end{cases}
+\end{align*}
+I claim that $ p^*  \neq -1$. Suppose $ p^* =1$. Since $ T$ is free, transversality yields  $ H(T) = 0$. But since  $ H$ is time-independent,  $ H$ is constant so  $ H \equiv 0$. However, we see that
+ \begin{align*}
+	H(0) = 0 \cdot u - \alpha (-1) x(0) = \alpha a >0,
+\end{align*}
+a contradiciton.
+
+Now solving $ \dot{p} = -H_x = \alpha p$, we get $ p(t) = K e^{ \al\wh{ p}}$. Notice that this is a monotone function and therefore can at most cross the line $ p=-1$ once. That is, the control will switch at most once.
+\begin{case}[1]
+If $ K \geq 0$,  $ p(t) > -1$ for all  $ t$ so we have no switching and  $ u^* =0$. Then solving $ \dot{x} = - \alpha x $ yields $ x(t) = K_1 e^{- \alpha t}$ and $ x(0) = K_1 = a$. Moreover, we have
+\begin{align*}
+	x(T) = a e^{- \alpha T} &= c \\
+	e^{- \alpha T} &= \frac{c}{a} >0 \\
+	- \alpha T &= \ln \frac{c}{a} \\
+	T &=  \frac{1}{ \alpha} \ln \frac{a}{c} 
+\end{align*}
+If $ a>c$, then  $ \frac{a}{c}>1$ and $ T >0$. Thus, $J^* = 0 $. But if $ a\leq c$, then  $ T \leq 0$ which is unphysical. Thus in the case when $ K \geq 0$, $ a>c$, we have $ u^* \equiv 0$.
+\end{case}
+\begin{case}[2]
+If $ K < 0$,  $ p$ might cross the line  $ p=-1$ once from above. Since $ p(0) = K$ starts in the $ p>-1$ regime, we have $ u^*(0) = 0$. But
+\begin{align*}
+	H(0) = (p(0)+1) u(0) - \alpha p(0) x(0) &= 0 \\
+	- \alpha a p(0) &= 0 \\
+	K=p(0) &= 0 && \alpha, a>0,
+\end{align*}
+a contradiction. Thus in this case we also have no switching and $ u^*  \equiv m$. Then we solve
+\begin{align*}
+	\dot{x} &= - \alpha x+m \\
+\frac{dx}{m- \alpha x} &=  dt \\
+x(t) &= \frac{m}{ \alpha} - K_2 e^{- \alpha t} \\
+x(0) &= \frac{m}{ \alpha} - K_2 = a \\
+x(t) &=  \frac{m}{ \alpha} - \left( \frac{m}{ \alpha}-a \right) e^{- \alpha t}  
+\end{align*}
+We have
+\begin{align*}
+	x(T) = \frac{m}{ \alpha} - \left(  \frac{m}{ \alpha} - a \right) e^{- \alpha T} &= c \\
+	T &=  \frac{1}{ \alpha} \ln \left( \frac{m- \alpha a}{m- \alpha c } \right)  
+\end{align*}
+If $ a<c$, we see that  $ T>0$, and  $ J^*  = m T = \frac{m}{ \alpha} \ln \left( \frac{m- \alpha a}{ m- \alpha c} \right) $. If $ a \geq c$, we get  $ T \leq 0$ which is unphysical. Thus in the case when  $ K<0$,  $ a<c$, we have  $ u^*  \equiv m$.
+\end{case}
+\end{problem}
+\end{document}

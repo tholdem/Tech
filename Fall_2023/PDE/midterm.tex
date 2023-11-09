@@ -1,0 +1,139 @@
+\documentclass[12pt]{article}
+\input{../preamble.tex}
+
+\begin{document}
+\centerline {\textsf{\textbf{\LARGE{PDE Midterm}}}}
+\centerline {Zhuochen (Jaden) Wang, GTID: 903456509}
+\vspace{.15in}
+\begin{problem}[1]
+	We see that $ a = x^2, b = xy, c = y^2$. So $ d = ac - b^2 = x^2 y^2 - (xy)^2 = 0 $, and the matrix $ \begin{pmatrix} a&b\\b&c \end{pmatrix} $ is clearly not identically zero. So the equation is parabolic on $ \rr^2$.
+
+	To change into the standard form, we wish to do an invertible change of coordinate using $ s(x,y)$ and  $ t(x,y)$. Under this transformation, the principal linear part becomes  $ L_0 u = a^* u_{ss} +2b^* u_{st} + c^* u_{tt}$, where $ a^*(x,y) ,b^*(x,y) ,c^*(x,y) $ are the coefficients after applying chain rules. In particular, $ a^*(x,y) = a s_{x}^2 + 2b s_{x}s_y + cs_{y}^2 $. If we wish the $ u_{ss}$ term to vanish, we must set $ a^* =0$. This means that $ s(x,y)$ satisfies the characteristic equation of $ L_0 u$. Let us find all solutions of the characteristic equation. If $ \phi(x,y)$ is such solution, this means that each level set of $ \phi(x,y)$ gives a characteristic curve. Locally, the level set of $ \phi(x,y)$ can be expressed as $y(x) $ (or $ x(y)$ if $ \phi_y=0$) by the implicit function theorem. 
+ \begin{align*}
+	0=\frac{d\phi}{ dx} &= \phi_x + \frac{d y}{d x} \phi_y  \\
+	\frac{d y}{d x} &= - \frac{\phi_x}{ \phi_y} 
+\end{align*}
+We can then substitute this into $ a^* $. If $ x=0$, then  $ a=0$ which forces $ b=0$. Then for points $ (0,y)$, the equation is already in the standard form. Likewise for $ y=0$. WLOG assume $ x>0$ and $ y>0$. We have
+\begin{align*}
+	a \left( \frac{d y}{d x}  \right) ^2 + 2b \frac{d y}{d x} + c &= 0 \\
+	\frac{d y}{d x} &= \frac{ 2b \pm \sqrt{4b^2-4ac} }{ 2a}  \\
+	&= \frac{b\pm \sqrt{b^2-ac} }{ a} \\
+	&= \frac{b}{a} \\
+	&= \frac{\sqrt{ac} }{ a}  \\
+	&= \sqrt{\frac{c}{a}} \\
+	&= \frac{y}{ x} 
+\end{align*}
+	Solving this gives one family of real solutions $ y = C x$ for each level set $ \phi(x,y) = C$. Thus define $ s(x,y) = \frac{y}{x}$ for $ x \neq 0$. Notice that since $ d^* = a^* c^*  - b^* ^2 = -b^* ^2$ is the determinant, which is invariant under a change of basis, $ -b^* ^2 = d = 0$ which forces $ b^* =0$, which also forces $ c^* \neq 0$ since $ A$ is not identically zero and shall remain so under change of basis. Thus we just need to choose an $ t(x,y)$ that is independent from $ s(x,y)$ so the Jacobian is nonsingular. We see that $ t(x,y) = x$ will do, since
+	 \begin{align*}
+		 \det J = \det  \begin{pmatrix} s_x&s_y\\t_x&t_y \end{pmatrix} = \begin{pmatrix} s_x & \frac{1}{x} \\ 1&0 \end{pmatrix} = -\frac{1}{x} \neq 0 .
+	\end{align*}
+	It follows that under this change of coordinates, the equation reduces to
+	\begin{align*}
+		c^* u_{tt} &= 0 \\
+		u_{tt} &= 0 
+	\end{align*}
+	which is in the standard form.
+\end{problem}
+\begin{problem}[2]
+\begin{enumerate}[label=(\alph*)]
+\item 
+This is Burger's equation so the intuition from homework is that a global solution exists iff $ u_x$ doesn't blow up in finite time. To make this precise, we solve the problem using the method of characteristic first.
+
+The initial curve $ S_0$ is parametrized by $ t_0=0,x_0=s,z_0=u_0(s)$. It is the graph of $ u_0(x)$ over the domain $ \{0\}\times \rr $. From the equation we have $ a=1,b=u,c=-2u$. Since
+\begin{align*}
+	\det \begin{pmatrix} a&b\\t_0'(s)& x_0'(s) \end{pmatrix} = \det \begin{pmatrix} 1&u\\0&1 \end{pmatrix} = 1 \neq 0 ,
+\end{align*}
+the projection of $ S_0$ onto $ (t,x)$-plane $ C$ is not characteristic so $ u$ can flow out of the initial curve. Now we can solve the characteristic curves using the characteristic equation:
+\begin{align*}
+	\begin{cases}
+		\frac{dt}{ d \tau}=1, & t(0)=0 \qquad  \implies t = \tau\\
+		\frac{d x}{d t}= z, & x(0) = s\\
+		\frac{d z}{d t} = -2z,& z(0) = u_0(s) \qquad \implies u(s,t)=z(s,t)=u_0(s) e^{-2t}
+	\end{cases}
+\end{align*}
+For a global solution to exist, intuitively we want $ u$ to flow along characteristic curve for forever. Thus along the characteristic curve, we cannot have  $ u_x$ goes to infinity in finite time, or the flow would terminate. Thus we investigate $ w:= u_x$. Taking partial derivative on both sides of the Burger's equation, we have
+ \begin{align*}
+	 (u_t+u u_x)_x &= -2u_x \\
+	 u_{xt}+u_x^2+u_{x x} &= -2u_x \\
+	 w_t + u w_x &= -2 w - w^2 \\
+	 \dot{w} &= -2w-w^2 
+\end{align*}
+Moreover, since $ u_0(s) \in C^{1}(\rr)$, we have $ w(s,0) = \left( u_0 (s) e^{-2 \cdot 0} \right)_x =  u_0'(s)$. Using the method of characteristic again, we see that along the characteristic curve, $ w$ satisfies
+\begin{align*}
+	\begin{cases}
+		\frac{d w}{d t} = -2w-w^2\\
+		w(s,0) = u_0'(s)
+	\end{cases}
+\end{align*}
+We compute
+\begin{align*}
+	- \frac{dw}{ w(w+2)} &= dt \\
+	-\frac{1}{2}\left( \frac{1}{w} - \frac{1}{w+2} \right) dw &= dt \\
+	\frac{1}{2} \ln |w+2| - \frac{1}{2} \ln |w| &= t+C' \\
+	\frac{1}{2} \ln \left| \frac{w+2}{ w} \right| &= t+C' \\
+        1+ \frac{2}{w} &= Ce^{2t} \\
+	w &= \frac{2}{Ce^{2t}-1} \\
+	w(s,0) = \frac{2}{C-1} &= u_0'(s) \\
+	C &= \frac{2}{u_0'(s)}+1 \\
+	w(s,t) &= \frac{2}{ \left( \frac{2}{u_0'(s)}+1 \right) e^{2t}-1 } 
+\end{align*}
+We see that for a fixed $ s$ ( \emph{i.e.} on the characteristic curve), $ w(s,t)$ blows up when the denominator approaches 0. This happens when
+\begin{align*}
+	\left( \frac{2}{u_0'(s)}+1 \right)e^{2t} &= 1 \\
+	e^{2t} &= \frac{u_0'(s)}{2+u_0'(s) } \\
+	t &= \frac{1}{2} \ln \left( \frac{u_0'(s)}{2+u_0'(s) } \right)
+\end{align*}
+This is the time of $ w$ blowing up. But if $ \frac{u_0'(s)}{ 2+u_0'(s)} \leq 0 \iff -2 \leq u_0'(s) \leq 0$, or if $t<0 \iff u_0'(s) \geq 0$, then $ t$ would not have a solution in the range $ t\geq 0$ so  $ w$ would not blow up. Therefore, the necessary condition for $ u_0$ is that for all  $ x \in \rr$, $ u_0'(x) \geq -2$. 
+
+We now show that this is also the sufficient condition. Suppose the condition is true. Notice that since $ u_0(x)$ has bounded $ C^{1}$-norm, $ u(x,0)$ is Lipschitz continuous in $ x$. Along each characteristic curve, for $ t>0$ we have $ u(x,t) = u(x,0)e^{-2t}$ which is also Lipschitz continuous in $ x$. Now consider $ \frac{d x}{d t} =u$. Picard's theorem guarantees the uniqueness of $ x(t)$ that passes through each $ (x,t)$. That is, no two characteristic curve collide in the $ (x,t)$-plane. Since the determinant condition is always satisfied, as long as $ u_x$ doesn't blow up, we can let  $ u(x,t)$ flow out via the formula $ u(x,t)=u_0(x)e^{-2t}$ unobstructedly and obtain a unique global solution. We have shown that $ u_x$ doesn't blow up exactly when $ u_0'(x) \geq -2$. Since $ u_0(x)$ is smooth, ODE theory yields that the global solution $ u(x,t)$ is smooth as well. 
+
+We remark that this result can also be obtained via the phase line diagram of $ \frac{d w}{d t}  =-w(w+2) $ along a characteristic curve. We see that the critical points are $ 0$ and  $ 2$, where the solution is constant (by uniqueness). If the initial value is at $ w < -2$, we see that $ \frac{d w}{d t} <0 $ so $ w \to \infty$ as $ t \to \infty $, \emph{i.e.} $ u_x$ blows up. If the initial value is at $-2< w<0 $ or  $ w>0$, we see that  $ w \to 0$ as $ t \to \infty$. Taken together, $ u_x$ doesn't blow up when the initial value $ w(0)= u_0'(x) \geq -2$, which agrees with the above analysis.
+
+\item We see that any $ u(x,t)$ is the result of flow along some characteristic curve originated from the initial surface. Recall along any characteristic curve, $ u(x,t) = u_0(x) e^{-2t}$. Since $ u_0(x)$ is bounded, $ |u_0(x)| \leq M$ for some $ M > 0$. Then
+ \begin{align*}
+	\sup_{x \in \rr} |u(x,t)| &= \sup_{x \in \rr} |u_0(x) e^{-2t}| \\
+	&= \sup_{x \in \rr}|u_0(x)| |e^{-2t}| \\
+	&\leq M e^{-2t}  
+\end{align*}
+Thus we see that as $ t \to \infty$, $ \underset{ x \in \rr}{ \sup}| u(x,t) |\to 0$, as desired.
+\end{enumerate}
+\end{problem}
+\begin{problem}[3]
+We guess that the solution has the form
+\begin{align*}
+	u(x) = \frac{1}{|x-y|},
+\end{align*}
+where $ y \in B(0,1)$ is chosen to satisfy the initial data. We observe that
+\begin{align*}
+	\frac{2}{\sqrt{7+4\sqrt{3}x_3 } } = \frac{1}{\sqrt{\frac{7}{4}+ \sqrt{3} x_3 } }
+\end{align*}
+whose denominator looks like a norm. So for $ x \in \partial B(0,1)$, we solve
+\begin{align*}
+	\frac{7}{4}+\sqrt{3}x_3 &= |x-y|^2 = |x|^2 - 2 x \cdot y +|y|^2 = 1- 2 x \cdot y +|y|^2 \\ 
+				&\begin{cases}
+		1+y_1^2+y_2^2+y_3^2 = \frac{7}{4}\\
+		-2 x \cdot y = \sqrt{3}x_3 
+	\end{cases}  
+\end{align*}
+Thus we obtain $ y_1 = y_2=0$ and $ y_3 = -\frac{\sqrt{3} }{ 2} $, which indeed lies inside $ B(0,1)$. Thus,
+ \begin{align*}
+	u(x) = \frac{1}{\sqrt{x_1^2+x_2^2+(x_3+ \sqrt{3}/2 )^2} } .
+\end{align*}
+Since $ u(x)>0$, the bound depends on how small the denominator gets. Reverse triangle equality yields $ |x-y|\geq ||x| - |y|| = ||x| - \sqrt{3}/2 | \geq 1- \sqrt{3}/2$ since $ |x|\geq 1$. Thus the denominator is lower bounded by a constant, which means  $ u(x)$ is upper-bounded by a constant as well. Thus it is bounded.
+
+\end{problem}
+
+\begin{problem}[4]
+We know that $ \rho^2 \cos 2 \theta$ is harmonic, multiplying a harmonic function by a scalar keeps it harmonic (linearity of differentiation), and adding it by a constant keeps it harmonic. Thus,
+\begin{align*}
+	u(\rho, \theta) &= 1+\frac{1}{2} \left( 1+ \left( \frac{\rho}{ r} \right)^2  \cos 2\theta \right)  
+\end{align*}
+is harmonic in $ D(0,r)$. When $ \rho =r$, we have
+\begin{align*}
+	u(r,\theta) = 1+\frac{1}{2}(1+ \cos 2 \theta) = 1+ \cos^2\theta .
+\end{align*}
+Thus $ u(\rho,\theta)$ is the solution.
+\end{problem}
+
+\includepdf[page=-]{Midterm.pdf}
+\end{document}
