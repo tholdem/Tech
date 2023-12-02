@@ -1,0 +1,29 @@
+\documentclass[12pt]{article}
+\input{../preamble.tex}
+
+\begin{document}
+\centerline {\textsf{\textbf{\LARGE{Homework 6}}}}
+\centerline {Jaden Wang}
+\vspace{.15in}
+\begin{problem}[1]
+From the example, we know that optimal trajectories are circles centered at $ (\pm 1,0)$, one for each bang-bang control $ u = \pm 1$ respectively. To reach the origin, we must eventually get on the switching curves $ \Gamma_+^{1} $ and $ \Gamma_{-}^{1}$ since they are the only circles centered at $ (\pm1,0)$ that go through the origin. Moreover, the optimal control $ u^*  = - \text{sign}(\Lambda \cos(\omega t + \phi))$ flips signs and thus must switch every  $ \frac{\pi}{ \omega} = \pi$ except that it might switch sooner at the beginning or in the end. 
+
+\begin{enumerate}[label=(\alph*)]
+\item When $ x_1(0) = x_2(0)=2$, we have the following optimal trajectory:
+~\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.5\textwidth]{./figures/6.1.png}
+\caption{Magenta denotes the optimal trajectory and orange denotes the optimal switching curve. We first find circles centered at $ (\pm 1,0)$ that go through $ (2,2)$ and pick the one that reaches the switching surface the fastest. In this case it is the blue circle centered at  $ (-1,0)$. Then we switch to the green circle centered at $ (1,0)$ and continue for $ \pi$ unit of time to reach the next switching curve which happens to be $ \Gamma_{-}^{1}$ so we simply follow the singular curve to reach the origin.}
+\end{figure}
+
+Using $ \wh{ \Gamma}$, we have the following trajectory:
+~\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.5\textwidth]{./figures/6.2.png}
+	\caption{Magenta denotes the non-optimal trajectory and orange denotes the non-optimal switching curve. We repeat the previous first step, reach a new switching curve at $ x_2=0$, and switch to the other center. This time we don't have to switch every $ \pi$ so we simply reach the next switching curve to switch.}
+\end{figure}
+Since $ \omega=1$, the elapsed time is the same as the angle the trajectory traced out. By adding the angles together, we obtain that $ t^*  = 5.0194$ and $ \wh{ t} = 5.1685$.
+\end{enumerate}
+\end{problem}
+
+\end{document}
