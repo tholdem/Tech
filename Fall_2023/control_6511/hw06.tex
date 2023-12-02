@@ -6,24 +6,49 @@
 \centerline {Jaden Wang}
 \vspace{.15in}
 \begin{problem}[1]
-From the example, we know that optimal trajectories are circles centered at $ (\pm 1,0)$, one for each bang-bang control $ u = \pm 1$ respectively. To reach the origin, we must eventually get on the switching curves $ \Gamma_+^{1} $ and $ \Gamma_{-}^{1}$ since they are the only circles centered at $ (\pm1,0)$ that go through the origin. Moreover, the optimal control $ u^*  = - \text{sign}(\Lambda \cos(\omega t + \phi))$ flips signs and thus must switch every  $ \frac{\pi}{ \omega} = \pi$ except that it might switch sooner at the beginning or in the end. 
+From the example, we know that optimal trajectories are clockwise-oriented circles centered at $ (\pm 1,0)$, one for each bang-bang control $ u = \pm 1$ respectively. To reach the origin, we must eventually get on the switching curves $ \Gamma_+^{1} $ and $ \Gamma_{-}^{1}$ since they are the only circles centered at $ (\pm1,0)$ that go through the origin. Moreover, the optimal control $ u^*  = - \text{sign}(\Lambda \cos(\omega t + \phi))$ flips signs and thus must switch every  $ \frac{\pi}{ \omega} = \pi$ except that it might switch sooner at the beginning or in the end. 
 
 \begin{enumerate}[label=(\alph*)]
 \item When $ x_1(0) = x_2(0)=2$, we have the following optimal trajectory:
 ~\begin{figure}[H]
 	\centering
-	\includegraphics[width=0.5\textwidth]{./figures/6.1.png}
-\caption{Magenta denotes the optimal trajectory and orange denotes the optimal switching curve. We first find circles centered at $ (\pm 1,0)$ that go through $ (2,2)$ and pick the one that reaches the switching surface the fastest. In this case it is the blue circle centered at  $ (-1,0)$. Then we switch to the green circle centered at $ (1,0)$ and continue for $ \pi$ unit of time to reach the next switching curve which happens to be $ \Gamma_{-}^{1}$ so we simply follow the singular curve to reach the origin.}
+	\includegraphics[width=0.6\textwidth]{./figures/6.1.png}
+\caption{Magenta denotes the optimal trajectory and orange denotes the optimal switching curve. We first find clockwise-oriented circles centered at $ (\pm 1,0)$ that go through $ (2,2)$ and pick the one that reaches the switching surface the fastest. In this case it is the blue circle centered at  $ (-1,0)$. Then we switch to the green circle centered at $ (1,0)$ and continue for $ \pi$ unit of time to reach the next switching curve which happens to be $ \Gamma_{-}^{1}$ so we simply follow the singular curve to reach the origin.}
 \end{figure}
 
 Using $ \wh{ \Gamma}$, we have the following trajectory:
 ~\begin{figure}[H]
 	\centering
-	\includegraphics[width=0.5\textwidth]{./figures/6.2.png}
+	\includegraphics[width=0.6\textwidth]{./figures/6.2.png}
 	\caption{Magenta denotes the non-optimal trajectory and orange denotes the non-optimal switching curve. We repeat the previous first step, reach a new switching curve at $ x_2=0$, and switch to the other center. This time we don't have to switch every $ \pi$ so we simply reach the next switching curve to switch.}
 \end{figure}
 Since $ \omega=1$, the elapsed time is the same as the angle the trajectory traced out. By adding the angles together, we obtain that $ t^*  = 5.0194$ and $ \wh{ t} = 5.1685$.
+\item We repeat the procedure for $ \omega x_1 = 3,4,5$.
+~\begin{figure}[H]
+	\includegraphics[width=0.49\textwidth]{./figures/6.3.png}
+	\includegraphics[width=0.49\textwidth]{./figures/6.4.png}
+\end{figure}
+~\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.49\textwidth]{./figures/6.5.png}
+	\includegraphics[width=0.49\textwidth]{./figures/6.6.png}
+	\caption{Both trajectories becomes more complicated. We have four arcs corresponding to three switchings.}
+\end{figure}
+~\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.49\textwidth]{./figures/6.7.png}
+	\includegraphics[width=0.49\textwidth]{./figures/6.8.png}
+\end{figure}
+From the figures, we can roughly see that the optimal trajectories and their non-optimal counterparts largely resembles each other. Moreover, it is not hard to imagine that as $ \omega x_1$ gets larger, the total angles traced out by both trajectories increase but their differences don't increase much. Thus the ratio $ \wh{ t} / t^* $ trends down to 1. There is not enough sample size in the following plot to fully illustrate that but it is a start:
+~\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.55\textwidth]{./figures/6.15.png}
+	\caption{The ratio fluctuates but trends down.}
+\end{figure}
+
 \end{enumerate}
 \end{problem}
+\begin{problem}[2]
 
+\end{problem}
 \end{document}

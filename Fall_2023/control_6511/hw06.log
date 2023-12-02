@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2023.6.8)  1 DEC 2023 21:13
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2023.6.8)  2 DEC 2023 10:51
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1177,16 +1177,53 @@ LaTeX Font Warning: Font shape `U/stmry/b/n' undefined
 File: ./figures/6.1.png Graphic file (type png)
 <use ./figures/6.1.png>
 Package pdftex.def Info: ./figures/6.1.png  used on input line 15.
-(pdftex.def)             Requested size: 234.8775pt x 176.1581pt.
+(pdftex.def)             Requested size: 281.85587pt x 211.39647pt.
 \tmpboxcontent=\box139
 <./figures/6.2.png, id=8, 421.575pt x 316.18124pt>
 File: ./figures/6.2.png Graphic file (type png)
 <use ./figures/6.2.png>
 Package pdftex.def Info: ./figures/6.2.png  used on input line 22.
-(pdftex.def)             Requested size: 234.8775pt x 176.1581pt.
+(pdftex.def)             Requested size: 281.85587pt x 211.39647pt.
 [1
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map} <./figures/6.1.png (PNG copy)>] [2 <./figures/6.2.png (PNG copy)>] (./hw06.aux)
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map} <./figures/6.1.png (PNG copy)>]
+<./figures/6.3.png, id=27, 421.575pt x 316.18124pt>
+File: ./figures/6.3.png Graphic file (type png)
+<use ./figures/6.3.png>
+Package pdftex.def Info: ./figures/6.3.png  used on input line 28.
+(pdftex.def)             Requested size: 230.18253pt x 172.641pt.
+<./figures/6.4.png, id=28, 421.575pt x 316.18124pt>
+File: ./figures/6.4.png Graphic file (type png)
+<use ./figures/6.4.png>
+Package pdftex.def Info: ./figures/6.4.png  used on input line 29.
+(pdftex.def)             Requested size: 230.18253pt x 172.641pt.
+<./figures/6.5.png, id=29, 421.575pt x 316.18124pt>
+File: ./figures/6.5.png Graphic file (type png)
+<use ./figures/6.5.png>
+Package pdftex.def Info: ./figures/6.5.png  used on input line 33.
+(pdftex.def)             Requested size: 230.18253pt x 172.641pt.
+<./figures/6.6.png, id=30, 421.575pt x 316.18124pt>
+File: ./figures/6.6.png Graphic file (type png)
+<use ./figures/6.6.png>
+Package pdftex.def Info: ./figures/6.6.png  used on input line 34.
+(pdftex.def)             Requested size: 230.18253pt x 172.641pt.
+ [2 <./figures/6.2.png (PNG copy)> <./figures/6.3.png (PNG copy)> <./figures/6.4.png (PNG copy)>]
+<./figures/6.7.png, id=38, 421.575pt x 316.18124pt>
+File: ./figures/6.7.png Graphic file (type png)
+<use ./figures/6.7.png>
+Package pdftex.def Info: ./figures/6.7.png  used on input line 39.
+(pdftex.def)             Requested size: 230.18253pt x 172.641pt.
+<./figures/6.8.png, id=39, 421.575pt x 316.18124pt>
+File: ./figures/6.8.png Graphic file (type png)
+<use ./figures/6.8.png>
+Package pdftex.def Info: ./figures/6.8.png  used on input line 40.
+(pdftex.def)             Requested size: 230.18253pt x 172.641pt.
+<./figures/6.15.png, id=40, 421.575pt x 316.18124pt>
+File: ./figures/6.15.png Graphic file (type png)
+<use ./figures/6.15.png>
+Package pdftex.def Info: ./figures/6.15.png  used on input line 45.
+(pdftex.def)             Requested size: 258.36668pt x 193.77728pt.
+ [3 <./figures/6.5.png (PNG copy)> <./figures/6.6.png (PNG copy)> <./figures/6.7.png (PNG copy)> <./figures/6.8.png (PNG copy)>] [4 <./figures/6.15.png (PNG copy)>] (./hw06.aux)
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
@@ -1194,18 +1231,18 @@ Package rerunfilecheck Info: File `hw06.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 35073 strings out of 478287
- 698929 string characters out of 5849290
+ 35131 strings out of 478287
+ 700035 string characters out of 5849290
  950461 words of memory out of 5000000
- 52589 multiletter control sequences out of 15000+600000
+ 52632 multiletter control sequences out of 15000+600000
  515041 words of font info for 71 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 129i,13n,134p,702b,1028s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 129i,13n,134p,721b,1031s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf/fonts/enc/dvips/lm/lm-mathex.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-rm.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-ec.enc}</usr/share/texmf/fonts/type1/public/lm/lmbx12.pfb></usr/share/texmf/fonts/type1/public/lm/lmex10.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi12.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi8.pfb></usr/share/texmf/fonts/type1/public/lm/lmr12.pfb></usr/share/texmf/fonts/type1/public/lm/lmr8.pfb></usr/share/texmf/fonts/type1/public/lm/lmssbx10.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy10.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy8.pfb>
-Output written on hw06.pdf (2 pages, 157594 bytes).
+Output written on hw06.pdf (4 pages, 290596 bytes).
 PDF statistics:
- 81 PDF objects out of 1000 (max. 8388607)
- 55 compressed objects within 1 object stream
- 7 named destinations out of 1000 (max. 500000)
- 23 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 103 PDF objects out of 1000 (max. 8388607)
+ 68 compressed objects within 1 object stream
+ 15 named destinations out of 1000 (max. 500000)
+ 58 words of extra memory for PDF output out of 10000 (max. 10000000)
 
