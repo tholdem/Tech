@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2023.6.8)  2 DEC 2023 10:51
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2023.6.8)  2 DEC 2023 19:40
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1223,26 +1223,36 @@ File: ./figures/6.15.png Graphic file (type png)
 <use ./figures/6.15.png>
 Package pdftex.def Info: ./figures/6.15.png  used on input line 45.
 (pdftex.def)             Requested size: 258.36668pt x 193.77728pt.
- [3 <./figures/6.5.png (PNG copy)> <./figures/6.6.png (PNG copy)> <./figures/6.7.png (PNG copy)> <./figures/6.8.png (PNG copy)>] [4 <./figures/6.15.png (PNG copy)>] (./hw06.aux)
-
-LaTeX Font Warning: Some font shapes were not available, defaults substituted.
-
-Package rerunfilecheck Info: File `hw06.out' has not changed.
-(rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
- ) 
-Here is how much of TeX's memory you used:
- 35131 strings out of 478287
- 700035 string characters out of 5849290
- 950461 words of memory out of 5000000
- 52632 multiletter control sequences out of 15000+600000
- 515041 words of font info for 71 fonts, out of 8000000 for 9000
- 1141 hyphenation exceptions out of 8191
- 129i,13n,134p,721b,1031s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathex.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-rm.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-ec.enc}</usr/share/texmf/fonts/type1/public/lm/lmbx12.pfb></usr/share/texmf/fonts/type1/public/lm/lmex10.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi12.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi8.pfb></usr/share/texmf/fonts/type1/public/lm/lmr12.pfb></usr/share/texmf/fonts/type1/public/lm/lmr8.pfb></usr/share/texmf/fonts/type1/public/lm/lmssbx10.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy10.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy8.pfb>
-Output written on hw06.pdf (4 pages, 290596 bytes).
-PDF statistics:
- 103 PDF objects out of 1000 (max. 8388607)
- 68 compressed objects within 1 object stream
- 15 named destinations out of 1000 (max. 500000)
- 58 words of extra memory for PDF output out of 10000 (max. 10000000)
-
+ [3 <./figures/6.5.png (PNG copy)> <./figures/6.6.png (PNG copy)> <./figures/6.7.png (PNG copy)> <./figures/6.8.png (PNG copy)>] [4 <./figures/6.15.png (PNG copy)>]
+<./figures/6.16.png, id=55, 1393.205pt x 982.67125pt>
+File: ./figures/6.16.png Graphic file (type png)
+<use ./figures/6.16.png>
+Package pdftex.def Info: ./figures/6.16.png  used on input line 104.
+(pdftex.def)             Requested size: 281.85587pt x 198.7949pt.
+ [5 <./figures/6.16.png>]
+<./figures/6.17.png, id=61, 1418.29875pt x 1016.79875pt>
+File: ./figures/6.17.png Graphic file (type png)
+<use ./figures/6.17.png>
+Package pdftex.def Info: ./figures/6.17.png  used on input line 133.
+(pdftex.def)             Requested size: 281.85587pt x 202.06839pt.
+ [6 <./figures/6.17.png>]
+<./figures/6.18.png, id=67, 1588.93625pt x 1038.88126pt>
+File: ./figures/6.18.png Graphic file (type png)
+<use ./figures/6.18.png>
+Package pdftex.def Info: ./figures/6.18.png  used on input line 153.
+(pdftex.def)             Requested size: 281.85587pt x 184.27986pt.
+ [7 <./figures/6.18.png>] [8]
+<./figures/6.9.png, id=82, 421.575pt x 316.18124pt>
+File: ./figures/6.9.png Graphic file (type png)
+<use ./figures/6.9.png>
+Package pdftex.def Info: ./figures/6.9.png  used on input line 230.
+(pdftex.def)             Requested size: 328.82707pt x 246.6252pt.
+ [9]
+<./figures/6.10.png, id=90, 1155.31625pt x 869.2475pt>
+File: ./figures/6.10.png Graphic file (type png)
+<use ./figures/6.10.png>
+Package pdftex.def Info: ./figures/6.10.png  used on input line 237.
+(pdftex.def)             Requested size: 234.8775pt x 176.71136pt.
+ [10 <./figures/6.9.png (PNG copy)>]
+<./figures/6.11.png, id=98, 1246.6575pt x 934.49126pt>
+File: ./figures/6.11.png Graphic file (type png)

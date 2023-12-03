@@ -6,7 +6,7 @@
 \centerline {Jaden Wang}
 \vspace{.15in}
 \begin{problem}[1]
-From the example, we know that optimal trajectories are clockwise-oriented circles centered at $ (\pm 1,0)$, one for each bang-bang control $ u = \pm 1$ respectively. To reach the origin, we must eventually get on the switching curves $ \Gamma_+^{1} $ and $ \Gamma_{-}^{1}$ since they are the only circles centered at $ (\pm1,0)$ that go through the origin. Moreover, the optimal control $ u^*  = - \text{sign}(\Lambda \cos(\omega t + \phi))$ flips signs and thus must switch every  $ \frac{\pi}{ \omega} = \pi$ except that it might switch sooner at the beginning or in the end. 
+From the example, we know that optimal trajectories are clockwise-oriented circles centered at $ ( 1,0)$ for $ u=1$  and centered at $ (-1,0)$ for $ u = - 1$. To reach the origin, we must eventually get on the switching curves $ \Gamma_+^{1} $ and $ \Gamma_{-}^{1}$ since they are the only circles centered at $ (\pm1,0)$ that go through the origin. Moreover, the optimal control $ u^*  = - \text{sign}(\Lambda \cos(\omega t + \phi))$ flips signs and thus must switch every  $ \frac{\pi}{ \omega} = \pi$ except that it might switch sooner at the beginning or in the end. 
 
 \begin{enumerate}[label=(\alph*)]
 \item When $ x_1(0) = x_2(0)=2$, we have the following optimal trajectory:
@@ -48,7 +48,206 @@ From the figures, we can roughly see that the optimal trajectories and their non
 
 \end{enumerate}
 \end{problem}
+
+
 \begin{problem}[2]
+The Hamiltonian is
+\begin{align*}
+	H &= \frac{1}{2} x_1^2 + p_1(x_2+u) + p_2(-u)\\
+	&= \frac{1}{2}x_1^2+p_1x_2 +(p_1-p_2)u 
+\end{align*}
+The adjoint equations are
+\begin{align*}
+	\dot{p_1} &= -H_{x_1} = -x_1 \\
+	\dot{p_2} &= -H_{x_2} = -p_1
+\end{align*}
+Since $ t_f$ is free, and  $ H$ is time-independent, transversality yields  $ H \equiv 0$. 
+
+\begin{enumerate}[label=(\alph*)]
+\item Let us examine the optimality condition. By the PMP,
+\begin{align*}
+	u^*  = \argmin_u H = \begin{cases}
+		-1 & p_1 - p_2 >0\\
+		? & p_1 - p_2 =0\\
+		1 & p_1 - p_2 <0
+	\end{cases}
+\end{align*}
+Notice on the singular surface we have
+\begin{align*}
+	H = \frac{1}{2} x_1^2+x_1 x_2 &= 0 \\
+	x_1(x_1+x_2) &= 0\\
+	\implies x_1 =0 \text{ or } & x_1 = -2 x_2 
+\end{align*}
+Denote the surfaces by $ S_1$ and $ S_2$ respectively. Now we use GLC to obtain the optimal control on the singular surface
+\begin{align*}
+	\dot{H}_u &= \dot{p_1} - \dot{p_2} = -x_1 + p_1 \implies x_1 = p_1 = p_2 \\
+	\ddot{H}_u &= -\dot{x_1} + \dot{p_1} = -x_2 - u - x_1 =0 \\
+	u^* &= -(x_1 + x_2) 
+\end{align*}
+Moreover, since $ k=1$, $ (-1)^{1 } \frac{\partial }{\partial u} \ddot{H}_u = 1 >0 $ which passes GLC. Thus by definition of $ S_1$ and $S_2$,
+\begin{align*}
+	u^* = \begin{cases}
+		-x_2 & \text{ on } S_1\\
+		x_2 & \text{ on } S_2
+	\end{cases}
+\end{align*}
+Notice that on $ S_1$, $ \dot{x_2} = x_2$ so $ x_2$ moves away from origin. On $ S_2$, we have
+\begin{align*}
+	\begin{cases}
+		\dot{x_1} = 2x_2 \\
+		\dot{x_2} = -x_2 \\
+	\end{cases}
+\end{align*}
+which indicates that trajectory on $ S_2$ move toward the origin as time increases.
+~\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.6\textwidth]{./figures/6.16.png}
+	\caption{Switching surfaces: $ S_1$ is blue and $ S_2$ is green.}
+\end{figure}
+Now the initial point $ (0,-0.5)$ is on $ S_1$, we cannot continue on $ S_1$ as it moves away from the target. Hence we resort to bang-bang control. If $ u=1$, dynamics are
+\begin{align*}
+	\begin{cases}
+		\dot{x_1} = x_2 + 1 & x_1(0) = 0\\
+		\dot{x_2} = -1 & x_2(0) = -\frac{1}{2}
+	\end{cases}
+\end{align*}
+which yields $ x_1 = -\frac{1}{2} \left( x_2+\frac{1}{2} \right)^2 - \frac{1}{2}\left(x_2+\frac{1}{2}\right) $. However, both its intersections with $ x_1 = -2 x_2$ are not achieved in the positive time direction.
+
+If $ u = -1$, the dynamics are
+\begin{align*}	
+	\begin{cases}
+		\dot{x_1} = x_2 - 1 & x_1(0) = 0\\
+		\dot{x_2} = 1 & x_2(0) = -\frac{1}{2}
+	\end{cases}
+\end{align*}
+which yields
+\begin{align*}
+	\begin{cases}
+		x_1 (t) = \frac{1}{2} t^2 - \frac{3}{2} t \\
+		x_2(t) = t-\frac{1}{2} \implies t = x_2 + \frac{1}{2}
+	\end{cases}
+\end{align*}
+so we have the trajectory $ x_1 = \frac{1}{2} \left( x+\frac{1}{2} \right)^2 - \frac{3}{2} \left( x_2 + \frac{1}{2} \right)  $. This intersections with $ S_2$ at $ (-1, 0.5)$ which is achieved in positive time $ t=1$. Thus at this time we switch to singular control.
+~\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.6\textwidth]{./figures/6.17.png}
+	\caption{Optimal trajectory from initial point $ (0, -0.5)$.}
+\end{figure}
+\item Yes we can use bang-bang control only to reach the origin. We simply use the bang-bang control $ u=-1$ above and then switch to $ u=1$ which it intersects a bang-bang trajectory using $ u=1$ that reaches the origin. We find the latter trajectory with reversed time so that it goes through the origin at $ t=0$ for simplicity:
+\begin{align*}
+	\begin{cases}
+		\dot{x_1} = x_2 + 1 & x_1(0) = 0\\
+		\dot{x_2} = -1 & x_2(0) = 0
+	\end{cases}
+\end{align*}
+which yields
+\begin{align*}
+	\begin{cases}
+		x_1 (t) =- \frac{1}{2} t^2 + t \\
+		x_2(t) = -t \implies t = -x_2 
+	\end{cases}
+\end{align*}
+This gives the trajectory $ x_1 = -\frac{1}{2} x_2^2 - x_2$. The two bang-bang arcs intersect at $ (-1.1031,0.7906)$, with  $ t = -0.7906$. Thus the trajectory is
+~\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.6\textwidth]{./figures/6.18.png}
+	\caption{Bang-bang only trajectory.}
+	\label{fig:6-18-png}
+\end{figure}
+\item For the optimal control, we see that the first intersection occurs at $ t_1 = x_2 + \frac{1}{2} = 1$. Moreover, since $ x_1 = p_1$, the adjoint equation becomes $ x_1 = - \dot{x_1}$. Thus
+\begin{align*}
+	\frac{1}{2} \int_{ 1}^{ T} x_1^2 dt &= -\frac{1}{2} \int_{ 1}^{ T} x_1 \dot{x_1} dt \\
+	&= -\frac{1}{2} \int_{ 1}^{ T} \frac{d}{dt} x_1 \dot{x_1} dt  \\
+	&= -\frac{1}{4} \left( x_1(T)^2 - x_1(1)^2 \right)  \\
+	&= \frac{1}{4} x_1(1)^2 \\
+	&= \frac{1}{4} 
+\end{align*}
+and
+\begin{align*}
+	J^*  = \frac{1}{2} \int_{ 0}^{ T} x_1^2 dt &= \frac{1}{2} \int_{ 0}^{ 1} x_1^2 dt + \frac{1}{2} \int_{ 1}^{ T} x_1^2 dt \\
+	&= \frac{1}{2} \int_{ 0}^{ 1} \left( \frac{1}{2} t^2 - \frac{3}{2}t \right)^2 dt + \frac{1}{4}   \\
+	&= 0.4625 
+\end{align*}
+
+From (d) we obtain that for bang-bang trajectory, $ t_1= 1.2906$. Thus
+\begin{align*}
+	J_{BB} &= \frac{1}{2} \int_{ 0}^{ T} x_1^2 dt \\ 
+	&= \frac{1}{2} \int_{ 0}^{ 1.2906} \left( \frac{1}{2} t^2 - \frac{3}{2}t \right)^2 dt + \frac{1}{2} \int_{ -0.7906}^{ 0} \left( \frac{1}{2} t^2 + t  \right)^2    \\
+	&= 0.3755 + 0.1389 = 0.5144
+\end{align*}
+\item Solving the dynamics on $ S_2$ with boundary condition $ x_1(1) =-1, x_2(1)= \frac{1}{2}$ yields
+\begin{align*}
+	\begin{cases}
+		x_1(t) = -2.7183 e^{-t}\\
+		x_2(t) = 1.3591 e^{-t}
+	\end{cases}
+\end{align*}
+which is never going to reach $ (0,0)$ in finite time.
+
+In the bang-bang case, we have  $ t_1 = x_2 + \frac{1}{2} = 0.7906 + 0.5 = 1.2906$ so $ T = t_1 + 0.7906 = 2.0812$.
+\end{enumerate}
+\end{problem}
+
+\begin{problem}[3]
+The Hamiltonian is
+\begin{align*}
+	H = 1 + p_1 x_2 + p_2 u .
+\end{align*}
+The adjoint equations are
+\begin{align*}
+	\dot{p_1} &= -H_{x_1} = 0 \\
+	\dot{p_2} &= -H_{x_2} = - p_1 
+\end{align*}
+We see that $ p_1$ is constant and $ p_2$ is linear.
+\begin{enumerate}[label=(\alph*)]
+\item By PMP, we know that the optimal control is
+\begin{align*}
+	u^*  = \argmin_u H = \begin{cases}
+		u_{\max} & p_2 < 0\\
+		? & p_2 =0\\
+		-u_{\max} & p_2 >0
+	\end{cases}
+\end{align*}
+Since $ p_2$ is linear, it cannot be zero for more than one point. Otherwise, $ p_2 = p_1 \equiv 0$ which implies that $ H \equiv 1$. However, since $ t_f$ is free, we have  $ H \equiv 0$, a contradiction. It follows that
+ \begin{align*}
+	u^* = - \text{sign}(p_2) \cdot u_{\max} = \pm u_{ \max},  
+\end{align*}
+\emph{i.e.} we only have bang-bang control.
+\item Let $ b := \pm u_{\max}$. Thus the dynamics of optimal trajectory are
+	\begin{align*}
+		\begin{cases}
+			\dot{x_2} = b &\implies x_2(t) = bt+x_{20}\\
+			\dot{x_1} = x_2 &\implies x_1(t) = bt^2 + x_{20}t+x_{10}
+		\end{cases}
+	\end{align*}
+By substitution we have the optimal trajectory
+\begin{align*}
+	x_1-\left( x_{10} -\frac{1}{2b} x_{20}^2\right)  = \frac{1}{2b} x_2^2 ,
+\end{align*}
+for initial point $ (x_{10},x_{20})$. To have end points at $ (0,\pm 1)$, the optimal trajectory must have its last arc on one of the orange parabolas below. These are the switching curves.
+~\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\textwidth]{./figures/6.9.png}
+	\caption{The orange parabolas are the only optimal trajectories that go through $ (0,\pm 1)$. The cyan parabolas are other potential optimal trajectories. Given an initial point $ (x_{10},x_{20})$, there are always exactly two parabolas facing opposite directions that go through the point based on the equations above, and they always intersect at least one of the orange parabolas once. Note that the parabolas with mouth opening to the left goes down whereas the parabolas with mouth opening right goes up as time elapses.}
+\end{figure}
+\item By the reasons stated in the caption above, yes solution exists for all initial points. They might not be unique, as the $ (0,0)$ case illustrates below.
+\item 
+~\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.5\textwidth]{./figures/6.10.png}
+	\caption{Due to symmetry, we see that there are two optimal trajectories from $ (0,0)$ to  $ (0,\pm 1)$.}
+\end{figure}
+~\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.49\textwidth]{./figures/6.11.png}
+	\includegraphics[width=0.49\textwidth]{./figures/6.12.png}
+	\includegraphics[width=0.49\textwidth]{./figures/6.13.png}
+	\includegraphics[width=0.49\textwidth]{./figures/6.14.png}
+\end{figure}
+\end{enumerate}
+\end{problem}
+
+\begin{problem}[4]
 
 \end{problem}
 \end{document}
