@@ -228,7 +228,7 @@ for initial point $ (x_{10},x_{20})$. To have end points at $ (0,\pm 1)$, the op
 ~\begin{figure}[H]
 	\centering
 	\includegraphics[width=0.7\textwidth]{./figures/6.9.png}
-	\caption{The orange parabolas are the only optimal trajectories that go through $ (0,\pm 1)$. The cyan parabolas are other potential optimal trajectories. Given an initial point $ (x_{10},x_{20})$, there are always exactly two parabolas facing opposite directions that go through the point based on the equations above, and they always intersect at least one of the orange parabolas once. Note that the parabolas with mouth opening to the left goes down whereas the parabolas with mouth opening right goes up as time elapses.}
+	\caption{The orange parabolas are the only optimal trajectories that go through $ (0,\pm 1)$. The cyan parabolas are other potential optimal trajectories. Given an initial point $ (x_{10},x_{20})$, there are always exactly two parabolas facing opposite directions that go through the point based on the equations above, and they always intersect at least one of the orange parabolas once. Note that the parabolas with mouth opening to the left goes down whereas the parabolas with mouth opening right goes up as time elapses. IMPORTANT NOTE: the switching curves terminate after reaching $ (0,\pm 1)$. That is, the orange curve that goes up stops at  $ (0,1)$. The orange curve that goes down stops at $ (0,-1)$.}
 \end{figure}
 \item By the reasons stated in the caption above, yes solution exists for all initial points. They might not be unique, as the $ (0,0)$ case illustrates below.
 \item 
@@ -248,6 +248,51 @@ for initial point $ (x_{10},x_{20})$. To have end points at $ (0,\pm 1)$, the op
 \end{problem}
 
 \begin{problem}[4]
-
+The Hamiltonian is
+\begin{align*}
+	H &= t^2 + x^2 + u^2 + pu\\
+	H_u &= 2u+p \\
+	H_{uu} &= 2 = R_2 >0\\
+	H_{ux} &= 0 = R_{12} \\
+	H_{x x} &= 2 = R_1 
+\end{align*}
+Moreover, $ A = \frac{\partial f}{\partial x} =0 $ and $ B = \frac{\partial f}{\partial u} =1$. Recall that for a regular problem, the existence of a conjugate point is equivalent to solution of associated Ricatti equation blowing up. We have
+\begin{align*}
+	\widetilde{ A} &= A - BR_2^{-1}R_{12}^{T} = 0- \frac{1}{2} \cdot 0 = 0 \\
+	\Sigma &= BR_2^{-1}B = \frac{1}{2}\\
+	\widetilde{ R} &= R_1- R_{12} R_2^{-1} R_{12}^{T} = 2-0 = 2 
+\end{align*}
+Thus the Ricatti equation is
+\begin{align*}
+	-\dot{s} &= \widetilde{ A} ^{T} s + s\widetilde{ A} - s \Sigma s + \widetilde{ R}\\
+	-\dot{s} &= -\frac{1}{2} s ^2 + 2
+\end{align*}
+with $ s(t_f) = 0$. This yields
+ \begin{align*}
+	s(t) = 2 \tanh(t_f -t), 
+\end{align*}
+which is bounded! Thus we have no conjugate point.
+\end{problem}
+\begin{problem}[5]
+\begin{enumerate}[label=(\alph*)]
+\item The Hamiltonian is
+	\begin{align*}
+		H = 1+pu
+	\end{align*}
+with adjoint equation
+\begin{align*}
+	\dot{p} = 0
+\end{align*}
+which implies $ p$ is constant. We know  $ p \neq 0$ since otherwise  $ H \equiv 1$ but transversality gives  $ H \equiv 0$, a contradiction. Thus PMP gives
+ \begin{align*}
+	 u^* &= \begin{cases}
+		-1 & p>0\\
+		1 & p<0
+	\end{cases}\\
+	&= - \text{sign}(p)
+\end{align*}
+\item By letting $ b = - \text{sign}(p) $, we have $ \dot{x} = b$ which yields $ x(t) = bt+x_0$ with $0 =x(t_f) = bt_f + x_0$ so $ x_0 = -bt_f$. So the optimal value $ t_f = -b x_0$.
+\item For closed-loop control, we want $ u^* $ in terms of  $ x$. Since we know that $ u$ is a constant, as above from the dynamics we get $ x(t) = ut+x_0$ so boundary condition yields $ u = - \frac{x_0}{ t_f}$. If $ x_0>0$, then since $ t_f >0$, we have $ \dot{x}=u=-1$, so $ x$ decreases as time elapses but remains $ >0$ until $ t_f$. If  $ x_0<0$, $ x$ increases with time but remains $ <0$ until $ t_f$. In either case, we see that $ u^*  = - \text{sign}(x) $. 
+\end{enumerate}
 \end{problem}
 \end{document}
