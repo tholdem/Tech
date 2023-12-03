@@ -799,6 +799,7 @@ xlabel('wx1-1');
 title('time ratio as wx1 increases');
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%% Problem 2 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%a
 syms x y
 eqns = [x==-1/2*(y+1/2)^2-1/2*(y+1/2),x==-2*y];
 sol2 = solve(eqns);
@@ -808,11 +809,16 @@ eqns = [x==1/2*(y+1/2)^2-3/2*(y+1/2),x==-2*y];
 sol2 = solve(eqns);
 sol2.x
 sol2.y
-
+%b
+eqns = [x==1/2*(y+1/2)^2-3/2*(y+1/2),x==-1/2*y^2-y];
+sol2 = solve(eqns);
+sol2.x
+sol2.y
+pt = [sol2.x(2);sol2.y(2)];
+pt = double(pt)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%% Problem 3 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-t = linspace(-5,5);
+t = linspace(-2,2);
 x0 = 0;
 y0 = 1;
 %up
@@ -825,8 +831,8 @@ Gamma1x = Gamma1xf(t);
 Gamma1y = Gamma1yf(t);
 Gamma2x = Gamma2xf(t);
 Gamma2y = Gamma2yf(t);
+
 figure;
-plot(Gamma1x,Gamma1y,Color=[1 .5 0],LineWidth=1.5)
 hold on
 plot(Gamma2x,Gamma2y,Color=[1 .5 0],LineWidth=1.5)
 for n=1:5
@@ -841,7 +847,30 @@ set(gca, 'YAxisLocation', 'origin')
 xlabel('x1');
 ylabel('x2');
 title('switching curves');
-axis([-4,4,-4,4]);
+axis([-4,4,-3,3]);
+
+t = linspace(-2,2);
+x0 = 0;
+y0 = -1;
+%up
+Gamma1xf =@(t) 0.5*t.^2 + y0*t + x0;
+Gamma1yf =@(t) t + y0;
+%down
+Gamma2xf =@(t) -0.5*t.^2 + y0*t + x0;
+Gamma2yf =@(t) -t + y0;
+Gamma1x = Gamma1xf(t);
+Gamma1y = Gamma1yf(t);
+Gamma2x = Gamma2xf(t);
+Gamma2y = Gamma2yf(t);
+
+plot(Gamma1x,Gamma1y,Color=[1 .5 0],LineWidth=1.5)
+for n=1:5
+    k=2*n/3;
+    plot(Gamma1x-k,Gamma1y,Color='cyan')
+    plot(Gamma1x+k,Gamma1y,Color='cyan')
+    plot(Gamma2x-k,Gamma2y,Color='cyan')
+    plot(Gamma2x+k,Gamma2y,Color='cyan')
+end
 hold off
 
 %%%%%%%%%%% initial (0,0) %%%%%%%%%%%%
