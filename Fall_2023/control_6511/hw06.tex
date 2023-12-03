@@ -1,6 +1,30 @@
 \documentclass[12pt]{article}
 \input{../preamble.tex}
+%include Matlab code
+\usepackage{sectsty}
+\usepackage{listings}
+\usepackage{color}
+\usepackage{alltt}
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
 
+\lstset{frame=tb,
+  language=Matlab,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3
+}
 \begin{document}
 \centerline {\textsf{\textbf{\LARGE{Homework 6}}}}
 \centerline {Jaden Wang}
@@ -228,7 +252,7 @@ for initial point $ (x_{10},x_{20})$. To have end points at $ (0,\pm 1)$, the op
 ~\begin{figure}[H]
 	\centering
 	\includegraphics[width=0.7\textwidth]{./figures/6.9.png}
-	\caption{The orange parabolas are the only optimal trajectories that go through $ (0,\pm 1)$. The cyan parabolas are other potential optimal trajectories. Given an initial point $ (x_{10},x_{20})$, there are always exactly two parabolas facing opposite directions that go through the point based on the equations above, and they always intersect at least one of the orange parabolas once. Note that the parabolas with mouth opening to the left goes down whereas the parabolas with mouth opening right goes up as time elapses. IMPORTANT NOTE: the switching curves terminate after reaching $ (0,\pm 1)$. That is, the orange curve that goes up stops at  $ (0,1)$. The orange curve that goes down stops at $ (0,-1)$.}
+	\caption{The orange parabolas are the only optimal trajectories that go through $ (0,\pm 1)$. The cyan parabolas are other potential optimal trajectories. Given an initial point $ (x_{10},x_{20})$, there are always exactly two parabolas facing opposite directions that go through the point based on the equations above, and they always intersect at least one of the orange parabolas once. Note that the parabolas with mouth opening to the left goes down whereas the parabolas with mouth opening right goes up as time elapses. Note that the switching curves terminate after reaching $ (0,\pm 1)$. That is, the orange curve that goes up stops at  $ (0,1)$. The orange curve that goes down stops at $ (0,-1)$. This is because once they reach those points, they will never be able to return.}
 \end{figure}
 \item By the reasons stated in the caption above, yes solution exists for all initial points. They might not be unique, as the $ (0,0)$ case illustrates below.
 \item 
@@ -295,4 +319,1174 @@ which implies $ p$ is constant. We know  $ p \neq 0$ since otherwise  $ H \equiv
 \item For closed-loop control, we want $ u^* $ in terms of  $ x$. Since we know that $ u$ is a constant, as above from the dynamics we get $ x(t) = ut+x_0$ so boundary condition yields $ u = - \frac{x_0}{ t_f}$. If $ x_0>0$, then since $ t_f >0$, we have $ \dot{x}=u=-1$, so $ x$ decreases as time elapses but remains $ >0$ until $ t_f$. If  $ x_0<0$, $ x$ increases with time but remains $ <0$ until $ t_f$. In either case, we see that $ u^*  = - \text{sign}(x) $. 
 \end{enumerate}
 \end{problem}
+
+\begin{problem}[6]
+The Hamiltonian is
+\begin{align*}
+	H(x,u,V_x,t) = (xu)^2 + V_x xu .
+\end{align*}
+The HJB equation is
+\begin{align*}
+	V_t + \min_u \{(xu)^2 + V_x xu\} =0.
+\end{align*}
+To find the minimizer, we can set the derivative with respect to $ u$ to zero and obtain
+ \begin{align*}
+	2x^2 u + V_x x &= 0 \\
+	u^* &= - \frac{V_x}{ 2x} ,\quad  x \neq 0
+\end{align*}
+Then the PDE becomes
+\begin{align*}
+	4 V_t - V_x^2 =0 . 
+\end{align*}
+Since $ V(1) = x(1)^2$, we make the guess that the solution has the form $ V(x,t) = p(t) x(t)^2$. Then $ V_t = \dot{p} x^2$ and $ V_x = 2x p(t)$, and we solve the ODE
+ \begin{align*}
+	4\dot{p}x^2 - p(t)^2 4 x^2 &= 0 \\
+	\dot{p} &= p^2 
+\end{align*}
+with the boundary condition $ p(1) = 1$. The solution is
+ \begin{align*}
+	p = \frac{1}{1-t} ,
+\end{align*}
+and the solution to the PDE is
+\begin{align*}
+	V(x,t) = \frac{x^2}{ 1-t} .
+\end{align*}
+Thus we have $ V_t = \frac{x^2}{ (1-t)^2}$ and $ V_x = \frac{2x}{ 1-t}$, so the optimal control is $ u^*  = \frac{1}{t-1}$. Solving the dynamics $ \dot{x} = \frac{x}{t-1}$ with $ x(0)=1$ gives
+ \begin{align*}
+	x(t) = 1-t
+\end{align*}
+which indeed doesn't equal to 0 in $ [0,1)$. The optimal cost is
+ \begin{align*}
+	J^*  = x(1)^2 + \int_{ 0}^{ 1} (1-t) \frac{1}{t-1} dt = x(1)^2-1 .
+\end{align*}
+\end{problem}
+
+\begin{problem}[7]
+The Hamiltonian is
+\begin{align*}
+	H = \frac{1}{2} x^{T} R_1 x + x^{T} R_{12} u + p ^{T} (Ax+Bu) .
+\end{align*}
+Recall the following matrix calculus rules $ \frac{d (x^{T}Ax)}{dx} = 2(Ax)^{T} $, or more generally $ \frac{d \langle f(x),g(x) \rangle}{dx} = g(x)^{T} f'(x) + f(x)^{T} g'(x)$. Note this is the derivative/Jacobian, which is the transpose of gradient. The adjoint equation is
+\begin{align*}
+	\nabla_t p =\dot{p} = -H_x^{T} = -(R_1 x + R_{12} u + A^{T} p)  
+\end{align*}
+The singular control satisfies
+\begin{align*}
+	H_u = x^{T}R_{12} + p ^{T}B =0.
+\end{align*}
+Then
+\begin{align*}
+	\dot{H_u} = \nabla_t H_u &= \frac{d}{dx} (x^{T} R_{12}) \dot{x} + \frac{d}{dp} (p ^{T}B) \dot{p} \\
+	0&= R_{12}^{T}(Ax+Bu) - B^{T}(R_1 x + R_{12} u + A^{T}p) \\
+	0&= R_{12}^{T} A x + (R_{12}^{T}B - B^{T}R_{12})u - B^{T}R_1x - B^{T}A^{T}p 
+\end{align*}
+By GLC, $ u$ can only appear in even degree of differentiation, so for singular control to be optimal we must have  $ R_{12}^{T}B - B^{T} R_{12} = 0$. Then
+\begin{align*}
+	\ddot{H}_u=\nabla_{tt} H_u &= (R_{12}^{T}A-B^{T}R_1)\dot{x} -B^{T}A^{T}\dot{p} \\ 
+	0&= (R_{12}^{T}A-B^{T}R_1)Bu +B^{T}A^{T}R_{12}u + f(x)+g(p) 
+\end{align*}
+Since $ u$ shows up at degree 2,  $ k=1$. Thus GLC demands
+\begin{align*}
+	(-1)^{1} \frac{\partial }{\partial u} \ddot{H_u} &\geq 0\\
+	(-1) (R_{12}^{T} AB - B^{T}R_1B+B^{T}A^{T}R_{12}) & \geq 0\\
+	B^{T}R_1B - R_{12}^{T}AB - B^{T}A^{T}R_{12} &\geq 0
+\end{align*}
+\end{problem}
+
+\begin{lstlisting}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Problem 1a %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+t = zeros(4,2); %store time
+
+%%%%%%%%% initial point at (2,2) %%%%%%%%%
+x0 = 2;
+y0 = 2;
+%time
+t1 = 0; %optimal time
+t2 = 0; %non-optimal time
+%%%%%%%%%%%%%%%%%%%%%%%% optimal trajectory %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%blue circle centered at (-1,0)
+th = linspace(0, 2*pi, 100);
+R = norm([x0+1,y0]);  %radius
+%circle
+cx1 = R*cos(th) - 1;
+cy1 = R*sin(th);
+%find the first intersection of blue circle with switching curve
+syms x y
+%eyeball the switching curve it intersects with
+eqns=[(x-3)^2+y^2==1,(x+1)^2+y^2==R^2];
+sol = solve(eqns);
+pt1 = [sol.x(1);sol.y(1)]
+pt1 = double(pt1);
+%first arc of optimal trajectory
+th0 = atan(y0/(x0+1)); % initial angle for blue circle
+th1 = atan(pt1(2)/(pt1(1)+1)); %first switch angle for blue circle
+t1 = t1 + th0-th1; %time is the same as angle
+th = linspace( th0, th1, 100);
+%trajectory arc 1
+trajx1 = R*cos(th) - 1;
+trajy1 = R*sin(th);
+
+%green circle centered at (1,0)
+th = linspace(0, 2*pi, 100);
+R = norm(pt1-[1;0]);  %radius
+%circle
+cx2 = R*cos(th) + 1;
+cy2 = R*sin(th);
+%find the next intersection of green circle with switching curve
+syms x y
+eqns=[(x+1)^2+y^2==1,(x-1)^2+y^2==R^2];
+sol = solve(eqns);
+pt2 = [sol.x(2);sol.y(2)]
+pt2 = double(pt2);
+%second arc of optimal trajectory
+th0 = atan(pt1(2)/(pt1(1)-1)); % initial angle for green circle
+th1 = acos((pt2(1)-1)/R); %first switch angle for green circle
+t1 = t1 + th0+2*pi - th1; %time is the same as angle
+th = linspace( th0+2*pi, th1, 100);
+%trajectory arc 2
+trajx2 = R*cos(th) + 1;
+trajy2 = R*sin(th);
+
+%semi-circle switching curves
+th = linspace( 0, -pi, 100);
+R = 1;  %radius
+sx1 = R*cos(th) + 3;
+sy1 = R*sin(th) ;
+sx2 = R*cos(th) + 1;
+sy2 = R*sin(th) ;
+th = linspace( 0, pi, 100);
+sx3 = R*cos(th) - 1;
+sy3 = R*sin(th) ;
+%third arc of optimal trajectory
+th0 = asin(pt2(2)); % initial angle for semicircle
+th1 = 0; %terminal angle for for semicircle
+t1 = t1+ th0-th1;
+th = linspace( th0,th1, 100);
+trajx3 = R*cos(th) - 1;
+trajy3 = R*sin(th);
+
+figure;
+plot(x0,y0,'o',MarkerEdgeColor='r',MarkerFaceColor='r')
+hold on
+plot(pt1(1),pt1(2),'o',MarkerEdgeColor='r',MarkerFaceColor='r')
+plot(pt2(1),pt2(2),'o',MarkerEdgeColor='r',MarkerFaceColor='r')
+plot(0,0,'o',MarkerEdgeColor='r',MarkerFaceColor='r')
+plot(sx1,sy1,Color=[1 .5 0],LineWidth=1.5); axis equal;
+plot(sx2,sy2,Color=[1 .5 0],LineWidth=1.5); 
+plot(sx3,sy3,Color=[1 .5 0],LineWidth=1.5); 
+plot(cx1,cy1,Color='blue');
+plot(trajx1,trajy1,Color='magenta',LineWidth=2);
+plot(cx2,cy2,Color='green');
+plot(trajx2,trajy2,Color='magenta',LineWidth=2);
+plot(trajx3,trajy3,Color='magenta',LineWidth=2);
+set(gca, 'XAxisLocation', 'origin')
+set(gca, 'YAxisLocation', 'origin')
+xlabel('wx1');
+ylabel('wx2');
+title('optimal trajectory wx1=2');
+hold off
+
+%%%%%%%%%%%%%%%%%%%%%%%% non-optimal trajectory %%%%%%%%%%%%%%%%%%%%%%%%%%%
+%blue circle centered at (-1,0)
+th = linspace(0, 2*pi, 100);
+R = norm([x0+1,y0]);  %radius
+cx1 = R*cos(th) - 1;
+cy1 = R*sin(th);
+%find the first intersection of blue circle with switching curve
+syms x y
+eqns=[y==0,(x+1)^2+y^2==R^2];
+sol = solve(eqns);
+pt1 = [sol.x(2);sol.y(2)]
+pt1 = double(pt1);
+%first arc of optimal trajectory
+th0 = atan(y0/(x0+1)); % initial angle for blue circle
+th1 = atan(pt1(2)/(pt1(1)+1)); %first switch angle for blue circle
+t2 = t2 + th0-th1; %time is the same as angle
+th = linspace( th0, th1, 100);
+trajx1 = R*cos(th) - 1;
+trajy1 = R*sin(th);
+
+%green circle centered at (1,0)
+th = linspace(0, 2*pi, 100);
+R = norm(pt1-[1;0]);  %radius
+cx2 = R*cos(th) + 1;
+cy2 = R*sin(th);
+%find the next intersection of green circle with switching curve
+syms x y
+eqns=[(x+1)^2+y^2==1,(x-1)^2+y^2==R^2];
+sol = solve(eqns);
+pt2 = [sol.x(2);sol.y(2)]
+pt2 = double(pt2);
+%second arc of non-optimal trajectory
+th0 = atan(pt1(2)/(pt1(1)-1)); % initial angle for green circle
+th1 = acos((pt2(1)-1)/R); %first switch angle for green circle
+t2 = t2 + th0+2*pi - th1; %time is the same as angle
+th = linspace( th0+2*pi, th1, 100);
+trajx2 = R*cos(th) + 1;
+trajy2 = R*sin(th);
+%Gamma hat switching curves
+th = linspace( 0, -pi, 100);
+R = 1;  %radius
+sx1 = linspace(-5,-2);
+sx11 = linspace(2,5);
+sy1 = 0*sx1;
+sy11 = 0*sx11;
+sx2 = R*cos(th) + 1;
+sy2 = R*sin(th) ;
+th = linspace( 0, pi, 100);
+sx3 = R*cos(th) - 1;
+sy3 = R*sin(th) ;
+%third arc of optimal trajectory
+th0 = acos(pt2(1)+1); % initial angle for semicircle
+th1 = 0; %terminal angle for for semicircle
+t2 = t2+ th0-th1;
+th = linspace( th0,th1, 100);
+trajx3 = R*cos(th) - 1;
+trajy3 = R*sin(th);
+
+figure;
+plot(x0,y0,'o',MarkerEdgeColor='r',MarkerFaceColor='r')
+hold on
+plot(pt1(1),pt1(2),'o',MarkerEdgeColor='r',MarkerFaceColor='r')
+plot(pt2(1),pt2(2),'o',MarkerEdgeColor='r',MarkerFaceColor='r')
+plot(0,0,'o',MarkerEdgeColor='r',MarkerFaceColor='r')
+plot(sx1,sy1,Color=[1 .5 0],LineWidth=1.5); axis equal;
+plot(sx11,sy11,Color=[1 .5 0],LineWidth=1.5);
+plot(sx2,sy2,Color=[1 .5 0],LineWidth=1.5); 
+plot(sx3,sy3,Color=[1 .5 0],LineWidth=1.5); 
+plot(cx1,cy1,Color='blue');
+plot(trajx1,trajy1,Color='magenta',LineWidth=2);
+plot(cx2,cy2,Color='green');
+plot(trajx2,trajy2,Color='magenta',LineWidth=2);
+plot(trajx3,trajy3,Color='magenta',LineWidth=2);
+set(gca, 'XAxisLocation', 'origin')
+set(gca, 'YAxisLocation', 'origin')
+xlabel('wx1');
+ylabel('wx2');
+title('non-optimal trajectory wx1=2');
+hold off
+
+fprintf('The optimal time is %f, the non-optimal time is %f.\n',t1,t2)
+
+t(1,1) = t1;
+t(1,2) = t2;
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%% Problem 1b %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%% initial point at (3,2) %%%%%%%%%
+x0 = 3;
+y0 = 2;
+%time
+t1 = 0; %optimal time
+t2 = 0; %non-optimal time
+%blue circle centered at (-1,0)
+th = linspace(0, 2*pi, 100);
+R = norm([x0+1,y0]);  %radius
+cx1 = R*cos(th) - 1;
+cy1 = R*sin(th);
+%find the first intersection of blue circle with switching curve
+syms x y
+eqns=[(x-3)^2+y^2==1,(x+1)^2+y^2==R^2];
+sol = solve(eqns);
+pt1 = [sol.x(1);sol.y(1)]
+pt1 = double(pt1);
+%first arc of optimal trajectory
+th0 = atan(y0/(x0+1)); % initial angle for blue circle
+th1 = atan(pt1(2)/(pt1(1)+1)); %first switch angle for blue circle
+t1 = t1 + th0-th1; %time is the same as angle
+th = linspace( th0, th1, 100);
+trajx1 = R*cos(th) - 1;
+trajy1 = R*sin(th);
+
+%green circle centered at (1,0)
+th = linspace(0, 2*pi, 100);
+R = norm(pt1-[1;0]);  %radius
+cx2 = R*cos(th) + 1;
+cy2 = R*sin(th);
+%find the next intersection of green circle with switching curve
+syms x y
+eqns=[(x+1)^2+y^2==1,(x-1)^2+y^2==R^2];
+sol = solve(eqns);
+pt2 = [sol.x(2);sol.y(2)]
+pt2 = double(pt2);
+%%%%%%second arc of optimal trajectory
+th0 = atan(pt1(2)/(pt1(1)-1)); % initial angle for green circle
+th1 = acos((pt2(1)-1)/R); %first switch angle for green circle
+t1 = t1 + th0+2*pi - th1; %time is the same as angle
+th = linspace( th0+2*pi, th1, 100);
+trajx2 = R*cos(th) + 1;
+trajy2 = R*sin(th);
+%semi-circle switching curves
+th = linspace( 0, -pi, 100);
+R = 1;  %radius
+sx1 = R*cos(th) + 3;
+sy1 = R*sin(th) ;
+sx2 = R*cos(th) + 1;
+sy2 = R*sin(th) ;
+th = linspace( 0, pi, 100);
+sx3 = R*cos(th) - 1;
+sy3 = R*sin(th) ;
+%%%%third arc of optimal trajectory
+th0 = acos(pt2(1)+1); % initial angle for semicircle
+th1 = 0; %terminal angle for for semicircle
+t1 = t1+ th0-th1;
+th = linspace( th0,th1, 100);
+trajx3 = R*cos(th) - 1;
+trajy3 = R*sin(th);
+
+figure;
+plot(x0,y0,'o',MarkerEdgeColor='r',MarkerFaceColor='r')
+hold on
+plot(pt1(1),pt1(2),'o',MarkerEdgeColor='r',MarkerFaceColor='r')
+plot(pt2(1),pt2(2),'o',MarkerEdgeColor='r',MarkerFaceColor='r')
+plot(0,0,'o',MarkerEdgeColor='r',MarkerFaceColor='r')
+plot(sx1,sy1,Color=[1 .5 0],LineWidth=1.5); axis equal;
+plot(sx2,sy2,Color=[1 .5 0],LineWidth=1.5); 
+plot(sx3,sy3,Color=[1 .5 0],LineWidth=1.5); 
+plot(cx1,cy1,Color='blue');
+plot(trajx1,trajy1,Color='magenta',LineWidth=2);
+plot(cx2,cy2,Color='green');
+plot(trajx2,trajy2,Color='magenta',LineWidth=2);
+plot(trajx3,trajy3,Color='magenta',LineWidth=2);
+set(gca, 'XAxisLocation', 'origin')
+set(gca, 'YAxisLocation', 'origin')
+xlabel('wx1');
+ylabel('wx2');
+title('optimal trajectory wx1=3');
+hold off
+
+%%%%%%%%%%%%%%%%%%%%%%%% non-optimal trajectory %%%%%%%%%%%%%%%%%%%%%%%%%%%
+%blue circle centered at (-1,0)
+th = linspace(0, 2*pi, 100);
+R = norm([x0+1,y0]);  %radius
+cx1 = R*cos(th) - 1;
+cy1 = R*sin(th);
+%find the first intersection of blue circle with switching curve
+syms x y
+eqns=[y==0,(x+1)^2+y^2==R^2];
+sol = solve(eqns);
+pt1 = [sol.x(2);sol.y(2)]
+pt1 = double(pt1);
+%first arc of optimal trajectory
+th0 = atan(y0/(x0+1)); % initial angle for blue circle
+th1 = atan(pt1(2)/(pt1(1)+1)); %first switch angle for blue circle
+t2 = t2 + th0-th1; %time is the same as angle
+th = linspace( th0, th1, 100);
+trajx1 = R*cos(th) - 1;
+trajy1 = R*sin(th);
+
+%green circle centered at (1,0)
+th = linspace(0, 2*pi, 100);
+R = norm(pt1-[1;0]);  %radius
+cx2 = R*cos(th) + 1;
+cy2 = R*sin(th);
+%find the next intersection of green circle with switching curve
+syms x y
+eqns=[(x+1)^2+y^2==1,(x-1)^2+y^2==R^2];
+sol = solve(eqns);
+pt2 = [sol.x(2);sol.y(2)]
+pt2 = double(pt2);
+%second arc of non-optimal trajectory
+th0 = atan(pt1(2)/(pt1(1)-1)); % initial angle for green circle
+th1 = acos((pt2(1)-1)/R); %first switch angle for green circle
+t2 = t2 + th0+2*pi - th1; %time is the same as angle
+th = linspace( th0+2*pi, th1, 100);
+trajx2 = R*cos(th) + 1;
+trajy2 = R*sin(th);
+%Gamma hat switching curves
+th = linspace( 0, -pi, 100);
+R = 1;  %radius
+sx1 = linspace(-6,-2);
+sx11 = linspace(2,6);
+sy1 = 0*sx1;
+sy11 = 0*sx11;
+sy1 = 0*sx1;
+sx2 = R*cos(th) + 1;
+sy2 = R*sin(th) ;
+th = linspace( 0, pi, 100);
+sx3 = R*cos(th) - 1;
+sy3 = R*sin(th) ;
+%third arc of optimal trajectory
+th0 = acos(pt2(1)+1); % initial angle for semicircle
+th1 = 0; %terminal angle for for semicircle
+t2 = t2+ th0-th1;
+th = linspace( th0,th1, 100);
+trajx3 = R*cos(th) - 1;
+trajy3 = R*sin(th);
+
+figure;
+plot(x0,y0,'o',MarkerEdgeColor='r',MarkerFaceColor='r')
+hold on
+plot(pt1(1),pt1(2),'o',MarkerEdgeColor='r',MarkerFaceColor='r')
+plot(pt2(1),pt2(2),'o',MarkerEdgeColor='r',MarkerFaceColor='r')
+plot(0,0,'o',MarkerEdgeColor='r',MarkerFaceColor='r')
+plot(sx1,sy1,Color=[1 .5 0],LineWidth=1.5); axis equal;
+plot(sx11,sy11,Color=[1 .5 0],LineWidth=1.5);
+plot(sx2,sy2,Color=[1 .5 0],LineWidth=1.5); 
+plot(sx3,sy3,Color=[1 .5 0],LineWidth=1.5); 
+plot(cx1,cy1,Color='blue');
+plot(trajx1,trajy1,Color='magenta',LineWidth=2);
+plot(cx2,cy2,Color='green');
+plot(trajx2,trajy2,Color='magenta',LineWidth=2);
+plot(trajx3,trajy3,Color='magenta',LineWidth=2);
+set(gca, 'XAxisLocation', 'origin')
+set(gca, 'YAxisLocation', 'origin')
+xlabel('wx1');
+ylabel('wx2');
+title('non-optimal trajectory wx1=3');
+hold off
+
+
+t(2,1) = t1;
+t(2,2) = t2;
+
+%%%%%%%%%%%%%%%%%%%%%%%% initial point at (4,2) %%%%%%%%%%%%%%%%%%%%%%%%%%%
+x0 = 4;
+y0 = 2;
+
+%time
+t1 = 0; %optimal time
+t2 = 0; %non-optimal time
+%blue circle centered at (-1,0)
+th = linspace(0, 2*pi, 100);
+R = norm([x0+1,y0]);  %radius
+cx1 = R*cos(th) - 1;
+cy1 = R*sin(th);
+%find the first intersection of blue circle with switching curve
+syms x y
+eqns=[(x-5)^2+y^2==1,(x+1)^2+y^2==R^2];
+sol = solve(eqns);
+pt1 = [sol.x(1);sol.y(1)]
+pt1 = double(pt1);
+%first arc of optimal trajectory
+th0 = atan(y0/(x0+1)); % initial angle for blue circle
+th1 = atan(pt1(2)/(pt1(1)+1)); %first switch angle for blue circle
+th0-th1
+t1 = t1 + th0-th1; %time is the same as angle
+th = linspace( th0, th1, 100);
+trajx1 = R*cos(th) - 1;
+trajy1 = R*sin(th);
+
+%green circle centered at (1,0)
+th = linspace(0, 2*pi, 100);
+R = norm(pt1-[1;0]);  %radius
+cx2 = R*cos(th) + 1;
+cy2 = R*sin(th);
+%find the next intersection of green circle with switching curve
+syms x y
+eqns=[(x+3)^2+y^2==1,(x-1)^2+y^2==R^2];
+sol = solve(eqns);
+pt2 = [sol.x(2);sol.y(2)]
+pt2 = double(pt2);
+%%%%%%second arc of optimal trajectory
+th0 = atan(pt1(2)/(pt1(1)-1)); % initial angle for green circle
+th1 = acos((pt2(1)-1)/R); %first switch angle for green circle
+th0+2*pi - th1
+t1 = t1 + th0+2*pi - th1; %time is the same as angle
+th = linspace( th0+2*pi, th1, 100);
+trajx2 = R*cos(th) + 1;
+trajy2 = R*sin(th);
+
+%blue circle centered at (-1,0)
+th = linspace(0, 2*pi, 100);
+R = norm(pt2+[1;0]);  %radius
+cx3 = R*cos(th) - 1;
+cy3 = R*sin(th);
+%find the next intersection of blue circle with switching curve
+syms x y
+eqns=[(x-1)^2+y^2==1,(x+1)^2+y^2==R^2];
+sol = solve(eqns);
+pt3 = [sol.x(1);sol.y(1)]
+pt3 = double(pt3);
+%third arc of optimal trajectory
+th0 = acos((pt2(1)+1)/R); % initial angle for blue circle
+th1 = atan(pt3(2)/(pt3(1)+1)); %first switch angle for blue circle
+th0-th1
+t1 = t1 + th0-th1; %time is the same as angle
+th = linspace( th0, th1, 100);
+trajx3 = R*cos(th) - 1;
+trajy3 = R*sin(th);
+
+%semi-circle switching curves
+th = linspace( 0, -pi, 100);
+R = 1;  %radius
+sx1 = R*cos(th) + 3;
+sy1 = R*sin(th) ;
+sx2 = R*cos(th) + 1;
+sy2 = R*sin(th) ;
+sx3 = R*cos(th) + 5;
+sy3 = R*sin(th) ;
+th = linspace( 0, pi, 100);
+sx4 = R*cos(th) - 1;
+sy4 = R*sin(th) ;
+sx5 = R*cos(th) - 3;
+sy5 = R*sin(th) ;
+%%%%fourth arc of optimal trajectory
+th0 = -acos(pt3(1)-1); % initial angle for semicircle
+th1 = -pi; %terminal angle for for semicircle
+abs(th1-th0)
+t1 = t1+ abs(th1-th0);
+th = linspace( th0,th1, 100);
+trajx4 = R*cos(th) + 1;
+trajy4 = R*sin(th);
+
+figure;
+plot(x0,y0,'o',MarkerEdgeColor='r',MarkerFaceColor='r')
+hold on
+plot(pt1(1),pt1(2),'o',MarkerEdgeColor='r',MarkerFaceColor='r')
+plot(pt2(1),pt2(2),'o',MarkerEdgeColor='r',MarkerFaceColor='r')
+plot(pt3(1),pt3(2),'o',MarkerEdgeColor='r',MarkerFaceColor='r')
+plot(0,0,'o',MarkerEdgeColor='r',MarkerFaceColor='r')
+plot(sx1,sy1,Color=[1 .5 0],LineWidth=1.5); axis equal;
+plot(sx2,sy2,Color=[1 .5 0],LineWidth=1.5); 
+plot(sx3,sy3,Color=[1 .5 0],LineWidth=1.5); 
+plot(sx4,sy4,Color=[1 .5 0],LineWidth=1.5); 
+plot(sx5,sy5,Color=[1 .5 0],LineWidth=1.5); 
+plot(cx1,cy1,Color='blue');
+plot(trajx1,trajy1,Color='magenta',LineWidth=2);
+plot(cx2,cy2,Color='green');
+plot(trajx2,trajy2,Color='magenta',LineWidth=2);
+plot(cx3,cy3,Color='blue');
+plot(trajx3,trajy3,Color='magenta',LineWidth=2);
+plot(trajx4,trajy4,Color='magenta',LineWidth=2);
+set(gca, 'XAxisLocation', 'origin')
+set(gca, 'YAxisLocation', 'origin')
+xlabel('wx1');
+ylabel('wx2');
+title('optimal trajectory wx1=4');
+hold off
+
+%%%%%%%%%%%%%%%%%%%%%%%% non-optimal trajectory %%%%%%%%%%%%%%%%%%%%%%%%%%%
+%blue circle centered at (-1,0)
+th = linspace(0, 2*pi, 100);
+R = norm([x0+1,y0]);  %radius
+cx1 = R*cos(th) - 1;
+cy1 = R*sin(th);
+%find the first intersection of blue circle with switching curve
+syms x y
+eqns=[y==0,(x+1)^2+y^2==R^2];
+sol = solve(eqns);
+pt1 = [sol.x(2);sol.y(2)]
+pt1 = double(pt1);
+%first arc of optimal trajectory
+th0 = atan(y0/(x0+1)); % initial angle for blue circle
+th1 = atan(pt1(2)/(pt1(1)+1)); %first switch angle for blue circle
+th0-th1
+t2 = t2 + th0-th1; %time is the same as angle
+th = linspace( th0, th1, 100);
+trajx1 = R*cos(th) - 1;
+trajy1 = R*sin(th);
+
+%green circle centered at (1,0)
+th = linspace(0, 2*pi, 100);
+R = norm(pt1-[1;0]);  %radius
+cx2 = R*cos(th) + 1;
+cy2 = R*sin(th);
+%find the next intersection of green circle with switching curve
+syms x y
+eqns=[y==0,(x-1)^2+y^2==R^2];
+sol = solve(eqns);
+pt2 = [sol.x(1);sol.y(1)]
+pt2 = double(pt2);
+%second arc of non-optimal trajectory
+th0 = atan(pt1(2)/(pt1(1)-1)); % initial angle for green circle
+th1 = acos((pt2(1)-1)/R); %first switch angle for green circle
+th0+2*pi - th1
+t2 = t2 + th0+2*pi - th1; %time is the same as angle
+th = linspace( th0+2*pi, th1, 100);
+trajx2 = R*cos(th) + 1;
+trajy2 = R*sin(th);
+
+%blue circle centered at (-1,0)
+th = linspace(0, 2*pi, 100);
+R = norm(pt2+[1;0]);  %radius
+cx3 = R*cos(th) - 1;
+cy3 = R*sin(th);
+%find the next intersection of blue circle with switching curve
+syms x y
+eqns=[(x-1)^2+y^2==1,(x+1)^2+y^2==R^2];
+sol = solve(eqns);
+pt3 = [sol.x(1);sol.y(1)]
+pt3 = double(pt3);
+%third arc of non-optimal trajectory
+th0 = acos((pt2(1)+1)/R); % initial angle for blue circle
+th1 = atan(pt3(2)/(pt3(1)+1)); %first switch angle for blue circle
+th0-th1
+t2 = t2 + th0-th1; %time is the same as angle
+th = linspace( th0, th1, 100);
+trajx3 = R*cos(th) - 1;
+trajy3 = R*sin(th);
+
+%Gamma hat switching curves
+th = linspace( 0, -pi, 100);
+R = 1;  %radius
+sx1 = linspace(-7,-2);
+sx11 = linspace(2,7);
+sy1 = 0*sx1;
+sy11 = 0*sx11;
+sy1 = 0*sx1;
+sx2 = R*cos(th) + 1;
+sy2 = R*sin(th) ;
+th = linspace( 0, pi, 100);
+sx3 = R*cos(th) - 1;
+sy3 = R*sin(th) ;
+
+%%%%fourth arc of non-optimal trajectory
+th0 = -acos(pt3(1)-1); % initial angle for semicircle
+th1 = -pi; %terminal angle for for semicircle
+abs(th1-th0)
+t2 = t2 + abs(th1-th0);
+th = linspace( th0,th1, 100);
+trajx4 = R*cos(th) + 1;
+trajy4 = R*sin(th);
+
+figure;
+plot(x0,y0,'o',MarkerEdgeColor='r',MarkerFaceColor='r')
+hold on
+plot(pt1(1),pt1(2),'o',MarkerEdgeColor='r',MarkerFaceColor='r')
+plot(pt2(1),pt2(2),'o',MarkerEdgeColor='r',MarkerFaceColor='r')
+plot(pt3(1),pt3(2),'o',MarkerEdgeColor='r',MarkerFaceColor='r')
+plot(0,0,'o',MarkerEdgeColor='r',MarkerFaceColor='r')
+plot(sx1,sy1,Color=[1 .5 0],LineWidth=1.5); axis equal;
+plot(sx11,sy11,Color=[1 .5 0],LineWidth=1.5);
+plot(sx2,sy2,Color=[1 .5 0],LineWidth=1.5); 
+plot(sx3,sy3,Color=[1 .5 0],LineWidth=1.5); 
+plot(cx1,cy1,Color='blue');
+plot(trajx1,trajy1,Color='magenta',LineWidth=2);
+plot(cx2,cy2,Color='green');
+plot(cx3,cy3,Color='blue');
+plot(trajx2,trajy2,Color='magenta',LineWidth=2);
+plot(trajx3,trajy3,Color='magenta',LineWidth=2);
+plot(trajx4,trajy4,Color='magenta',LineWidth=2);
+set(gca, 'XAxisLocation', 'origin')
+set(gca, 'YAxisLocation', 'origin')
+xlabel('wx1');
+ylabel('wx2');
+title('non-optimal trajectory wx1=4');
+hold off
+
+t(3,1) = t1;
+t(3,2) = t2;
+%%%%%%%%%%%%%%%%%%%%%% initial point at (5,2) %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+x0 = 5;
+y0 = 2;
+
+%time
+t1 = 0; %optimal time
+t2 = 0; %non-optimal time
+%blue circle centered at (-1,0)
+th = linspace(0, 2*pi, 100);
+R = norm([x0+1,y0]);  %radius
+cx1 = R*cos(th) - 1;
+cy1 = R*sin(th);
+%find the first intersection of blue circle with switching curve
+syms x y
+eqns=[(x-5)^2+y^2==1,(x+1)^2+y^2==R^2];
+sol = solve(eqns);
+pt1 = [sol.x(1);sol.y(1)]
+pt1 = double(pt1);
+%first arc of optimal trajectory
+th0 = atan(y0/(x0+1)); % initial angle for blue circle
+th1 = atan(pt1(2)/(pt1(1)+1)); %first switch angle for blue circle
+t1 = t1 + th0-th1; %time is the same as angle
+th = linspace( th0, th1, 100);
+trajx1 = R*cos(th) - 1;
+trajy1 = R*sin(th);
+
+%green circle centered at (1,0)
+th = linspace(0, 2*pi, 100);
+R = norm(pt1-[1;0]);  %radius
+cx2 = R*cos(th) + 1;
+cy2 = R*sin(th);
+%find the next intersection of green circle with switching curve
+syms x y
+eqns=[(x+3)^2+y^2==1,(x-1)^2+y^2==R^2];
+sol = solve(eqns);
+pt2 = [sol.x(2);sol.y(2)]
+pt2 = double(pt2);
+%%%%%%second arc of optimal trajectory
+th0 = atan(pt1(2)/(pt1(1)-1)); % initial angle for green circle
+th1 = acos((pt2(1)-1)/R); %first switch angle for green circle
+t1 = t1 + th0+2*pi - th1; %time is the same as angle
+th = linspace( th0+2*pi, th1, 100);
+trajx2 = R*cos(th) + 1;
+trajy2 = R*sin(th);
+
+%blue circle centered at (-1,0)
+th = linspace(0, 2*pi, 100);
+R = norm(pt2+[1;0]);  %radius
+cx3 = R*cos(th) - 1;
+cy3 = R*sin(th);
+%find the next intersection of blue circle with switching curve
+syms x y
+eqns=[(x-1)^2+y^2==1,(x+1)^2+y^2==R^2];
+sol = solve(eqns);
+pt3 = [sol.x(1);sol.y(1)]
+pt3 = double(pt3);
+%third arc of optimal trajectory
+th0 = acos((pt2(1)+1)/R); % initial angle for blue circle
+th1 = atan(pt3(2)/(pt3(1)+1)); %first switch angle for blue circle
+t1 = t1 + th0-th1; %time is the same as angle
+th = linspace( th0, th1, 100);
+trajx3 = R*cos(th) - 1;
+trajy3 = R*sin(th);
+
+%semi-circle switching curves
+th = linspace( 0, -pi, 100);
+R = 1;  %radius
+sx1 = R*cos(th) + 3;
+sy1 = R*sin(th) ;
+sx2 = R*cos(th) + 1;
+sy2 = R*sin(th) ;
+sx3 = R*cos(th) + 5;
+sy3 = R*sin(th) ;
+th = linspace( 0, pi, 100);
+sx4 = R*cos(th) - 1;
+sy4 = R*sin(th) ;
+sx5 = R*cos(th) - 3;
+sy5 = R*sin(th) ;
+%%%%fourth arc of optimal trajectory
+th0 = -acos(pt3(1)-1); % initial angle for semicircle
+th1 = -pi; %terminal angle for for semicircle
+t1 = t1+ abs(th1-th0);
+th = linspace( th0,th1, 100);
+trajx4 = R*cos(th) + 1;
+trajy4 = R*sin(th);
+
+figure;
+plot(x0,y0,'o',MarkerEdgeColor='r',MarkerFaceColor='r')
+hold on
+plot(pt1(1),pt1(2),'o',MarkerEdgeColor='r',MarkerFaceColor='r')
+plot(pt2(1),pt2(2),'o',MarkerEdgeColor='r',MarkerFaceColor='r')
+plot(pt3(1),pt3(2),'o',MarkerEdgeColor='r',MarkerFaceColor='r')
+plot(0,0,'o',MarkerEdgeColor='r',MarkerFaceColor='r')
+plot(sx1,sy1,Color=[1 .5 0],LineWidth=1.5); axis equal;
+plot(sx2,sy2,Color=[1 .5 0],LineWidth=1.5); 
+plot(sx3,sy3,Color=[1 .5 0],LineWidth=1.5); 
+plot(sx4,sy4,Color=[1 .5 0],LineWidth=1.5); 
+plot(sx5,sy5,Color=[1 .5 0],LineWidth=1.5); 
+plot(cx1,cy1,Color='blue');
+plot(trajx1,trajy1,Color='magenta',LineWidth=2);
+plot(cx2,cy2,Color='green');
+plot(trajx2,trajy2,Color='magenta',LineWidth=2);
+plot(cx3,cy3,Color='blue');
+plot(trajx3,trajy3,Color='magenta',LineWidth=2);
+plot(trajx4,trajy4,Color='magenta',LineWidth=2);
+set(gca, 'XAxisLocation', 'origin')
+set(gca, 'YAxisLocation', 'origin')
+xlabel('wx1');
+ylabel('wx2');
+title('optimal trajectory wx1=5');
+hold off
+
+%%%%%%%%%%%%%%%%%%%%%%%% non-optimal trajectory %%%%%%%%%%%%%%%%%%%%%%%%%%%
+%blue circle centered at (-1,0)
+th = linspace(0, 2*pi, 100);
+R = norm([x0+1,y0]);  %radius
+cx1 = R*cos(th) - 1;
+cy1 = R*sin(th);
+%find the first intersection of blue circle with switching curve
+syms x y
+eqns=[y==0,(x+1)^2+y^2==R^2];
+sol = solve(eqns);
+pt1 = [sol.x(2);sol.y(2)]
+pt1 = double(pt1);
+%first arc of non-optimal trajectory
+th0 = atan(y0/(x0+1)); % initial angle for blue circle
+th1 = atan(pt1(2)/(pt1(1)+1)); %first switch angle for blue circle
+t2 = t2 + th0-th1; %time is the same as angle
+th = linspace( th0, th1, 100);
+trajx1 = R*cos(th) - 1;
+trajy1 = R*sin(th);
+
+%green circle centered at (1,0)
+th = linspace(0, 2*pi, 100);
+R = norm(pt1-[1;0]);  %radius
+cx2 = R*cos(th) + 1;
+cy2 = R*sin(th);
+%find the next intersection of green circle with switching curve
+syms x y
+eqns=[y==0,(x-1)^2+y^2==R^2];
+sol = solve(eqns);
+pt2 = [sol.x(1);sol.y(1)]
+pt2 = double(pt2);
+%second arc of non-optimal trajectory
+th0 = atan(pt1(2)/(pt1(1)-1)); % initial angle for green circle
+th1 = acos((pt2(1)-1)/R); %first switch angle for green circle
+t2 = t2 + th0+2*pi - th1; %time is the same as angle
+th = linspace( th0+2*pi, th1, 100);
+trajx2 = R*cos(th) + 1;
+trajy2 = R*sin(th);
+
+%blue circle centered at (-1,0)
+th = linspace(0, 2*pi, 100);
+R = norm(pt2+[1;0]);  %radius
+cx3 = R*cos(th) - 1;
+cy3 = R*sin(th);
+%find the next intersection of blue circle with switching curve
+syms x y
+eqns=[(x-1)^2+y^2==1,(x+1)^2+y^2==R^2];
+sol = solve(eqns);
+pt3 = [sol.x(1);sol.y(1)]
+pt3 = double(pt3);
+%third arc of non-optimal trajectory
+th0 = acos((pt2(1)+1)/R); % initial angle for blue circle
+th1 = atan(pt3(2)/(pt3(1)+1)); %first switch angle for blue circle
+t2 = t2 + th0-th1; %time is the same as angle
+th = linspace( th0, th1, 100);
+trajx3 = R*cos(th) - 1;
+trajy3 = R*sin(th);
+
+%Gamma hat switching curves
+th = linspace( 0, -pi, 100);
+R = 1;  %radius
+sx1 = linspace(-8,-2);
+sx11 = linspace(2,8);
+sy1 = 0*sx1;
+sy11 = 0*sx11;
+sy1 = 0*sx1;
+sx2 = R*cos(th) + 1;
+sy2 = R*sin(th) ;
+th = linspace( 0, pi, 100);
+sx3 = R*cos(th) - 1;
+sy3 = R*sin(th) ;
+
+%%%%fourth arc of non-optimal trajectory
+th0 = -acos(pt3(1)-1); % initial angle for semicircle
+th1 = -pi; %terminal angle for for semicircle
+t2 = t2+ abs(th1-th0);
+th = linspace( th0,th1, 100);
+trajx4 = R*cos(th) + 1;
+trajy4 = R*sin(th);
+
+figure;
+plot(x0,y0,'o',MarkerEdgeColor='r',MarkerFaceColor='r')
+hold on
+plot(pt1(1),pt1(2),'o',MarkerEdgeColor='r',MarkerFaceColor='r')
+plot(pt2(1),pt2(2),'o',MarkerEdgeColor='r',MarkerFaceColor='r')
+plot(pt3(1),pt3(2),'o',MarkerEdgeColor='r',MarkerFaceColor='r')
+plot(0,0,'o',MarkerEdgeColor='r',MarkerFaceColor='r')
+plot(sx1,sy1,Color=[1 .5 0],LineWidth=1.5); axis equal;
+plot(sx11,sy11,Color=[1 .5 0],LineWidth=1.5);
+plot(sx2,sy2,Color=[1 .5 0],LineWidth=1.5); 
+plot(sx3,sy3,Color=[1 .5 0],LineWidth=1.5); 
+plot(cx1,cy1,Color='blue');
+plot(trajx1,trajy1,Color='magenta',LineWidth=2);
+plot(cx2,cy2,Color='green');
+plot(cx3,cy3,Color='blue');
+plot(trajx2,trajy2,Color='magenta',LineWidth=2);
+plot(trajx3,trajy3,Color='magenta',LineWidth=2);
+plot(trajx4,trajy4,Color='magenta',LineWidth=2);
+set(gca, 'XAxisLocation', 'origin')
+set(gca, 'YAxisLocation', 'origin')
+xlabel('wx1');
+ylabel('wx2');
+title('non-optimal trajectory wx1=5');
+hold off
+
+t(4,1) = t1;
+t(4,2) = t2;
+
+figure;
+plot(t(:,2)./t(:,1)*100)
+ylabel('percentage');
+xlabel('wx1-1');
+title('time ratio as wx1 increases');
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%% Problem 2 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%a
+syms x y
+eqns = [x==-1/2*(y+1/2)^2-1/2*(y+1/2),x==-2*y];
+sol2 = solve(eqns);
+sol2.x
+sol2.y
+eqns = [x==1/2*(y+1/2)^2-3/2*(y+1/2),x==-2*y];
+sol2 = solve(eqns);
+sol2.x
+sol2.y
+%b
+eqns = [x==1/2*(y+1/2)^2-3/2*(y+1/2),x==-1/2*y^2-y];
+sol2 = solve(eqns);
+sol2.x
+sol2.y
+pt = [sol2.x(2);sol2.y(2)];
+pt = double(pt)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%% Problem 3 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+t = linspace(-2,2);
+x0 = 0;
+y0 = 1;
+%up
+Gamma1xf =@(t) 0.5*t.^2 + y0*t + x0;
+Gamma1yf =@(t) t + y0;
+%down
+Gamma2xf =@(t) -0.5*t.^2 + y0*t + x0;
+Gamma2yf =@(t) -t + y0;
+Gamma1x = Gamma1xf(t);
+Gamma1y = Gamma1yf(t);
+Gamma2x = Gamma2xf(t);
+Gamma2y = Gamma2yf(t);
+
+figure;
+hold on
+plot(Gamma2x,Gamma2y,Color=[1 .5 0],LineWidth=1.5)
+for n=1:5
+    k=2*n/3;
+    plot(Gamma1x-k,Gamma1y,Color='cyan')
+    plot(Gamma1x+k,Gamma1y,Color='cyan')
+    plot(Gamma2x-k,Gamma2y,Color='cyan')
+    plot(Gamma2x+k,Gamma2y,Color='cyan')
+end
+set(gca, 'XAxisLocation', 'origin')
+set(gca, 'YAxisLocation', 'origin')
+xlabel('x1');
+ylabel('x2');
+title('switching curves');
+axis([-4,4,-3,3]);
+
+t = linspace(-2,2);
+x0 = 0;
+y0 = -1;
+%up
+Gamma1xf =@(t) 0.5*t.^2 + y0*t + x0;
+Gamma1yf =@(t) t + y0;
+%down
+Gamma2xf =@(t) -0.5*t.^2 + y0*t + x0;
+Gamma2yf =@(t) -t + y0;
+Gamma1x = Gamma1xf(t);
+Gamma1y = Gamma1yf(t);
+Gamma2x = Gamma2xf(t);
+Gamma2y = Gamma2yf(t);
+
+plot(Gamma1x,Gamma1y,Color=[1 .5 0],LineWidth=1.5)
+for n=1:5
+    k=2*n/3;
+    plot(Gamma1x-k,Gamma1y,Color='cyan')
+    plot(Gamma1x+k,Gamma1y,Color='cyan')
+    plot(Gamma2x-k,Gamma2y,Color='cyan')
+    plot(Gamma2x+k,Gamma2y,Color='cyan')
+end
+hold off
+
+%%%%%%%%%%% initial (0,0) %%%%%%%%%%%%
+x0 = 0;
+y0 = 0;
+upx =@(t) 0.5*t.^2 + y0*t + x0;
+upy =@(t) t + y0;
+downx =@(t) -0.5*t.^2 + y0*t + x0;
+downy =@(t) -t + y0;
+
+%u=-1 goes down, intersects Gamma2 u=1 goes up
+eqns = [x-(x0+1/2*y0^2)==-1/2*(y)^2,x+1/2==1/2*(y)^2];
+sol31 = solve(eqns);
+sol31.x
+sol31.y
+pt1 = [sol31.x(1);sol31.y(1)]; %pick the lowest x2 to go up
+pt1 = double(pt1);
+tf1 = -pt1(2);
+t1 = linspace(0,tf1);
+
+%u=1 goes up, intersects Gamma1 u=-1 goes down
+eqns = [x-(x0-1/2*y0^2)==1/2*(y)^2,x-1/2==-1/2*(y)^2];
+sol32 = solve(eqns);
+sol32.x
+sol32.y
+pt2 = [sol32.x(1);sol32.y(2)]; %pick the highest x2 to go down
+pt2 = double(pt2);
+tf2 = pt2(2);
+t2 = linspace(0,tf2);
+figure;
+plot(Gamma1x,Gamma1y,Color=[1 .5 0],LineWidth=1.5)
+hold on
+plot(Gamma2x,Gamma2y,Color=[1 .5 0],LineWidth=1.5)
+plot(upx(t),upy(t),Color='cyan')
+plot(downx(t),downy(t),Color='cyan')
+plot(x0,y0,'o',MarkerEdgeColor='r',MarkerFaceColor='r',MarkerSize=6)
+plot(pt1(1),pt1(2),'o',MarkerEdgeColor='r',MarkerFaceColor='r',MarkerSize=3)
+plot(pt2(1),pt2(2),'o',MarkerEdgeColor='r',MarkerFaceColor='r',MarkerSize=3)
+plot(downx(t1),downy(t1),Color='magenta',LineWidth=2)
+plot(upx(t2),upy(t2),Color='green',LineWidth=2)
+set(gca, 'XAxisLocation', 'origin')
+set(gca, 'YAxisLocation', 'origin')
+xlabel('x1');
+ylabel('x2');
+title('initial point (0,0)');
+axis([-1,1,-1.1,1.1]);
+hold off
+
+
+%%%%%%%%%%% initial (1,0) %%%%%%%%%%%%
+x0 = 1;
+y0 = 0;
+upx =@(t) 0.5*t.^2 + y0*t + x0;
+upy =@(t) t + y0;
+downx =@(t) -0.5*t.^2 + y0*t + x0;
+downy =@(t) -t + y0;
+
+%u=-1 goes down, intersects Gamma2 u=1 goes up
+eqns = [x-(x0+1/2*y0^2)==-1/2*(y)^2,x+1/2==1/2*(y)^2];
+sol31 = solve(eqns);
+sol31.x
+sol31.y
+pt1 = [sol31.x(1);sol31.y(1)]; %pick the lowest x2 to go up
+pt1 = double(pt1);
+tf1 = -pt1(2);
+t1 = linspace(0,tf1);
+
+%u=1 goes up, intersects Gamma1 u=-1 goes down
+eqns = [x-(x0-1/2*y0^2)==1/2*(y)^2,x-1/2==-1/2*(y)^2];
+%no solution!
+figure;
+plot(Gamma1x,Gamma1y,Color=[1 .5 0],LineWidth=1.5)
+hold on
+plot(Gamma2x,Gamma2y,Color=[1 .5 0],LineWidth=1.5)
+plot(upx(t),upy(t),Color='cyan')
+plot(downx(t),downy(t),Color='cyan')
+plot(x0,y0,'o',MarkerEdgeColor='r',MarkerFaceColor='r',MarkerSize=6)
+plot(pt1(1),pt1(2),'o',MarkerEdgeColor='r',MarkerFaceColor='r',MarkerSize=3)
+plot(downx(t1),downy(t1),Color='magenta',LineWidth=2)
+set(gca, 'XAxisLocation', 'origin')
+set(gca, 'YAxisLocation', 'origin')
+xlabel('x1');
+ylabel('x2');
+title('initial point (1,0)');
+axis([-1,2,-2,2]);
+hold off
+
+%%%%%%%%%%% initial (-1,1) %%%%%%%%%%%%
+x0 = -1;
+y0 = 1;
+upx =@(t) 0.5*t.^2 + y0*t + x0;
+upy =@(t) t + y0;
+downx =@(t) -0.5*t.^2 + y0*t + x0;
+downy =@(t) -t + y0;
+
+%u=-1 goes down, intersects Gamma2 u=1 goes up
+eqns = [x-(x0+1/2*y0^2)==-1/2*(y)^2,x+1/2==1/2*(y)^2];
+sol31 = solve(eqns);
+sol31.x
+sol31.y
+pt1 = [sol31.x(1);sol31.y(1)]; %pick the lowest x2 to go up
+pt1 = double(pt1);
+tf1 = -pt1(2);
+t1 = linspace(0,tf1);
+
+%u=1 goes up, intersects Gamma1 u=-1 goes down
+eqns = [x-(x0-1/2*y0^2)==1/2*(y)^2,x-1/2==-1/2*(y)^2];
+sol32 = solve(eqns);
+sol32.x
+sol32.y
+pt2 = [sol32.x(1);sol32.y(2)]; %pick the highest x2 to go down
+pt2 = double(pt2);
+tf2 = pt2(2);
+t2 = linspace(0,tf2);
+figure;
+plot(Gamma1x,Gamma1y,Color=[1 .5 0],LineWidth=1.5)
+hold on
+plot(Gamma2x,Gamma2y,Color=[1 .5 0],LineWidth=1.5)
+plot(upx(t),upy(t),Color='cyan')
+plot(downx(t),downy(t),Color='cyan')
+plot(x0,y0,'o',MarkerEdgeColor='r',MarkerFaceColor='r',MarkerSize=6)
+plot(pt1(1),pt1(2),'o',MarkerEdgeColor='r',MarkerFaceColor='r',MarkerSize=3)
+plot(pt2(1),pt2(2),'o',MarkerEdgeColor='r',MarkerFaceColor='r',MarkerSize=3)
+plot(downx(t1),downy(t1),Color='magenta',LineWidth=2)
+set(gca, 'XAxisLocation', 'origin')
+set(gca, 'YAxisLocation', 'origin')
+xlabel('x1');
+ylabel('x2');
+title('initial point (-1,1)');
+axis([-2,1,-2,2]);
+hold off
+
+%%%%%%%%%%% initial (1,-1) %%%%%%%%%%%%
+x0 = 1;
+y0 = -1;
+
+upx =@(t) 0.5*t.^2 + y0*t + x0;
+upy =@(t) t + y0;
+downx =@(t) -0.5*t.^2 + y0*t + x0;
+downy =@(t) -t + y0;
+
+%u=-1 goes down, intersects Gamma2 u=1 goes up
+eqns = [x-(x0+1/2*y0^2)==-1/2*(y)^2,x+1/2==1/2*(y)^2];
+sol31 = solve(eqns);
+sol31.x
+sol31.y
+pt1 = [sol31.x(1);sol31.y(1)]; %pick the lowest x2 to go up
+pt1 = double(pt1);
+tf1 = -pt1(2);
+t1 = linspace(0,tf1);
+
+%u=1 goes up, intersects Gamma1 u=-1 goes down
+eqns = [x-(x0-1/2*y0^2)==1/2*(y)^2,x-1/2==-1/2*(y)^2];
+sol32 = solve(eqns);
+sol32.x
+sol32.y
+pt2 = [sol32.x(1);sol32.y(1)]; %pick the highest x2 to go down
+pt2 = double(pt2);
+tf2 = pt2(2);
+t2 = linspace(0,tf2);
+figure;
+plot(Gamma1x,Gamma1y,Color=[1 .5 0],LineWidth=1.5)
+hold on
+plot(Gamma2x,Gamma2y,Color=[1 .5 0],LineWidth=1.5)
+plot(upx(t),upy(t),Color='cyan')
+plot(downx(t),downy(t),Color='cyan')
+plot(x0,y0,'o',MarkerEdgeColor='r',MarkerFaceColor='r',MarkerSize=6)
+plot(pt1(1),pt1(2),'o',MarkerEdgeColor='r',MarkerFaceColor='r',MarkerSize=3)
+plot(pt2(1),pt2(2),'o',MarkerEdgeColor='r',MarkerFaceColor='r',MarkerSize=3)
+set(gca, 'XAxisLocation', 'origin')
+set(gca, 'YAxisLocation', 'origin')
+xlabel('x1');
+ylabel('x2');
+title('initial point (1,-1)');
+axis([-1,2,-2,2]);
+hold off
+
+%%%%%%%%%%% initial (-1,0) %%%%%%%%%%%%
+x0 = -1;
+y0 = 0;
+upx =@(t) 0.5*t.^2 + y0*t + x0;
+upy =@(t) t + y0;
+downx =@(t) -0.5*t.^2 + y0*t + x0;
+downy =@(t) -t + y0;
+
+%u=-1 goes down, intersects Gamma2 u=1 goes up
+eqns = [x-(x0+1/2*y0^2)==-1/2*(y)^2,x+1/2==1/2*(y)^2];
+sol31 = solve(eqns);
+sol31.x
+sol31.y
+pt1 = [sol31.x(1);sol31.y(1)]; %pick the lowest x2 to go up
+pt1 = double(pt1);
+tf1 = -pt1(2);
+t1 = linspace(0,tf1);
+
+%u=1 goes up, intersects Gamma1 u=-1 goes down
+eqns = [x-(x0-1/2*y0^2)==1/2*(y)^2,x-1/2==-1/2*(y)^2];
+sol32 = solve(eqns);
+sol32.x
+sol32.y
+pt2 = [sol32.x(1);sol32.y(2)]; %pick the highest x2 to go down
+pt2 = double(pt2);
+tf2 = pt2(2);
+t2 = linspace(0,tf2);
+figure;
+plot(Gamma1x,Gamma1y,Color=[1 .5 0],LineWidth=1.5)
+hold on
+plot(Gamma2x,Gamma2y,Color=[1 .5 0],LineWidth=1.5)
+plot(upx(t),upy(t),Color='cyan')
+plot(downx(t),downy(t),Color='cyan')
+plot(x0,y0,'o',MarkerEdgeColor='r',MarkerFaceColor='r',MarkerSize=6)
+plot(pt1(1),pt1(2),'o',MarkerEdgeColor='r',MarkerFaceColor='r',MarkerSize=3)
+plot(pt2(1),pt2(2),'o',MarkerEdgeColor='r',MarkerFaceColor='r',MarkerSize=3)
+plot(upx(t2),upy(t2),Color='green',LineWidth=2)
+set(gca, 'XAxisLocation', 'origin')
+set(gca, 'YAxisLocation', 'origin')
+xlabel('x1');
+ylabel('x2');
+title('initial point (-1,0)');
+axis([-2,1,-2,2]);
+hold off
+\end{lstlisting}
 \end{document}
