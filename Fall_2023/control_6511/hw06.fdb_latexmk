@@ -1,5 +1,5 @@
 # Fdb version 3
-["pdflatex"] 1701656213 "hw06.tex" "hw06.pdf" "hw06" 1701656217
+["pdflatex"] 1701656857 "hw06.tex" "hw06.pdf" "hw06" 1701656862
   "../preamble.tex" 1698716778 10423 1f98e5e54651bbf7e4bff152cf6b92a1 ""
   "/etc/texmf/web2c/texmf.cnf" 1659229984 475 c0e671620eb5563b2130f56340a5fde8 ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
@@ -302,9 +302,9 @@
   "figures/6.7.png" 1701462178 20467 9d67fe16ba0594be110b39ebc77d2588 ""
   "figures/6.8.png" 1701462342 19218 3ace8a7e55a259b09852cacd511eaff5 ""
   "figures/6.9.png" 1701619065 34243 46d309972e4c36746a6a895349744e00 ""
-  "hw06.aux" 1701656217 5453 7c05609b29e6437df8e6e99e8fd3b3d3 "pdflatex"
-  "hw06.out" 1701656214 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
-  "hw06.tex" 1701656212 49945 cd3df5c93febaec260e1345df366f9af ""
+  "hw06.aux" 1701656862 5453 7c05609b29e6437df8e6e99e8fd3b3d3 "pdflatex"
+  "hw06.out" 1701656859 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
+  "hw06.tex" 1701656855 49946 452ec7508c0654b589a911b6f98c1db3 ""
   (generated)
   "hw06.aux"
   "hw06.log"
