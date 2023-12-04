@@ -345,19 +345,23 @@ Since $ V(1) = x(1)^2$, we make the guess that the solution has the form $ V(x,t
 \end{align*}
 with the boundary condition $ p(1) = 1$. The solution is
  \begin{align*}
-	p = \frac{1}{1-t} ,
+	p = \frac{1}{2-t} ,
 \end{align*}
 and the solution to the PDE is
 \begin{align*}
-	V(x,t) = \frac{x^2}{ 1-t} .
+	V(x,t) = \frac{x^2}{ 2-t} .
 \end{align*}
-Thus we have $ V_t = \frac{x^2}{ (1-t)^2}$ and $ V_x = \frac{2x}{ 1-t}$, so the optimal control is $ u^*  = \frac{1}{t-1}$. Solving the dynamics $ \dot{x} = \frac{x}{t-1}$ with $ x(0)=1$ gives
- \begin{align*}
-	x(t) = 1-t
+Thus we have $ V_t = \frac{x^2}{ (2-t)^2}$ and $ V_x = \frac{2x}{ 2-t}$, so the optimal control is 
+\begin{align*}
+	u^*  = \frac{1}{t-2}.
 \end{align*}
-which indeed doesn't equal to 0 in $ [0,1)$. The optimal cost is
+Solving the dynamics $ \dot{x} = \frac{x}{t-2}$ with $ x(0)=1$ gives
  \begin{align*}
-	J^*  = x(1)^2 + \int_{ 0}^{ 1} (1-t) \frac{1}{t-1} dt = x(1)^2-1 .
+	x(t) = \frac{2-t}{ 2}
+\end{align*}
+which indeed doesn't equal 0 in $ [0,1]$. Also $ x(1) = \frac{1}{2}$. The optimal cost is
+ \begin{align*}
+	J^*  = x(1)^2 + \int_{ 0}^{ 1} \left( \frac{2-t}{ 2} \right)  \frac{1}{t-2} dt = x(1)^2-\frac{1}{2} = \frac{1}{4} - \frac{1}{2} = -\frac{1}{4}.
 \end{align*}
 \end{problem}
 
