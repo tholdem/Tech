@@ -1,0 +1,47 @@
+\documentclass[12pt]{article}
+\input{../preamble.tex}
+
+\begin{document}
+\centerline {\textsf{\textbf{\LARGE{Homework 4}}}}
+\centerline {Jaden Wang}
+\vspace{.15in}
+
+\begin{problem}[1: VIII Theorem 2]
+If $ (M,\xi)$ is tight and $ L$ is a Legendrian knot with $ L = \partial \Sigma $, then prove $ tb(L)-r(L) \leq - \chi( \Sigma )$.
+
+\begin{proof}
+We can WLOG assume $ tb(L)<0$ since any negative stablization of  $ L$ decreases both $ tb(L)$ and $ r(L)$ by 1 so $ tb(L) - r(L)$ remains constant. Moreover, $ \chi( \Sigma _-) \leq -tb(L)$. Indeed, the only surface with boundary that gives positive Euler characteristic is a disk with $ \chi(D)=1$, and by Giroux Criterion, dividing curves cannot bound a disk, so the only possible disks appear on the boundary $ L$. The dividing curves must intersect $ L$ $ -2tb(L)$ times by Theorem VII.9. That means at most $ -tb(L)$ number of disks can be formed in  $ \Sigma _-$. Thus $ \chi( \Sigma _-)$ is upper bounded by $ -tb(L)$. Then
+\begin{align*}
+	tb(L) - r(L) &\leq tb(L) - r(L) - 2\chi( \Sigma _-) - 2 tb(L)\\
+	&= -tb(L) - ( \chi( \Sigma _+) - \chi( \Sigma _-)) - 2 \chi( \Sigma_-) \\
+	&= -tb(L) -   \chi( \Sigma _+) - \chi( \Sigma _-)\\
+	&= - \chi( \Sigma ) 
+\end{align*}
+by Claim 1.
+\end{proof}
+\end{problem}
+\begin{problem}[2: IV Lemma 4]
+If $ \gamma_0, \gamma_1$ are cobordant via $ \Sigma \subset M \times I$, we project $ \Sigma $ to $ M$ and triangulate $ \pi( \Sigma )$ to obtain a 2-chain $ c$ in $ C_2(M)$. Show that $ \partial c  = \gamma_1 - \gamma_0$.
+\begin{proof}
+Let us triangulate $ \Sigma $ and obtain a 2-chain $ c'$ in $ C_2(M \times I)$. I claim that $ \partial( c') = \gamma_1 - \gamma_0$. This is because the boundary operator in a chain complex is exactly defined so that when a manifold with boundary is triangulated into a chain complex, its triangulated boundary is the image of the boundary operator. Let $ \pi_\# : C_2(M \times I) \to C_2(M)$ be the induced chain map, then we have
+\begin{align*}
+	\partial c = \partial \pi_\# (c') = \pi_\# \partial (c') = \pi_\# ( \gamma_1 - \gamma_0) = \gamma_1 - \gamma_0 , 
+\end{align*}
+where we use the commutativity of chain map and boundary map, and the fact that projection to $ M$ does not change  $ \gamma_i$.
+\end{proof}
+\end{problem}
+\begin{problem}[3: IV Lemma 5]
+Let $ y $ be a free generator of $ H_1(M)$ (since we assume $ d(x) \neq 0$ and $ x= d(x) y$ is thus non-torsion). Show that there exists a surface $ \alpha$ in $ M$  s.t.\ $ y \cdot \alpha = 1$. Note $ M$ is compact.
+
+\begin{proof}
+	By Poincare duality, $ PD(y)$ is a free generator in  $ H^2(M)$. By the universal coefficient theorem, $ H^2(M) \cong \Hom( H_2(M), \zz) \oplus \ext(H_1(M),\zz) $, where the $ \Hom$ term contains the free part and the $ \ext$ term contains the torsion part. Thus $ PD(y)$ can be viewed as a free generator in $\Hom(H_2(M), \zz)$ which is free. Choose a basis (containing $ PD(y)$) of $ \Hom(H_2(M), \zz)$, which is dual to $ \text{Free}(H_2(M))$. Then dualize $ \Hom(H_2(M), \zz)$ to get the double-dual under the dual basis containing $ PD(y)^*: \Hom( M, \zz) \to \zz$ that sends $ PD(y)$ to 1 and all other generators to 0. By the canonical isomorphism of a finite-rank free module and its double-dual, we know that the generator $ PD(y)^* $ is the evaluation map where $ PD(y)$ evaluated at some generator $ [ \alpha] \in \text{Free}(H_2(M))$ is 1. \emph{i.e.} $ \langle PD(y), [ \alpha] \rangle =1$. Let $ \alpha$ be a surface representing this corresponding generator. Then $ y \cdot \alpha = \langle PD(y), [\alpha] \rangle = 1$.
+\end{proof}
+\end{problem}
+
+\begin{problem}[4: VIII Theorem 1]
+Show that Theorem VIII.1 implies that there exists only finitely many classes in $ H^2(M)$ that can be the Euler class of a tight contact structure.
+\begin{proof}
+	By universal coefficient theorem, $ H^2(M) \cong \Hom( H_2(M), \zz) \oplus \ext(H_1(M), \zz)$, where $ \ext(H_1(M), \zz)$ is isomorphic to the torsion part of $ H_1(M)$ and $ \Hom( H_2(M), \zz)$ is isomorphic to the free part of $ H_2(M)$. Choose any basis of the free part of  $ H_2(M)$, which we can represent via surfaces in $ M$. For any such basis surface $ \Sigma $, if $ e(\xi)$ is the Euler class of  $ \xi$, then Theorem 1 says that $ |\langle e(\xi), [ \Sigma ] \rangle| \leq -\chi( \Sigma )$ or $ 0$, meaning that $ e(\xi)$ can only map basis to finitely many integers. This gives finitely many choices to define $ e(\xi)$ on $ \Hom( H_2(M), \zz)$. Now choose a generator set for the torsion part of $ H_1(M)$. Again we only have finitely many integers to map the generators by definition of torsion. Thus we completely define $ e(\xi)$ by where it maps the generators of $ H_1(M)$ and basis of $ H_2(M)$ but only have finitely many choices altogether. This proves the claim.
+\end{proof}
+\end{problem}
+\end{document}

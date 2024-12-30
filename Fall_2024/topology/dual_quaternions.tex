@@ -1,0 +1,114 @@
+\documentclass[12pt,class=article,crop=false]{standalone} 
+\input{../preamble.tex}
+
+\begin{document}
+\section{Lie Theory}
+
+For any point $ x$ in a $ n$-dimensional smooth manifold  $ M^{n}$, the tangent space  $ T_xM$ is the set of velocity vectors at $ x$ of all curves on $ M$ passing through $ x$. Intuitively it is a hyperplane $ \rr^{n}$ tangent to $ M$ at  $ x$. The tangent bundle $ TM$ of a smooth manifold $ M$ is the union of all its tangent spaces: $ TM := \bigcup_{ x \in M} T_x M = \{(x,v): x \in M, v \in T_xM\}  $. It is also a smooth manifold.
+
+Every smooth map $ f:M \to N$ between smooth manifolds $ M,N$ induces a differential  $ Tf: TM \to TN$ between the tangle bundles. At each base point $ x \in M$, $ T_x f : T_xM \to T_{f(x)} N$ is a linear map from the tangent space $ T_xM$ based at $ x$: it is the best linear approximation (or derivative) of $ f$ (or in matrix form, the Jacobian of $ f$) at  $ x$.
+ 
+
+A \allbold{Lie group} is a smooth manifold that is also a group. Examples include $ \text{SO}( n), \text{SE}( n)$. Using $ e$ to denote the identity element of the group, the \allbold{Lie algebra} $ \mathfrak{ g}$ of a Lie group $ G$ is the vector space $ T_e G$ endowed with a Lie bracket $ [ \cdot , \cdot ] : \mathfrak{ g} \times \mathfrak{ g} \to \mathfrak{ g}$ that makes $ T_eG$ an algebra.  For example, cross product in $ \rr^3$ is a Lie bracket of the Lie algebra of $ \rr^3$. This Lie algebra is isomorphic to the Lie algebra $ \mathfrak{ so}(3)$ of $ \text{SO}(3) $.
+
+Left and right multiplication in a Lie group is a smooth map between itself, so they each has a differential. Fix $ g \in G$, then $ L_g : G \to G, h \mapsto gh$ and  $ R_g : G \to G, h \mapsto hg$ denote left and right multiplication by $ g$. Then $ TL_g: TG \to TG, (h, \xi) \mapsto (gh, T_hL_g (\xi))$ and $ TR_g: TG \to TG, (h, \xi) \mapsto (hg, T_h R_g(\xi))$ are the induced differentials.
+
+The tangent bundle $ TG$ of any Lie group $ G$ is also a Lie group. The group operation comes from the differential of multiplication $ \mu$ in  $ G$. If $ \mu: G \times G \to G, (g,h) \mapsto gh$, then product rule gives
+\begin{align*}
+	d\mu : TG \times TG \to TG,\ ((g, \xi) , (h, \eta)) \mapsto (gh, T_hL_g \eta + T_g R_h \xi).
+\end{align*}
+
+
+\begin{defn}
+The \allbold{adjoint action} of a Lie group $ G$ on its Lie algebra  $ \mathfrak{ g}$ is a Lie group homomorphism $ \Ad: G \to \aut( \mathfrak{ g})$, where $ g.( \xi) = g \xi g^{-1} : = T_{g^{-1}} L_g \circ T_e R_{g^{-1}} (\xi)$.
+
+
+\end{defn}
+
+\begin{prop}
+Let $ G$ be a Lie group and  $ \mathfrak{ g }$ be its Lie algebra. Then $ TG \cong \mathfrak{ g} \rtimes_{ \Ad} G$ as a Lie group.
+\end{prop}
+
+\begin{proof}
+Recall that group operation on $ TG$ is the differential of the group operation on  $ G$. If $ \mu: G \times G \to G, (g,h) \mapsto gh$, then product rule gives
+\begin{align*}
+	d\mu : TG \times TG \to TG,\ ((g, \xi) , (h, \eta)) \mapsto (gh, T_hL_g \eta + T_g R_h \xi).
+\end{align*}
+
+The map $ \phi: \mathfrak{ g} \rtimes_{ \Ad} G \to TG,\ (\xi,g) \mapsto (g,T_eR_g \xi)$ is a bijection since $ T_e R_g$ is invertible. We can show that it is also a diffeomorphism and a Lie group homomorphism, yielding the Lie group isomorphism.
+\end{proof}
+
+\begin{coro}
+The special Euclidean group $ \text{SE}( n) := \mathfrak{ so }(n) \rtimes_{\Ad} \text{SO}( n) \cong T \text{SO}( n) $. 
+\end{coro}
+
+Since $ S^{n}$ is a double-cover of $ \text{SO}( n) $, we have that $ TS^{n} \cong \rr^{n} \times S^{n}$ is a double-cover of $ T \text{SO}( n) \cong \text{SE}( n) $.
+\section{The Quaternions and its dual}
+The quaternions $ \mathbb{H}$ as a vector space is isomorphic to $ \rr^{4}$. It is additionally a division algebra. We can view it as either isomorphic to $ \Cl_{0,2} ( \rr) $ or $ \Cl_{ 0 ,3}^{+} ( \rr)$. TODO the scalar part of multiplication follows quadratic form of signature 1,3.
+
+Conjugation in $ \mathbb{H}$ is $ q^* = q_s - q_v$. 
+
+The unit quaternions $ \mathbb{H}_u$ is diffeomorphic to $ S^3$ and isomorphic to $ \text{SU}(2) $ as a Lie group. Conjugation $ q^* $ in $ \mathbb{H}_u$ is the same as inverse $ q^{-1}$. Geometrically, it keeps the real axis fixed but finds the antipodal point with respect to the remaining dimensions. If we regard $ S^3 \cong S^{1} \vee S^{2}$, the join TODO then 
+We denote the Lie algebra $ T_e \mathbb{H}_u$ of $ \mathbb{H}_u$ as $ \mathfrak{ h}$.
+
+\begin{defn}
+The \allbold{dual quaternions} $ \widetilde{\mathbb{H}} = \{q_1 + \epsilon q_2: q_1, q_2 \in \mathbb{H}, \epsilon^2 = 0\}$.  
+\end{defn}
+This is simply dual numbers for quaternions. Note that $ \epsilon$ can be understood as an infinitesimal, and the part with $ \epsilon$ can be understood as derivatives, which obey product rule during multiplication. This is no different than writing
+\begin{align*}
+	\widetilde{\mathbb{H}} = \{(q, v): q \in \mathbb{H}, v \in T_q \mathbb{H}\} = T \mathbb{H}, 
+\end{align*}
+since tangent vectors in $ T \mathbb{H}$ and derivatives are the same thing and obey the same multiplication. The algebraic definition is more suitable for computation, but the tangent bundle definition invites additional geometric insights.
+
+Sometimes we restrict to unit quaternions $ \mathbb{H}_u$ and its dual.
+\begin{defn}
+	The \allbold{dual quaternions} $ \widetilde{\mathbb{H}_u}$ is defined to be the tangent bundle $ T \mathbb{H}_u$ of the unit quaternions. Thus $ \widetilde{\mathbb{H}_u} \cong \mathfrak{ h} \times \mathbb{H}_u \cong TS^{3}$ and is a double-cover of $ \text{SE}(3) $.
+\end{defn}
+\section{Dynamics on Dual Quaternions}
+It is important to emphasize the difference between a vector and its coordinates. A vector $ v$ is an element in the vector space ($ \rr^3$ ) and does not depend on the coordinate system (basis) we choose for the vector space. On the other hand, once we choose a basis $ B$, then the coordinates $ v_B$ tells us the coefficients of the basis elements which linearly combines into $ v$. Whenever we use coordinates, we 
+
+We shall use the following identifications throughout the paper: the Euclidean space $ \rr^{3}$ in the inertial frame is identified by the Lie algebra $ \mathfrak{ h} := T_e \mathbb{H}_u$. If the body frame is obtained from the inertial frame by multiplying $ q \in \mathbb{H}_u$ (representing a rotation), then the body frame is identified by the tangent space $ T_q \mathbb{H}_u$. Since rotation is a linear operation, we know that the body coordinates is related to the inertial coordinates via a change of basis. That is, given a vector $ r$ with body coordinates $ r_B$, its inertial coordinates $ r_I = \Ad_q(r_B)= q r_B q^{-1} = q r_B q^*:= T_e L_q \circ T_q R_{q^{-1}} (r_B) $. Thus we obtain the same vector $T_e R_q(r_I) =: r_I q = q r_B:= T_e L_q(r_B) \in T_q \mathbb{H}_u$, which matches the physical intuition that rotation and translation commute.
+
+We fix an (inertial) basis in the Lie algebra $ \mathfrak{ h}$. 
+
+Since any configuration of a rigid-body can be represented by a translation $ r$ of CM from a fixed point (\emph{e.g.} initial position) and a rotation $ q$ from a fixed inertial frame (\emph{e.g.} initial frame), we can represent this motion using the dual quaternion $ (q, r_I q) = (q,q r_B) \in T_q \mathbb{H}_u$.
+
+Since $ q q^{-1} = 1$, differentiating both sides with respect to time yields
+\begin{align}
+	\dot{q}q^{-1} + q \dot{q}^{-1} &= 0 \\
+	p:= \dot{q}q^{-1} &=- q \dot{q}^{-1}\label{eq:qq}
+\end{align}
+where $ \dot{q}^{-1} := \frac{d q^{-1}}{d t} $. Taking the time derivative of \cref{eq:}, since $ r_B$ is fixed in time, we have
+\begin{align*}
+	r_I &= q r_B q^{-1} \\
+	\dot{r}_I &= \dot{q} r_B q^{-1} + q r_B \dot{q}^{-1} \\
+	&= \dot{q} q^{-1} r_I + r_I q \dot{q}^{-1} \\
+	&= \dot{q}q^{-1} r_I - r_I \dot{q} q^{-1} && \cref{eq:qq}\\
+	&= p \times r_I - r_I \times p \\
+	&= 2 p \times r_I
+\end{align*}
+Moreover, by the transport theorem, $ \dot{r}_I = \frac{d}{d t}\left( r_B \right)_B   + \omega \times r_I = \omega \times r_I$. This yields that
+\begin{align} \label{eq:omega}
+	\omega = 2p = 2 \dot{q} q^{-1} .
+\end{align}
+From this, we obtain the quaternion dynamics:
+\begin{align}
+	\dot{q} &=  \dot{q} q^{-1} q \\
+	\dot{q}&= \frac{1}{2} \omega q
+\end{align}
+
+We treat $ r_I$ and $ \omega$ as pure quaternions. Then $\frac{1}{2}\dot{r}_I = \frac{1}{2} r_I q $ and $\dot{q} = \frac{1}{2}wq$ are both tangent vectors. Then
+\begin{align*}
+	\begin{pmatrix} q\\ \dot{q} = \frac{1}{2} \omega q \end{pmatrix}  \to \begin{pmatrix} q\\ \frac{1}{2} r_I q \end{pmatrix} =: \widetilde{ q} \in T_q \mathbb{H}\\
+	\begin{pmatrix} \omega \\ \dot{\omega} \end{pmatrix} \to \begin{pmatrix} \omega \\ \dot{r}_I \end{pmatrix} =: \widetilde{ \omega} \in T_{ \omega} \mathbb{H} 
+\end{align*}
+Notice that we swap out the tangent vectors in order to incorporate translation into the dynamics. Since
+\begin{align*}
+	\begin{pmatrix} \dot{q}\\ \ddot{q} \end{pmatrix} = \begin{pmatrix} \frac{1}{2} wq \\ \frac{1}{2} \left( \dot{w}q + w\dot{q} \right)  \end{pmatrix}  = \frac{1}{2} \begin{pmatrix} w\\ \dot{w} \end{pmatrix} \begin{pmatrix} q\\ \dot{q} \end{pmatrix} \in T_{\frac{1}{2}wq} \mathbb{H}
+\end{align*}
+the substitution yields the dual quaternion dynamics
+\begin{align*}
+	\dot{\widetilde{ q}} = \frac{1}{2} \begin{pmatrix} \omega\\ \dot{r}_I \end{pmatrix} \begin{pmatrix} q\\ \frac{1}{2} r_I q \end{pmatrix} = \frac{1}{2} \widetilde{ w} \widetilde{ q} \in T_{\frac{1}{2}\omega q} \mathbb{H}
+\end{align*}
+mirroring the quaternion dynamics.
+\end{document}

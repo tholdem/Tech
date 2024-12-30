@@ -1,0 +1,300 @@
+global !p
+def math():
+	return vim.eval('vimtex#syntax#in_mathzone()') == '1'
+endglobal	
+
+context "math()"
+snippet ww "omega,cs" iA
+\omega
+endsnippet
+
+context "math()"
+snippet WW "Omega,cs" iA
+\Omega
+endsnippet
+
+context "math()"
+snippet OO "fancy O" iA
+\mathcal{O}
+endsnippet
+
+context "math()"
+snippet supr "supremum" A
+\sup\left\\{$1 \right\\} $0
+endsnippet
+
+context "math()"
+snippet infim "infimum" A
+\inf\left\\{$1 \right\\} $0
+endsnippet
+
+context "math()"
+snippet bsc "big square cup" iA
+\bigsqcup_{ $1}
+endsnippet
+
+context "math()"
+snippet dbra "double bracket" iA
+\dbracket{ $1} $0
+endsnippet
+
+context "math()"
+snippet xra "words on right arrow" iA
+\xrightarrow{ $1} $0
+endsnippet
+
+context "math()"
+snippet o+ "direct sum" iA
+\oplus $0
+endsnippet
+
+context "math()"
+snippet ox "tensor product" iA
+\otimes
+endsnippet
+
+context "math()"
+snippet bo "big direct sum" A
+\bigoplus_{ ${1: }} $0
+endsnippet
+
+context "math()"
+snippet im "image" A
+\im $0
+endsnippet
+
+context "math()"
+snippet dg "degree" A
+\dg $0
+endsnippet
+
+context "math()"
+snippet mod "modulo" iA
+\bmod $0
+endsnippet
+
+context "math()"
+snippet ker "kernel" A
+\ker $0
+endsnippet
+
+context "math()"
+snippet iso "isomorphic" iA
+\cong
+endsnippet
+
+context "math()"
+snippet wg "wedge product" iA
+\wedge $0
+endsnippet
+
+context "math()"
+snippet vv "upward wedge product" iA
+\vee $0
+endsnippet
+
+context "math()"
+snippet rhm "reduced homology" A
+\widetilde{H}_${1:*}( $2)$0
+endsnippet
+
+context "math()"
+snippet sim "equivalence" iA
+\sim
+endsnippet
+
+context "math()"
+snippet io "iota" A
+\iota 
+endsnippet
+
+context "math()"
+snippet pp "subscript p" iA
+_p
+endsnippet
+
+context "math()"
+snippet mm "subscript m" iA
+_m
+endsnippet
+
+context "math()"
+snippet ext "Ext" A
+\ext
+endsnippet
+
+context "math()"
+snippet hom "Hom" A
+\Hom( $1, $2)$0
+endsnippet
+
+context "math()"
+snippet [] "[]_0" A
+[${1:X}, ${2:Y}]_0$0
+endsnippet
+
+context "math()"
+snippet -= "homotopic" iA
+\simeq 
+endsnippet
+
+context "math()"
+snippet sf "san serif" iA
+\textsf{$1} $0
+endsnippet
+
+context "math()"
+snippet id "identity" A
+\text{id}_{ $1}
+endsnippet
+
+context "math()"
+snippet SS "Sigma" A
+\Sigma 
+endsnippet
+
+context "math()"
+snippet int "interior" A
+\inte 
+endsnippet
+
+context "math()"
+snippet GL "general linear group" A
+\text{GL}_{${1: n}}(${2: R}) $0
+endsnippet
+
+context "math()"
+snippet SO "special orthogonal group" A
+\text{SO}(${1: n}) $0
+endsnippet
+
+context "math()"
+snippet SU "special unitary group" A
+\text{SU}(${1: n}) $0
+endsnippet
+
+context "math()"
+snippet SE "special Euclidean group" A
+\text{SE}(${1: n}) $0
+endsnippet
+
+context "math()"
+snippet dpd "disk pair" A
+(D^n, \partial D^n)
+endsnippet
+
+context "math()"
+snippet heo "Homeo" A
+\text{Homeo}( $1) $0
+endsnippet
+
+context "math()"
+snippet 'pi(k|\d)' "homotopy group" rwA
+\pi_{ `!p snip.rv = match.group(1)`} ( ${1: })
+endsnippet
+
+context "math()"
+snippet gr "Grassmannian" A
+\gr_{${1: n}}(${2: R}) $0
+endsnippet
+
+context "math()"
+snippet pp "phi,cs" A
+\phi($1) $0
+endsnippet
+
+context "math()"
+snippet bw "big wedge product" A
+\bigwedge $0
+endsnippet
+
+context "math()"
+snippet oc "circ" A
+\circ 
+endsnippet
+
+context "math()"
+snippet inje "injection" A
+\rightarrowtail
+endsnippet
+
+context "math()"
+snippet surj "surjection" A
+\twoheadrightarrow
+endsnippet
+
+context "math()"
+snippet bico "bijection correspondence" A
+\leftrightarrow
+endsnippet
+
+snippet Leg "Legendrian" A
+Legendrian 
+endsnippet
+
+snippet contacto "contactomorphi" A
+contactomorphi
+endsnippet
+
+snippet nbhd "neighborhood" A
+neighborhood 
+endsnippet
+
+context "math()"
+snippet trv "transversal" A
+\pitchfork 
+endsnippet
+
+context "math()"
+snippet FF "mathcal F" A
+\mathcal{F}
+endsnippet
+
+context "math()"
+snippet qH "quaternions" A
+\mathbb{H}
+endsnippet
+
+context "math()"
+snippet dH "dual quaternions" A
+\widetilde{\mathbb{H}_u}
+endsnippet
+
+context "math()"
+snippet 'Cl(k|\d)' "Clifford algebra" rwA
+\Cl_{ `!p snip.rv = match.group(1)` ${1: }} ( ${2: })
+endsnippet
+
+context "math()"
+snippet 'Cl+(k|\d)' "Clifford algebra even part" rwA
+\Cl_{ `!p snip.rv = match.group(1)` ${1: }}^+ ( ${2: })
+endsnippet
+
+context "math()"
+snippet rsd "right semi-direct product" A
+\rtimes
+endsnippet
+
+context "math()"
+snippet frak "mathfrak" A
+\mathfrak{ ${1: }}
+endsnippet
+
+context "math()"
+snippet Ad "Adjoint action" iA
+\Ad
+endsnippet
+
+context "math()"
+snippet '([A-Za-z])\.' "time derivative" wrA
+\dot{`!p snip.rv = match.group(1)`}
+endsnippet
+
+context "math()"
+snippet '([A-Za-z])2\.' "time derivative" wrA
+\ddot{`!p snip.rv = match.group(1)`}
+endsnippet
+# vim:ft=snippets
+
+
+

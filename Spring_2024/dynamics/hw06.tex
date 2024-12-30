@@ -1,0 +1,68 @@
+\documentclass[11pt]{article}
+\input{../preamble.tex}
+
+\begin{document}
+\centerline {\textsf{\textbf{\LARGE{Homework 6}}}}
+\centerline {Jaden Wang}
+\vspace{.15in}
+\section{Lagrangian Mechanics}
+Disclaimer: most derivatives and equations are computed by Mathematica. We have the following equantities where subscripts represent relating to (center of mass of) 1st or 2nd rod.
+\begin{align*}
+	\ve{ r}_1 = \frac{L}{2} \begin{pmatrix} \sin \theta_1 \\ -\cos \theta_1 \\0 \end{pmatrix} ,   \ \ve{ r}_2 = \begin{pmatrix} L \sin \theta_1 + \frac{L}{2} \sin \theta_2\\ -L \cos \theta_1 - \frac{L}{2} \cos \theta_2 \\0 \end{pmatrix}  \\
+	\ve{ v}_1 = \frac{L}{2} \begin{pmatrix} \cos \theta_1 \dot{\theta}_1\\ \sin \theta_1 \dot{\theta}_1 \\0 \end{pmatrix}, \ \ve{ v}_2 = \begin{pmatrix} L \cos \theta_1 \dot{\theta}_1 + \frac{L}{2} \cos \theta_2 \dot{\theta}_2 \\L \sin \theta_1 \dot{\theta}_1 + \frac{L}{2} \sin \theta_2 \dot{\theta}_2\\0 \end{pmatrix} \\
+	 \ve{ \omega}_1 = \begin{pmatrix} 0\\0\\ \dot{\theta}_1 \end{pmatrix} \ \ve{ \omega}_2 = \begin{pmatrix} 0\\0\\ \dot{\theta}_2 \end{pmatrix}, \  \mathcal{ I}_1 = \mathcal{ I}_2= \begin{pmatrix} \ve{ 0}_2 &0\\0& \frac{1}{12} m L^2 \end{pmatrix} 
+\end{align*}
+We can now compute the kinetic and potential energy of the system and therefore the Lagrangian and its derivatives:
+\begin{align*}
+	T &= \frac{1}{2} m (\ve{ v}_1 \cdot \ve{ v}_1+ \ve{ v}_2 \cdot \ve{ v}_2) + \frac{1}{2} \ve{ \omega}_1 ^{T} \mathcal{ I}_1 \ve{ \omega}_1 + \frac{1}{2} \ve{ \omega}_2^{T} \mathcal{ I}_2 \ve{ \omega}_2  \\
+	&= \frac{1}{6} mL^2 \left( 4 \dot{\theta}_1^2 + 3 \cos ( \theta_1 - \theta_2) \dot{\theta}_1 \dot{\theta}_2 + \dot{\theta}_2^2 \right)  \\
+	V &= -mg \frac{3L}{2}\cos \theta_1 -mg \frac{L}{2} \cos \theta_2 \\
+	\mathscr{L} &:= T-V\\
+	\frac{\partial \mathscr{L}}{\partial \theta_1} &= -\frac{1}{2} mL \left( L \sin(\theta_1 - \theta_2) \dot{\theta}_1 \dot{\theta}_2 + 3g \sin \theta_1  \right) \\
+	\frac{\partial \mathscr{L}}{\partial \dot{\theta}_1} &= \frac{1}{6} mL^2 \left( 8 \dot{\theta}_1 + 3 \cos (\theta_1 - \theta_2) \dot{\theta}_2 \right)  \\
+	\frac{d}{dt} \frac{\partial \mathscr{L}}{\partial \dot{\theta}_1} &= \frac{1}{6} mL^2 \left( 8 \ddot{\theta_1} -3 \sin(\theta_1 - \theta_2) (\dot{\theta}_1 -\dot{\theta}_2) \dot{\theta}_2 + 3 \cos(\theta_1 - \theta_2) \ddot{\theta}_2 \right)  \\
+	\frac{\partial \mathscr{L}}{\partial \theta_2} &= \frac{1}{2} mL \left( L \sin(\theta_1 - \theta_2) \dot{\theta}_1 \dot{\theta}_2 - g \sin \theta_2  \right) \\
+	\frac{\partial \mathscr{L}}{\partial \dot{\theta}_2} &= \frac{1}{6} mL^2 \left( 2 \dot{\theta}_2 + 3 \cos (\theta_1 - \theta_2) \dot{\theta}_1 \right)  \\
+	\frac{d}{dt} \frac{\partial \mathscr{L}}{\partial \dot{\theta}_2} &= \frac{1}{6} mL^2 \left( 2 \ddot{\theta_2} -3 \sin(\theta_1 - \theta_2) (\dot{\theta}_1 -\dot{\theta}_2) \dot{\theta}_1 + 3 \cos(\theta_1 - \theta_2) \ddot{\theta}_1 \right)  
+\end{align*}
+Therefore, the Euler-Lagrange equations can be simplified as
+\begin{align}
+	mL \left( 9g \sin \theta_1 + 3L \sin (\theta_1 - \theta_2) \dot{\theta}_2^2 + 3L\cos (\theta_1 - \theta_2) \ddot{\theta}_2 + 8L \ddot{\theta}_1 \right) &= 0 \\
+	mL \left( 3g \sin \theta_2 - 3L \sin (\theta_1 - \theta_2) \dot{\theta}_1^2 + 3L \cos (\theta_1 - \theta_2) \ddot{\theta}_1 + 2L \ddot{\theta}_2 \right) &= 0 .
+\end{align}
+\section{Newton-Euler}
+Denote the gravity of two rods by $ \ve{ G}_1 = \ve{ G}_2 = \begin{pmatrix} 0\\-mg\\0 \end{pmatrix}$. Consider the 1st rod rotating about $ O$ which is fixed in the inertial frame. By parallel axis theorem, in the $ zz$ component we have $ \mathcal{ I}_1^{O} = \mathcal{ I}_1 + m\frac{L^2}{4} = \frac{1}{3} m L^2$ (and 0 elsewhere). We also have $ \ve{ r}_P = 2 \ve{ r}_1$. Let $ \ve{ F} = \begin{pmatrix} F_x \\ F_y \\0 \end{pmatrix}  $ be the tension force experienced by the 2nd rod at $ P$. Thus the tension force experienced by the 1st rod at $ P$ is $ -\ve{ F} $.  Then Euler's 2nd law about $ O$ states
+\begin{align*}
+	\frac{d \ve{ L}^{O} }{ dt} &= \ve{ M}_{net}^{O}  \\
+	\mathcal{ I}_1^{O} \ddot{\theta_1} &= \ve{ r}_1 \times \ve{ G}_1 + \ve{ r}_P \times (-\ve{ F})  
+\end{align*}
+Only $ z$-components survive. Simplifying the equation yields
+\begin{align}
+	mL \left( 9g \sin \theta_1 + 3L \sin (\theta_1 - \theta_2) \dot{\theta}_2^2 + 3L\cos (\theta_1 - \theta_2) \ddot{\theta}_2 + 8L \ddot{\theta}_1 \right) = 0 .
+\end{align}
+We see that Equation 3 matches Equation 1!
+
+Now let us consider the 2nd rod. By Euler's 1st law, we have
+\begin{align*}
+	m \ve{ \ddot{r}}_2 &= \ve{ F}_{net} = \ve{ G}_2  + \ve{ F}   \\
+	\ve{ F} &= m \ve{ \ddot{r}}_2 - \ve{ G}_2   \\
+	&= \begin{pmatrix} -\frac{1}{2}mL \left( 2 \sin \theta_1 \dot{\theta}_1^2 + \sin \theta_2 \dot{\theta}_2^2  - 2 \cos \theta_1 \ddot{\theta}_1 - \cos \theta_2 \ddot{\theta}_2 \right) \\ m \left( g + L \cos \theta_1 \dot{\theta}_1^2 + \frac{1}{2} L \cos\theta_2 \dot{\theta}_2^2  + L \sin \theta_1 \ddot{\theta}_1 + \frac{1}{2} L \sin\theta_2 \ddot{\theta}_2  \right) \\0 \end{pmatrix}  
+\end{align*}
+Euler's 2nd law on the 2nd rod about center of mass gives
+\begin{align*}
+	\frac{d \ve{ L}^{C_2} }{ dt} &= \ve{ M}_{net}^{C_2}  \\
+	\mathcal{ I}_2 \ddot{\theta}_2 &= (\ve{ r}_p - \ve{ r}_2)  \times \ve{ F}  \\
+	\begin{pmatrix} 0\\0\\ \frac{1}{12} mL^2 \ddot{\theta}_2 \end{pmatrix} &= \begin{pmatrix} -\frac{1}{2} L \sin \theta_2 \\ \frac{1}{2} L \cos \theta_2 \\0 \end{pmatrix} \times \ve{ F}  
+\end{align*}
+Only $ z$-components survive. Simplifying the equation yields
+\begin{align}
+	mL \left( 3g \sin \theta_2 - 3L \sin (\theta_1 - \theta_2) \dot{\theta}_1^2 + 3L \cos (\theta_1 - \theta_2) \ddot{\theta}_1 + 2L \ddot{\theta}_2 \right) = 0 .
+\end{align}
+We see that Equation 4 exactly matches Equation 2! Therefore, we have analytically shown that the two methods give equivalent equations of motion. Using $ m = 10 kg, L = 2m, g=9.8 m /s ^2, t_f = 20s$ and the initial conditions of $ \theta_1(0) = 1, \theta_2(0) = 0, \dot{\theta}(0) = 0, \dot{\theta}(0) =0$, we have the following plots:
+~\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.49\textwidth]{./figures/hw6.1.png}
+	\includegraphics[width=0.49\textwidth]{./figures/hw6.2.png}
+	\caption{Since the system start from being stationary and $ \theta_2$ being vertical, we expect $ \theta_1$ to drop and swing to the other side while $ \theta_2$ increasing initially. The plots match our expectations.}
+\end{figure}
+\end{document}

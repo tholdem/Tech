@@ -1,0 +1,52 @@
+\documentclass[12pt]{article}
+\input{../preamble.tex}
+
+\begin{document}
+\centerline {\textsf{\textbf{\LARGE{Homework }}}}
+\centerline {Jaden Wang}
+\vspace{.15in}
+
+We first write down the Lagrangian of the system:
+\begin{align*}
+	T &= \frac{1}{2}m \left( \left( L \dot{\theta} \right)^2 + \left( L\sin \theta \dot{\phi} \right)^2   \right)  \\
+	U &= mg L \cos \theta \\
+	\mathcal{L} &= T - U \\
+	&= \frac{mL^2}{2} \left( \dot{\theta}^2 + \left( \sin \theta \dot{\phi} \right)^2   \right)  - mg L \cos \theta
+\end{align*}
+Now we determine the generalized momenta and express $ \dot{ \ve{ q} }$ in terms of them:
+\begin{align*}
+	p_{\theta} &= \frac{\partial \mathcal{ L}}{\partial \dot{\theta}} = mL^2 \dot{\theta}\\
+	\dot{\theta} &= \frac{p_{\theta}}{ mL^2}\\
+	p_{\phi} &= \frac{\partial \mathcal{ L}}{\partial \dot{\phi}} = mL^2 (\sin \theta)^2 \dot{\phi} \\
+	\dot{\phi} &= \frac{p_{\phi}}{ mL^2 (\sin \theta)^2} 
+\end{align*}
+The Hamiltonian is given by
+\begin{align*}
+	\mathcal{ H}(\theta,p_{\theta},\phi,p_{\phi}) &= p_{\theta} \dot{\theta} + p_{\phi} \dot{\phi} - \mathcal{ L} \\
+	&= \frac{p_{\theta}^2}{ mL^2} + \frac{p_{\phi}^2}{ mL^2 (\sin \theta)^2} - \frac{mL^2}{ 2} \left( \frac{p_{\theta}^2}{ (mL^2)^2} + \frac{p_{\phi}^2}{ (mL^2 \sin \theta)^2 } \right) + mgL \cos \theta\\
+	&= \frac{1}{2mL^2} \left( p_{\theta}^2 + \frac{p_{\phi}^2}{(\sin \theta)^2 } \right) + mgL \cos \theta \\
+	&= T+U 
+\end{align*}
+
+Since $ \phi$ doesn't not explicitly show up in $ \mathcal{ H}$, it is an ignorable variable, \emph{i.e.}  $ \frac{\partial \mathcal{ H}}{\partial \phi} =0$. Hamilton's equations immediately tell us that $ p_{\phi}$ is a constant. Thus we reduce the degrees of freedom of the system by 1. This contrasts the Lagrangian approach where $ \dot{q}$ can remain a variable and prevent us from reducing the degrees of freedom.
+
+Thus the Hamiltonian becomes
+\begin{align*}
+	\mathcal{ H}(\theta, p_{\theta}) = \frac{p_{\theta}^2}{ 2 \mu} + U_{eff}(\theta),
+\end{align*}
+where $ \mu = mL^2$ and $ U_{eff}(\theta) = \frac{p_{\phi}^2}{2\mu (\sin\theta)^2 } + mgL\cos \theta$ is the effective potential energy that solely depends on $ \theta$.
+
+The equations of motions are
+\begin{align*}
+	\dot{\theta} &= \frac{p_{\theta}}{ mL^2}\\
+	\dot{p_{\theta}} &= -\frac{\partial \mathcal{ H}}{\partial \theta} = \frac{\cos \theta p_{\phi}^2}{mL^2 (\sin \theta)^3} + mgL\sin \theta 
+\end{align*}
+
+The equilibrium points of the system locate at the minima (stable) or maxima (unstable) of the effective potential energy. 
+~\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.49\textwidth]{./figures/}
+	\includegraphics[width=0.49\textwidth]{./figures/}
+	\caption{We see that there is a unique minimum of $ U_{eff}$ at around $ \theta = 2.7$. In the plot of phase space orbits, we see that this is indeed the (stable) equilibrium point of the system.}
+\end{figure}
+\end{document}

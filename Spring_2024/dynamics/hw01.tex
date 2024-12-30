@@ -1,0 +1,59 @@
+\documentclass[12pt]{article}
+\input{../preamble.tex}
+
+\begin{document}
+\centerline {\textsf{\textbf{\LARGE{Homework 1}}}}
+\centerline {Jaden Wang}
+\vspace{.15in}
+
+We know that between two objects with masses $ M_1$ and $ M_2$, gravitational force exerted by $ M_1$ onto $ M_2$ satisfies the equation
+\begin{align*}
+	\ve{ F}  =- \frac{G M_1 M_2}{ \norm{ \ve{ r} } ^3} \ve{ r} 
+\end{align*}
+where $ G = 6.67408 \times 10^{-11} m ^3 /(kg s ^2)$ is the gravitational constant, $ \ve{ r} $ is the position vector of center of mass $ M_2$ related to center of mass of $ M_1$. Then by Newton's second law,
+\begin{align*}
+	M_2\ve{ g} &= \ve{ F} \\ 
+	\ve{ g} &= - \frac{G M_1}{ \norm{ \ve{ r} } ^3 } \ve{ r}   
+\end{align*}
+
+In the case of a much smaller spacecraft orbiting the moon, we can treat $ M_2$ as a point mass and use $ M_m = 7.342 \times 10^{22} kg$ for $ M_1$. Using Cartesion coordinate, by assuming that the center of mass of the moon is at the origin, we can rewrite the vector equation above into two scalar components
+\begin{align*}
+	g_x &= - \frac{G M_m}{ \norm{ \ve{ r} } ^3} x \\
+	g_y &= - \frac{G M_m}{ \norm{ \ve{ r} } ^3} y 
+\end{align*}
+Together with $ \dot{x}=u$, $ \dot{y}=v$, $ \dot{u} = g_x$, and $ \dot{v}= g_y$, we have a system of ODEs to completely describe the motion of the spacecraft:
+\begin{align*}
+	\begin{cases}
+		\dot{x}=u\\
+		\dot{y}=v\\
+		\dot{u} = - \frac{G M_m}{ \norm{ \ve{ r} }^3 } x\\
+		\dot{v} = - \frac{G M_m}{ \norm{ \ve{ r} }^3 } y\\
+	\end{cases}
+\end{align*}
+which can then be solved by MATLAB with the following initial conditions: the spacecraft starts at height $ h$ above the moon surface in the  $ y$-axis with initial velocity $ u_0$ in the $ x$-direction.
+~\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\textwidth]{./figures/1.1.png}
+	\caption{}
+\end{figure}
+We can verify the simulation by checking conservation of energy.
+~\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\textwidth]{./figures/1.2.png}
+	\caption{1.2.png}
+\end{figure}
+Once the initial speed $ u_0$ is reduced, we see that the orbit becomes a spiral. This indicates that the ODE solver is not accurate enough.
+~\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\textwidth]{./figures/1.2.png}
+	\includegraphics[width=0.8\textwidth]{./figures/1.2.png}
+	\caption{1.2.png}
+\end{figure}
+By using ODE89, the orbit looks normal again. We see that 
+~\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\textwidth]{./figures/1.3.png}
+	\caption{1.3.png}
+\end{figure}
+
+\end{document}

@@ -1,0 +1,42 @@
+\documentclass[12pt]{article}
+\input{../preamble.tex}
+
+\begin{document}
+\centerline {\textsf{\textbf{\LARGE{Homework 2}}}}
+\centerline {Jaden Wang}
+\vspace{.15in}
+
+\begin{problem}[1]
+For a knot $ K$,  any nonzero section of the normal bundle $ \nu(K)$ gives a framing to $ K$ by rotating the section counterclockwise 90 degrees about the knot so the two sections form a basis. If $ K$ is  Legendrian, then $ \nu_x(K) \cap \xi_x$ is a line in $ \nu_x(K)$. A nonzero section of this line bundle gives the contact framing to $ K$. Show that if $ X_{ \alpha}$ is a Reeb vector field for $ \xi = \ker \alpha$, then $ X_{ \alpha}$ is a framing to $ K$ as well and is isotopic to the contact framing. 
+
+\begin{proof}
+Since by definition of Reed vector field $ \alpha(X_{ \alpha}) = 1 \neq 0$, $ X_{ \alpha}$ lies outside the plane field and is a nonzero section of the normal bundle $ \nu(K)$. Since $\ell = \nu(K) \cap \xi$ is a line bundle that lies inside the plane field, a nonzero section of $ \ell$ and $ X_{ \alpha}$ together form a basis and thus a trivialization of $ \nu(K)$. This allows us to use straightline homotopy between the two vector fields while staying inside $ \nu(K)$. Since the homotopy goes from nonzero vectors inside the planes to outside, we do not cross zeros so it is an isotopy. This isotopy on the vector fields induces an isotopy on the framings.
+\end{proof}
+\end{problem}
+
+\begin{problem}[2]
+Let $ \Sigma $ be the Seifert surface of an oriented Legendrian knot $ K$. Show that $ \xi|_{ \Sigma } \cong \Sigma \times \rr^2$. Although trivialization of  $ \xi|_{ \Sigma  }$ is not unique, show that trivialization of $ \xi|_{K} \cong K \times \rr^2$ coming from any trivialization $ \xi|_{ \Sigma }$ is unique.
+
+\begin{proof}
+Since $ \Sigma $ is an oriented surface with one boundary component $ K$, we can build it by attaching 1-handles to a 0-handle. Since attaching sites are intervals which are contractible, $ \xi$ over the attaching sites are trivial bundles, so interesting things can only arise from the gluing maps, which are orientation-preserving diffeomorphisms $ \text{Diff}^{+}(\rr^2) \simeq \text{SO}(2)$. Since homotopic maps give isomorphic bundles, we only care about gluing maps up to homotopy. Since $ \text{SO}(2)$ are just rotation matrices in $ \rr^2$, we can find explicit homotopy between any two matrices (they are completely determined by the rotation angle so we just need to parametrize the angle), so its homotopy class is trivial. (Alternatively, we can argue that it suffices to consider $ \xi$ as a disk-bundle as $ \text{ Diff}^{+}(D) \simeq \text{SO}(2)$, and the mapping class group of a disk is trivial.) This forces $ \xi|_{ \Sigma }$ to be trivial, although by doing full twists on the 1-handles, the two nonzero sections of $ \xi|_{ \Sigma }$ that form a basis before are also twisted beyond reach of isotopies within $ \xi|_{ \Sigma }$ so we obtain another trivialization. However, when we restrict the base to $ K$, recall that  $ K$ is the oriented boundary of  $ \Sigma $, the edges of the many pairs of handles on the ``basket". Any twist at one edge would pair with a twist in the opposite edge that reverses direction. Thus any full twists that could result in different trivializations cancel at opposing edges, giving a unique framing.
+\end{proof}
+\end{problem}
+
+\begin{problem}[3]
+If $ \phi_1, \phi_2: M \to S^2$ are homotopic, then $ ( \gamma_1, \mathcal{ F}_1), ( \gamma_2, \mathcal{ F}_2)$ are framed cobordant, where $ \gamma_i = \phi_i ^{-1}(n)$ after perturbing $ \phi_i \pitchfork n$, the north pole of $ S^2$. Recall that framed cobordant is just cobordant with coinciding framings at each end.
+
+\begin{proof}
+Let $ \Phi: M \times I \to S^2$ be homotopy between $ \phi_1, \phi_2$. Perturb $ \Phi$ so that $ \Phi \pitchfork n$. Let $ \Sigma = \Phi ^{-1}(n)$, so it is a 2-manifold in $ M \times I$. Note that by definition $ M \times \{0\} \cap \Sigma = \gamma_1 $ and $ M \times \{1\} \cap \Sigma = \gamma_2$. From diff top we know that for any $ x \in \Sigma $, $ d\Phi_x$ surjects onto $ T_nS^2$ and $ T_x \Sigma  = \ker d\Phi_x$. Thus by dimension count, $ d\Phi_x|_{\nu_x( \Sigma )}$ is an isomorphism. Pick any basis $ \{v_1,v_2\} $ of $ T_nS^2$, we can form basis vector fields $ \widetilde{ v}_i$ on $ \nu( \Sigma )$ by defining $ \widetilde{ v}_i: \Sigma \to \nu( \Sigma ), x \mapsto d\Phi_x|_{\nu_x( \Sigma )}^{-1}(v_i)$. This trivializes $ \nu( \Sigma )$ and gives a framing $ \mathcal{F}$, so $ (\Sigma, \mathcal{F}) $ is a framed submanifold of $ M \times I$. Finally, we see that $ \widetilde{ v}_i|_{ \gamma_i}$ is precisely the map $ x\mapsto d\ph_{ii} |_{\nu_x( \gamma_i)}^{-1}(v_i)$ which gives the framings $ \mathcal{F}_i$, so $ (\Sigma, \mathcal{F}) $ gives a framed cobordant between $ ( \gamma_1, \mathcal{F}_1)$ and $ ( \gamma_2, \mathcal{F}_2)$.
+\end{proof}
+\end{problem}
+
+\begin{problem}[4]
+Suppose $ \widetilde{ M} \xrightarrow{ p} M $ is a covering map and $ i: D \to M$ is the inclusion of an overtwisted disk. Show that the lift $ \widetilde{ i} : D \to \widetilde{ M}$ is an embedding and preserves characteristic foliation.
+
+\begin{proof}
+First, the lift exists because $ D$ is contractible and satisfies the lifting criterion. Since  $ i = p \circ \widetilde{ i}$ is injective, then whenever $ p \circ \widetilde{ i}(x) = p \circ \widetilde{ i}(y) $, we have $ x=y$. Then if  $ \widetilde{ i}(x) = \widetilde{ i}(y)$, this condition is satisfied, so $ \widetilde{ i}$ is injective and thus bijective onto its image. Since $ D$ is compact,  $ M$ is Hausdorff, and  $ \widetilde{ i}$ is smooth, we have that $ \widetilde{ i}$ is an embedding. This makes $ p|_{ \widetilde{ i}(D)} = i \circ  \widetilde{ i}|_{\widetilde{ i}(D)} ^{-1}$ also an embedding onto $ i(D)$. Since $ p$ is a covering map, it is in particular a local diffeomorphism. Since characteristic foliation is defined as union of the flow lines of the vector field along $ \xi \cap Ti(D)$ plus singularities, we see that $ dp$ sends nonzero vector to nonzero vector so directions of the flow are preserved, \emph{i.e.} flow lines are preserved. Since $ \widetilde{ \xi}:= p^* \xi$, locally it coincides with $dp^{-1}(\xi)$ so if $ x \in i(D)$ is a singularity, \emph{i.e.} $ T _xi(D) = \xi_x  $, then local diffeomorphism ensures that $ T_{\widetilde{ x}} \widetilde{ i}(D) = \widetilde{ \xi}_{\widetilde{ x}}$, where $ \widetilde{ x} := p|_{\widetilde{ i}(D)}^{-1}(x)$ remains a singularity. Thus, $ \widetilde{ i}(D)$ has isomorphic characteristic foliation as $ i(D)$, so it is also an overtwisted disk.
+
+Alternatively, we can prove the Lemma 1 directly. Suppose $ M$ has an overtwisted disk  $ D$, since  $ D$ is simply connected, correspondence theorem says the only possible cover of $ D$ is a disconnected space, \emph{i.e.} disjoint copies of the disk upstairs. Denote one of the copies as $ \widetilde{ D}$. Since $ \widetilde{ M}$ is a manifold, it is paracompact and therefore normal (Theorem 4.81 of John Lee Topological Manifold), so we can always separate disjoint disks in $ \widetilde{ M}$ by disjoint open sets. By taking an open cover $ U$ of $D$ using evenly covered  neighborhoods at each point in $ D$ and shrinking if necessary, we obtain a neighborhood $ \widetilde{ U}$ of $ \widetilde{ D}$ that is disjoint from neighborhoods of other copies. Since $ p^{-1}$ is already a bijection between $ D$ and  $ \widetilde{ D}$, we want to show that it is also a bijection from $ U\setminus D \to \widetilde{ U} \setminus \widetilde{ D}$. Take $ x \in U \setminus D$, then $ p^{-1}(x)$ lives in a neighborhood of each copy of $ D$ that are disjoint from each other, so restricting the codomain to $ \widetilde{ U} \setminus \widetilde{ D}$ yields a unique point. Thus $ p^{-1}|_{U}$ is bijective onto its image and therefore a diffeomorphism. Since contact structures are preserved by $ p^{-1}|_{U}$, we see that under this diffeomorphism, flowlines are mapped to corresponding flowlines, and singularities are mapped to singularities, giving the same characteristic foliation. 
+\end{proof}
+\end{problem}
+\end{document}

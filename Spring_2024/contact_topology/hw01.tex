@@ -1,0 +1,75 @@
+\documentclass[12pt]{article}
+\input{../preamble.tex}
+
+\begin{document}
+\centerline {\textsf{\textbf{\LARGE{Homework 1}}}}
+\centerline {Jaden Wang}
+\vspace{.15in}
+\begin{problem}[1]
+Show that all plane fields can be locally written as $ \ker \alpha$ for some $ \alpha$.
+
+\begin{proof}
+Fix a Riemannian metric on $ M$ so we have the notion of orthogonality. Given $ p \in M$, take a contractible neighborhood $ U$ of  $ p$ and let  $ \ell := (\xi|_U)^{\perp}$ be the line bundle formed by orthogonal complements of $ \xi$ over $ U$. Since $ U$ is contractible, $ \ell \cong U \times \rr$. Take any nonzero smooth section $ s$ of $ \ell$, say $s: x \mapsto (x,1) $. Now define a 1-form $ \alpha$ of $ U$ by
+\begin{align*}
+	\alpha: U \to T^*U = (\xi|_U)^* \oplus \ell^*, x \mapsto (0,s),
+\end{align*}
+where $ 0: \xi|_U \to \rr$ is the zero function. From this definition, it is clear that $ \alpha$ is a smooth section of $ T^* U$ and thus a smooth 1-form and $ \xi|_U = \ker \alpha$ as desired.
+\end{proof}
+\end{problem}
+\begin{problem}[2] Let $ M$ be an orientable manifold. Show that TFAE:
+\begin{enumerate}[label=(\arabic*)]
+	\item $ \xi$ can be written as $ \ker \alpha$ for some $ \alpha$.
+	\item There exists a vector field $ v$ transverse to  $ \xi$ for all $ p \in M$.
+	\item $ \xi$ is orientable.
+\end{enumerate}
+\begin{proof}
+	$ (1) \implies (2):$ Let $ \ell := \xi^{\perp}$ be the global line bundle. Then $ \alpha|_{\ell^*}$ is a nonzero smooth section of $ \ell^*$. It follows that $ (\alpha|_{\ell^* })_p$ is a linear isomorphism from $ \ell_p \to \rr$. Therefore, there is a unique vector in $ \ell_p$ that is mapped to $ 1$. By thinking $ \alpha|_{\ell^* }$ as a smooth function from $ \ell \to \rr$ with trivial kernel, we have that $v:= (\alpha|_{\ell^* })^{-1}(1)$ is a smooth vector field in $ \ell$, which is transversal to $ \xi$.
+
+	$ (2) \implies (1)$: Such vector field $ v$ gives a basis for $ \ell$. Construct $ \alpha$ by $ \alpha(\xi) = 0$ and $ \alpha(v) = 1$ (which determines where $ \ell$ is mapped). This is clearly a smooth section with $ \ker \alpha = \xi$ globally.
+
+	$ (2) \implies (3):$ Such vector field $ v$ gives a smoothly varying basis for  $ \ell$, \emph{i.e.} an orientation. Since $ M$ is orientable, we have $ TM$ orientable. As $ \xi^{\perp}$ is also orientable, we can thus orient $ \xi$.
+
+	$ (3) \implies (2):$ If $ \xi$ is orientable, and $ M$ is orientable by assumption, then  $ \ell$ is also orientable. Fix an atlas of $ M$. Given an orientation of $ \ell$ and $ p \in M$, we have a nonzero vector $ v_i$ for each chart $ U_i$ containing $ p$, \emph{i.e.} the basis vector for that chart. Since $ M$ is orientable, all the transition functions between charts are orientation preserving. That is, if $ p$ is in both  $ U_i,U_j$, then $ v_i$ and $ v_j$ differ by a positive scalar. Let $ \{\phi_i\} $ be a partition of unity for the atlas. Then for each point $ p$, we obtain a vector  $ v = \sum \phi_i v_i$ which is never zero since $ v_i$'s all positive scalar multiples of each other. Smoothness is provided by partition of unity, so we have the desired nonvanishing vector field.
+\end{proof}
+
+\end{problem}
+
+\begin{problem}[3]
+Let $ \alpha_3 = \cos r dz + r\sin r d \theta$. Show that $ \alpha_3 \wedge d \alpha_3 >0$.
+
+\begin{proof}
+\begin{align*}
+	d \alpha_3 &= d(\cos r) \wedge dz + d(r\sin r) \wedge d\theta\\
+	&=- \sin r dr \wedge dz + (\sin r +r \cos r) dr \wedge d\theta
+\end{align*}
+\begin{align*}
+	\alpha_3 \wedge d \alpha_3 &= (\cos r dz + r \sin r d \theta) \wedge (- \sin r dr \wedge dz + (\sin r +r \cos r) dr \wedge d\theta)\\
+	&= (\cos r \sin r + r \cos^2r )dz \wedge dr \wedge d\theta - r \sin^2 r d \theta \wedge dr \wedge dz  \\
+	&= (\cos r \sin r + r) dz \wedge dr \wedge d\theta \\
+	&= \left( \frac{\sin 2r}{ 2r} +1 \right) r dr \wedge d\theta \wedge dz  
+\end{align*}
+Note that this is already in volume form. We can check that $ \frac{\sin 2r}{2r }+1 >0$ for all $ r>0$. First, if  $ r> \frac{1}{2}$, then since $ |\sin 2r|\leq 1$, we have positivity. If $ 0<r\leq \frac{1}{2}$, then notice that let $ x:=2r$ and by Taylor expansion,
+\begin{align*}
+	\frac{\sin x}{ x} &= 1 - \frac{x^2}{ 3!} + \frac{x^{4}}{ 5!} -\frac{x^{6}}{ 7!} \ldots
+\end{align*}
+Clearly each negative term is dominated by the preceding positive term for $ 0<x\leq 1$. The expression thus remains positive.
+\end{proof}
+\end{problem}
+
+\begin{problem}[4]
+Prove Theorem I.4: Legendrian knots have contactomorphic neighborhoods. 
+\end{problem}
+~\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\textwidth]{./figures/}
+	\caption{}
+	\label{fig:}
+\end{figure}
+\begin{proof}
+Given two Legendrian knots $ K_1 \subset (M_1,\xi_1), K_2 \subset (M_2,\xi_2)$, we wish to find a diffeomorphism from a neighborhood $ U_1$ of $ K_1$ to a neighborhood $ U_2$ of $ K_2$ that maps $ \xi_1|_{K_1}$ to $ \xi_2|_{K_2}$. Then we finish the proof by wiggling $ U_2$ using the isotopy from Theorem II.1 so that after appropriate shrinking of neighborhoods, $ K_1,K_2$ have contactomorphic neighborhoods.
+
+Take any diffeomorphism $ f: K_1 \to K_2$ (both are circles). Since $ K_i$ are Legendrian, $ T_{K_i}M_i \subset \xi_i$. Fix Riemannian metrics on $ M_i$, then the normal bundles $ \nu(K_i) = \ell_i \oplus \xi_i^{\perp}$, where $ \ell_i$ is the orthogonal complement of $ T_{K_i}M_i$ within $ \xi_i$.  Since $ T_{K_i}M_i$ is an orientable $ S^{1}$ vector bundle, it must be trivial so $ T_{K_i}M_i \cong S^{1} \times \rr^3$. In particular, the fiber can be canonically identified as $ TK_i  \oplus \ell_i\oplus \xi_i^{\perp}$. Choose $ L$ to be a fiberwise linear isomorphism that maps $ \ell_1$ to $ \ell_2$, $\xi_1^{\perp}$ to $\xi_2^{\perp}$. Define $ F: T_{K_1}M_1 \to T_{K_2}M_2, (x,(v,w,z)) \mapsto (f(x),(df_x(v), L(w,z)))$ which is a bundle map.
+
+Here is a fact: the exponential map $ \exp$ yields a diffeomorphism from a neighborhood of the zero section of any submanifold $ N$ in $ \nu(N)$ to a neighborhood of $ N$. This way, we obtain a neighborhood $ U_i$ of $ K_i$ that is diffeomorphic to a neighborhood of the zero section of $ \nu(K_i)$. Then $ \exp|_{U_2} \circ F \circ \exp|_{U_1}^{-1}:U_1 \to U_2$ is a diffeomorphism that takes $ \xi_1|_{U_1}$ to $ \xi_2|_{U_2}$ (after shrinking neighborhoods appropriately).
+\end{proof}
+\end{document}
