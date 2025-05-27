@@ -1,0 +1,181 @@
+global !p
+def math():
+	return vim.eval('vimtex#syntax#in_mathzone()') == '1'
+endglobal	
+
+context "math()"
+snippet ww "omega,cs" iA
+\omega
+endsnippet
+
+context "math()"
+snippet WW "Omega,cs" iA
+\Omega
+endsnippet
+
+context "math()"
+snippet OO "fancy O" iA
+\mathcal{O}
+endsnippet
+
+context "math()"
+snippet supr "supremum" iA
+\sup\left\\{$1 \right\\} $0
+endsnippet
+
+context "math()"
+snippet infim "infimum" iA
+\inf\left\\{$1 \right\\} $0
+endsnippet
+
+context "math()"
+snippet xra "" iA
+\xrightarrow{ $1} $0
+endsnippet
+
+context "math()"
+snippet rwbox "box topology of R^w" iA
+(\rr^\omega, \text{BOX}) $0
+endsnippet
+
+context "math()"
+snippet rwprod "product topology of R^w" iA
+(\rr^\omega, \text{PROD}) $0
+endsnippet
+
+context "math()"
+snippet pxbox "box topology of R^w" iA
+(\prod X_\alpha, \text{BOX}) $0
+endsnippet
+
+context "math()"
+snippet pxprod "product topology of R^w" iA
+(\prod X_\alpha, \text{PROD}) $0
+endsnippet
+
+context "math()"
+snippet bsc "big square cup" A
+\bigsqcup_{ $1}
+endsnippet
+
+context "math()"
+snippet mb "mathbb" A
+\mathbb{ $1} $0
+endsnippet
+
+context "math()"
+snippet kb "mathbbm k" A
+\mathbbm{k} $0
+endsnippet
+
+context "math()"
+snippet gl "general linear group" A
+\text{GL}_{${1: n}}(${2: R}) $0
+endsnippet
+
+context "math()"
+snippet o+ "direct sum" A
+\oplus $0
+endsnippet
+
+context "math()"
+snippet ox "tensor product" A
+\otimes $0
+endsnippet
+
+context "math()"
+snippet dt| "derivative" iA
+\frac{d}{dt}\bigg|_{t=${1: 0}} $0
+endsnippet
+
+context "math()"
+snippet iso "isomorphic" A
+\cong $0
+endsnippet
+
+context "math()"
+snippet trv "transversal" A
+\pitchfork
+endsnippet
+
+context "math()"
+snippet dg "degree" A
+\dg $0
+endsnippet
+
+context "math()"
+snippet dun "disjoint union" A
+\sqcup $0
+endsnippet
+
+context "math()"
+snippet Lam "Lambda" A
+\Lambda
+endsnippet
+
+context "math()"
+snippet wg "wedge product" iA
+\wedge $0
+endsnippet
+
+context "math()"
+snippet XX "mathfrak X" iA
+\mathfrak{X}$0
+endsnippet
+
+context "math()"
+snippet Pgtt "parallel transport map" iA
+P_{\gamma, t_0, t}$0
+endsnippet
+
+context "math()"
+snippet ker "kernel" iA
+\ker $0
+endsnippet
+
+context "math()"
+snippet '([A-Za-z])\.' "time derivative" wrA
+\dot{`!p snip.rv = match.group(1)`}
+endsnippet
+
+context "math()"
+snippet mf "math frak" A
+\mathfrak{$1} $0
+endsnippet
+
+context "math()"
+snippet div "divergence" A
+\Div $0
+endsnippet
+
+context "math()"
+snippet gr "gradient" A
+\grad $0
+endsnippet
+
+context "math()"
+snippet tr "trace" A
+\tr $0
+endsnippet
+
+context "math()"
+snippet 'G([A-Za-z]|\d)([A-Za-z]|\d)([A-Za-z]|\d)' "Christoffel symbols" wrA
+\Gamma_{ ${1:`!p snip.rv = match.group(1)` `!p snip.rv = match.group(2)`}}^{ ${2:`!p snip.rv = match.group(3)`}}
+endsnippet
+
+context "math()"
+snippet 'p:([A-Za-z])' "tangent basis" rwA
+\frac{\partial }{\partial x_${1:`!p snip.rv = match.group(1)`}} $0
+endsnippet
+
+context "math()"
+snippet ric "Ricci curvature" A
+\Ric$0
+endsnippet
+
+context "math()"
+snippet 'parti' "partial" rwA
+\partial 
+endsnippet
+# vim:ft=snippets
+

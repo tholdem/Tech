@@ -1,0 +1,69 @@
+\documentclass[12pt]{article}
+\input{../preamble.tex}
+
+\begin{document}
+\centerline {\textsf{\textbf{\LARGE{Homework 13}}}}
+\centerline {Jaden Wang}
+\vspace{.15in}
+\begin{problem}[Do Carmo 8.1]
+Consider on a neighborhood of $ \rr^{n}$, $ n>2$, the metric
+ \begin{align*}
+	g_{ij} = \frac{\delta_{ij}}{ F^2},
+\end{align*}
+where $ F \neq 0$ is a function on  $ \rr^{n}$. Denote $ F_i = \frac{\partial F}{\partial x_i}, F_{ij} = \frac{\partial^2 F}{\partial { x_i} \partial x_j}  $.
+\begin{enumerate}[label=(\alph*)]
+	\item Show that a necessary and sufficient condition for the metric to have constant curvature $ K$ is
+	 \begin{align*}
+		\begin{cases}
+			F_{ij} =0, \quad i\neq j\\
+			F(F_{jj}+F_{ii}) = K + \sum_{ i= 1}^{ n} (F_i)^2 .\\
+		\end{cases}
+	\end{align*}
+\item Use above to prove that the metric $ g_{ij}$ has constant curvature $ K$ iff
+	 \begin{align*}
+		F= G_1(x_1) + G_2(x_2) + \cdots + G_n(x_n),
+	\end{align*}
+	where $ G_i(x_i) = ax_i^2+b_i x_i + c_i$ and $ K = \sum_{ i= 1}^{ n} (4c_ia -b_i^2)$.
+\item Put $ a = \frac{K}{4}, b_i =0, c_i =\frac{1}{n}$ and obtain the formula of Riemann
+	\begin{align*}
+		g_{ij} = \frac{\delta_{ij}}{ \left( 1+\frac{K}{4} \norm{ x}^2  \right) ^2}
+	\end{align*}
+	for a metric $ g_{ij}$ of constant curvature $ K$ ( $ \norm{ \cdot } $ here denotes Euclidean norm). If $ K<0$ then metric  $ g_{ij}$ is defined in a ball of radius $ \sqrt{ \frac{4}{-K}} $.
+\item If $ K>0$, the metric is defined on all of  $ \rr^{n}$. Show that such a metric on $ \rr^{n}$ is not complete.
+\end{enumerate}
+\end{problem}
+\begin{proof}
+\begin{enumerate}[label=(\alph*)]
+	\item We compute
+	\begin{align*}
+		f_i = \frac{F_i}{ F}, \quad f_{ij} = -\frac{F_iF_j}{ F^2} + \frac{F_{ij} }{ F}.
+	\end{align*}
+	Based on the formula from book, if any three indices are distinct, then by Chapter 4 Corollary 3.5, constant sectional curvature is equivalent to
+	\begin{align*}
+		0= R_{ijk\ell} &= R_{ijk}^{s \ell} g_{s \ell} \\
+		&= -\delta_{is}(-f_k f_j - f_{kj}) g_{i\ell} + \delta_{js}(f_if_k+f_{ki})g_{j\ell}  \\
+		&= -\frac{1}{F^2}(-F_k F_j + F_kF_j - F F_{kj}) \frac{\delta_{i \ell}}{ F^2} + \frac{1}{F^2}(F_iF_k- F_i F_k+F F_{ki}) \frac{\delta_{j\ell}}{ F^2}  \\
+		&= \frac{ \delta_{i \ell}F_{kj}} {F^3} - \frac{ \delta_{j\ell}F_{ki}}{F^3}  .
+	\end{align*}
+	Since $ F \neq 0$, it follows that  $ F_{ij} =0$ as long as $ i \neq j$. Thus we establish equivalence for the first equation.
+
+	The second equivalence is a straightforward computation using formula from book:
+	\begin{align*}
+		K &= \left( - \sum_{\ell} \frac{F_\ell^2}{ F^2} + \frac{F_i^2}{ F^2} + \frac{F_j}{ F^2} - \frac{F_i^2}{ F^2} + \frac{F_{ii} }{ F} - \frac{F_j^2}{ F^2} + \frac{F_{jj}}{ F}  \right)F^2\\
+	F(F_{jj} + F_{ii} )	&= K + \sum_{\ell} F_{\ell}^2 .
+	\end{align*}
+\item The second partial is zero for $ i \neq j$ iff there are no cross terms in  $ F$ by basic Calculus.  Due to this fact and the fact that partials commute in $ \rr^{n}$, $ (F_{ii})_j = (F_{ij})_i =0$ whenever $ i \neq j$. This is equivalent to $ F_{ii} = F_{jj}$ being constants which we call $ 2a$. Then calculus gives that $ G_i(x_i) = a x_i^2 + b_i_ x_i + c_i$. And the second equation therefore is equivalent to $ K = \sum_{ i= 1}^{ n} (4 c_i a - b_i^2)$.   
+\item This is obvious.
+\item Given any point $ x \in \rr^{n}$, let $ \gamma(t) = tx$ so $ \gamma'(t) = x$. Then the distance between the origin $ 0$ and  $ x$ is upper-bounded by the length of this path:
+\begin{align*}
+	\int_{ 0}^{ 1} \sqrt{g_{ \gamma(t)}( \gamma'(t), \gamma'(t))} dt &=  \int_0^1 \frac{ \norm{  x}  }{ 1+ \frac{K}{4} \norm{ t x}^2   } dt \\
+	&= \frac{4}{K \norm{ x} } \int_{ 0}^{ 1} \frac{1}{ \left( \frac{2}{\sqrt{K} \norm{ x} } \right)^2  +  t^2} dt  \\
+	&= \frac{4}{K\norm{ x} } \frac{\sqrt{K} \norm{ x}  }{2 } \arctan \left( \frac{\sqrt{K} \norm{ x} t}{2} \right)\bigg|_{0}^1   \\
+	&= \frac{2}{\sqrt{K} } \arctan\left( \frac{\sqrt{K} \norm{ x}  }{ 2}  \right)  \\
+	&< \frac{2}{\sqrt{K} } \frac{\pi}{ 2}  \\
+	&= \frac{\pi}{ \sqrt{K} }   .
+\end{align*}
+	Now consider the harmonic series $ (x_n) = \left(\sum_{ i= 1}^{ n} \frac{1}{n},0,\ldots,0\right)$. The series is Cauchy because the distance between any element and origin has the same upper bound, and the sequence is monotone increasing in the first entry so as a consequence of Monotone Convergence Theorem, the distance between any two elements $ x_n, x_m$ must be less than any given $ \epsilon$ when $ n,m$ is large enough. However, the series diverges to $ \infty$ so Cauchy sequence does not converge in $ \rr^{n}$, and thus the metric is not complete.
+\end{enumerate}
+\end{proof}
+\end{document}

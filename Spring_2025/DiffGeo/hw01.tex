@@ -1,0 +1,84 @@
+\documentclass[12pt]{article}
+\input{../preamble.tex}
+
+\begin{document}
+\centerline {\textsf{\textbf{\LARGE{Homework 1}}}}
+\centerline {Jaden Wang}
+\vspace{.15in}
+\begin{problem}[4.1]
+Show $ S^{n}$ is a smooth manifold.
+\end{problem}
+\begin{proof}
+First, $ S^{n}$ can be embedded in $ \rr^{n+1}$ and therefore is Hausdorff. Its topology is the subspace topology induced by $ \rr^{n+1}$ and therefore second-countable. Now we show it admits a smooth atlas.
+
+Let $ U_N := S^{n} - N$ and $ U_S = S^{n} - S$ be the open sets of $ S^{n}$ with north pole $ N$ and south pole $ S$ (arbitrary antipodal pair) removed, respectively. They together cover $ S^{n}$. Let $ \phi_N: U_N \to \rr^{n}$ be the stereographic projection onto $ x_{n+1} =0$ by embedding $ S^{n}$ in $ \rr^{n+1}$ as the unit sphere with $ N$ at $ (0,\ldots,0,1)$. That is, given any point $ p = (p_1, \ldots, p_n, p_{n+1}) \in S^{n}$, let $ \overline{p} = (p_1,\ldots,p_n)$, then by similar triangles we conclude $ \phi_N (p) = \frac{\norm{ \overline{p}} }{ 1-p_{n+1}} \frac{\overline{p}}{ \norm{ \overline{p}} } = \frac{ \overline{p} }{ 1- p_{n+1}}$. Since $ p_{n+1}<1$, $ \phi_N$ is a composition of smooth maps and therefore smooth. Given a point $ q \in \rr^n$ identified with the 0-plane, using the same similar triangle relation we can obtain $ \psi_N: \rr^{n} \to U_N, q \mapsto \left( \frac{2q}{\norm{ q}^2+1 }, \frac{\norm{ q}^2 -1 }{ \norm{ q}^2 +1} \right) $. Again $ \psi_N$ is smooth. We observe
+\begin{align*}
+	\phi_N \circ \psi_N(q) &= \phi_N \left( \left( \frac{2q}{\norm{ q}^2+1 }, \frac{\norm{ q}^2 -1 }{ \norm{ q}^2 +1} \right)\right)\\
+	&= \frac{ \norm{ q}^2+1 }{ 2} \frac{2q}{\norm{ q}^2+1 }  \\
+	&= q .
+\end{align*}
+The other direction is similar. Thus $ \phi_N$ is a diffeomorphism. We can similarly show that $ \phi_S: U_S \to \rr^{n}, p \mapsto \frac{\overline{p}}{1+p_{n+1} }$ is a diffeomorphism. Then we have found two charts that cover  $ S^{n}$. Given a point $ p \in S^{n}\setminus \{N,S\} $ and set $ q = \phi_N(p)$, we see that
+\begin{align*}
+	\phi_S \circ \phi_N^{-1}(q) &=  \phi_S \left( \left( \frac{2q}{\norm{ q}^2+1 }, \frac{\norm{ q}^2 -1 }{ \norm{ q}^2 +1} \right)\right)\\
+				    &= \frac{ \norm{ q}^2 +1 }{2 \norm{ q}^2 } \frac{2q}{ \norm{ q}^2+1 } \\
+				    &= \frac{q}{\norm{ q} } .
+\end{align*}
+Since $ q$ cannot be the image of  $ S$,  $ q \neq 0$, making the transition function well-defined and thus smooth. The other direction is similar. Thus we have found a smooth atlas for  $ S^{n}$.
+\end{proof}
+
+\begin{problem}[4.2]
+Show $ \rr P^{n}$ is a smooth manifold.
+\end{problem}
+\begin{proof}
+Define $ \rr P^{n}$ to be the lines in $ \rr^{n+1}$ that go through the origin, which is a quotient space of $ \rr^{n+1} \setminus \{0\} $. There is an obvious diffeomorphism between this quotient space and $ S^{n}$ with antipodal points identified, which then is diffeomorphism to the upper hemisphere $ D^{n}$ with antipodal boundary points identified. Thus we use these three constructions of $ \rr P^{n}$ interchangeably. We claim this quotient map is an open map because $ S^{n}$ is a double-cover of $ \rr P^{n}$ and any covering map is open. Given any two distinct points in the upper hemisphere, since $ S^{n}$ is Hausdorff we can choose two disjoint open sets of $ S^{n}$ that separate them, and shrink them if necessary (only occurs when an open set crosses the equator) so that their quotient images are disjoint as well. Since the quotient map is an open map, we obtain the two disjoint open sets for the Hausdorff property. Open map also immediately induces a countable basis from $ S^{n}$ so that $ \rr P^{n}$ is second-countable. Now we show it admits a smooth atlas.
+
+We denote the equivalent classes of $ \rr P^{n}$ using $ [x_0:\cdots :x_n]$. Since we remove the origin, any representative must have at least one nonzero coordinate. Let $ U_j = \{[x_0:\cdots :x_n]: x_j \neq 0\} $. Clearly $ \{U_j\}_{j=0}^{n}$ covers $ \rr P^{n}$. Define $ \phi_j: U_j \to \rr^{n}, [x_0: \cdots : x_n] \mapsto \left(\frac{x_0}{x_j},\ldots,\frac{x_{j-1}}{x_j}, \frac{x_{j+1}}{ x_j},\ldots, \frac{x_n}{ x_j}\right)$. It is clear that this is well-defined on the equivalent classes and is a smooth map. Define $ \psi_j: \rr^{n} \to U_j, (y_0,\ldots,y_n) \mapsto [y_0: \cdots : y_{j-1}:1:y_{j+1}: \cdots :y_n]$ which is also smooth. It is straightforward to check that they are inverses so $ (U_j, \phi_j)$ is a chart. If $ x \in U_j \cap U_k$, meaning that $ x_j,x_k \neq 0$, and $ y = \phi_k(x) = \left( \frac{x_0}{x_k},\ldots, \frac{x_{k-1}}{ x_k}, \frac{x_{k+1}}{ x_k},\ldots, \frac{x_n}{ x_k} \right) $, then the transition map is (WLOG $ j<k)$
+\begin{align*}
+	\phi_j \circ \phi_k^{-1}(y) &= \phi_j \left( \left[ \frac{x_0}{x_k}:\cdots : \frac{x_{k-1}}{ x_k}:1: \frac{x_{k+1}}{ x_k}:\cdots: \frac{x_n}{ x_k}  \right]  \right)  \\
+	&= \left( \frac{x_0}{x_j x_k},\ldots, \frac{x_{j-1}}{ x_j x_k}, \frac{x_{j+1}}{ x_j x_k},\ldots, \frac{x_{k-1}}{ x_j x_k}, \frac{1}{ x_j}, \frac{x_{k+1}}{x_j x_k},\ldots, \frac{x_n}{x_j x_k}\right).
+\end{align*}
+This is a smooth map. Therefore, $ \{(U_j, \phi_j)\}_{j=0}^{n} $ is a smooth atlas of $ \rr P^{n}$.
+\end{proof}
+
+\begin{problem}[4.3]
+Show that any open subset $ O$ of a smooth manifold $ M$ is a smooth manifold.
+\end{problem}
+\begin{proof}
+Hausdorff and second-countable properties are inherited by subspaces. The smooth atlas is now restricted to the open set, \emph{i.e.} if $ \mathcal{ A} = \{(U_j, \phi_j)\}_{j \in J} $ is an atlas of $ M$, then  $ \{U_j \cap O, \phi_j|_{U_j \cap O}\}_{j \in J} $ is an atlas of $ O$. Note that this only works for open subset because the image of $ \phi_j$ is guaranteed to be an open subset of the Euclidean space; otherwise $ \phi_j|_{U_j \cap O}$ might not be a chart.
+\end{proof}
+\begin{problem}[4.4]
+Show that the space of $ m \times n$ matrices is a smooth manifold, and so is the general linear group $ GL(n)$.
+\end{problem}
+\begin{proof}
+By endowing $ \rr^{m \times n}$ with the topology of $ \rr^{mn}$, it immediately becomes a smooth manifold under the identity chart. Since $ GL(n) = \det^{-1}\left(\rr\setminus \{0\} \right) \subseteq \rr^{m\times n} $, $ \rr \setminus \{0\} $ is open, and $ \det $ is a continuous map, $ GL(n)$ is an open subset of  $ \rr^{n\times n}$ and therefore a smooth manifold per previous exercise.
+\end{proof}
+
+\begin{problem}[4.6]
+Show that the notion of smoothness of a function $ f: M \to N$ is well-defined, \emph{i.e.} independent of the choice of local charts.
+\end{problem}
+\begin{proof}
+Recall that $ f:M \to N$ is smooth iff for every $ p \in M$, there exist smooth charts $ (U,\psi)$ of $ M$ containing $ p$ and $ (V,\phi)$ of $ N$ containing $ f(p)$ s.t.\ $ f(U) \subseteq V$ and $ \phi \circ f \circ \psi ^{-1}: \psi(U) \subseteq \rr^{n} \to \rr^{n}$ is smooth. Suppose we have another such pair of charts $ (U',\psi')$ and $ (V',\phi')$, then 
+\begin{align*}
+	\phi' \circ f \circ \psi' ^{-1} &= \phi' \circ \phi ^{-1} \circ \phi \circ f \circ \psi ^{-1} \circ \psi \circ  \psi'^{-1} \\
+	&= (\phi' \circ \phi ^{-1}) \circ (\phi \circ f \circ \psi^{-1}) \circ (\psi \circ  (\psi')^{-1})  .
+\end{align*}
+Since transition maps are smooth and the middle map is smooth by assumption, the composition is smooth. That is, smoothness of $ f$ is independent of charts.
+\end{proof}
+
+\begin{problem}[0.1(a)]
+	Let $ M^{m},N^{n}$ be smooth manifolds and  $ \{(U_{ \alpha}, \phi_{ \alpha})\}, \{(V_{ \beta}, \psi_{ \beta}\} $ be their smooth structures respectively. Consider $ M \times N$ and $ \zeta_{ \alpha \beta} = (\phi_{ \alpha}, \psi_{ \beta})$. Prove that $ \{(U_{ \alpha} \times V_{ \beta}, \zeta_{ \alpha \beta})\} $ is a smooth structure on $ M \times N$ where the projections $ \pi_1 : M \times N \to M$ and $ \pi_2 : M \times N \to N$ are smooth.
+\end{problem}
+\begin{proof}
+First, it is clear that $ \{U_{ \alpha} \times V_{ \beta}\} $ covers $ M \times N$. Moreover, $ \zeta_{ \alpha \beta} : U_{ \alpha} \times V_{ \beta} \to \rr^{m} \times \rr^{n} \cong  \rr^{mn}$ is clearly a diffeomorphism. The transition map is smooth because the transition map in each component is smooth. Thus $ \{(U_{ \alpha} \times V_{ \beta}, \zeta_{ \alpha \beta})\} $ is a smooth atlas of the product manifold $ M \times N$. 
+
+FIX: use explicit local coordinates. show projection maps are smooth.
+
+Given any chart $ (U_{ \alpha} \times V_{ \beta}, \zeta_{ \alpha \beta})$ and $ (p,q) \in U_{ \alpha} \times V_{ \beta}$, set $ (x,y) = \zeta_{ \alpha \beta}(p,q) = (\phi_{ \alpha}(p), \psi_{ \beta}(q))$. The composition
+\begin{align*}
+	\phi_{ \alpha} \circ \pi_1 \circ \zeta_{ \alpha \beta}^{-1} (x,y) &= \phi_{ \alpha} (p) \\
+	&= x \\
+	&= \pi'_1(x,y) 
+\end{align*}
+is smooth since the Euclidean projection map $ \pi'_1$ is smooth. The other projection is similar.
+\end{proof}
+\end{document}

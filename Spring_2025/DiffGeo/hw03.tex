@@ -1,0 +1,115 @@
+\documentclass[12pt]{article}
+\input{../preamble.tex}
+
+\begin{document}
+\centerline {\textsf{\textbf{\LARGE{Homework 3}}}}
+\centerline {Jaden Wang}
+\vspace{.15in}
+
+\begin{problem}[LN12 0.1.1]
+Show that the antipodal reflection $ a: S^{n} \to S^{n}$, $ a(x) = -x$ is an isometry. 
+\end{problem}
+\begin{proof}
+The antipodal reflection is clearly smooth and has itself as the smooth inverse, and therefore is a diffeomorphism. For any $ p \in S^{n}, v \in T_pS^{n}$, and any smooth curve $ \gamma: (- \epsilon, \epsilon) \to S^{n}$ s.t.\ $ \gamma(0) =p, \gamma'(0) = v$, its derivative is
+\begin{align*}
+	da_p(v) &= \left( a \circ \gamma \right) '(0)\\
+	&= (-\gamma)'(0) \\
+	&= - \gamma'(0) \\
+	&= - v .
+\end{align*}
+For any Riemannian metric $ g$ on  $ S^{n}$ and any $ p \in S^{n}$, we have
+\begin{align*}
+	g_p(da_p(v),da_p(w)) &= g_p(-v,-w) \\
+			     &= -g_p(v,-w) && \text{bilinearity}  \\
+	&= g_p(v,w) ,
+\end{align*}
+which proves that it is an isometry.
+\end{proof}
+
+\begin{problem}[LN12 0.2.1]
+Show that inversion $ i: \rr^{n}\setminus  \{0\} \to \rr^{n} $ given by $ i(x) = \frac{x}{\norm{ x} ^2}$ is a conformal transformation.
+\end{problem}
+\begin{proof}
+Let $ M = \rr^{n}\setminus \{0\} $. Given $ p \in M, v \in T_pM $, and $ \gamma: (- \epsilon, \epsilon) \to M $ s.t.\ $ \gamma(0) = p$ and $ \gamma'(0) = v$, we compute the derivative at $ p$:
+\begin{align*}
+	di_p(v) &= (i \circ \gamma)'(0)\\
+		&= \left( \frac{\gamma}{ \norm{ \gamma}^2 } \right)'(0)\\
+		&= \left( \frac{ \gamma' \norm{ \gamma}^2 - 2 \gamma \langle \gamma, \gamma' \rangle}{ \norm{ \gamma}^{4}  } \right)(0) && \text{quotient rule}  \\
+		&= \frac{\norm{ p}^2 v - 2 p \langle p,v \rangle}{ \norm{ p}^{4}  } .
+\end{align*}
+ Given $ v,w \in T_pM$, we have
+ \begin{align*}
+	 g_p ( di_p(v),di_p(w) )&= \langle \frac{\norm{ p}^2 v - 2p \langle p,v \rangle}{ \norm{ p}^{4}  }, \frac{\norm{ p}^2 w - 2 p \langle p,w \rangle }{ \norm{ p}^{4}  }\rangle \\
+	 &=  \frac{ \langle v,w \rangle}{\norm{ p}^4 } - \frac{4 v^{T}pp ^{T} w}{ \norm{ p}^{6} } + \frac{4 v^{T}p(p ^{T}p)p ^{T}w}{ \norm{ p}^{8} }\\
+	 &=  \frac{ \langle v,w \rangle}{\norm{ p}^4 } - \frac{4 v^{T}pp ^{T} w}{ \norm{ p}^{6} } + \frac{4 v^{T}pp ^{T}w}{ \norm{ p}^{6} }\\
+	 &= \frac{\langle v,w \rangle}{ \norm{ p}^{4} } .
+ \end{align*}
+
+Then the angle $ \theta(di_p(v),di_p(w))$ between $ di_p(v),di_p(w)$ is
+\begin{align*}
+	\theta(di_p(v),di_p(w)) &= \arccos \left( \frac{g_p ( di_p(v),di_p(w) ) }{ g_p(di_p(v),di_p(v))^{\frac{1}{2}} g_p(di_p(w),di_p(w))^{\frac{1}{2}}} \right) \\
+	&= \arccos \left( \frac{ \frac{\langle v,w \rangle}{ \norm{ p} ^{4}}}{ \frac{\norm{ v} \norm{ w}  }{ \norm{ p}^{4} }  } \right)  \\
+	&= \arccos \left( \frac{\langle v,w \rangle}{ \norm{ v} \norm{ w} } \right)  \\
+	&= \arccos \left( \frac{g_p(v,w)}{ g_p(v,v)^{\frac{1}{2}} g_p(w,w)^{\frac{1}{2}}} \right)  \\
+	&= \theta(v,w) .
+\end{align*}
+That is, $ i$ is conformal.
+\end{proof}
+
+\begin{problem}[LN12 0.2.3]
+Show that the Poincar\'e half-plane and disk are isometric.
+\end{problem}
+\begin{proof}
+Translating the half-plane up by 1 to get $ H = \{(x,y) \in \rr^2:y >1\} $ is clearly an isometry. Let $ D = \{(x,y): x^2+(y-0.5)^2 < 0.25 \} $ be the open disk centered at $ (0,0.5)$ with radius  $ 0.5$. Inversion is a composition of smooth maps and thus smooth. First we show that the inversion map is a dffeomorphism between $ H$ and $ D$. Given  $ p=(x,y) \in H$, observe
+\begin{align*}
+	\norm{ \frac{p}{\norm{ p}^2 } - \begin{pmatrix} 0\\ \frac{1}{2} \end{pmatrix} }^2 &= \norm{ \begin{pmatrix} \frac{x}{x^2+y^2} \\ \frac{2y - (x^2+y^2)}{ 2(x^2+y^2)} \end{pmatrix} } ^2 \\ 
+	&= \frac{4x^2 + 4y^2 -4(x^2+y^2)y +(x^2+y^2)^2}{ 4(x^2+y^2)^2 } \\
+	&= \frac{1}{4} + 4(x^2+y^2)(1-y) \\
+	&< \frac{1}{4}  
+\end{align*}
+since $ y>1$. Thus the restricted inversion $ i: H \to D$ is well-defined and remains smooth. I claim that its inverse is itself, which we name $ j:D \to H$ due to differences in domain and codomain. We check $ j$ is well-defined: if we have $ p=(x,y) \in D$, then
+\begin{align*}
+	x^2 + (y-0.5)^2 = x^2+y^2-y + \frac{1}{4} &< \frac{1}{4}\\
+	y &> x^2 + y^2\\
+	\frac{y}{x^2+y^2} &> 1 && p \neq 0\\
+	y_{j(p)} & >1.
+\end{align*}
+Since it is clear that $ i \circ j(p) = j \circ i (p) = p $, inversion is a diffeomorphism. Now endow $ H$ and $ D$ with the modified metrics $ g$ and $ h$ respectively, where $ g_p(v,w) = \frac{\langle v,w \rangle}{ (y-1)^2}$ and $ h_p(v,w) = \frac{\langle v,w \rangle}{ (0.25 - \norm{ p-(0,0.5)}^2 )^2}$ due to the translation and scaling of the plane and disk. We observe
+\begin{align*}
+	h_{i(p)}(di_p(v),di_p(w)) &= \frac{\langle di_p(v),di_p(w) \rangle}{ (0.25-\norm{i(p) - (0,0.5)}^2)^2} \\
+	&= \frac{\langle v,w \rangle}{ \norm{ p}^{4} (0.25-\norm{ \frac{p}{\norm{ p}^2 } - (0,0.5)}^2 )^2 } \\
+&= \frac{\langle v,w \rangle}{ \norm{ p}^{4} \left( 0.25- \frac{1-y}{\norm{ p}^2} -0.25 \right) ^2 } \\
+	&= \frac{\langle v,w \rangle}{ (y-1)^2} \\
+	&= g_p(v,w) .
+\end{align*}
+Hence $ (H,g)$ and  $ (D,h)$ are isometric.
+\end{proof}
+
+\begin{problem}[LN12 0.3.1]
+Compute the metric of $ S^2$ in terms of spherical coordinates $ \theta$ and $ \phi$.
+\end{problem}
+The parametric equation is $ f(\theta,\phi) = (\cos \theta \sin \phi, \sin \theta \sin \phi, \cos \phi)$. Then
+\begin{align*}
+	\frac{\partial f}{\partial \theta} &= (-\sin \theta \sin \phi, \cos \theta \sin \phi, 0) \\
+	\frac{\partial f}{\partial \phi} &= (\cos \theta \cos \phi, \sin \theta \cos \phi, -\sin \phi) . 
+\end{align*}
+Since $ S^2$ is endowed with the ambience Euclidean metric $ \langle \cdot , \cdot  \rangle$, the pullback metric on the parameter space is $ g_{ij} = \langle \frac{\partial f}{\partial x_i}, \frac{\partial f}{\partial x_j}  \rangle$, which is
+\begin{align*}
+	G(\theta,\phi) &= \begin{pmatrix} \sin^2 \theta \sin^2\phi + \cos^2\theta \sin^2\phi & 0\\ 0& \cos^2\theta\cos^2\theta+\sin^2\theta\cos^2\phi+\sin^2\phi \end{pmatrix} \\
+	  &= \begin{pmatrix} \sin^2\phi&0\\0& 1 \end{pmatrix}   .
+\end{align*}
+
+\begin{problem}[LN12 0.4.1]
+Compute the length of the radius of the Poincar\'e disk (with respect to the Poincar\'e metric).
+\end{problem}
+Consider the unit open disk $ D$ with the metric $ g_p(v,w) = \frac{\langle v,w \rangle}{ (1-\norm{ p}^2 )^2}$ and the curve $ \gamma: [0,1) \to D, t\mapsto (0,t)$ which traces out the radius. Then
+\begin{align*}
+	L[ \gamma] &= \int_{ 0}^{ 1} g_{ \gamma(t)}( \gamma'(t), \gamma'(t))^{\frac{1}{2}} dt\\ 
+	&= \int_{ 0}^{ 1} g_{ \gamma(t)}((0,1),(0,1))^{\frac{1}{2}} dt\\
+	&= \int_{ 0}^{ 1} \frac{1}{ 1- \norm{ (0,t)}^2 } dt \\
+	&= \int_{ 0}^{ 1} \frac{1}{1-t^2 } dt \\
+	&= \int_{ 0}^{ 1} \frac{dt}{1-t} + \int_{ 0}^{ 1} \frac{dt}{ 1+t}   \\
+	&= (\ln |1-t| + \ln |1+t|)\bigg|_0^1 ,
+\end{align*}
+which diverges. Thus loosely speaking, the radius is infinite. 
+\end{document}

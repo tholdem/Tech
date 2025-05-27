@@ -1,0 +1,122 @@
+\documentclass[12pt]{article}
+\input{../preamble.tex}
+
+\begin{document}
+\centerline {\textsf{\textbf{\LARGE{Homework 5}}}}
+\centerline {Jaden Wang}
+\vspace{.15in}
+\begin{problem}[LN14 0.17]
+Let $ \gamma: I \to M$ be an immersed smooth curve. For every $ X_0 \in T_{ \gamma(t_0)} M$, define $ P_{ \gamma, t_0, t} : T_{ \gamma(t_0) } M \to T_{ \gamma(t)} M$ be the parallel transport of $ X_0$ along $ \gamma$ to $ T_{ \gamma(t)}M$ and let $ X(t) = P_{\gamma, t_0, t}(X_0)$. Show that $ P_{ \gamma,t_0,t}$ is an isomorphism. Also show that $ P_{ \gamma, t_0, t}$ depends on the choice of $ \gamma$.
+\end{problem}
+\begin{proof}
+Theorem 0.16 says that for any $ t_0 \in I$, parallel transport of $ X_0$ along $ \gamma$ is unique. Fix $ t_0,t \in I$. Recall that if $ X$ is a parallel transport of  $ X_0$ along $ \gamma$, then $ D_{ \gamma} X = \nabla _{ \gamma'} X \equiv 0$. Let $ a \in \rr$ and $ Y \in \mathfrak{X}(M)$. By definiton of a connection, we have 
+\begin{align*}
+	\nabla_{ \gamma'} (a X+Y) &= \nabla _{ \gamma'} (a X) + \nabla _{ \gamma'} Y && \text{additivity}  \\
+							  &= 0 + a \nabla _{ \gamma''}X + \nabla _{ \gamma'} Y. && \text{Leibniz rule} 
+\end{align*}
+Thus, $ D_{ \gamma}: \mathfrak{X}( \gamma) \to \mathfrak{X}( \gamma) $ is a linear map.  
+
+Now we show that $ P_{\gamma, t_0, t}$ is a linear map. Let $ X_0,Y_0 \in T_{ \gamma(t_0)}$, and let $ X,Y$ be the parallel transport vector fields. Notice that $ (aX+Y)(t_0) = aX_0 + Y_0$, and
+\begin{align*}
+	D_{ \gamma}(aX+bY) = a D_{ \gamma}X +  D_{ \gamma}Y \equiv 0.  
+\end{align*}
+Therefore, $ aX+Y$ is the unique parallel transport vector field of  $ aX_0 + Y_0$ along $ \gamma$. Then
+\begin{align*}
+	P_{\gamma, t_0, t}(aX_0+bY_0) = (aX+bY)(t) = aX(t)+bY(t),
+\end{align*}
+which proves linearity.
+ 
+By uniqueness of parallel transport, $ X$ is both the unique parallel transport of $ X_0$ and $ X(t)$ along  $ \gamma$. Then it is straightforward to check that the inverse is $ P_{\gamma, t_0, t}^{-1} := P_{\gamma, t, t_0}$. This implies that $ P_{\gamma, t_0, t}$ is a linear isomorphism.
+
+The dependence on the choice of $ \gamma$ is clear from the definition of $ D_{ \gamma} X$. As an example, parallel transport on great circles in $ S^2$ keeps the angle between the arc and vectors the same. But it does not do so for generic arcs, such as longitudinal arcs that are not the equator. Otherwise, we would have been able to comb a hairy ball, a contradiction. For an argument that doesn't involve hairy ball theorem, see Problem 3.5.
+\end{proof}
+\begin{problem}[LN14 0.18]
+Show that
+\begin{align*}
+	\nabla _{ \gamma'(t_0)} X = \lim_{ t \to t_0} \frac{X_{ \gamma(t_0)} - P_{ \gamma, t_0,t}^{-1} (X_{ \gamma(t)})}{ t}.
+\end{align*}
+(I think the equation is off by a sign.)
+\end{problem}
+\begin{proof}
+Choose a basis on $ T_{ \gamma(t_0)} M$ and let $ E_i(t)$ be the parallel transported basis, \emph{i.e.} they form a basis of $ T_{ \gamma(t)}M$. Since they are parallel, $ D_{ \gamma} E_i \equiv 0$. Then $ X(t)$ can be written as
+ \begin{align*}
+	 X(t) := X ( \gamma(t)) = X^{i}( \gamma(t)) E_i( \gamma(t)),
+\end{align*}
+where sum is implicit in Einstein notation. Then
+\begin{align*}
+	D_{ \gamma} X &= \nabla _{ \gamma'} X \\
+	&= \nabla _{ \gamma'} \left( X^{i} E_i \right)  \\
+	&= (X^{i} \circ \gamma)' E_i + X^{i} \nabla_{ \gamma'} E_i \\
+	&= (X^{i} \circ \gamma)' E_i + X^{i} D_{ \gamma} E_i \\
+	&= ((X \circ \gamma)')^{i} E_i .
+\end{align*}
+Since $ \lim_{ t \to t_0} E_i( \gamma(t)) = E_i( \gamma(t_0)) $, we have
+\begin{align*}
+	\lim_{ t \to t_0} \frac{X_{ \gamma(t_0)} - P_{ \gamma, t_0,t}^{-1} (X_{ \gamma(t)})}{ t} &= \lim_{ t \to t_0} \frac{X^{i}( \gamma(t_0)) E_i( \gamma(t_0)) - X^{i}( \gamma(t)) E_i( \gamma(t))}{t }  \\
+	&= \left( \lim_{ t \to t_0} \frac{X^{i}( \gamma(t_0)) - X^{i}( \gamma(t) ) )}{t}  \right)  E_i( \gamma(t_0)) \\
+	&= ((X \circ \gamma)')^{i}(t_0) E_i( \gamma(t_0))  \\
+	&= D_{ \gamma(t_0)} X \\
+	&= \nabla_{ \gamma'(t_0)} X .
+\end{align*}
+\end{proof}
+\begin{problem}[Do Carmo 3.3]
+Let $ f: M^{n} \to \overline{M}^{n+k}$ be a smooth immersion of $ M$ into Riemannian manifold  $ (\overline{M}, \overline{g})$ so that $ M$ has the pullback metric  $ g$. Let  $ p \in M$ and $ U$ a neighborhood of  $ p$ s.t.\ $ f(U)$ is a submanifold of  $ \overline{M}$. Suppose $ X,Y$ are smooth vector fields on  $ f(U)$ which extends to  $ \overline{X},\overline{Y}$ on an open set $ V$ of $ \overline{M}$. Define $ \nabla _X Y (p) = \left( \overline{ \nabla }_{ \overline{X}} \overline{Y} \right)^{T} (p) $, where $ \overline{\nabla }$ is the Riemannian connection of $ \overline{M}$ and $ ^{T}$ denotes the tangent component of a vector field. Prove that $ \nabla $ is the Riemannian connection of $ M$.
+\end{problem}
+\begin{proof}
+First we will make sense of why $ \nabla $ is a connection on $ M$ even though it is defined on  $ f(U)$. Since connection is a local notion, it suffices to define it on an open neighborhood of each point on $ M$. Since $ f$ is an immersion, by the Rank Theorem we can choose local charts  $ U$ and  $ V$ so that  $ f$ is injection into the first  $ n$ coordinates. This means that  $ Df$ acts as identity on basis vectors  $ \frac{\partial }{\partial x_i} $, so we can identify vector fields and connection on $ f(U)$ with those on  $ U$.
+
+	We want to show that $ \nabla $ is symmetric and compatible with $ g$.  Since $ f$ is an immersion, we know that  $\left\{ \frac{\partial f}{\partial x_i}(p) \right\}_{i=1}^{n} $ spans an $ n$-dimensional subspace of  $ T_p f(U)$. The tangent component of a vector field in $ V$ is exactly the part restricted to this subspace. In local coordinates of $ V$ with basis $ \{E_i\}_{i=1}^{n+k} $, WLOG let the first $ n$ basis elements be  $ \frac{\partial f}{\partial x_i} $, we have $ \overline{X}^{T} = \left(\sum_{ i= 1}^{ n+k} \overline{X}^{i} E_i \right)^{T} =  \sum_{ i= 1}^{ n} X^{i} \frac{\partial f}{\partial x_i}  $. Then, $ \nabla _X Y(p)$ in this local coordinates is simply defined by removing the extra $ k$ basis elements with the associated Christoffel symbols:
+	\begin{align}
+		\nabla _X Y &= \left( \sum_{ \ell = 1}^{ n+k} \left( \overline{Y}(\overline{X}^{ \ell}) + \sum_{ i= 1}^{ n+k} \sum_{ j= 1}^{ n+k} \overline{X}^{i} \overline{Y}^{j} \Gamma_{ij}^{ \ell} \right) E_{ \ell} \right)^{T}   \\
+		&= \sum_{ \ell = 1}^{ n} \left(Y(X^{ \ell}) + \sum_{ i= 1}^{ n} \sum_{ j= 1}^{ n} X^{i} Y^{j} \Gamma_{ij}^{ \ell} \right) \frac{\partial f}{\partial x_{ \ell}}\\
+		&= \overline{\nabla } _{\overline{X}^{T}} \overline{Y}^{T} .
+	\end{align}
+The key here is that the Christoffel symbols of $ \nabla $ still inherits $ \Gamma_{ij}^{ \ell} = \Gamma_{ji}^{ \ell}$ from $ \overline{ \nabla }$. Therefore, $ \nabla $ is symmetric.
+
+The pullback metric $ g$ is defined to be  $ \overline{g}$ applying to the pushforward of vector fields. Since we can identify vector fields of $ U$ and  $ f(U)$, $ g$ is precisely restricting  $ \overline{g}$ to tangent component of vector fields:
+\begin{align}
+	g(X,Y) &= \overline{g}(f_*(X),f_*(Y))\\
+	&= \overline{g}\left( \overline{X}^{T}, \overline{Y}^{T} \right)  ,
+\end{align}
+where we use the identification of $ f_*(X) = X = \overline{X}^{T}$. Since $\overline{\nabla }$ is compatible with $ \overline{g}$, we have
+\begin{align*}
+	\overline{Z}^{T} \overline{g}(\overline{X}^{T},\overline{Y}^{T}) &= \overline{g}(\overline{\nabla}_{ \overline{Z}^{T}} \overline{X}^{T},\overline{Y}^{T}) + \overline{g}(\overline{X}^{T}, \overline{\nabla }_{ \overline{Z}^{T}} \overline{Y}^{T}) \\ 
+	Z g(X,Y)&= g(\nabla _Z X, Y) + g(X, \nabla _Z Y) 
+\end{align*}
+using Equations (3) and (5). Thus $ \nabla $  is compatible with $ g$. Hence  $ \nabla $ is a Riemannian metric of $ M$.
+
+\end{proof}
+
+\begin{problem}[Do Carmo 3.4]
+Let $ M^2 \subseteq \rr^3$ be a surface in $ \rr^3$ with the induced Riemannian metric. Let $ c: I \to M$ be a smooth curve on $ M$ and let  $ V$ be a vector field tangent to  $ M$ along  $ c$;  $ V$ can be thought of as a smooth function  $ V: I \to \rr^3$, with $ V(t) \in T_{c(t)}M$.
+\begin{enumerate}[label=(\alph*)]
+	\item Show that $ V$ is parallel iff  $ V'$ is perpendicular to  $ T_{c(t)}M \subset \rr^3$. (A better notation is to call $ V$  $ \overline{V}$ and define $ V:= \overline{V} \circ c$ instead).
+	\item If $ S^2 \subset \rr^3$ is the unit sphere of $ \rr^3$, show that the velocity field along great circles, parametrized by arc length, is a parallel field. A similar arugment holds for $ S^{n} \subseteq \rr^{n+1}$.
+\end{enumerate}
+\end{problem}
+\begin{proof}
+\begin{enumerate}[label=(\alph*)]
+	\item $ (\implies):$ Let $ E_i(t)$ be a parallel basis of $ T_{c(t)}M$. We can then write $ V = V^{i} E_i$. If $ V$ is parallel,  $ D_c V \equiv 0$. That is,
+		\begin{align*}
+			D_c V &= \nabla_{c'} (V^{i} E_i) \\
+			&= (V^{i} \circ c)' E_i + V^{j} \nabla_{c'} E_j  \\
+			&= (V^{i})' E_i + D_c E_j && \text{ using identification of }V=V \circ c:I \to \rr^3 \\
+			&= (V')^{i} E_i \equiv 0.
+		\end{align*}
+		Since $ E_i$ is a basis, this forces the coefficients $ (V')^{i} \equiv 0$. This implies that $ V'(t)^{T} \equiv 0 \in T_{c(t)}M$. That means any nonzero component of $ V'(t)$ must lie in the orthogonal complement.
+
+		$ (\impliedby): $ If $ V'(t)$ is perpendicular to  $ T_{c(t)} M$, then  $ (V')^{T} \equiv 0$. We can reverse the equation above to obtain that $ D_c V \equiv 0$, showing that  $ V$ is parallel.
+	\item WLOG let $ c: [0, 2\pi] \to S^2, \theta \mapsto (\cos \theta, \sin \theta, 0)$ be the equator of  $ S^2$ parametrized by arc length.  We observe that $ V(\theta):= c'(\theta) = (- \sin \theta, \cos \theta,0)$, $ V'(\theta) = c''(\theta) = (-\cos \theta, - \sin \theta,0)$, and $ V'(\theta) = - c(\theta) $. Since $ c(\theta)$ is normal to  $ T_{c(\theta)} S^2$, $ V'(\theta)$ must also be in the orthogonal complement of $ T_{c(\theta)} S^2$. By part $ (a)$, the velocity field  $ V$ is parallel.
+\end{enumerate}
+\end{proof}
+\begin{problem}[Do Carmo 3.5]
+Show by example that parallel transport of a vector between two points on an arbitrary Riemannian manifold depends on the curve joining two points.
+\end{problem}
+\begin{proof}
+Take two points $ p,q $ on the same longitudinal circles (meridian) on  $ S^2$. Foucalt's pendulum formula tells us that if $ p,q$ are  $ \theta \neq 0 $ angle apart and $ \phi < \frac{ \pi}{ 2}$ angle away from the north pole, then when a vector $ v \in T_p S^2$ is parallel transported to  $ u \in T_q S^2$ along the meridian, the angle they make with the meridian $ \alpha(0)$ and $ \alpha(\theta)$ have the difference
+ \begin{align*}
+	\alpha(\theta) - \alpha(0) = \theta \cos \phi \neq 0 .
+\end{align*}
+However, if we parallel transport $ v$ to $ q$ using a geodesic connecting the two, then by theorem it wouldn't change the angle at all. This shows that parallel transport depends on the choice of the curve.
+\end{proof}
+\end{document}

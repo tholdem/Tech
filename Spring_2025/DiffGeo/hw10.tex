@@ -1,0 +1,131 @@
+\documentclass[12pt]{article}
+\input{../preamble.tex}
+
+\begin{document}
+\centerline {\textsf{\textbf{\LARGE{Homework 10}}}}
+\centerline {Jaden Wang}
+\vspace{.15in}
+\begin{problem}[Do Carmo 4.4]
+Let $ M$ be a Riemannian manifold with the following property: given any  $ p,q \in M$, the parallel transport from $ p$ to  $ q$ does not depend on the curve. Prove that the curvature of  $ M$ is identically zero,  \emph{i.e.} for all $ X,Y,Z \in \mathfrak{X}(M)$, $ R(X,Y)Z = 0$.
+\end{problem}
+\begin{proof}
+Consider a parametrized surface $ f: U \subset \rr^2 \to M$, where $ U$ is the  $ \epsilon$-neighorhood of the unit square in $ \rr^2$ and $ f(s,0) = f(0,0)$ for all $ s$. Given $ V_0 \in T_{(0,0)}M$, define a vector field  $ V$ along  $ f$ by setting  $ V(s,0) = V_0$ and if $ t \neq 0$,  $ V(s,t)$ is the parallel transport of  $ V_0$ along the curve $t \mapsto  f(s,t)$. By Lemma 4.1, any vector field along a parametrized surface $ f$ satisfies
+ \begin{align*}
+	\frac{D}{\partial t} \frac{D}{ \partial s} V - \frac{D}{\partial s} \frac{D}{\partial t} V = R \left( \frac{\partial f}{\partial s} , \frac{\partial f}{\partial t}  \right) .
+\end{align*}
+Since $ V(s,t)$ is parallel transported along  $ t$-curves,  $ \frac{D}{\partial t} V \equiv 0$. Since parallel transport in $ M$ does not depend on the curve, $ V(s,1)$ is also the parallel transport of  $ V(0,1)$ along an $ s$-curve.  Therefore, $ \frac{D}{\partial s} V(s,1) \equiv 0$. It follows that
+\begin{align*}
+	R_{f(s,1)}\left( \frac{\partial f}{\partial s} (s,1), \frac{\partial f}{\partial t} (s,1) \right) V(s,1) =0 .
+\end{align*}
+In particular this is true for $ s=0$. Since $ f$ and  $ V_0$ are arbitrary, given $ p \in M$, $ X,Y,Z \in \mathfrak{X}(M)$, we can let $ f(0,1) = p$, $ \frac{\partial f}{\partial s}(0,1) = X(p) , \frac{\partial f}{\partial t}(0,1) = Y(p) $, and $ V_0$ equal the parallel transport from $ V(0,1):= Z(p)$. The result follows pointwise.
+
+\end{proof}
+\begin{problem}[5.1]
+Let $ M$ be a Riemannian manifold with sectional curvature identically zero. Show that, for every  $ p \in M$, the mapping $ \exp_p: B_{ \epsilon}(0) \subset T_pM \to B_{ \epsilon}(p)$ is an isometry, where $ B_{ \epsilon}(p)$ is a normal ball at $ p$.
+\end{problem}
+\begin{proof}
+By the polarization trick, it suffices to show that for any $ v \in B_{ \epsilon}(0)$ and $ w \in T_v(T_pM)$, we have
+\begin{align*}
+	\norm{ d(\exp_p)_v(w)} &= \norm{ w} .
+\end{align*}
+It in turn suffices to show that
+\begin{align*}
+	\norm{ d(\exp_p)_{tv}(tw)} &= \norm{ tw} .
+\end{align*}
+Suppose $V(0) =v$,  $ V'(0) = w$, then we have the Jacobi field along the geodesic $ \gamma(t) = \exp_p(tv)$:
+ \begin{align*}
+	 J(t) &= \frac{\partial }{\partial s} \left( \exp_p (tV(s)) \right)(t,0) \\ 
+	 &= d\left( \exp_p \right)_{tV(0)} (tV'(0))  \\
+	 &= d\left( \exp_p \right)_{tv} (tw)  .
+\end{align*}
+Let $ E_i$ be an orthonormal parallel frame along $ \gamma$ and let $ J(t) = f_{i}(t) E_i(t)$. Since the frame is parallel along the geodesic, we have $ \frac{D}{ \partial t} E_i(t) \equiv 0$ so $ J''(t) = f_i''(t) E_i(t)$. Since the sectional curvature $ K \equiv 0$, the only potentially nonzero curvatures of the form $ R_{ijij}= K$ must be zero as well. Thus the Jacobi equation reduces to $ f_i''(t) = 0$, yielding $ f_i(t) = a_i t + b_i$. Since $ J(0) = 0$, we have  $ f_i(t) = a_i t$. Also recall $ J'(0) = V'(0) = w = f_i'(0) E_i(0) = a_i E_i(0)$. Therefore, we obtain
+\begin{align*}
+	\norm{ d(\exp_p)_{tv} (tw) }  &= \norm{ J(t)} \\
+	&= \norm{t a_i E_i(t)}  \\
+	&= t \sum_{ i= 1}^{ n} a_i^2 && E_i \text{ is orthonormal} \\
+	&= \norm{ tw}  .
+\end{align*}
+\end{proof}
+
+\begin{problem}[5.6]
+Let $ M$ be a Riemannian manifold of dimension 2. Let  $ B_{ \delta}(p)$ be a normal ball around the point $ p \in M$ and consider the parametrized surface
+\begin{align*}
+	f(\rho, \theta) = \exp_p(\rho v(\theta)), \qquad 0<\rho< \delta, -\pi < \theta < \theta,
+\end{align*}
+where $ v(\theta)$ is a circle of radius $ 1$ in  $ T_pM$ parametrized by the angle.
+ \begin{enumerate}[label=(\alph*)]
+	\item Show that $ (\rho, \theta)$ are coordinates in an open set $ U \subset M$ formed by the open ball $ B_{ \delta}(p) $ minus the ray $ \exp_p(-\rho v(0))$. This is the polar coordinates at $ p$. 
+	\item Show that $ g_{ij}$ of the Riemannian metric in these coordinates are $ g_{12} =0, g_{11} = \norm{ \frac{\partial f}{\partial \rho} }^2 = \norm{ v(\theta)}^2=  1, g_{22} = \norm{ \frac{\partial f}{\partial \theta} }^2$.
+	\item Show that, along the geodesic $ f(\rho,0)$, we have
+		\begin{align*}
+			(\sqrt{g_{22}} )_{\rho \rho} = -K(p) \rho+R(p),
+		\end{align*}
+		where $ \lim_{ \rho \to 0} \frac{R(p)}{ \rho} = 0$.
+	\item Prove that
+		\begin{align*}
+			\lim_{ \rho \to 0} \frac{(\sqrt{g_{22}}_{\rho \rho} )}{\sqrt{g_{ 22}}  } =-K(p) .
+		\end{align*}
+\end{enumerate}
+\end{problem}
+\begin{proof}
+\begin{enumerate}[label=(\alph*)]
+	\item Since the image of $ f$ is contained in a normal ball,  $ \exp_p$ has a smooth inverse. Using the norm and inverse tangent (which is only bijective if we remove the ray) we can compose a smooth inverse of $ f$.
+	\item Notice $ v(\theta)$ is tangent to the curve $ \rho v(\theta)$. To compute the pullback metric, we have:
+		\begin{align*}
+			g_{11}(\rho,\theta) &= \left\langle \frac{\partial }{\partial \rho}(\rho,\theta), \frac{\partial }{\partial \rho}(\rho, \theta)  \right\rangle\\
+					    &= \left\langle \frac{\partial f}{\partial \rho}(\rho,\theta), \frac{\partial f}{\partial \rho}(\rho, \theta)   \right\rangle \\
+		       &= \left| \frac{\partial f}{\partial \rho}(\rho,\theta)  \right|^2  && \text{proof of Gauss's lemma}  \\
+			&= \norm{ \frac{\partial }{\partial \rho} \exp_p (\rho v(\theta)) }^2  \\
+			&= \norm{ d(\exp_p)_{\rho v(\theta)} [v(\theta)] }^2  \\
+			&= \norm{ v(\theta)}^2 && \text{geodesic preserves tangent vector length}    \\
+			&= 1 \\
+			g_{12} &=  \left\langle \frac{\partial }{\partial \rho}, \frac{\partial }{\partial \theta}   \right\rangle \\
+					    &=\left\langle \frac{\partial f}{\partial \rho}, \frac{\partial f}{\partial \theta}  \right\rangle  \\
+					    &= 0&& \text{proof of Gauss's lemma}\\
+			g_{22} &= \left\langle  \frac{\partial }{\partial \theta}, \frac{\partial }{\partial \theta}\right\rangle \\
+			       &= \left\langle \frac{\partial f}{\partial \theta}, \frac{\partial f}{\partial \theta}   \right\rangle \\
+			       &=\left| \frac{\partial f}{\partial \theta}  \right|^2  && \text{proof of Gauss's lemma} .
+		\end{align*}
+	\item Since $ |J(\rho)| = \left| \frac{\partial f}{\partial \theta}(\rho,0)  \right| = \sqrt{g_{22}}(\rho)  $ by part (b), by Corollary 5.2.10 we obtain
+\begin{align*}
+\sqrt{g_{22}}(\rho)  &= \rho - \frac{1}{6} K(p) \rho^3 + \widetilde{ R}(\rho) ,
+\end{align*}
+where $ \lim_{ \rho \to 0} \frac{\widetilde{ R}(\rho)}{ \rho^3} =0$. Differentiating twice with respect to $ \rho$, we obtain
+\begin{align*}
+	\sqrt{g_{22}}_{\rho \rho} = - K(p) \rho + R(\rho), 
+\end{align*}
+where $ \lim_{ \rho \to 0} \frac{R(\rho)}{ \rho} = 0$.
+\item
+\begin{align*}
+\lim_{ \rho \to 0} \frac{(\sqrt{g_{22}}_{\rho \rho} )}{\sqrt{g_{ 22}}  } &= \lim_{ \rho \to 0} \frac{-K(p)\rho + R(\rho)}{ \rho - \frac{1}{6} K(p) \rho^3 + \widetilde{ R}(\rho)} \\
+&= \lim_{ \rho \to 0} \frac{-K(p)\rho + O(\rho^2)}{ \rho + O(\rho^3)} \\
+&= -K(p) .
+\end{align*}
+\end{enumerate}
+\end{proof}
+
+\begin{problem}[5.7]
+Let $ M$ be Riemannian manifold with dimension 2. Let  $ p \in M$ and $ V \subset T_pM$ be a normal neighborhood. Let $ S_r(0) \subset V$ be a circle of radius $ r$ centered at the origin, and let  $ L_r$ be the length of the curve  $ \exp_p(S_r)$ in $ M$. Prove that the sectional curvature at $ p$ is
+ \begin{align*}
+	K(p) = \lim_{ r \to 0} \frac{3}{\pi} \frac{2\pi r - L_r}{ r^3}.
+\end{align*}
+\end{problem}
+\begin{proof}
+First, using result of Exercise 5.6, we obtain
+\begin{align*}
+	L_r &= \int_{ -\pi}^{ \pi} \sqrt{ \left\langle \frac{\partial }{\partial \theta} , \frac{\partial }{\partial \theta}   \right\rangle} d \theta \\  
+	&= \int_{ -\pi}^{ \pi} \sqrt{g_{22}(r,\theta)} d \theta   .
+\end{align*}
+Thus by Corollary 5.2.10 we have
+\begin{align*}
+	2 \pi r - L_r &= \int_{ -\pi}^{ \pi} \left( r- \left( r - \frac{1}{6} K(p) r^3 + \widetilde{ R}(\rho) + r \right)  \right)  d \theta \\
+	&= \int_{ -\pi}^{ \pi} \left( \frac{1}{6} K(p) - \frac{\widetilde{ R}(r)}{ r^3} \right)  d \theta \\
+	&= 2\pi \left( \frac{1}{6} K(p) - \frac{\widetilde{ R}(r)}{ r^3} \right)  .
+\end{align*}
+Therefore we obtain
+\begin{align*}
+	\lim_{ r \to 0} \frac{3}{\pi} \frac{2\pi r - L_r}{ r^3}&= \lim_{ r \to 0} \frac{3}{\pi} 2\pi\left( \frac{1}{6} K(p) - \frac{\widetilde{ R}(r)}{ r^3} \right)     \\
+	&= K(p).
+\end{align*}
+\end{proof}
+\end{document}

@@ -1,0 +1,134 @@
+\newcommand{\alert}[1]{{\bf \color{red} [Alert:] #1}}
+\newcommand{\todo}[1]{{\bf \color{orange} [TODO:] #1}}
+\newcommand{\real}[1][]{\mathbb{R}^{#1}}
+\newcommand{\myeqn}[1]{(\ref{#1})}
+\newcommand{\myex}[1]{Example \ref{#1}}
+\newcommand{\defeq}{\stackrel{\mathrm{def}}{=}}
+\newcommand{\parder}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\Lie}[3][]{\mathsf{L}_{#3}^{#1} #2}
+\newcommand{\LieA}[1]{\mathsf{Lie}(#1)}
+\newcommand{\lieder}[2]{\mathcal{L}_{#2} #1}
+\renewcommand{\t}{^{\mbox{\tiny\sf T}}}
+\newcommand{\trans}{^{\mbox{\tiny\sf T}}}
+\newcommand{\markup}[1]{\{\textbf{#1}\}}
+\newcommand{\msub}[1]{_\mathrm{#1}}
+\newcommand{\msup}[1]{^\mathrm{#1}}
+\newcommand{\inv}[1]{#1^{-1}}
+\newcommand{\pinv}[1]{{#1}^{+}}
+\newcommand{\myfracA}[2]{\displaystyle{\frac{#1}{#2}}}
+\newcommand{\myfracB}[2]{{#1}/{#2}}
+\newcommand{\mydiffA}[1]{\dot{#1}}
+\newcommand{\mydiffB}[2]{\myfracA{\mathrm{d}{#1}}{\mathrm{d}{#2}}}
+\newcommand{\ball}[2]{\mathcal{B}_{#1}\left(#2\right)}
+\newcommand{\acos}[1]{\cos^{-1}\left(#1\right)}
+\newcommand{\asin}[1]{\sin^{-1}\left(#1\right)}
+\newcommand{\mani}{\mathcal{M}}
+\newcommand{\tang}[2]{\mathsf{T}_{#1} #2}
+\newcommand{\LieB}[2]{[ #1, #2 ]}
+\newcommand{\LieBad}[3][]{\mathsf{ad}_{#2}^{#1} #3}
+\newcommand{\ReachVT}{\mathcal{R}^V_T}
+\newcommand{\ReachVt}{\mathcal{R}^V_t}
+\newcommand{\ReachVTe}{\mathcal{R}^V_{\le T}}
+\newcommand{\ReachT}{\mathcal{R}_T}
+\newcommand{\Reacht}{\mathcal{R}_t}
+\newcommand{\ReachTe}{\mathcal{R}_{\le T}}
+\newcommand{\accLA}[1]{\mathsf{Lie}(#1)}
+\newcommand{\accD}{\Delta_{\mathcal{F}}}
+\newcommand{\accSA}{\mathsf{Lie}(\mathcal{G},f)}
+\newcommand{\accDS}{\Delta_{\mathcal{G}}}
+\newcommand{\eval}[3]{\mathsf{Ev}^{#2}_{#1}\left( #3 \right)}
+\newcommand{\stlc}{\textsc{stlc}}
+\newcommand{\clf}{\textsc{clf}}
+\newcommand{\jqlf}{\textsc{jqlf}}
+\newcommand{\dlas}{\textsc{dlas}}
+\newcommand{\Ad}[2]{\mathsf{Ad}_{#1} #2}
+\newcommand{\xe}{\ensuremath{x_e}}
+\newcommand{\lebg}[1]{\mathcal{L}_{#1}}
+\newcommand{\lebgx}[1]{\mathcal{L}_{#1 \mathrm{e}}}
+\newcommand{\dom}{D}
+\newcommand{\domT}{[t_0,\infty) \times D}
+\newcommand{\rarrow}{\rightarrow}
+\renewcommand{\d}{\mathrm{d}}
+\renewcommand{\Re}{\mathbb{R}}
+\newcommand{\C}{\mathrm{C}}
+
+\newcommand{\QED}{{\unskip\nobreak\hfil\penalty50\hskip2em\vadjust{}
+		\nobreak\hfil$\Box$\parfillskip=0pt\finalhyphendemerits=0\par}\vspace{0.1cm}}
+\newcommand{\eoEx}{{\unskip\nobreak\hfil\penalty50\hskip0em\vadjust{}
+		\nobreak\hfil$\Large\Diamond$\parfillskip=0pt\finalhyphendemerits=0\par}\vspace{0.1cm}}
+
+\newcommand{\sgn}{\ensuremath{\operatorname{sgn}}}
+\newcommand{\sat}{\ensuremath{\operatorname{sat}}}
+
+\newcommand{\half}{\frac{1}{2}}
+\newcommand{\shalf}{\mbox{$\frac{1}{2}$}}
+\newcommand{\marcom}[1]{\marginpar{\footnotesize #1}}
+\newcommand{\der}{\mathrm{D}}
+\newcommand{\e}{\mathrm{e}}
+\newcommand{\dt}{\mathrm{d}t}
+
+\newcommand{\cA}{\ensuremath{\mathcal{A}}}
+\newcommand{\cB}{\ensuremath{\mathcal{B}}}
+\newcommand{\cG}{\ensuremath{\mathcal{G}}}
+\newcommand{\cK}{\ensuremath{\mathcal{K}}}
+\newcommand{\cW}{\ensuremath{\mathcal{W}}}
+\newcommand{\cZ}{\ensuremath{\mathcal{Z}}}
+\newcommand{\cS}{\ensuremath{\mathcal{S}}}
+\newcommand{\cD}{\ensuremath{\mathcal{D}}}
+\newcommand{\cP}{\ensuremath{\mathcal{P}}}
+\newcommand{\cV}{\ensuremath{\mathcal{V}}}
+\newcommand{\cL}{\ensuremath{\mathcal{L}}}
+\newcommand{\cN}{\ensuremath{\mathcal{N}}}
+\newcommand{\cI}{\ensuremath{\mathcal{I}}}
+\newcommand{\cR}{\ensuremath{\mathcal{R}}}
+\newcommand{\cM}{\ensuremath{\mathcal{M}}}
+\newcommand{\cC}{\ensuremath{\mathcal{C}}}
+\newcommand{\cF}{\ensuremath{\mathcal{F}}}
+\newcommand{\cH}{\ensuremath{\mathcal{H}}}
+\newcommand{\cO}{\ensuremath{\mathcal{O}}}
+\newcommand{\cX}{\ensuremath{\mathcal{X}}}
+\newcommand{\cY}{\ensuremath{\mathcal{Y}}}
+\newcommand{\Ci}{\ensuremath{\mathcal{C}^\infty}}
+\newcommand{\ISS}{\textsc{iss}}
+\newcommand{\LISS}{\textsc{liss}}
+\newcommand{\GAS}{\textsc{gas}}
+\newcommand{\GS}{\textsc{gs}}
+\newcommand{\LES}{\textsc{les}}
+\newcommand{\GUAS}{\textsc{guas}}
+\newcommand{\BIBO}{\textsc{bibo}}
+\newcommand{\spec}{\ensuremath{\operatorname{spec}}}
+\newcommand{\spn}{\ensuremath{\operatorname{span}}}
+\renewcommand{\i}{\mathrm{i\,}}
+
+\renewcommand{\implies}{\Rightarrow}
+
+\renewcommand{\theenumi}{$\roman{enumi})$}
+\renewcommand{\labelenumi}{\theenumi}
+
+\font\ptmten=zptmcmrm scaled 1200
+\newcommand{\w}{\mbox{{\ptmten w}}}
+\newcommand{\z}{\mbox{{\ptmten z}}}
+\renewcommand{\Re}{\mathbb{R}}
+
+\newcommand{\cl}{\operatorname{cl}}
+\newcommand{\intr}{\operatorname{int}}
+\newcommand{\rank}{\operatorname{rank}}
+\newcommand{\co}{\operatorname{co}}
+\newcommand{\aff}{\operatorname{aff}}
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[chapter]
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{prop}[theorem]{Proposition}
+\newtheorem{fact}[theorem]{Fact}
+\newtheorem{lemma}[theorem]{Lemma}
+
+\newtheorem{remark}{Remark}[chapter]
+
+\theoremstyle{definition}
+\newtheorem{assume}[theorem]{Assumption}
+\newtheorem{defn}[theorem]{Definition}
+\newtheorem{problem}[theorem]{Problem}
+\newtheorem{exercise}{Exercise}
+\newtheorem{example}[theorem]{Example}

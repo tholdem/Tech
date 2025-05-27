@@ -1,0 +1,117 @@
+\documentclass[12pt]{article}
+\input{../preamble.tex}
+
+\begin{document}
+\centerline {\textsf{\textbf{\LARGE{Homework 11}}}}
+\centerline {Jaden Wang}
+\vspace{.15in}
+\begin{problem}[Do Carmo 6.1]
+Let $ M_1$ and $ M_2$ be Riemannian manifolds, and consider the product $ M_1 \times M_2$ with the product metric. Let $ \nabla^{1}, \nabla^2$ be the Riemannian connection of $ M_1,M_2$, respectively.
+\begin{enumerate}[label=(\alph*)]
+	\item Show that the Riemannian connection $ \nabla$ of $ M_1 \times M_2$ is given by $ \nabla_{Y_1 + Y_2} (X_1+X_2) = \nabla_{Y_1}^{1} X_1 + \nabla_{Y_2}^2 X_2$, with $ X_1, Y_1 \in \mathfrak{X}(M_1), X_2, Y_2 \in \mathfrak{X}(M_2)$.
+	\item For every $ p \in M_1$, the set $ (M_2)_p = \{(p,q) \in M_1 \times M_2: q \in M_2\} $ is a submanifold of $ M_1 \times M_2$, naturally diffeomorphic to $ M_2$. Prove that $ (M_2)_p$ is totally geodesic submanifold of $ M_1\times M_2$.
+	\item Let $ \sigma(x,y) \subset T_{(p,q)} (M_1 \times M_2)$ be a plane such that $ x \in T_p M_1$ and $ y \in T_q M_2$. Show that $ K( \sigma) = 0$.
+\end{enumerate}
+\end{problem}
+\begin{proof}
+\begin{enumerate}[label=(\alph*)]
+	\item The Riemannian connection is compatible with the tangent functor. Product structure of manifold is preserved through tangent functor in tangent spaces, and product and coproduct are isomorphic in the category of finite dimensional vector spaces, so product turns into direct sum.
+	\item Let $ X_2,Y_2 \in \mathfrak{X}((M_2)_p)$ and $ \overline{X} = X_1 + X_2$ and $ \overline{Y} = Y_1 + Y_2$ be the extensions of $ X_2,Y_2$ in $ M_1 \times M_2$. That is, $ \overline{X}_{(p,q)} = X_2(q)$ so $ X_1(p) =0$ and similarly $ Y_1(p)=0$. Now we compute
+		\begin{align*}
+			B_2(X_2,Y_2) &= \overline{\nabla}_{\overline{X}}\overline{Y} - \nabla_{X_2}^2 Y_2 \\
+			&= \nabla_{X_1}^{1} Y_1 + \nabla_{X_2}^2 Y_2 - \nabla_{X_2}^2 Y_2 \\
+			&= \nabla_{X_1}^{1}Y_1 \\
+			&\equiv 0 ,
+		\end{align*}
+		where the last equality comes from the fact that $ B_2(X,Y)$ is only defined on  $ (M_2)_p$, which forces $ X_1, Y_1 =0$ since the extensions must agree with $ X_2,Y_2$ on $ (M_2)_p$, which in turn forces $ \nabla_{X_1}^{1} Y_1$ at any point in $ (M_2)_p$ to be zero. It follows that $ H_{ \eta} \equiv 0$ for any $ \eta \in T_{(p,q)} (M_2)_p ^{T}$ and thus $ (M_2)_p$ is totally geodesic.
+	\item Consider the local vector field extension $ X,Y$ of $ x,y$ at  $ (p,q)$ in $ M_1,M_2$ respectively. Since they are in orthogonal complements, in the product manifold they become $ (X,0)$ and  $ (0,Y)$. It suffices to show that $ R((X,0),(0,Y))(X,0) = 0$. In local coordinates $ \left( \frac{\partial }{\partial x_j}, \frac{\partial }{\partial y_i}   \right) $, $ (X,0),(0,Y)$ are $ (x_j,0)$ and  $ (0,y_i)$ where $ x_j$ only depends on $ p \in M_1$, $y_i$ only depends on $ q \in M_2$. Therefore, we have $ (X(p),0)y_i(q) = 0$ and $ (0,Y(q))x_j(p) = 0$, and we compute
+\begin{align*}
+	[(X,0),(0,Y)](f)(p,q) &= (X,0)(0,Y)(f)(p,q) - (0,Y)(X,0)(f)(p,q) \\
+	&= (X(p),0) \left( y_i(q) \frac{\partial f}{\partial y_i}(p,q)  \right) - (0,Y(q)) \left( x_j(p) \frac{\partial f}{\partial x_j}(p,q)  \right)   \\
+	&= x_j(p) y_i(q) \frac{\partial^2 f}{\partial x_j \partial y_i } - y_i(q) x_j(p) \frac{\partial^2 f}{\partial y_i \partial x_j}(p,q)   \\
+	&= 0 .
+\end{align*}
+Finally, we compute
+	\begin{align*}
+		R((X,0),(0,Y))(X,0) &= \nabla_{(0,Y)} \nabla_{(X,0)} (X,0) - \nabla_{(X,0)} \nabla_{(0,Y)} (X,0)  - \nabla_{[(X,0),(0,Y)]} (X,0)  \\
+		&= \nabla_{(0,Y)} (\nabla_X^1 X,0)  - \nabla_{(X,0)} \left( \nabla_0^{1} X + \nabla_Y^{2} 0 \right)  - 0  \\
+		&= 0 .
+	\end{align*}
+\end{enumerate}
+\end{proof}
+
+\begin{problem}[6.2]
+Show that $ x: \rr^2 \to \rr^{4}$ given by
+\begin{align*}
+	x(\theta,\phi) = \frac{1}{\sqrt{2} } (\cos \theta, \sin \theta, \cos \phi, \sin \phi), \qquad (\theta,\phi) \in \rr^2,
+\end{align*}
+is an immersion of $ \rr^2$ into the unit sphere $ S^3 \subset \rr^{4}$, whose image $ x(\rr^2)$ is a torus $ T^2$ with sectional curvature zero in the induced metric.
+\end{problem}
+\begin{proof}
+Using the Euclidean metric of $ \rr^{4}$, clearly for any $ (\theta,\phi) \in \rr^2$,
+\begin{align*}
+	\norm{ x(\theta,\phi)}^2 = \frac{1}{2} \left( 1+1 \right)  = 1 . 
+\end{align*}
+Hence $ x $ maps into $ S^3$. The Jacobian is
+\begin{align*}
+	dx_{(\theta,\phi)} = \begin{pmatrix} \frac{\partial x}{\partial \theta} & \frac{\partial x}{\partial \phi}   \end{pmatrix} = \frac{1}{\sqrt{2} } \begin{pmatrix} -\sin \theta&0\\ \cos \theta &0\\0& -\sin \phi\\ 0 & \cos \phi \end{pmatrix} .
+\end{align*}
+Since $ \sin , \cos$ cannot be simultaneously zero, the rank of the Jacobian is always 2, showing that $ x$ is an immersion.
+
+The metric tensor is 
+\begin{align*}
+	G = \frac{1}{2} \begin{pmatrix} 1&0\\0&1 \end{pmatrix} .
+\end{align*}
+Since curvature $ R_{kij\ell}$ is just the second derivative of $ g_{ij}$ per Riemann's habilitation, since $ g_{ij}$ is constant, curvature must be zero. So is the sectional curvature. Alternatively, since $ T^2 = S^{1} \times S^{1}$ is a 2-dimensional product manifold, any 2-dimensional plane of the tangent space is the whole tangent space, and one vector from each $ TS^{1}$ would give zero sectional curvature by Problem 1 (c).
+\end{proof}
+
+\begin{problem}[6.3]
+Let $ M$ be a Riemannian manifold and let  $ N \subset K \subset M$ be submanifolds of $ M$. Suppose that $ N$ is totally geodesic in  $ K$ and that  $ K$ is totally geodesic in  $ M$. Prove that  $ N$ is totally geodesic in  $ M$.
+\end{problem}
+\begin{proof}
+Given $ p \in N$ and a geodesic $ \gamma$ of $ N$ emanating from  $ p$, since  $ N$ is totally geodesic in  $ K$, then  $ \gamma$ is also a geodesic of $ K$ emanating from  $ p$. But since  $ K$ is totally geodesic in  $ M$,  $ \gamma$ is then a geodesic of $ M$ emanating from  $ p$. Thus  $ N$ is totally geodesic in  $ M$. 
+\end{proof}
+
+\begin{problem}[6.7]
+Show that if $ M$ is a totally geodesic submanifold of  $ \overline{M}$, then for any tangent fields to $ M$,  $ \nabla$ and $ \overline{\nabla}$ coincide.
+\end{problem}
+\begin{proof}
+Since $ M$ is totally geodesic in  $ \overline{M}$, by definition $ H_{\eta}(X,Y) = \left\langle B(X,Y) ,\eta \right\rangle =0$ for any tangent fields $ X,Y$ and normal field $ \eta $. This implies that $ B(X,Y) \in TM$ by definition of orthogonality. However, by definition $ B(X,Y) \in TM^{\perp}$. This forces $ B(X,Y) \equiv 0$ since the only common vector field of orthogonal bundles are the zero vector field. This implies  $ \nabla_X Y = \overline{\nabla}_{\overline{X}} \overline{Y}$. 
+\end{proof}
+
+\begin{problem}[6.8]
+	(The Clifford torus). Consider the immersion $ x$ given in Problem 2.
+	 \begin{enumerate}[label=(\alph*)]
+		\item Show that the vectors $ e_1 = (-\sin \theta, \cos \theta, 0,0), e_2 = (0,0,-\sin \phi,\cos \phi)$ form an orthonormal basis of the tangent space, and that the vectors $ n_1 = \frac{1}{\sqrt{2} } (\cos \theta, \sin \theta, \cos \phi, \sin \phi)$, $ n_2 = \frac{1}{\sqrt{2} } (-\cos \theta, - \sin \theta, \cos \phi, \sin \phi)$ for an orthonormal basis of the normal space.
+		\item Use the fact that
+		\begin{align*}
+			\left\langle S_{n_k}(e_i),e_j \right\rangle = -\left\langle \overline{\nabla}_{e_i} n_k , e_j \right\rangle = \left\langle \overline{\nabla}_{e_i} e_j, n_k \right\rangle,
+		\end{align*}
+		where $ \overline{\nabla}$ is the covariant derivative (the usual derivative) of $ \rr^{4}$, and $ i,j,k = 1,2$, to establish that the matrices of  $ S_{n_1}$ and $ S_{n_2}$ with respect to the basis $ \{e_1,e_2\} $ are
+	\begin{align*}
+		S_{n_1} &= \begin{pmatrix} -1&0\\0&-1 \end{pmatrix}  \\
+		S_{n_2} &= \begin{pmatrix} 1&0\\0&-1 \end{pmatrix}  .
+	\end{align*}
+\item From Problem 2, $ x$ is an immersion of the torus  $ T^2$
+	\end{enumerate} into $ S^3$. Show that $ x$ is a minimal immersion.
+\end{problem}
+\begin{proof}
+\begin{enumerate}[label=(\alph*)]
+	\item Since metric is the Euclidean metric in $ \rr^{4}$, orthogonality and unit length are trivial to check. We know $ e_1,e_2$ form a basis of tangent space because they are scalar multiples of basis $ \frac{\partial x}{\partial \theta} $ and $ \frac{\partial x}{\partial \phi} $. 
+	\item We compute
+	\begin{align*}
+		\overline{\nabla}_{e_1} e_1 &= 2 \frac{\partial x}{\partial \theta} \frac{\partial x}{\partial \theta} = 2 \frac{\partial^2 x}{\partial { \theta}^2}  = \sqrt{2} (- \cos \theta, - \sin \theta,0,0),\\
+		\overline{\nabla}_{e_1}e_2 &= 2 \frac{\partial^2 x}{\partial { \theta} \partial \phi}  =0\\
+		\overline{\nabla}_{e_2} e_2&= 2 \frac{\partial^2 x}{\partial { \phi}^2} = \sqrt{2} (0,0,-\cos \phi, - \sin \phi) .
+	\end{align*}
+	Therefore, we obtain
+\begin{align*}
+	S_{n_1} &= \begin{pmatrix} \left\langle \overline{\nabla}_{e_1} e_1, n_1 \right\rangle &  0\\ 0& \left\langle \overline{\nabla}_{e_2} e_2, n_1 \right\rangle \end{pmatrix} = \begin{pmatrix} -1&0\\0&-1 \end{pmatrix}   \\
+	S_{n_2} &= \begin{pmatrix} \left\langle \overline{\nabla}_{e_1} e_1, n_2 \right\rangle &  0\\ 0& \left\langle \overline{\nabla}_{e_2} e_2, n_2 \right\rangle \end{pmatrix} = \begin{pmatrix} 1&0\\0&-1 \end{pmatrix}   .
+\end{align*}
+\item We claim that the normal space of $ T_2$ in $ S^3$ is spanned by $ n_2$. Since $ x(\theta,\phi) \in S^3$, any tangent vector on $ S^3$ needs to be orthogonal to $ x(\theta,\phi)$. We see that $ \left\langle n_2, x(\theta,\phi) \right\rangle = 0$, showing that $ n_2$ is a tangent vector on $ S^3$. Since $ n_2$ is orthogonal to $ e_1,e_2$, and the three of them form a basis for the tangent space on $ S^3$, we conclude that $ n_2$ spans the normal space.
+
+Therefore, since $ \tr S_{n_2} = 0$, we have $ \tr S_{\eta} = 0$ for all $ \eta $ in the normal space of $ T_2$ in $ S^3$. Hence, $ x$ is a minimal immersion.
+\end{enumerate}
+\end{proof}
+\end{document}

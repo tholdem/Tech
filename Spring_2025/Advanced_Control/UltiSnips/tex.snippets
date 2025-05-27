@@ -1,0 +1,307 @@
+global !p
+def math():
+	return vim.eval('vimtex#syntax#in_mathzone()') == '1'
+endglobal	
+
+context "math()"
+snippet ww "omega,cs" iA
+\omega
+endsnippet
+
+context "math()"
+snippet WW "Omega,cs" iA
+\Omega
+endsnippet
+
+context "math()"
+snippet supr "supremum" iA
+\sup\left\\{$1 \right\\} $0
+endsnippet
+
+context "math()"
+snippet infim "infimum" iA
+\inf\left\\{$1 \right\\} $0
+endsnippet
+
+context "math()"
+snippet xra "" iA
+\xrightarrow{ $1} $0
+endsnippet
+
+context "math()"
+snippet bsc "big square cup" A
+\bigsqcup_{ $1}
+endsnippet
+
+context "math()"
+snippet mb "mathbb" A
+\mathbb{ $1} $0
+endsnippet
+
+context "math()"
+snippet kb "mathbbm k" A
+\mathbbm{k} $0
+endsnippet
+
+context "math()"
+snippet gl "general linear group" A
+\text{GL}_{${1: n}}(${2: R}) $0
+endsnippet
+
+context "math()"
+snippet o+ "direct sum" A
+\oplus $0
+endsnippet
+
+context "math()"
+snippet ox "tensor product" A
+\otimes $0
+endsnippet
+
+context "math()"
+snippet dt| "derivative" iA
+\frac{d}{dt}\big|_{t=${1: 0}} $0
+endsnippet
+
+context "math()"
+snippet iso "isomorphic" A
+\cong $0
+endsnippet
+
+context "math()"
+snippet trv "transversal" A
+\pitchfork
+endsnippet
+
+context "math()"
+snippet dg "degree" A
+\dg $0
+endsnippet
+
+context "math()"
+snippet dun "disjoint union" A
+\sqcup $0
+endsnippet
+
+context "math()"
+snippet Lam "Lambda" A
+\Lambda
+endsnippet
+
+context "math()"
+snippet wg "wedge product" iA
+\wedge $0
+endsnippet
+
+context "math()"
+snippet XX "mathfrak X" iA
+\mathfrak{X}$0
+endsnippet
+
+context "math()"
+snippet Pgtt "parallel transport map" iA
+P_{\gamma, t_0, t}$0
+endsnippet
+
+context "math()"
+snippet ker "kernel" iA
+\ker $0
+endsnippet
+
+context "math()"
+snippet '([A-Za-z])\.' "time derivative" wrA
+\dot{`!p snip.rv = match.group(1)`}
+endsnippet
+
+context "math()"
+snippet mf "math frak" A
+\mathfrak{$1} $0
+endsnippet
+
+context "math()"
+snippet div "divergence" A
+\Div $0
+endsnippet
+
+context "math()"
+snippet gr "gradient" A
+\grad $0
+endsnippet
+
+context "math()"
+snippet tr "trace" A
+\tr $0
+endsnippet
+
+context "math()"
+snippet 'G([A-Za-z]|\d)([A-Za-z]|\d)([A-Za-z]|\d)' "Christoffel symbols" wrA
+\Gamma_{ ${1:`!p snip.rv = match.group(1)` `!p snip.rv = match.group(2)`}}^{ ${2:`!p snip.rv = match.group(3)`}}
+endsnippet
+
+context "math()"
+snippet 'p:([A-Za-z])' "tangent basis" rwA
+\frac{\partial }{\partial x_${1:`!p snip.rv = match.group(1)`}} $0
+endsnippet
+
+context "math()"
+snippet ric "Ricci curvature" A
+\Ric$0
+endsnippet
+
+context "math()"
+snippet lie "Lie" A
+\LieA{ $1}$0
+endsnippet
+
+context "math()"
+snippet Ad "Adjoint action" A
+\Ad_{ $1}( $2)$0
+endsnippet
+
+context "math()"
+snippet ad "adjoint representation" A
+\ad_{ $1}( $2)$0
+endsnippet
+
+context "math()"
+snippet inte "interior" A
+\intr 
+endsnippet
+
+context "math()"
+snippet rank "rank" A
+\rank 
+endsnippet
+
+priority 200
+context "math()"
+snippet exp "exponential map" A
+\exp( $1)
+endsnippet
+
+context "math()"
+snippet pi( "pi()" A
+\pi( $1)
+endsnippet
+
+context "math()"
+snippet lteq "normal subgroup" A
+\trianglelefteq $0
+endsnippet
+
+context "math()"
+snippet aut "Aut" A
+\aut ($1)
+endsnippet
+
+context "math()"
+snippet rsd "right semidirect product" A
+\rtimes $1
+endsnippet
+
+context "math()"
+snippet hom "Hom" A
+\Hom( $1, $2)$0
+endsnippet
+
+snippet le "Lemma environment" bA
+\begin{lemma}
+$0
+\end{lemma}
+endsnippet
+
+snippet th "theorem environment" bA
+\begin{theorem}
+$0
+\end{theorem}
+endsnippet
+
+snippet ex "example environment" b
+\begin{example}
+$0
+\end{example}
+endsnippet
+
+snippet ass "assume environment" bA
+\begin{assume}
+$0
+\end{assume}
+endsnippet
+
+snippet prop "Proposition environment" bA
+\begin{prop}
+$0
+\end{prop}
+endsnippet
+
+snippet fact "Fact environment" bA
+\begin{fact}
+$0
+\end{fact}
+endsnippet
+
+snippet rem "remark environment" bA
+\begin{remark}
+$0
+\end{remark}
+endsnippet
+
+snippet cor "coro environment" bA
+\begin{corollary}
+$0
+\end{corollary}
+endsnippet
+
+context "math()"
+snippet xhra "hook right arrow" iA
+\xhookrightarrow{ $1} $0
+endsnippet
+
+context "math()"
+snippet RR "reachable set" iA
+\mathcal{R}( $1) $0
+endsnippet
+
+context "math()"
+snippet reachT "reachable set at T" iA
+\ReachT( $1) $0
+endsnippet
+
+context "math()"
+snippet reacht "reachable set at t" iA
+\Reacht( $1) $0
+endsnippet
+
+context "math()"
+snippet reache "reachable set <= T" iA
+\ReachTe( $1) $0
+endsnippet
+
+snippet Let "Let" b
+Let $ (\mathcal{A},U)$ be a right-invariant control system on $G$. $0
+endsnippet
+
+context "math()"
+snippet defe "defeq" iA
+\defeq $0
+endsnippet
+
+snippet label "label" iA
+\label{$1} 
+endsnippet
+
+snippet cref "cref" iA
+\cref{$1} 
+endsnippet
+
+snippet cite "cite" iA
+\cite{$1} 
+endsnippet
+
+context "math()"
+snippet lsd "lsd semidirect product" A
+\ltimes $1
+endsnippet
+
+# vim:ft=snippets
+

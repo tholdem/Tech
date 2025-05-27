@@ -1,0 +1,107 @@
+\documentclass[12pt]{article}
+\input{../preamble.tex}
+
+\begin{document}
+\centerline {\textsf{\textbf{\LARGE{Homework 4}}}}
+\centerline {Jaden Wang}
+\vspace{.15in}
+\begin{problem}[LN12 0.2.2]
+Show that the stereograpphic projection $ \pi: S^2 \setminus \{(0,0,1)\} \to \rr^2$ is a conformal transformation.
+\end{problem}
+To show that $ \pi$ preserves angle, we use the Euclidean metric. Recall that by treating $ S^2$ as the unit sphere with north pole $ N=(0,0,1)$, the stereographic projection is $ \pi: (\overline{p},p_3) \mapsto \frac{\overline{p}}{ 1- p_3}$, where $ \overline{p} = (p_1,p_2)$. Notice for any $ p \in S^2$, we have $ \norm{ \overline{p}} ^2 = p_1^2 + p_2^2 = 1- p_3^2 $; for any $ v \in T_p S^2$, we have $ \langle v ,p \rangle = 0$ so $ \langle \overline{v} , \overline{p} \rangle = - v_3p_3$. Let $ \gamma$ be a curve s.t.\ $ \gamma(0) = p$ and $ \gamma'(0) = v$. Then we have
+\begin{align*}
+	d\pi_p (v) &= (\pi \circ \gamma)'(0)\\
+	&= \left( \frac{ \overline{ \gamma}}{ 1- \gamma_3} \right)'(0)  \\
+	&= \left( \frac{ \overline{ \gamma}' (1- \gamma_3) - \overline{ \gamma} (- \gamma_3')}{(1- \gamma_3)^2 } \right)(0)  \\
+	&= \frac{\overline{v}(1-p_3) + v_3 \overline{p}}{ (1-p_3)^2} .
+\end{align*}
+Then we compute
+\begin{align*}
+	g_p(d\pi_p(v),d\pi_p(w)) &= \langle d\pi_p(v),d\pi_p(w) \rangle\\
+	&=\frac{\langle \overline{v},\overline{w} \rangle}{ (1-p_3)^2} + \frac{v_3 \langle \overline{w},\overline{p} \rangle + w_3 \langle \overline{v},\overline{p} \rangle}{ (1-p_3)^3} + \frac{\norm{ \overline{p}}^2 v_3 w_3 }{ (1-p_3)^{4}}\\
+	&= \frac{\langle \overline{v},\overline{w} \rangle}{ (1-p_3)^2} - \frac{2v_3 w_3 p_3 }{ (1-p_3)^3} + \frac{\norm{ \overline{p}}^2 v_3 w_3 }{ (1-p_3)^{4}}\\
+	&= \frac{\langle \overline{v},\overline{w} \rangle}{ (1-p_3)^2} + \frac{v_3 w_3( 2p_3^2 - 2 p_3 + \norm{ \overline{p}}^2) }{ (1-p_3)^{4}}\\
+	&= \frac{\langle \overline{v},\overline{w} \rangle}{ (1-p_3)^2} + \frac{v_3 w_3( p_3^2 - 2 p_3 + 1 ) }{ (1-p_3)^{4}}\\
+	&= \frac{\langle \overline{v},\overline{w} \rangle}{ (1-p_3)^2} + \frac{v_3 w_3( p_3 - 1 )^2 }{ (1-p_3)^{4}}\\
+	&= \frac{ v_1 w_1 + v_2 w_2}{ (1-p_3)^2} + \frac{v_3 w_3}{ (1-p_3)^{2}}\\
+	&= \frac{ \langle v,w \rangle}{ (1-p_3)^2} \\
+	&= \frac{g_p(v,w)}{ (1- p_3)^2} .
+\end{align*}
+It follows that
+\begin{align*}
+	\theta (d\pi_p(v),d\pi_p(w) ) &= \arccos \left( \frac{g_p(d\pi_p(v),d\pi_p(w))}{ g_p(d\pi_p(v),d\pi_p(v))^{\frac{1}{2}} g_p(d\pi_p(w),d\pi_p(w))^{\frac{1}{2}} } \right)  \\
+	 &= \arccos \left( \frac{g_p(v,w)}{ g_p(v,v)^{\frac{1}{2}} g_p(w,w)^{\frac{1}{2}} } \right)  \\
+	 &= \theta(v,w) .
+\end{align*}
+
+\begin{problem}[LN12 0.3.2]
+Compute the metric of the surface given by the graph of a function $ f: \Omega \subseteq \rr^2 \to \rr$.
+\end{problem}
+Let $ F(x,y) = (x,y,f(x,y))$ be the graph of  $ f$. We compute
+\begin{align*}
+	\frac{\partial F}{\partial x} &= \begin{pmatrix} 1\\0\\ \frac{\partial f}{\partial x}  \end{pmatrix} \\
+	\frac{\partial F}{\partial y} &= \begin{pmatrix} 0\\1\\ \frac{\partial f}{\partial y}  \end{pmatrix}  .
+\end{align*}
+
+Then then pullback metric is
+\begin{align*}
+	G = \begin{pmatrix} 1+ \left( \frac{\partial f}{\partial x}  \right) ^2 & \frac{\partial f}{\partial x} \frac{\partial f}{\partial y} \\ \frac{\partial f}{\partial x} \frac{\partial f}{\partial y}&  1+ \left( \frac{\partial f}{\partial y}  \right) ^2   \end{pmatrix} .
+\end{align*}
+\begin{problem}[LN13 0.2]
+Compute the area of a torus of revolution in $ \rr^3$.
+\end{problem}
+Let $ R$ be the radius of the longitudinal circle and  $ r$ be that of the meridian circle. Any point on the initial meridian can be parameterized by $ (x(\phi),z(\phi)) := (R+r \cos \phi, r \sin\phi)$, where $ \phi \in (0,2\pi)$. Then we can parameterize the torus using 
+\begin{align*}
+	f(\theta,\phi) = \begin{pmatrix}  \cos \theta x(\phi)\\ \sin \theta x(\phi) \\z(\phi)  \end{pmatrix}  ,
+\end{align*}
+where $ \theta \in (0,2\pi)$. We compute
+\begin{align*}
+	\frac{\partial f}{\partial \theta} &= \begin{pmatrix} - \sin \theta x \\ \cos \theta x \\ 0 \end{pmatrix}  \\
+	\frac{\partial f}{\partial \phi} &= \begin{pmatrix} -r\cos\theta \sin \phi \\ -r \sin\theta \sin\phi \\ r \cos\phi  \end{pmatrix}  .
+\end{align*}
+Thus the pullback metric is
+\begin{align*}
+	G(\theta,\phi) = \begin{pmatrix} x(\phi)^2 & 0\\0& r^2 \end{pmatrix} 
+\end{align*}
+Then
+\begin{align*}
+	A &= \int_U \sqrt{g} \\
+	&= \int_{ 0}^{ 2\pi} \int_{ 0}^{ 2\pi} \sqrt{ \det G} \  d\phi d\theta    \\
+	&= \int_{ 0}^{ 2\pi} \int_{ 0}^{ 2\pi} xr\  d\phi d\theta    \\
+	&= \int_{ 0}^{ 2\pi} \int_{ 0}^{ 2\pi} (R+r\cos\phi)r\  d\phi d\theta    \\
+	&= \int_{ 0}^{ 2\pi} (Rr \phi - r^2 \sin\phi)|_0^{2\pi} d\theta    \\
+	&= \int_{ 0}^{ 2\pi} 2\pi Rr\ d\theta    \\
+	&= 4\pi^2 Rr .
+\end{align*}
+\begin{problem}[LN13 0.9]
+Show that every manifold is normal, \emph{i.e.} for every disjoint closed sets $ A_1, A_2$ in $ M$, there exists a pair of disjoint open subsets  $ U_1,U_2$ of $ M$  s.t.\ $ A_1 \subset U_1, A_2 \subset U_2$.
+\end{problem}
+\begin{proof}
+	WLOG suppose $ M$ is path-connected since we can just take the union of disjoint open sets from all path components. Since every manifold admits a metric, let $ g$ be a Riemannian metric of  $ M$.  Therefore, for every point $ x \in A_1, y \in A_2$, let $ \Gamma$ be the set of all possible paths between $ x$ and  $ y$, we can define the distance between them $ d(x,y) = \inf_{ \gamma \in \Gamma}L[ \gamma]  $, where $ L[\gamma]$ is computed the usual way using $ g$. This distance can be checked to be a metric and therefore endows $ M$ with a metric space structure. Every metric space is normal. We prove this below.
+
+	Define the distance between a point $ x$ and a set $ A$ to be  $ d(x,A) = \inf\left\{ d(x,y): y \in A \right\} $. Since $ A_1, A_2$ are closed so they contain all their limit points, for any $ y \in M\setminus A_1$ and $ x \in M \setminus A_2$, we must have $ d(y,A_1) = \epsilon_y > 0 $ and $ d(x, A_2) = \epsilon_x > 0$. Let $ r_x = \frac{ \epsilon_x}{ 3}$ and $ r_y = \frac{ \epsilon_y}{ 3}$. Then take
+	\begin{align*}
+		U_1 &:= \bigcup_{ x \in A_1} B_{ r_x}(x) \\
+		U_2 &:= \bigcup_{ y \in A_2} B_{ r_y}(y) ,
+	\end{align*}
+which are unions of open balls and thus open. Now suppose there exists a $ p \in U_1 \cap U_2$. Then by definition $ p \in B_{r_x}(x) \cap B_{r_y}(y)$ for some $ x \in A_1$ and $ y \in A_2$. It follows that
+\begin{align*}
+	\frac{ \epsilon_x + \epsilon_y}{ 2} &\leq d(x,y) && \text{definition of } \epsilon_x, \epsilon_y  \\
+					    &\leq d(x,p) + d(p,y) && \Delta \text{ inequality}  \\
+	&\leq r_x + r_y  \\
+	&= \frac{ \epsilon_x + \epsilon_y}{ 3} ,
+\end{align*}
+a contradiction since $ \epsilon_x + \epsilon_y >0$. Hence $ U_1,U_2$ are disjoint and are the open sets we seek.
+\end{proof}
+
+\begin{problem}[LN13 0.12]
+Let $ M \subseteq \rr^{n}$ be an embedded submanifold which may be parameteried by $ f: U \to \rr^{n}$, for some open set $ U \subseteq \rr^{m}$, \emph{i.e.} , $ f$ is a 1-to-1 smooth immersion and  $ f(U) =M$. Show that then  $ vol(M) = \int_U \sqrt{ \det (J_x(f)^{T} J_x(f))} dx $, where $ J_x(f)$ is the Jacobian matrix of  $ f $ at  $ x$. (Note that since we define Jacobian differently than the lecture notes, the order is flipped.)
+\end{problem}
+\begin{proof}
+	Since $ f$ is a 1-to-1 immersion onto $ M$,  $ f$ is a diffeomorphism onto its image and thus a parameterization of  $ M$. Since $ M$ is an embedded submanifold of  $ \rr^{n}$, it is endowed with the ambient Euclidean metric. So we can endow the pullback metric on $ U$ which is just  $ {g_{ij}}_x = \langle \frac{\partial f}{\partial x_i}(x) , \frac{\partial f}{\partial x_j}(x)  \rangle$. Recall that the $ i$th column of the Jacobian $ J_x(f)_{i} = \frac{\partial f}{\partial x_i}$. Therefore, the $ ij$th entry of  $ J_x(f)^{T} J_x(f)$ is precisely $\langle \frac{\partial f}{\partial x_i}(x) , \frac{\partial f}{\partial x_j}(x)  \rangle = {g_{ij}}_x$. Then we have
+\begin{align*}
+	vol(M) &= \int_U \sqrt{ \det G_x} dx \\
+	&= \int_U \sqrt{ \det (J_x(f)^{T} J_x(f))} dx .
+\end{align*}
+\end{proof}
+\end{document}

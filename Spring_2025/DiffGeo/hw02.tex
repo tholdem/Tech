@@ -1,0 +1,95 @@
+\documentclass[12pt]{article}
+\input{../preamble.tex}
+
+\begin{document}
+\centerline {\textsf{\textbf{\LARGE{Homework 2}}}}
+\centerline {Jaden Wang}
+\vspace{.15in}
+
+\begin{problem}[LN 5.8]
+	Show that if $ f: \rr^{n} \to \rr^{m}$ and we identify $ T_p \rr^{n}$ and $ T_{f(p)}\rr^{m}$ with $ \rr^{n}$ and $ \rr^{m}$ the standard way ($ [ \alpha] \mapsto \alpha'(0)$), then $ df_p$ may be identified with the linear transformation determined by the Jacobian matrix $ (\partial f^{i}/ \partial x_j)$.
+\end{problem}
+\begin{proof}
+	Define $ \alpha_i: (- \epsilon, \epsilon) \to \rr^{n}, t\mapsto (0,\ldots,t,\ldots,0)$ where $ t$ is at the  $ i$th entry. Then  $ [ \alpha_i] \mapsto  \alpha_i'(0) = e_i$ under the identification. The identification yields
+\begin{align*}
+	df_p: T_p \rr^{n} \to T_{f(p)} \rr^{m}, [ \alpha] \mapsto [f \circ \alpha] \implies\\
+	df_p : \rr^{n} \to \rr^{m}, \alpha'(0) \mapsto (f \circ \alpha)'(0).
+\end{align*}
+Then,
+\begin{align*}
+	df_p(e_i) &= df_p( \alpha'(0)) \\
+	&= (f \circ \alpha_i)'(0) \\
+	&= Df(0) \circ \alpha_i'(0) && \text{ Euclidean chain rule} \\
+	&= Df(0)(e_i)
+\end{align*}
+Thus, we see that $ df_p$ (after identification) and the Jacobian matrix $ Df(0)$ agree on the standard basis. Therefore they represent the same linear map.
+\end{proof}
+
+The following two exercises show the functoriality of the differential operator.
+
+\begin{problem}[LN 5.9]
+Show that if $ f: M \to N$ and $ g:N \to L$ are smooth maps, then, for any $ p \in M$, we have the chain rule
+\begin{align*}
+	d(g \circ f)_p = d g_{f(p)} \circ df(p).
+\end{align*}
+\end{problem}
+\begin{proof}
+	Let $ [\gamma]$ be a tangent vector in $ T_pM$. Thus $ \gamma(0)=p$. Recall the definition (with identification):
+\begin{align*}
+	df_p( [ \gamma]) = (f \circ \gamma)'(0).
+\end{align*}
+By repeatedly applying this definition, we have
+ \begin{align*}
+	 d(g \circ f)_p ([ \gamma]) &= ((g \circ f) \circ \gamma)'(0)\\
+				    &= ((g \circ (f \circ \gamma))'(0) \\
+				    &= d g_{f \circ \alpha(0)} (f \circ \gamma)'(0) \\
+				    &= d g_{f(p)} df_p([ \gamma]). 
+\end{align*}
+\end{proof}
+
+\begin{problem}[LN 5.10]
+Show that if $ f: M \to N$ is a diffeomorphism, then $ df_p$ is a linear isomorphism for all $ p \in M$. In particular, conclude that if $ M$ and  $ N$ are diffeomorphic, then  $ \dim (M) = \dim (N)$.
+
+\end{problem}
+\begin{proof}
+Since $ f$ is a diffeomorphism, it admits a smooth inverse  $ f^{-1}$. Then given $ p \in M$, we have
+\begin{align*}
+	f^{-1} \circ f &= \text{id}_{M} \\
+	d(f^{-1} \circ f)_p &= \text{id}_{T_pM} && \text{differential of identity is identity}  \\
+	d(f^{-1})_{f(p)} \circ df_p &= \text{id}_{T_pM}. && \text{chain rule} 
+\end{align*}
+The other direction follows similarly. Thus $ df_p$ has a two-sided linear inverse --- it is a linear isomorphism. By linear algebra, the tangent spaces of $ M$ and  $ N$ must have the same dimension for all points. Since the tangent space and the manifold must have the same dimension,  $ \dim M = \dim N$.
+\end{proof}
+
+\begin{problem}[do Carmo 0.2]
+Prove that the tangent bundle of a smooth manifold $ M$ is orientable.
+\end{problem}
+\begin{proof}
+Let $ \{U_{ \alpha}, \phi_{ \alpha}\}_{ \alpha \in J} $ be an atlas of $ M$. Since $ \phi_{ \alpha}$ is a diffeomorphism, the differential $ d\phi_{ \alpha}: TU_{ \alpha} \to \rr^{n} \times  \rr^{n}, (p,v) \mapsto (\phi_{ \alpha}(p), d\phi_p(v)) $ is a diffeomorphism. Thus $ \{TU_{ \alpha}, (\phi_{ \alpha}, d\phi_{ \alpha})\}_{ \alpha \in J} $ is an atlas of $ TM$. For any $ p \in U_{ \alpha} \cap U_{ \beta}$, let $ q = \phi_{ \alpha}(p)$. The transition map is
+\begin{align*}
+	d\phi_{ \beta} \circ d\phi_{ \alpha}^{-1}(q,v) &= (\phi_{ \beta} \circ \phi_{ \alpha}^{-1}(q), d\phi_{ \beta}_{p} \circ d\phi^{-1}_{ \alpha}_q(v)) \\
+	d(d\phi_{ \beta} \circ d\phi_{ \alpha}^{-1})_{(q,v)} &= (d(\phi_{ \beta} \circ \phi_{ \alpha}^{-1})_q, d(d\phi_{ \beta}_{p} \circ d\phi_{ \alpha}^{-1}_q)_v) \\
+	&= (d(\phi_{ \beta} \circ \phi_{ \alpha}^{-1})_q,d(d(\phi_{ \beta} \circ \phi_{ \alpha}^{-1})_q)_v).
+\end{align*}
+Notice that $\phi_{ \alpha \beta }_q := d(\phi_{ \beta} \circ \phi_{ \alpha}^{-1})_q$ is a linear operator, so its derivative is itself for any $ v$. It is also the derivative of a diffeomorphism so it has nonzero determinant. Thus we obtain
+\begin{align*}
+	\det d(d\phi_{ \beta} \circ d\phi_{ \alpha}^{-1})_{(q,v)}&= \det ( \phi_{ \alpha, \beta}_q, \phi_{ \alpha, \beta}_q) \\
+								 &= \det(\phi_{ \alpha, \beta}_q)^2 >0 ,
+\end{align*}
+where the last equality comes from determinant of the product linear operator. This proves that the transition maps are orientation-preserving and thus $ TM$ is orientable.
+\end{proof}
+
+\begin{problem}[do Carmo 0.8]
+Let $ M_1,M_2$ be smooth manifolds. Let $ f: M_1 \to M_2$ be a local diffeomorphism. Prove that if $ M_2$ is orientable, then so is $ M_1$.
+\end{problem}
+\begin{proof}
+Since $ M_2$ is orientable, it admits an atlas $ \{(V_{ \alpha},\psi_{ \alpha})\}_{ \alpha \in J} $ where all transition maps are orientation-preserving, \emph{i.e.} the determinant is positive. For any point $x \in M_1$, there exists an open set $ O_x$  such that  $ f|_{O_x}$ is a diffeomorphism onto its image. For any $ V_{ \alpha}$ that contain $ f(x)$, we set $ U_{ \alpha,x} = f ^{-1}(V_{ \alpha} \cap f(O_x))$, $ \phi_{ \alpha,x} = \psi_{ \alpha} \circ f|_{U_{ \alpha,x}}$. Then if there is another $ U_{ \beta,x}$ that contains $ x$, for any $ p \in U_{ \alpha,x} \cap U_{ \beta,x}$, let $ q = \phi_{ \alpha,x}(p)$. Notice $ f(p) = \psi_{ \alpha}^{-1}(q)$. We abuse the notation $ f$ for  $ f|_{U_{ \alpha,x} \cap U_{ \beta,x}}$ below, the transition map is
+\begin{align*}
+	\phi_{ \beta,x} \circ \phi_{ \alpha,x}^{-1}(q) &= \psi_{ \beta} \circ f \circ f^{-1} \circ \psi_{ \alpha}^{-1}(q) \\
+	d(\phi_{ \beta,x} \circ \phi_{ \alpha,x}^{-1})_q &= d \psi_{ \beta}_{ f(p)} \circ df_p \circ df^{-1}_{f(p)} \circ d (\psi_{ \alpha}^{-1})_q \\
+\det d(\phi_{ \beta,x} \circ \phi_{ \alpha,x}^{-1})_q &= \left( \det  d \psi_{ \beta}_{f(p)} \det  d (\psi_{ \alpha}^{-1})_q \right) \left(\det  df_p \det  df^{-1}_{f(p)} \right) \\
+\det d(\phi_{ \beta,x} \circ \phi_{ \alpha,x}^{-1})_q &= \det \left( d \psi_{ \beta}_{f(p)} d (\psi_{ \alpha}^{-1})_q \right) > 0.
+\end{align*}
+Therefore, $ \{(U_{ \alpha, x}, \phi_{ \alpha,x})\}_{ \alpha \in J, x \in M_1} $ is an atlas of $ M_1$ with orientation-preserving maps.
+\end{proof}
+\end{document}

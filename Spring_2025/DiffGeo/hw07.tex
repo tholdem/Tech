@@ -1,0 +1,120 @@
+\documentclass[12pt]{article}
+\input{../preamble.tex}
+
+\begin{document}
+\centerline {\textsf{\textbf{\LARGE{Homework 7}}}}
+\centerline {Jaden Wang}
+\vspace{.15in}
+
+\begin{problem}[do Carmo 3.8]
+Let $ M$ be a Riemannian manifold. Let  $ X \in \mathfrak{X}(M)$ and $ f \in \mathcal{D}(M)$. Define the divergence of $ X$ as a function  $ \Div X(p) =$ trace of the linear map $ Y(p) \to \nabla _Y X(p), p \in M$, and the gradient of $ f$ as a vector field  $ \grad f$  on $ M$ defined by
+ \begin{align*}
+	\langle \grad f(p), v \rangle = df_p(v), \qquad p \in M, \quad v \in T_p\dot{M}
+\end{align*}
+\begin{enumerate}[label=(\alph*)]
+	\item Let $ E_i$ be a geodesic frame at $ p \in M$. Show that
+		\begin{align*}
+			\grad f(p) = \sum_{ i= 1}^{ n} (E_i(f)) E_i(p),
+		\end{align*}
+		and
+		\begin{align*}
+			\Div X(p) = \sum_{ i= 1}^{ n} E_i(f_i)(p),
+		\end{align*}
+		where $ X = f^{i} E_i$.
+	\item Let $ M = \rr^{n}$, with coordinates $ (x_1,\ldots,x_n)$ and $ \frac{\partial }{\partial x_i} = (0,\ldots,1,\ldots,0) = e_i$. Show that
+		\begin{align*}
+			\grad f = \sum_{ i= 1}^{ n} \frac{\partial f}{\partial x_i} e_i, 
+		\end{align*}
+		$ \Div X = \sum_{ i= 1}^{ n} \frac{\partial f_i}{\partial x_i} $, where $ X = f^{i} e_i$.
+\end{enumerate}
+\end{problem}
+\begin{proof}
+\begin{enumerate}[label=(\alph*)]
+	\item Recall that a geodesic frame  Write $ v = v^{i} E_i(p)$. Then
+	\begin{align*}
+		df_p(v) &= df_p\left( v^{i} E_i(p) \right)  \\
+			&= v^{i} df_p(E_i(p))  && \text{linear map}  \\
+		&= v^{i} \frac{\partial f}{\partial x_i}(p) \\
+		&= v^{i} E_i(f) (p) \\
+		&= \langle E_i(f) E_i(p), v^{i} E_i(p) \rangle \\
+		&= \langle \grad f, v \rangle .
+	\end{align*}
+	Thus $ \grad f = E^{i}(f) E_i(p)$.
+
+	Recall that trace of a linear map $ L$ is defined as $ \tr L := \sum_{ i= 1}^{ n}  \langle L(E_i), E_i \rangle$.
+	\begin{align*}
+		\Div X(p) &= \Div \left( f^{i} E_i \right)(p)  \\
+		&= \sum_{ j= 1}^{ n}  \langle \nabla _{E_j} \left( f^{i} E_i \right)(p)  , E_j(p)  \rangle \\
+		&= \sum_{j= 1}^{ n}  \langle E_j(f^{i})E_i(p) + f^{i}\nabla_{E_j} E_i(p), E_j(p) \rangle\\
+		&= \sum_{ j=1}^{ n}  \langle E_j(f^{i})E_i(p) + 0, E_j(p) \rangle && \text{geodesic frame} \\
+		&=  E_i(f^{i})(p) .
+	\end{align*}
+\item This is immediate.
+\begin{align*}
+	\grad f(p) &= e^{i}(f) e_i(p) \\
+	&= \frac{\partial f}{\partial x_i} e_i  .
+\end{align*}
+\begin{align*}
+	\Div X (p) &= E_i(f^{i}) (p) \\
+	&= \frac{\partial f^{i}}{\partial x_i}   .
+\end{align*}
+\end{enumerate}
+\end{proof}
+
+\begin{problem}[do Carmo 3.9]
+Let $ M$ be a Riemannian manifold. Define the Laplacian $ \Delta: \mathcal{ D}(M) \to \mathcal{ D}(M)$ of $ M$ by
+ \begin{align*}
+	\Delta f = \Div \grad f, \qquad f \in \mathcal{ D}(M).
+\end{align*}
+\begin{enumerate}[label=(\alph*)]
+	\item Let $ E_i$ be a geodesic frame at $ p \in M$. Prove that
+	\begin{align*}
+		\Delta f(p) = E_i (E^{i}(f))(p) .
+	\end{align*}
+	Conclude that if $ M = \rr^{n}$, $ \Delta$ coincides with the usual Laplacian, namely $ \Delta f = \sum_i \frac{\partial^2 f}{\partial { x_i}^2} $. 
+\item Show that
+	\begin{align*}
+		\Delta (f \cdot g) = f \Delta g + g \Delta f + 2\langle \grad f, \grad g \rangle .
+	\end{align*}
+\end{enumerate}
+\end{problem}
+\begin{proof}
+\begin{enumerate}[label=(\alph*)]
+	\item This is immediate from previous problem. Since $ \grad f = E^i(f) E_i$,
+	\begin{align*}
+		\Delta f(p) &= \Div (E^i(f) E_i)(p) \\
+		&= E_i(E^{i} (f)) (p) .
+	\end{align*}
+	If $ M = \rr^{n}$, then 
+	\begin{align*}
+		\Delta f = E_{i} (E^{i}(f)) = E_{i} \left( \frac{\partial f}{\partial x^i}  \right) = \sum_i \frac{\partial^2 f}{\partial { x_{i}}^2} .
+	\end{align*}
+\item First we compute
+	\begin{align*}
+		\langle \grad f, \grad g \rangle = \langle E^{i}(f) E_i, E^{i}(g) E_i \rangle = E^{i}(f) E_{i}(g) .
+	\end{align*}
+It follows that
+\begin{align*}
+	\Delta (f \cdot g) &= E_i(E^{i}(f \cdot g)) \\
+			   &= E_i(E^{i}(f) g + f E^{i}(g)) && \text{Leibniz rule of derivation}  \\
+			   &= E_i(E^{i}(f)) g + E^i(f)E_i(g) + E_i (f) E^{i}(g) + f E_i(E^{i}(g)) \\
+			   &= g\Delta f  + 2 \langle \grad f, \grad g \rangle + f \Delta g .
+\end{align*}
+\end{enumerate}
+\end{proof}
+
+\begin{problem}[do Carmo 3.10]
+	Let $ f: I \times [0,a] \to M$ be a parametrized surface such that for all $ t_0 \in [0,a]$, the curve $ s \to f(s,t_0), s \in [0,1]$ is a geodesic parametrized by arc length, which is orthogonal to the curve $ t \to f(0,t), t \in [0,a]$, at the point $ f(0,t_0)$. Prove that, for all $ (s_0,t_0) \in I \times [0,a]$, the curves $ s \to f(s,t_0), t \to f(s_0,t)$ are orthogonal.
+\end{problem}
+
+\begin{proof}
+	We want to show that $ \langle \frac{\partial f}{\partial s} , \frac{\partial f}{\partial t}  \rangle \equiv 0$. Since we already know that $ \langle \frac{\partial f}{\partial s} \big|_{(0,t_0)} , \frac{\partial f}{\partial t} \big|_{(0,t_0)}  \rangle = 0$ for any $ t_0 \in [0,a]$, it suffices to show that the inner product is constant as we vary $ s$,  \emph{i.e.} it has 0 derivative wrt $ s$. We compute
+\begin{align*}
+	\frac{\partial }{\partial s} \left\langle \frac{\partial f}{\partial s} , \frac{\partial f}{\partial t} \right \rangle &= \left\langle \frac{D}{\partial s} \frac{\partial f}{\partial s}, \frac{\partial f}{\partial t}   \right\rangle + \left\langle \frac{\partial f}{\partial s} , \frac{D}{\partial s} \frac{\partial f}{\partial t}  \right\rangle  && \text{Leibniz rule}  \\
+	&=  \left\langle \frac{D}{\partial s} \frac{\partial f}{\partial s}, \frac{\partial f}{\partial t}   \right\rangle + \left\langle \frac{\partial f}{\partial s} , \frac{D}{\partial t} \frac{\partial f}{\partial s}  \right\rangle  && \text{symmetry lemma} \\
+	&=  \left\langle 0, \frac{\partial f}{\partial t}   \right\rangle + \left\langle \frac{\partial f}{\partial s} , \frac{D}{\partial t} \frac{\partial f}{\partial s}  \right\rangle  && \text{geodesic along }s \\
+	&= \frac{1}{2} \frac{\partial }{\partial t} \left\langle \frac{\partial f}{\partial s}, \frac{\partial f}{\partial s}  \right\rangle \\
+	&= 0  .
+\end{align*}
+\end{proof}
+\end{document}

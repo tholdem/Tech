@@ -1,0 +1,112 @@
+\documentclass[12pt]{article}
+\input{../preamble.tex}
+
+\begin{document}
+\centerline {\textsf{\textbf{\LARGE{Homework 9}}}}
+\centerline {Jaden Wang}
+\vspace{.15in}
+\begin{problem}[4.6]
+Let $ M$ be a Riemannian manifold.  $ M$ is a locally symmetric space if  $ \nabla R =0$, where $ R$ is the curvature tensor of  $ M$.
+ \begin{enumerate}[label=(\alph*)]
+	 \item Let $ \gamma:[0,\ell) \to M$ be a geodesic of $ M$. Let  $ X,Y,Z$ be parallel vector fields along  $ \gamma$. Prove that $ R(X,Y)Z$ is a parallel field along  $ \gamma$.
+	 \item Prove that if $ M$ is locally symmetric, connected, and has dimension two, then  $ M$ has constant sectional curvature.
+	 \item Prove that if $ M$ has constant (sectional) curvature, then  $ M$ is a locally symmetric space.
+\end{enumerate}
+\end{problem}
+\begin{proof}
+\begin{enumerate}[label=(\alph*)]
+	\item Let $ V:= \dot{\gamma}$ be the velocity field along $ \gamma$. Since $ X,Y,Z$ are parallel along $ \gamma$, we have $ \nabla _V X = \nabla _V Y = \nabla _V Z = 0$ along $ \gamma$. Let $ W$ be any vector field, then tensor derivative yields
+\begin{align*}
+\nabla R(X,Y,Z,W,V) &= V(R(X,Y,Z,W)) - R(\nabla_V X,Y,Z,W) - R(X,\nabla_V Y, Z,W) \\
+		     & \quad - R(X,Y,\nabla_VZ , W) - R(X,Y,Z,\nabla_VW) \\	
+ &= V(R(X,Y,Z,W)) - R(0,Y,Z,W) - R(X,0, Z,W)\\
+ & \quad - R(X,Y,0 , W) - R(X,Y,Z,\nabla_VW) \\	
+ &= V(R(X,Y,Z,W)) - R(X,Y,Z,\nabla_VW) =0 .
+\end{align*}
+This yields $ V(R(X,Y,Z,W)) = R(X,Y,Z,\nabla_VW)$. Recall the Leibniz rule for the metric:
+\begin{align*}
+	V\left( \left\langle R(X,Y)Z,W \right\rangle \right) &= \left\langle \nabla_V (R(X,Y)Z), W \right\rangle + \left\langle R(X,Y)Z,\nabla_VW \right\rangle .
+\end{align*}
+It follows that $ \left\langle \nabla_V (R(X,Y)Z), W \right\rangle =0$. Since $ W$ is arbitrary, it must be that  $ \nabla_V (R(X,Y)Z) = 0$, proving that $ R(X,Y)Z$ is parallel along $ \gamma$.
+\item First, let $ c = K(p)$ for any  $ p \in M$. Now define $ A = \{p \in M: K(p) = c\}$. Thus we know that $ A$ is not empty. Since  $ K$ is a smooth function on  $ M$,  $ A$ is the preimage of a single point $ c$ and therefore is closed in $ M$. To prove that  $ M$ has constant sectional curvature, it suffices to show that  $ A$ is open as well so we must have $ A = M$. That is, we wish to show that any $ p \in A$ has an open neighborhood  $ U$ such that  $ U \subseteq A$.
+
+	Consider the normal neighborhood $ U$ of $p$ with geodesic frame  $ \{E_1,E_2\} $. Since $ M$ has dimension two, this frame spans the entire  $ TU$ so we only need to show $ K$ is constant in  $ U$ under this frame. Let $ q \in U$ and let $ \gamma$ be a geodesic connecting $ p$ and $ q$. By definition of geodesic frame, $ E_1$ and $ E_2$ are parallel fields along $ \gamma$. Since $ M$ is locally symmetric, it follows from part (a) that $ R(E_1,E_2)E_1$ is a parallel field along $ \gamma $ as well. Since $ K(p) = c$, we have
+\begin{align*}
+	K(p) &=	\frac{\left\langle R(E_1,E_2)E_1(p), E_2(p) \right\rangle}{ \norm{ E_1(p)}^2 \norm{ E_2(p)}^2 - \left\langle E_1(p),E_2(p) \right\rangle^2   } \\
+	     &=	\frac{\left\langle R(E_1,E_2)E_1(q), E_2(q) \right\rangle}{ \norm{ E_1(q)}^2 \norm{ E_2(q)}^2 - \left\langle E_1(q),E_2(q) \right\rangle^2 } && \text{parallel transport is isometry}  \\
+	 &= K(q) = c .
+\end{align*}
+We conclude that $ U \subseteq A$ and thus $ A$ is open as desired.
+\item Since $ M$ has constant sectional curvature $ K_0$, by Lemma 3.4, $ R = K_0 R'$, where
+	\begin{align*}
+		\left\langle R'(X,Y,Z),W \right\rangle = \left\langle X,Z \right\rangle \left\langle Y,W \right\rangle - \left\langle Y,Z \right\rangle \left\langle X, W\right\rangle.
+	\end{align*}
+\begin{claim}
+For any $ V \in \mathfrak{X}(M)$, $ \nabla_V R' =0$.
+\end{claim}
+The proof is a straightforward computation:
+\begin{align*}
+	V(R'(X,Y,Z,W)) &= V[\left\langle X,Z \right\rangle \left\langle Y,W \right\rangle - \left\langle Y,Z \right\rangle \left\langle X,W \right\rangle ] \\
+		      &=  \left[ \left\langle \nabla_VX,Z \right\rangle+ \left\langle X, \nabla_VZ \right\rangle \right] \left\langle Y,W \right\rangle + \left\langle X,Z \right\rangle \left[ \left\langle \nabla_VY,W \right\rangle + \left\langle Y,\nabla_VW \right\rangle \right] \\
+		      &\quad  - [\left\langle \nabla_VY,Z \right\rangle + \left\langle Y,\nabla_VZ \right\rangle] \left\langle X,W \right\rangle - \left\langle Y,Z \right\rangle [\left\langle \nabla_VX,W \right\rangle + \left\langle X,\nabla_VW \right\rangle]  \\
+		      &= \left\langle \nabla_VX,Z \right\rangle \left\langle Y,W \right\rangle+ \left\langle X, \nabla_VZ \right\rangle  \left\langle Y,W \right\rangle \\
+		      & \quad + \left\langle X,Z \right\rangle  \left\langle \nabla_VY,W \right\rangle + \left\langle X,Z \right\rangle\left\langle Y,\nabla_VW \right\rangle  \\
+		      & \quad - \left\langle \nabla_VY,Z \right\rangle \left\langle X,W \right\rangle - \left\langle Y,\nabla_VZ \right\rangle\left\langle X,W \right\rangle \\
+		      &\quad - \left\langle Y,Z \right\rangle\left\langle \nabla_VX,W \right\rangle - \left\langle Y,Z \right\rangle \left\langle X,\nabla_VW \right\rangle  \\
+	&= R'(\nabla_V X,Y,Z,W) + R'(X,\nabla_VY,Z,W) \\
+	&\quad + R'(X,Y,\nabla_VZ,W) + R'(X,Y,Z,\nabla_VW)   .
+\end{align*}
+The claim follows immediately. Using this claim, we obtain
+\begin{align*}
+	V(R(X,Y,Z,W)) &= K_0 V(R'(X,Y,Z,W)) \\
+	&= K_0[ R'(\nabla_V X,Y,Z,W) + R'(X,\nabla_VY,Z,W) \\
+	&\quad + R'(X,Y,\nabla_VZ,W) + R'(X,Y,Z,\nabla_VW) ] \\
+	&= R(\nabla_V X,Y,Z,W) + R(X,\nabla_VY,Z,W) \\
+	&\quad + R(X,Y,\nabla_VZ,W) + R(X,Y,Z,\nabla_VW)  .
+\end{align*}
+It follows that $ \nabla R(X,Y,Z,W,V) = V(R(X,Y,Z,W)) - (R(\nabla_V X,Y,Z,W) + R(X,\nabla_VY,Z,W)+ R(X,Y,\nabla_VZ,W) + R(X,Y,Z,\nabla_VW)) =0  $. That is, $ M$ is locally symmetric.
+\end{enumerate}
+\end{proof}
+
+\begin{problem}[4.8 (Schur's Theorem)]
+Let $ M^{n}$ be a connected Riemmannian manifold with $ n \geq 3$. Suppose that  $ M$ is isotropic, that is, for each $ p \in M$, the sectional curvature $ K(p, \sigma)$ does not depend on $ \sigma \subseteq T_pM$. Prove that $ M$ has constant sectional curvature, that is,  $ K(p, \sigma)$ also does not depend on $ p$. 
+\end{problem}
+\begin{proof}
+By the proof of Lemma 3.4, since $ K(p)$ is independent of  $ \sigma \subset T_pM$, we have $ R(p) = K(p) R'(p)$. By the claim from previous problem, we know that for any $ V \in \mathfrak{X}(M)$, $ \nabla_V R' = 0$. It follows that $ \nabla_V (R) = \nabla_V(KR') = V(K)R' + K \nabla_VR' = V(K)R'$. Now consider the 2nd Bianchi identity:
+\begin{align*}
+	0&=\nabla R(X,Y,Z,W,V) + \nabla R(X,Y,W,V,Z) + \nabla R(X,Y,V,Z,W) \\
+	0&=V(K)R'(X,Y,Z,W) + Z(K)R'(X,Y,W,V) + W(K) R'(X,Y,V,Z) \\
+	0&=V(K)[\left\langle X,Z \right\rangle \left\langle Y,W \right\rangle - \left\langle Y,Z \right\rangle \left\langle X,W \right\rangle]\\
+	 & \quad +Z(K) [\left\langle X,W \right\rangle \left\langle Y,V \right\rangle - \left\langle Y,W \right\rangle \left\langle X,V \right\rangle]  \\
+	 &\quad + W(K) [\left\langle X,V \right\rangle \left\langle Y,Z \right\rangle - \left\langle Y,V \right\rangle \left\langle X,Z \right\rangle]  .
+\end{align*}
+Since $ n \geq 3$, for any  $Z$ we can find  $ W,Y$ s.t.\ $ \left\langle Z,W \right\rangle = \left\langle Y,W \right\rangle = \left\langle Y,Z \right\rangle = 0$ ( \emph{i.e.} $ Z,W,Y$ are linearly independent) and $ \left\langle Y,Y \right\rangle \equiv 1$. The equation becomes
+\begin{align*}
+	0 &= Z(K) \left\langle X,W \right\rangle - W(K) \left\langle X,Z \right\rangle \\
+	0&= \left\langle Z(K)W- W(K)Z, X \right\rangle \\
+	0 &= Z(K)W-W(K)Z && X \text{ is arbitrary} \\
+	0 &= Z(K) := dK(Z) && Z,W \text{ linearly independent}  .
+\end{align*}
+Since $ Z$ is arbitrary, we conclude that  $ dK \equiv 0$. That is,  $ K$ is constant everywhere.
+\end{proof}
+\begin{problem}[4.9]
+Prove that the scalar curvature $ K(p)$ at  $  p \in M$ is given by
+\begin{align*}
+	K(p) = \frac{1}{\omega_{n-1}} \int_{S^{n-1}} \Ric_p(x) dS^{n-1},
+\end{align*}
+where $ \omega_{n-1}$ is the area of the sphere $ S^{n-1}$ in $ T_pM$ and  $ dS^{n-1}$ is the area elements on $ S^{n-1}$.
+\end{problem}
+
+\begin{proof}
+Fix a $ p \in M$. Recall the symmetric bilinear form $ Q(x,y)$ that is the trace of the linear map $ z \mapsto R_p(x,z)y$. We know that there is a real symmetric matrix $ A$  s.t.\ $ \frac{1}{n-1}Q(x,y) = \left\langle Ax, y  \right\rangle$. Spectral Theorem yields an orthonormal eigenbasis $ \{e_i\} $ of $ A$ with corresponding real eigenvalues $ \lambda_i$.  Thus, if a unit vector $ x = x^{i} e_i$, we have $ \Ric_p(x) =  \frac{1}{n-1}Q(x,x) = \lambda^i x_{i}^2$. Moreover, $ x$ is a unit normal vector to  $ S^{n-1}$. Let $ V = \lambda^{i}x^{i} e_i $, with $ \Div V = \sum_{ i= 1}^{ n} \lambda_i $, we obtain
+\begin{align*}
+	\frac{1}{\omega_{n-1}} \int_{S^{n-1}} \Ric_p(x) dS^{n-1} &= \frac{1}{\omega_{n-1}} \int_{S^{n-1}} \lambda^{i} x_i^2 dS^{n-1}\\
+	&= \frac{1}{\omega_{n-1}} \int_{S^{n-1}} \left\langle V, x \right\rangle dS^{n-1} \\
+	&= \frac{1}{\omega_{n-1}} \int_{B^{n}} \Div V \ dB^{n}  && \text{Stokes Theorem} \\
+	&= \frac{ \Div V }{ \omega_{n-1}} \int_{B^{n}} dB^{n}  \\
+	&= \frac{ \sum_{ i= 1}^{ n}  \lambda_i}{n}  && area(S^{n-1}) = \frac{d (R^{n}vol(B^{n}))}{d R}\bigg|_{R=1} = n \cdot  vol(B^{n}) \\
+	&= \frac{ \sum_{ i= 1}^{ n} \Ric_p(e_i)}{n}  \\
+	&= K(p) .
+\end{align*}
+\end{proof}
+\end{document}

@@ -1,0 +1,116 @@
+\documentclass[12pt]{article}
+\input{../preamble.tex}
+
+\begin{document}
+\centerline {\textsf{\textbf{\LARGE{Homework 8}}}}
+\centerline {Jaden Wang}
+\vspace{.15in}
+\begin{problem}[1]
+Compute the coefficients of the Riemann curvature tensor $ R$ in terms of the Christoffel symbols  $ \Gamma_{ij}^{k}$.
+\end{problem}
+\begin{proof}
+	We use Einstein notation throughout.
+\begin{align*}
+	R_{ijk}^{ \ell} \frac{\partial }{\partial x_\ell} &=  R\left( \frac{\partial }{\partial x_i} , \frac{\partial }{\partial x_j}  \right) \frac{\partial }{\partial x_k}   \\
+							  &= \left( \nabla _{\frac{\partial }{\partial x_j} } \nabla_{ \frac{\partial }{\partial x_i}}- \nabla_{ \frac{\partial }{\partial x_i}} \nabla_{ \frac{\partial }{\partial x_j} } + \nabla _{ \left[ \frac{\partial }{\partial x_i} ,\frac{\partial }{\partial x_j}  \right]}  \right) \frac{\partial }{\partial x_k} \\
+							  &= \nabla _{ \frac{\partial }{\partial x_j} } \nabla_{ \frac{\partial }{\partial x_i}} \frac{\partial }{\partial x_k} - \nabla_{ \frac{\partial }{\partial x_i}} \nabla_{ \frac{\partial }{\partial x_j} }\frac{\partial }{\partial x_k}   \\
+							  &= \nabla _{ \frac{\partial }{\partial x_j} } \left( \Gamma_{ k i}^{ s} \frac{\partial }{\partial x_s}  \right) - \nabla _{ \frac{\partial }{\partial x_i} } \left( \Gamma_{ k j}^{ s} \frac{\partial }{\partial x_s}  \right)   \\
+							  &= \frac{\partial \Gamma_{ k i}^{ s} }{\partial x_j} \frac{\partial }{\partial x_s} + \Gamma_{ k i}^{ s} \Gamma_{ sj}^{ \ell} \frac{\partial }{\partial x_\ell} -  \frac{\partial \Gamma_{ k j}^{ s} }{\partial x_i} \frac{\partial }{\partial x_s} - \Gamma_{ k j}^{ s} \Gamma_{ si}^{ \ell} \frac{\partial }{\partial x_\ell}  && \text{Leibniz rule}  \\
+							  &=  \frac{\partial \Gamma_{ k i}^{ \ell} }{\partial x_j} \frac{\partial }{\partial x_\ell} + \Gamma_{ k i}^{ s} \Gamma_{ sj}^{ \ell} \frac{\partial }{\partial x_\ell} -  \frac{\partial \Gamma_{ k j}^{ \ell} }{\partial x_i} \frac{\partial }{\partial x_\ell} - \Gamma_{ k j}^{ s} \Gamma_{ si}^{ \ell} \frac{\partial }{\partial x_\ell} && \text{reindexing}  \\
+							  &= \left(  \frac{\partial \Gamma_{ ik}^{ \ell} }{\partial x_j} -  \frac{\partial \Gamma_{ jk}^{ \ell} }{\partial x_i} + \Gamma_{ ik}^{ s} \Gamma_{ js}^{ \ell} - \Gamma_{ jk}^{ s} \Gamma_{ is}^{ \ell} \right)  \frac{\partial }{\partial x_\ell}. && \nabla \text{ symmetric} 
+\end{align*}
+Hence, the coefficients of the Riemann curvature tensor is
+\begin{align*}
+	R_{ijk}^{ \ell} =   \frac{\partial \Gamma_{ ik}^{ \ell} }{\partial x_j} -  \frac{\partial \Gamma_{ jk}^{ \ell} }{\partial x_i}  + \Gamma_{ ik}^{ s} \Gamma_{ js}^{ \ell} - \Gamma_{ jk}^{ s} \Gamma_{ is}^{ \ell}. 
+\end{align*}
+\end{proof}
+\begin{problem}[2]
+Show that the curvature of $ \rr^{n}$ is zero by (i) using the formula from the last exercise, and (ii) using the abstract definition of  $ R$ in terms of the covariant derivative  $ \nabla $.
+\end{problem}
+\begin{proof}
+\begin{enumerate}[label=(\roman*)]
+	\item 	Recall that
+\begin{align*}
+	\Gamma_{ i j}^{ k} = \frac{1}{2} g^{sk} \left( - \frac{\partial g_{ij}}{\partial x_s} + \frac{\partial g_{js}}{\partial x_i} + \frac{\partial g_{si}}{\partial x_j}    \right) .
+\end{align*}
+In $ \rr^{n}$, $ g^{sk} = g_{sk}^{-1} = \delta_{sk}$. Thus
+\begin{align*}
+	\Gamma_{ i j}^{ k} = \frac{1}{2} \left( - \frac{\partial g_{ii}}{\partial x_i} + \frac{\partial g_{ii}}{\partial x_i} + \frac{\partial g_{ii}}{\partial x_i}    \right) = 0 . 
+\end{align*}
+We immediately have
+\begin{align*}
+	R_{ijk}^{\ell} = 0 .
+\end{align*}
+Therefore, the curvature is zero.
+\item In $ \rr^{n}$, a global canonical basis enables $ \nabla_X Z = (X(Z^{1},\ldots,X(Z^{n})) =: X(Z)$. Thus we have
+\begin{align*}
+	R(X,Y)Z&=(\nabla_Y \nabla_X - \nabla _X \nabla _Y  + \nabla _{[X,Y]})Z \\
+	&= YX(Z) - XY(Z) + XY(Z) - YX(Z) = 0  . 
+\end{align*}
+\end{enumerate}
+\end{proof}
+\begin{problem}[3]
+Compute the curvature of the hyperbolic plane $ H^2$ using the formula from the first exercise.
+\end{problem}
+\begin{proof}
+Recall that the metric tensor of $ H^2$ is $ g_{ij} = \delta_{ij} /y^2$. Thus $ g^{ij} = \delta_{ij} y^2$, and 
+\begin{align*}
+	\Gamma_{ 1 1}^{ 1} &= 0 \\
+	\Gamma_{ 1 2}^{ 1} &= \Gamma_{ 2 1}^{ 1}  = \frac{1}{2} y^2\left(-0 - \frac{2}{y^3} + 0  \right) +0  = -\frac{1}{y}\\
+	\Gamma_{ 2 2}^{ 1} &= \frac{1}{2} y^2 \left( -0 + 0 + 0 \right) = 0  \\
+	\Gamma_{ 1 1}^{ 2} &= 0+\frac{1}{2} y^2 \left( \frac{2}{y^3} +0 + 0 \right) = \frac{1}{y}  \\
+	\Gamma_{ 1 2}^{ 2} &= \Gamma_{ 2 1}^{ 2} = 0+ \frac{1}{2} y^2 \left( -0 +0 +0 \right) = 0\\
+	\Gamma_{ 2 2}^{ 2} &= 0+ \frac{1}{2} y^2 \left( \frac{2}{y^3} - \frac{2}{y^3} - \frac{2}{y^3} \right)  = -\frac{1}{y} .
+\end{align*}
+We define $ R_{ijk\ell} : = R_{ijk}^{s} g_{s\ell}$. Using identities, we obtain
+\begin{align*}
+	R_{1111} &= - R_{1111} \iff R_{1111} = 0 \\
+	R_{1112} &= R_{1211} =-R_{1121} = -R_{2111} \\
+	&= -R_{1112} \iff R_{1112}= 0  \\
+	R_{1122} &= R_{2211}  \\
+	&= -R_{1122} \iff R_{1122} =0 \\
+	R_{1221} &= R_{2112} = -R_{2121} = -R_{1212} \\
+	&= R_{122}^{1} g_{11} + R_{122}^{2} g_{21} \\
+		    &= \left( \frac{1}{y^2} -0+ \frac{1}{y^2} +0-0- \frac{1}{y^2} \right) \frac{1}{y^2} +0  = \frac{1}{y^{4}}\\
+	R_{1222} &= R_{2212} = -R_{2122} = -R_{2221}  \\
+	&= -R_{1222} \iff R_{1222}=0 \\
+	R_{2222} &= -R_{2222} \iff R_{2222} = 0 .
+\end{align*}
+There are a total of $ 2^{4} = 16$ terms so we have computed all of them. Therefore, we have
+\begin{align*}
+	R_{1212} &= \left\langle R(E_1,E_2)E_1 , E_2 \right\rangle = -\frac{1}{y^{4}}\\
+	K(E_1,E_2) &= \frac{R_{1212}}{ \norm{ E_1 \wedge E_2}^2 }\\ 
+		 &= \frac{R_{1212}}{ \norm{ E_1}^2 \norm{ E_2}^2 -  \left\langle E_1, E_2 \right\rangle^2 }  \\
+		 &= \frac{-\frac{1}{y^{4}}}{ \frac{1}{y^2} \frac{1}{y^2} -0} \\
+		 &=- 1 .
+\end{align*}
+\end{proof}
+\begin{problem}[4]
+Compute the curvature of the unit sphere $ S^2$ using the formula from the first exercise.
+\end{problem}
+\begin{proof}
+	Recall that the unit sphere under spherical basis $ \{ \frac{\partial }{\partial \phi} , \frac{\partial }{\partial \theta}  \} $ (longitude, latitude) has metric tensor $ G = \begin{pmatrix} 1&0\\0& \sin^2 \phi \end{pmatrix} $.
+\begin{align*}
+	\Gamma_{ 1 1}^{ 1} &= 0 \\
+	\Gamma_{ 1 2}^{ 1} &= \Gamma_{ 2 1}^{ 1} = 0 \\
+	\Gamma_{ 2 2}^{ 1} &= \frac{1}{2} \left( - 2 \sin \phi \cos \phi +0+0 \right) = - \sin \phi \cos \phi  \\
+	\Gamma_{ 1 1}^{ 2} &= 0 \\
+	\Gamma_{ 1 2}^{ 2} &= \Gamma_{ 2 1}^{ 2} = \frac{1}{2} \frac{1}{ \sin^2\phi} \left( -0+0+ 2 \sin \phi \cos \phi \right) = \frac{\cos \phi}{ \sin \phi } =\cot \phi \\
+	\Gamma_{ 2 2}^{ 2} &= \frac{1}{2} \sin^2 \phi \left( -0+0+0 \right) =0  .
+\end{align*}
+As before, curvature is 0 except for the following terms:
+\begin{align*}
+	R_{\phi \theta \theta \phi} = R_{1221} &= R_{2112} = -R_{2121} = -R_{1212} \\
+	&= R_{122}^{1} g_{11} + R_{122}^{2} g_{21} \\
+	&= \left( 0+ \cos^2 \phi - \sin^2 \phi +0 - \frac{\cos \phi}{ \sin \phi} \sin \phi \cos \phi - 0 -0  \right) \cdot 1 +0\\
+	&= -\sin^2 \phi .
+\end{align*}
+Thus $ R_{1212} = \sin^2 \phi$ and the sectional curvature is
+\begin{align*}
+	K(E_1,E_2) &= \frac{R_{1212}}{ \norm{ E_1}^2 \norm{ E_2}^2   } \\
+	&= \frac{ \sin^2 \phi}{ \sin^2 \phi } \\
+	&= 1 .
+\end{align*}
+
+\end{proof}
+\end{document}

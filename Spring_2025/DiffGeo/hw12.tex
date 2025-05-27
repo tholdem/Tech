@@ -1,0 +1,54 @@
+\documentclass[12pt]{article}
+\input{../preamble.tex}
+
+\begin{document}
+\centerline {\textsf{\textbf{\LARGE{Homework 12}}}}
+\centerline {Jaden Wang}
+\vspace{.15in}
+
+\begin{problem}[7.1]
+If $ M,N$ are Riemannian manifolds such that the inclusion  $ i: M \subset N$ is an isometric immersion, show by an example that the strict inequality $ d_M(x,y) > d_N(x,y)$ can occur.
+\end{problem}
+\begin{proof}
+Let $ N= \rr^2$ with the Euclidean metric and $ M= \rr^2 \setminus D^2$ where $ D^2$ is the closed unit disk centered at the origin. Then the inclusion is clearly an isometric immersion. Notice  $ d_M((-1.1,0),(1.1,0)) > \pi$ since any path has to go around half of the unit disk. But $ d_N((-1.1,0),(1.1,0)) = 2.2 < \pi$. 
+\end{proof}
+\begin{problem}[7.2]
+Let $ \widetilde{ M}$ be a covering space of a Riemannian manifold $ M$. Show that it is possible to give  $ \widetilde{ M}$ a Riemannian structure such that the covering map $ \pi: \widetilde{ M} \to M$ is a local isometry. Show that $ \widetilde{ M}$ is complete in the covering metric if and only if $ M$ is complete.
+\end{problem}
+\begin{proof}
+	Let $ g$ be the metric on  $ M$. Define the pullback metric $ \pi^{*}g_{\widetilde{ p}} = g_{\pi(p)}$ for any $ \widetilde{ p} \in \widetilde{ M}$. Since $ \pi$ is already a local diffeomorphism, by definition of pullback metric it is a local isometry. Recall that in a covering space, any path downstairs can be lifted to a unique path upstairs once we choose an initial point, and any path upstairs can be projected to a unique path downstairs. Since geodesics are defined using local notions (covariant derivative), and since the covering map is a local isometry, any geodesic downstairs can be lifted to a unique geodesic upstairs with chosen initial point and vice versa. Thus if $ M$ is complete, for any point $ \widetilde{ p} \in \widetilde{ M}$ we can take any geodesic $ \widetilde{ \gamma}$ emanating from $ \widetilde{ p}$, project it to a geodesic in $ M$ and extend it for all time and then lift it back to the same starting point $ \widetilde{ p}$, which by uniqueness guarantees to coincide with the original geodesic $ \widetilde{ \gamma}$ at original time interval. The reverse direction is pretty much identical. By Hopf--Rinow, geodesic completeness and completeness are equivalent so we are done with the proof.
+\end{proof}
+\begin{problem}[7.9]
+Consider the upper half-plane with the metric  $ g_{11} = 1, g_{12}=0, g_{22} = \frac{1}{y}$. Show that the length of the vertical segment $ x=0$,  $ \epsilon\leq y \leq 1$ with $ \epsilon>0$ tends to 2 as $ \epsilon \to 0$. Conclude from this that such a metric is not complete.
+\end{problem}
+\begin{proof}
+Let $ \gamma(t) = (0,t)$ so $ \gamma'(t) = (0,1)$. Then the desired length is
+\begin{align*}
+	\int_{ \epsilon}^{ 1} \sqrt{g_{(0,t)} ((0,1),(0,1))}\ dt  &= \int_{ \epsilon}^{ 1} t^{-\frac{1}{2}} \ dt  \\
+	&= 2 t^{\frac{1}{2}} \big|_{ \epsilon}^{1} \\
+	&= 2- 2 \sqrt{ \epsilon}  .
+\end{align*}
+Clearly as $ \epsilon \to 0$, the length tends to 2. Now we wish to prove the negation of statement (e) in Hopf--Rinow: for all sequences of compact subsets $ K_n \subset M, K_n \subset K_{n+1} $ and $ \bigcup_{ n} K_n =M $, there exists a $ q_n \not\in K_n$ such that $ \lim_{ n \to \infty}  d(p,q_n) < \infty $.
+
+Given any such sequence $ (K_n) $, and WLOG assume the intersection between $ K_n$ and the $ y$-axis is nonempty since eventually  $ K_n$ has to tend to the entire $ \rr_+^2$ and we only care about tail behavior.  Since $ K_n$ is compact and the projection function is continuous, there exists a point $ (0,y_n) \in K_n $ with a minimum  $ y$-value  $ y_n > 0$ in $ K_n$. Define  $ q_n = \left(0, \frac{y_n}{ 2}\right)$. By minimality of $ y_n$, we have $ q_n \not\in K_n$ and $ q_n \to (0,0)$. However, $ d((0,1),q_n) \to 2 < \infty$, proving the negation. 
+\end{proof}
+\begin{problem}[7.10]
+Prove that the upper half-pane $ \rr_+^2$ with the Lobatchevski metric $ g_{11}= g_{22} = \frac{1}{y^2}$, $ g_{12} = 0 $ is complete.
+\end{problem}
+\begin{proof}
+From Example 3.10 of Chapter 3, we know that its geodesics are vertical rays from the $ x$-axis and semicircles with center on the $ x$-axis. Given any $ p = (x,y) \in \rr_+^2$ and a semicircle or ray emanating from $ p$, clearly it can always be extended upward as there is no boundary or holes when  $ y$-value increases. But as  $ y$-value decreases, we just need to check that it doesn't reach the boundary $ x$-axis in finite time. In the case of a ray, as before we can integrate its length which is $ \ln y -\ln \epsilon$. As $ \epsilon \to 0$, the length goes to infinity. In the case of a semicircle, we can parameterize it as $ \gamma(t) = (y\cos t + x, y\sin t)$ with radius $ y$ and center at $ (x,0)$. 
+\begin{align*}
+	L( \gamma) &= \int_{ \epsilon}^{ \frac{\pi}{2}} \frac{1}{y \sin t}  \norm{ (-y \sin t, y \cos t)} dt\\  
+	&= \int_{ \epsilon}^{ \frac{\pi}{2}} \frac{dt}{\sin t}  \\
+	&= \ln \tan \frac{t}{2} \big|_{ \epsilon}^{\frac{\pi}{2}} \\
+	&= \ln \tan \frac{\pi}{4} - \ln \epsilon .
+\end{align*}
+Again the arc length approaches $ \infty$ as $ \epsilon \to 0$. Since the geodesic moves at constant speed, it cannot cover arbitrarily large arc length in finite time. That it, it can be extended to all time. By Hopf--Rinow, the Lobatchevsky plane is complete.
+\end{proof}
+\begin{problem}[7.12]
+A Riemannian manifold is \emph{homogeneous} if given $ p,q \in M$ there exists an isometry of $ M$ which takes  $ p$ into  $ q$. Prove that any homogeneous manifold is complete. 
+\end{problem}
+\begin{proof}
+Let $ B \subset T_pM$ be the largest closed ball with radius $ r< \infty$ centered at 0 where $ \exp_p$ is still defined. Take any $ v \in \partial B$ so it has length $ r$. Define  $ q= \exp_p( v)$ which is also $ \gamma(1)$ where $ \gamma$ is the geodesic emanating from $ p$ with  $ \dot{ \gamma} (0) = v$. Let $ w = \dot{ \gamma}(1)$ which also has length $ r$ since geodesic has constant speed (parallel translation is an isometry). Let  $ f$ be the isometry that takes  $ p$ to  $ q$ and define  $ u = df^{-1}_q(w)$ which again has length  $ r$ and therefore  $ u \in B$. Let $ c(t)$ be the geodesic emanating from  $ p$ with  $ \dot{c}(0) = u$ and we have $ c(1) = \exp_p( u)$. Since isometry maps geodesics to geodesics, we see that $ f \circ c$ becomes a geodesic emanating from  $ q$ with initial velocity $ w$. By local uniqueness of geodesic, we can concatenate $ \gamma(t)$ and $ f \circ c(t)$ at $ q$ into a single geodesic. But notice that $ \exp_p( 2v) = f \circ c(1) $. Since $ v$ is  on the boundary of $ B$ and is arbitrary, it is a contradiction that $ 2v \in B$. Thus, we must have $ r = \infty $. Thus $ \exp_p$ is defined for all of $ T_pM$ and therefore by Hopf-Rinow, the manifold is complete.
+\end{proof}
+\end{document}

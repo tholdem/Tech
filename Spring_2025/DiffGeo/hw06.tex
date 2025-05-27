@@ -1,0 +1,121 @@
+\documentclass[12pt]{article}
+\input{../preamble.tex}
+
+\begin{document}
+\centerline {\textsf{\textbf{\LARGE{Homework 6}}}}
+\centerline {Jaden Wang}
+\vspace{.15in}
+\begin{problem}[LN15 0.4]
+	Show that the bracket satisfies the following properties: $ [X,Y] = - [Y,X]$ and  $ [X,[Y,Z]] + [Y,[Z,X]] + [Z,[X,Y]] =0$.
+\end{problem}
+\begin{proof}
+	The pointwise definition of Lie bracket can be expressed succinctly as $ [X,Y] = XY-YX$. Then we have
+\begin{align*}
+	[X,Y] = XY - YX = -(YX-XY) = - [Y,X],
+\end{align*}
+and
+\begin{align*}
+	[X,[Y,Z]] + [Y,[Z,X]] + [Z,[X,Y]] =& XYZ-XZY-YZX+ZYX \\
+	& YZX- ZYX-ZXY+YXZ\\
+	& ZXY - YXZ-XYZ + XZY\\
+	=& 0 .
+\end{align*}
+\end{proof}
+\begin{problem}[LN15 0.5]
+Show that a connection is symmetric iff the corresponding Christoffel symbol satisfy $ \Gamma_{ii}^{k} = \Gamma_{ji}^{k}$.
+\end{problem}
+\begin{proof}
+Recall that in local coordinates, using Einstein notation we have
+\begin{align*}
+	\nabla _XY = \left( X(Y^{k}) + X^{j} Y^{i} \Gamma_{ij}^{k} \right) E_k . 
+\end{align*}
+Then by unifying $ i,j$ indices of $ \nabla _X Y$ and $ \nabla _YX$, we obtain
+\begin{align*}
+	\nabla _XY - \nabla _YX &= \left( X(Y^{k}) - Y(X^{k}) + X^{i}Y^{j} \left( \Gamma_{ji}^{k} - \Gamma_{ij}^{k} \right)  \right) E_k \\
+				&=X(Y^{k})E_k - Y(X^{k})E_k + X^{i}Y^{j} \left( \Gamma_{ji}^{k} - \Gamma_{ij}^{k} \right) E_k \\
+				&=XY-YX + X^{i}Y^{j} \left( \Gamma_{ji}^{k} - \Gamma_{ij}^{k} \right) E_k \\
+				&=[X,Y] + X^{i}Y^{j} \left( \Gamma_{ji}^{k} - \Gamma_{ij}^{k} \right) E_k .
+\end{align*}
+Since $ X,Y$ are arbitrary, we see that  $ \nabla _X Y- \nabla _YX = [X,Y]$ iff $ \Gamma_{ji}^{k} - \Gamma_{ij}^{k} = 0$.
+\end{proof}
+\begin{problem}[do Carmo 3.1]
+
+\end{problem}
+\begin{proof}
+First, we compute the Jacobian of $ \phi$:
+\begin{align*}
+	D \phi(u,v) &= \begin{pmatrix} \frac{\partial \phi}{\partial u}(u,v) & \frac{\partial \phi}{\partial v}(u,v)  \end{pmatrix} \\
+		    &= \begin{pmatrix} -f(v) \sin u & f'(v) \cos u\\ f(v) \cos u & f'(v) \sin u\\ 0 & g'(v) \end{pmatrix} .
+\end{align*}
+Since $ f'(v)^2 + g'(v)^2 \neq 0$ and $ f(v) \neq 0$, we can check
+\begin{align*}
+	\langle \frac{\partial \phi}{\partial u}, \frac{\partial \phi}{\partial u}  \rangle &= f(v)^2 \neq 0 \\
+	\langle \frac{\partial \phi}{\partial u}, \frac{\partial \phi}{\partial v}  \rangle &= 0 \\
+	\langle \frac{\partial \phi}{\partial v} , \frac{\partial \phi}{\partial v}   \rangle &= f'(v)^2 + g'(v)^2 \neq 0
+\end{align*}
+That is, they are nonzero and their dot product is 0, so they are orthogonal. Thus $ D \phi$ is injective everywhere, \emph{i.e.} $ \phi$ is an immersion.
+
+\begin{enumerate}[label=(\alph*)]
+	\item Recall that the induced metric is just the pairwise dot products of the pushforward basis under $ \phi$. Thus by the above computation, we have $ g_{11} = f^2$, $ g_{12} = 0$, and $ g_{22} = (f')^2+(g')^2$, which are all functions of $ v$.
+	\item Then $ g^{11} = \frac{1}{f^2}$, $ g^{12} = 0$, $ g^{22} = \frac{1}{(f')^2+(g')^2}$. Based on the equation $ \Gamma_{ij}^{m} = \frac{1}{2} g^{  km} \left(- \frac{\partial g_{ij}}{\partial x_k} + \frac{\partial g_{jk}}{\partial x_i}  + \frac{\partial g_{ki}}{\partial x_j}  \right) $, we obtain  
+\begin{align*}
+	\Gamma_{11}^{1} &= \frac{1}{2f^2} \left( -0+0+0 \right) + 0 = 0\\ 
+	\Gamma_{11}^{2} &= 0 + \frac{1}{2((f')^2+(g')^2)} \left( -2ff' + 0 +0  \right) =-\frac{ff'}{(f')^2+(g')^2}    \\
+	\Gamma_{12}^{1}&= \frac{1}{2f^2} (-0+0+2ff') + 0 =  \frac{ff'}{f^2 } \\
+	\Gamma_{12}^{2} &= 0 + \frac{1}{2((f')^2+(g')^2)}(-0+0+0) = 0   \\
+	\Gamma_{21}^{1} &= \Gamma_{12}^{1} = \frac{ff'}{f^2 } \\
+	\Gamma_{21}^{2} &= \Gamma_{12}^{2}=0 \\
+\Gamma_{22}^{1} &= \frac{1}{2f^2} ( -0+ 0+0)+ 0 = 0 \\
+\Gamma_{22}^{2} &= 0 + \frac{1}{2((f')^2+(g')^2)}(-1+1+1) (2f'f''+2g'g'')  \\&= \frac{f'f''+g'g''}{(f')^2+(g')^2}   .
+\end{align*}
+The equation of geodesic $ \gamma(t) = (u(t),v(t)) $ is
+\begin{align*}
+	\ddot{ \gamma}^{k} + \dot{ \gamma}^{i} \dot{ \gamma}^{j} \Gamma_{ij}^{k}( \gamma) &= 0 \\ 
+	\begin{cases}
+	\ddot{u} + \dot{u} \dot{v} \frac{f f'}{ f^2} + \dot{v} \dot{u} \frac{ f f'}{f^2 } &= 0 \\
+	\ddot{v} - \dot{u}^2 \frac{ff'}{ (f')^2+(g')^2}+ \dot{v}^2 \frac{f'f''+g'g''}{ (f')^2+(g')^2} &= 0 \\
+	\end{cases}\\
+	\begin{cases}
+	\ddot{u} +  \frac{2f f'}{ f^2} \dot{u} \dot{v} &= 0 \\
+	\ddot{v} -  \frac{ff'}{ (f')^2+(g')^2} \dot{u}^2+ \frac{f'f''+g'g''}{ (f')^2+(g')^2} \dot{v}^2 &= 0 \\
+	\end{cases}
+\end{align*}
+\item We compute
+\begin{align*}
+	| \dot{ \gamma}|^2 &= \begin{pmatrix} \dot{u} & \dot{v} \end{pmatrix} \begin{pmatrix} f^2 & 0\\ 0& (f')^2+(g')^2 \end{pmatrix} \begin{pmatrix} \dot{u}\\\dot{v} \end{pmatrix}   \\
+	&= f^2 \dot{u}^2 + ((f')^2+(g')^2) \dot{v}^2 .
+\end{align*}
+Taking the time derivative of this equation, using $ \dot{f} = f'\dot{v}$, $ \dot{f'} = f'' \dot{v}$, and the first equation $ \ddot{u} = - \frac{2ff'}{ f^2} \dot{u}\dot{v}$ we obtain
+\begin{align*}
+	&2ff' \dot{v} \dot{u}^2 + 2f^2 \dot{u} \ddot{u} + 2(f'f'' + g'g'') \dot{v}^3 + 2 ((f')^2+(g')^2) \dot{v} \ddot{v} \\
+	=& 2\dot{v}(-ff'\dot{u}^2 + (f'f''+g'g'')\dot{v}^2 + ((f')^2+(g')^2)\ddot{v}).
+\end{align*}
+Since we exclude parallels, $ \dot{v} \neq 0$. The energy is constant iff time derivative is 0, where we can simply divide the equation by $2 \dot{v} ( (f')^2+(g')^2) \neq 0$ to obtain the second equation. 
+
+Let $ P(t) = (a(t), b)$ where $ b$ is constant. Then $ \dot{P}(t) = (\dot{a}(t),0)$. Recall that
+\begin{align*}
+	\cos \beta &= \frac{ \langle \dot{ \gamma}, \dot{P} \rangle_{(u,v)}}{ | \dot{ \gamma}||\dot{P}|} \\
+	&= \frac{ f^2 \dot{u} \dot{a}}{ | \dot{ \gamma}| |f\dot{a}| } \\
+	&= \frac{ \sgn(f) \sgn(\dot{a}) f \dot{u}}{ | \dot{ \gamma}|} .
+\end{align*}
+Using the fact that $ \frac{d}{dt}| \dot{ \gamma}| =0$, the time derivative of $ f(v) \cos \beta$ is
+\begin{align*}
+	f'(v) \dot{v} \cos \beta + f(v) \frac{d}{dt} (\cos \beta) &= \frac{ \sgn(f) \sgn(\dot{a}) ff' \dot{u}\dot{v}}{ | \dot{ \gamma}|} +  \frac{\sgn(f) \sgn(\dot{a})f(f'\dot{v}\dot{u}+f \ddot{u}) | \dot{ \gamma}| - 0}{ |\dot{ \gamma}|^2} \\
+								  &= \frac{\sgn(f) \sgn(\dot{a})}{| \dot{ \gamma}|} (f \ddot{u} + 2 ff'\dot{u}\dot{v}) .
+\end{align*}
+Since $ r \cos \beta = |f(v)| \cos \beta$, it is constant iff this time derivative is 0 iff the first equation holds.
+\item Since $ r = |v|$, and  $ |v| \cos \beta $ is constant, the constant $ c$ is either zero or nonzero. If $ c=0$, then since we can vary $ v$ it must be that  $ \cos \beta = 0$. Since $ \beta < \pi$, it must be that $ \beta \equiv \frac{\pi}{2}$, which means the geodesic must intersect parallels at right angle all the time, making it a meridian which we exclude. Thus $ c$ must be nonzero and WLOG let $ c>0$. This forces $ \cos \beta >0$. Since we can decrease the radius at will, $ \cos \beta$ is forced to increase. But $ \cos \beta$ max out at 1, so it must be that $ \beta = 0$ precisely when $ |v| = c$. Since we can no longer decrease $ |v|$ further, and  $ |v|$ is not allowed to be constant,  $ |v|$ must increase instead. Therefore, $ \gamma$ is going up again. If we can argue that $ \gamma$ must always rotate around and is trapped between a minimum $ r$ and a maximum  $ r$, we would complete the proof. But this seems tedious.
+\end{enumerate}
+\end{proof}
+
+\begin{problem}[do Carmo 3.7]
+Let $ M$ be a Riemannian manifold of dimension $ n$ and let  $ p \in M$. Show that there exists a neighborhood $ U \subseteq M$ of $ p$ and  $ n$ vector fields  $ E_1,\ldots,E_n \in \mathfrak{ X} (U) $, orthonormal at each point of $ U$,  s.t.\ at $ p$,  $ \nabla _{E_i} E_j(p) =0$. This is called a geodesic frame at $ p$.
+\end{problem}
+\begin{proof}
+	At point $ p$, since  $ \exp_p$ is a local diffeomorphism, there exists open sets $ V \subseteq T_pM$ around origin and $ U \subseteq M$ around $ p$ s.t.\ $ V \cong U$ under $ \exp_p$. Since for every point $ v$ in $ V$, we have a canonical orthonormal frame $ F_1(v), \ldots , F_n(v) \in T_v(T_pM)$, under the pushforward by diffeomorphism we obtain vector fields $ E_i(u) := d (\exp_p)_v(F_i)$ in $ \mathfrak{X}(U)$. By Gauss's Lemma, we obtain
+\begin{align*}
+	\langle E_i, E_j \rangle = \langle d(\exp_p)_v(F_i), d(\exp_p)_v(F_j)  \rangle = \langle F_i , F_j \rangle = 0 . 
+\end{align*}
+Since the exponential map preserves length, we conclude that $ E_i$ is an orthonormal frame of $ U$. Moreover, we know that  $ d(\exp_p)_0 $ is the identity, so $ E_i(p) = F_i(0)$. In fact, they exactly coincide. Thus, $ \nabla _{E_i(p)} E_j (p)  = \nabla _{F_i(0)} F_j(0) =0$, and $ U$ is the neighborhood we seek.
+\end{proof}
+\end{document}
