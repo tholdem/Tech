@@ -1,0 +1,363 @@
+\documentclass[12pt,class=article,crop=false]{standalone} 
+\input{../preamble.tex}
+
+\begin{document}
+\subsection{Invariant EKF}
+
+\begin{defn}
+Let $ G$ be a Lie group and $ f_u: G \to TG$ be a input-dependent vector field. Then $ f_u$ is  \allbold{group-affine} if it satisfies 
+\begin{align*}
+	f_u(ab) = f_u(a) b + a f_u(b) - a f_u( Id) b  \in T_{ab}G.
+\end{align*}
+\end{defn}
+Group-affine is the weakest assumption one needs on the dynamics to have trajectory-independent error with log-linear error dynamics.
+
+Given two state trajectories $ X,\wh{ X}$ that follows the same deterministic dynamics, let $ \eta^{L} := X^{-1}\wh{ X}$ and $ \eta^R := \wh{ X} X^{-1} $ be their left and right errors. Then the first theorem says that $ f_u$ is group affine iff $ \eta^L$ is state trajectory-independent iff $ \eta^R$ is state trajectory-independent.
+
+\begin{thm}
+Let $ i=L,R$. Let  $ \xi^i_0 = (\log(\eta_0^{i}))^\vee$. Define $ A^{i}$ as
+\begin{align*}
+	g_u( \exp( \xi)) = \left( A^{i} \xi \right)^\vee + O(\norm{ \xi}^2). 
+\end{align*}
+If $ \xi^{i}$ is defined $ \ \forall \ t>0$ by the linear diffeq in $ \rr^{n}$ :
+\begin{align*}
+	\frac{d}{dt} \xi^{i} = A^{i} \xi^{i} .
+\end{align*}
+Then for the true nonlinear error $ \eta^{i}$, we have $ \eta^{i} = \exp( \xi^{i}) \ \forall \ t \geq 0$.
+\end{thm}
+
+Let $ \eta = X^{-1} \wh{ X} $ be the left-invariant error. In EKF, $ \wh{ X}$ represents estimated state and $ X$ is the true state, where they share the same deterministic dynamics and only differ in initial state. In the context of uncertainty propagation, $ X$ is modeled by a stochastic process governed by an SDE, and $ \wh{ X}$ is the propagated mean.
+
+When the dynamics $ f_u$ is group-affine, the evolution of the error $ \eta$ satisfies
+\begin{align*}
+	\frac{d}{dt} \eta = g_u (\eta)
+\end{align*}
+where $ g_u$ satisfies $ g_u(\eta) = f_u(\eta) - f_u( Id) \eta$. It turns out that $ g_u$ can be converted to a linear dynamic under the exponential coordinates. Let  $ (A \xi) ^\wedge$ be the first-order approximation of  $ g_u (\exp (\xi))$. Then we have $ \eta = \exp( \xi)$ for all time where
+\begin{align*}
+	\frac{d}{dt} \xi = A \xi .
+\end{align*}
+This means that the error $ \eta$ is trajectory-independent and can be linearized in the Lie algebra without approximation. 
+
+Note that if $ f_u$ is affine (\emph{i.e.} $ f_u(x) = f_0 + Ax + Bu$), we know that the error has the linear dynamics  $ \dot{e} = A e$, independent of the state-trajectory. This is a generalization of that.
+
+So in a stochastic setting, if the drift of SDE is group-affine, then no matter how state deviates from the mean, the drift error is trajectory-independent and can be propagated using the same ODE in the Lie algebra. If the drift is not group-affine, then using the drift equation (Ricatti?) along the mean trajectory should give additional error.
+
+Euler-Poincare Equation:
+\begin{align*}
+	\mathbb{I} \dot{\xi} = \ad_{ \xi}^* ( \mathbb{I} \xi) + u 
+\end{align*}
+This can be linearized and then used for trajectory tracking. This requires already having a nominal trajectory, but in covariance steering we have to produce the nominal.
+
+\subsection{Uncertainty Propagation on Lie Groups}
+
+In the Euclidean case, an SDE $ dx = h(x,t) dt + H(t) dW$ has the following evolution of the first two moments:
+ \begin{align*}
+	\begin{cases}
+		 \dot{\mu} = \left\langle h \right\rangle ,\\
+		 \dot{\Sigma} = \left\langle h (x-\mu)^{T} + (x-\mu) h^{T} \right\rangle + HH^{T} .
+	\end{cases}
+\end{align*}
+We can define SDE on $ G$ in three different ways. The first is the McKean-Gangolli injection:
+ \begin{align*}
+	g(t+ \d t) = g(t) \exp( h(g(t),t) \d t + H(g(t+k\d t), t+k\d t) \d W) .
+\end{align*}
+If $ k=0$, then the SDE is Ito's. If  $ k=\frac{1}{2}$, then it is Stratonovich's, which we distinguish by using $ \textcircled{s}$.
+
+Stratonovich is natural and obeys the geometry and chain rule. However, it is extremely difficult to evaluate the expectation TODO. Thus, we rely on Ito's to compute expectations and then convert to Stratonovich's if needed. The conversion is
+\begin{align*}
+	h = h^s + \frac{1}{2} E_i^r\left( H_{kj}^s \right) H_{ij}^s e_k , \qquad H = H^s .
+\end{align*}
+
+We shall use the simplified notation
+\begin{align*}
+	(g^{-1} \d g)^\vee &= h\d t + H\d W\\
+	(g^{-1} \d g)^\vee &= h^s \d t + H^s \textcircled{s} \d W .
+\end{align*}
+
+
+The second way is to parametrize group element $ g = g(q)$ and write
+ \begin{align*}
+	q(t+\d t) = q(t) + (J_r^{-1} \widetilde{ h})(q,t) \d t + (J_r^{-1} \widetilde{ H})(q(t+k\d t),t + k\d t) \d W .
+\end{align*}
+
+Using the exponential coordinates $ g(x) = \mu(t) \exp( x)$, under Stratonovich interpretation, to describe the same stochastic process, the drift and diffusion of both ways equal each other. Under Ito's interpretation, there is an additional drift term coming from nonlinearity of exponential map.
+
+\begin{align*}
+	\widetilde{ h}(x,t) = h(x,t) + \left( \frac{1}{2} J_r \frac{\partial J_r^{-1}}{\partial x_k} H H^{T} J_r^{-T}  \right) \bigg|_{g=\mu \exp( (x))} e_k,\\
+	\widetilde{ H}(x,t) = H(\mu \exp( x),t) .
+\end{align*}
+Note that if $ H$ does not depend on the state, then Ito's and Stranotovich coincide for $ H$. However,  $ J_r$ could still be different under the two interpretations.
+
+In reality, we are given $ h^s$ and  $ H^s$ TODO, which describe an SDE in the tangent space at each  $ g$. We would have to compute the $ h, H$ or  $ \widetilde{ h}, \widetilde{ H}$ that would yield the same stochastic process.
+
+
+If $ g$ is not near the identity, then the exponential coordinates might not be convenient to use because of high nonlinearity of exponential map away from the identity and non-bijectiveness of the exponential map. In this case, a moving coordinate frame by re-centering solves the issue. However, a moving frame makes it harder to do covariance steering. We might have to do covariance steering on the error space.
+
+The goal is to derive the error mean and covariance dynamics using the exponential coordinates. We can achieve this via computing the Fokker-Planck equation of 
+
+\begin{defn}
+Let $ p$ be a probability density function on an unimodular Lie group $ G$. The  \allbold{group-theoretic mean} $ \mu$ is defined by
+\begin{align*}
+	\int_G \log ^\vee \left( \mu^{-1} g \right) p(g) \d g = 0 .
+\end{align*}
+The covariance of $ p$ is defined by
+ \begin{align*}
+	\Sigma = \int_G \left[ \log ^\vee (\mu^{-1} g) \right] \left[ \log ^\vee (\mu^{-1}g) \right] ^{T} p(g) \d g .
+\end{align*}
+\end{defn}
+
+\begin{thm}
+Let $ x \in \rr^{N}$ be a random variable with concentrated probability distribution around the origin of $ D$. Let its mean, covariance, and probability density function be  $ m, \Sigma, \widetilde{ p}$. Then the random variable defined by $ g = \mu \exp( x)$ obeys a distribution whose group-theoretic mean $ \mu_m$ and covariance $ \Sigma_m$ are estimated by
+\begin{align*}
+	m' &= \left\langle J_\ell ^{-1} \right\rangle ^{-1} m\\
+	\mu_m &= \mu \exp( m'+O(|m'|^2)) \\
+	\Sigma_m &= \Sigma - \sym\left( \left\langle J_{\ell ^{-1} m' x^{T}} \right\rangle \right) + O(|m'|^2) .
+\end{align*}
+\end{thm}
+
+\begin{thm}
+The group-theoretic mean $ \mu(t)$ and covariance $ \Sigma(t)$ of a stochastic process $ g(t)$ described by the McKean-Gangolli injection Ito's SDE obey the following equations:
+ \begin{align*}
+	\left( \mu^{-1} \dot{\mu} \right) ^\vee &\approx \left\langle J_{\ell}^{-1} \right\rangle^{-1} \left\langle \frac{1}{2} \frac{\partial J_r^{-1}}{\partial x_k} \left( HH^{T} J_r^{-T} e_k \right) + J_r^{-1} h^c \right\rangle  , \\
+	\dot{ \Sigma} &\approx \left\langle \sym \left[ \left( \frac{1}{2} \frac{\partial J_r^{-1}}{\partial x_k} \left( HH^{T} J_r^{-T} \right) e_k - J_{\ell}^{-1}(\mu^{-1} \dot{\mu})^\vee + J_r^{-1}h^c \right)x^{T}  \right] + J_r^{-1}HH^{T}J_r^{-T} \right\rangle 
+\end{align*}
+Note the resemblance of this with its Euclidean counterpart.
+\end{thm}
+
+\begin{align*}
+	J_l(q) &= \left[ \left( \frac{\partial g}{\partial q_1} g^{-1} \right) ^\vee , \cdots, \left( \frac{\partial g}{\partial q_n} g^{-1} \right)^\vee  \right],\\ 
+	J_r(q) &= \left[ \left( g^{-1} \frac{\partial g}{\partial q_1}  \right) ^\vee , \cdots, \left( g^{-1} \frac{\partial g}{\partial q_n}  \right)^\vee  \right] 
+\end{align*}
+We shall use the Taylor second-order approximation of inverse Jacobians:
+\begin{align*}
+	J_{\ell}^{-1}(x) &= I - \frac{1}{2} [\ad_X] + \frac{1}{12} [\ad_X]^2 - \ldots\\
+	J_r^{-1}(x) &= I + \frac{1}{2}[\ad_X] + \frac{1}{12}[\ad_X]^2 - \ldots
+\end{align*}
+
+We use the following tricks for the derivations:
+\begin{enumerate}[label=(\arabic*)]
+	\item Any linear term of $ x$ inside the expectation vanishes because we recenter the mean to 0 at all times.
+\item For any symmetric matrix $ S$, we have $\ad_{ i} S e_i = 0 $.
+\item The expansion of moments to approximate expectation (with hard-to-bound error):
+\begin{align*}
+	\left\langle M(x) \right\rangle = \left\langle A_0 + A_1^{i} x_i + A_2^{ij} x_i x_j + \ldots \right\rangle \approx A_0 + A_2^{ij} \left\langle x_i x_j \right\rangle .
+\end{align*}
+\item As long as $ (I-A)^{n} \to 0$ converges ($ A$ is close to  $ I$),  $ A^{-1} = \sum_{ k= 0}^{\infty} (I-A)^{k}$. For $ \left\langle J_l^{-1} \right\rangle^{-1}$, since the 1st order term vanish under expectation, setting $ k=1$ gives the 2nd order approximation.
+\item Since $ \ad$ is linear in each argument, $ \ad_{ X} = \ad_{ (x_i E_i) } = x_i \ad_{ i}$.
+\end{enumerate}
+We compute and discard terms with order 3 or higher:
+\begin{align*}
+	\left(\mu^{-1} \dot{\mu} \right)^\vee &\approx \left\langle I - \underbrace{\frac{1}{2} [\ad_X]}_{(1)} + \frac{1}{12} [\ad_X]^2 \right\rangle^{-1} \bigg\langle \frac{1}{2} \left( \frac{1}{2} \ad_{ k} + \frac{1}{12} \left( \ad_{ k} [ \ad_{ X}] + [ \ad_{ X}] \ad_{ k} \right)\right) HH^{T} \ldots \\
+					      &\left( I + \frac{1}{2}[\ad_X] + \frac{1}{12}[\ad_X]^2 \right)^{T} e_k + \left( I + \frac{1}{2}[\ad_X] + \frac{1}{12}[\ad_X]^2 \right) \left( h + \frac{\partial h^{c}}{\partial x_i} x_i + \frac{1}{2} \frac{\partial^2 h^{c}}{\partial { x_i} \partial x_j} x_i x_j   \right)    \bigg\rangle \\
+					      &\approx \underbrace{ \left( I - \frac{1}{12} \left\langle [\ad_X]^2 \right\rangle  \right)}_{(4) }  \bigg\langle \underbrace{\frac{1}{4} \ad_{ k}HH^{T} e_k}_{(2)} + \underbrace{ \frac{1}{8} \ad_{ k} HH^{T} [ \ad_{ X}]^{T} e_k}_{ (1)} + \frac{1}{48} \ad_{ k} HH^{T} ([ \ad_{ X}]^2)^{T} e_k\\ 
+					      &+ \underbrace{ \frac{1}{24} (\ad_{ k} [ \ad_{ X}] + [ \ad_{ X}] \ad_{ k})HH^{T} e_k}_{ (1)} + \underbrace{ \frac{1}{48} \ad_{ k} [ \ad_{ X}] HH^{T}[ \ad_{ X}]^{T} e_k}_{ (2)} + \frac{1}{48} [ \ad_{ X}] \ad_{ k} HH^{T} [ \ad_{ X}]^{T} e_k  \\
+					      &+ h+ \underbrace{\frac{\partial h^{c}}{\partial x_i} x_i }_{(1)}+ \frac{1}{2} \frac{\partial^2 h^{c}}{\partial { x_i} \partial x_j} x_i x_j + \underbrace{ \frac{1}{2} [ \ad_{ X}] h}_{ (1)} + \frac{1}{2} x_j [ \ad_{ X}] \frac{\partial h^{c}}{\partial x_j} + \frac{1}{12} [ \ad_{ X}]^2 h  \bigg\rangle \\
+					      &\approx h + \bigg\langle  \frac{1}{48} \ad_{ k} HH^{T} ([ \ad_{ X}]^2)^{T} e_k + \frac{1}{48} [ \ad_{ X}] \ad_{ k} HH^{T} [ \ad_{ X}]^{T} e_k +  \frac{1}{2} \frac{\partial^2 h^{c}}{\partial { x_i} \partial x_j} x_i x_j \\ 
+					      &+ \frac{1}{2} x_j [ \ad_{ X}] \frac{\partial h^{c}}{\partial x_j} + \underbrace{ \frac{1}{12} [ \ad_{ X}]^2 h - \frac{1}{12} \langle [ \ad_{ X}]^2 \rangle h }_{ \text{cancel after next step} }  \bigg\rangle  \\
+					      &\approx   h + \bigg(  \frac{1}{48} \ad_{ k} HH^{T}\ad_{ j}^{T} \ad_{ i}^{T} e_k + \frac{1}{48} \ad_{ i} \ad_{ k} HH^{T} \ad_{ j}^{T} e_k +  \frac{1}{2} \frac{\partial^2 h^{c}}{\partial { x_i} \partial x_j} \\ 
+					      &+ \frac{1}{2} \ad_{ i} \frac{\partial h^{c}}{\partial x_j} \bigg) \langle x_i x_j\rangle \qquad \qquad \qquad \qquad    \text{ use (5) for all and then use (3)}   \\
+					      &=: h + M^{\mu}_{ij} \Sigma_{ij}  .
+ \\
+\end{align*}
+
+For the covariance, the same simplifications apply. Keeping only up to second-order terms, we have
+\begin{align*}
+	\dot{ \Sigma} & \approx \bigg\langle \sym \bigg\{ \bigg[ \frac{1}{2} \left( \frac{1}{2} \ad_{ k} + \frac{1}{12} ( \ad_{ k} [ \ad_{ X}] + \underbrace{ [ \ad_{ X}] \ad_{ k}}_{(2)}) \right) HH^{T} \left( I + \frac{1}{2} [ \ad_{ X}] \right)^{T} e_k  \\ 
+		      &- \left( I- \frac{1}{2} [ \ad_{ X}] \right) \left( \mu^{-1} \dot{\mu} \right)^\vee + \left( I + \frac{1}{2} [ \ad_{ X}] \right) \left( h + \frac{\partial h^{c}}{\partial x_i} x_i \right)   \bigg] x^{T}  \bigg\} \\
+		      &+  \left( I+ \frac{1}{2} [ \ad_{ X}] + \frac{1}{12} [ \ad_{ X}]^2 \right) HH^{T} \left( I+ \frac{1}{2} [ \ad_{ X}] + \frac{1}{12} [ \ad_{ X}]^2 \right) \bigg\rangle \\ 
+		      &\approx HH^{T} + \bigg\langle \sym \bigg\{ \bigg[ \frac{1}{8} \ad_{ k} HH^{T} [ \ad_{ X}]^{T} e_k + \frac{1}{24} \ad_{ k} [ \ad_{ X}]HH^{T} e_k + \frac{1}{2} [ \ad_{ X}] \left( h + \left( \mu^{-1} \dot{\mu} \right)^\vee  \right) + \frac{\partial h^{c}}{\partial x_i} x_i \bigg] x^{T} \\ 
+	&+ \frac{1}{12} [ \ad_{ X}]^2 HH^{T} \bigg\} + \frac{1}{4} [ \ad_{ X}] H H^{T} [\ad_{ X}]^{T} \bigg\rangle \\
+		      &\approx  HH^{T} + \bigg( \sym \bigg\{ \bigg[ \frac{1}{8} \ad_{ k} HH^{T}  \ad_i^{T} e_k + \frac{1}{24} \ad_{ k} \ad_i HH^{T} e_k + \frac{1}{2} \ad_{ i} \left( h + \left( \mu^{-1} \dot{\mu} \right)^\vee  \right) + \frac{\partial h^{c}}{\partial x_i} \bigg] e_j^{T} \\ 
+	&+ \frac{1}{12} \ad_{ i} \ad_{ j} HH^{T} \bigg\} + \frac{1}{4} \ad_{ i} H H^{T} \ad_{ j}^{T} \bigg) \left\langle x_i x_j \right\rangle \\
+	&=: HH^{T} + M^{ \Sigma}_{ij} \Sigma_{ij} .
+\end{align*}
+
+\begin{align*}
+	M^{\mu} &= \frac{1}{48} \ad_i \ad_k HH^{T} \ad_{ j} ^{T} e_k + \frac{1}{48} \ad_{ k} HH^{T} \ad_j ^{T} \ad_{ i}^{T} e_k + \frac{1}{2} \ad_{ i} \frac{\partial h^{c}}{\partial x_j} + \frac{1}{2} \frac{\partial^2 h^{c}}{\partial { x_i} \partial x_j}    \\
+	M^{ \Sigma} &= \sym \bigg\{ \bigg[ \frac{1}{8} \ad_{ k} HH^{T}  \ad_i^{T} e_k + \frac{1}{24} \ad_{ k} \ad_i HH^{T} e_k + \frac{1}{2} \ad_{ i} \left( h + \left( \mu^{-1} \dot{\mu} \right)^\vee  \right) + \frac{\partial h^{c}}{\partial x_i} \bigg] e_j^{T} \\ 
+	&+ \frac{1}{12} \ad_{ i} \ad_{ j} HH^{T} \bigg\} + \frac{1}{4} \ad_{ i} H H^{T} \ad_{ j}^{T} .
+\end{align*}
+
+We note that the only difference between equations from right FPE and from left FPE from the paper is that right FPE equations has all positive signs.
+
+
+Let us now consider the Euler-Poincar\'{e} attitude dynamics with linear feedback control. The Lie group of interest is $ G = \SO(3) \ltimes \rr^{3}$, where the space of angular momenta $ \rr^{3}$, an additive Lie group, is identified with $ \mathfrak{so}(3)$ via the skew-symmetric operations $ ( \cdot )^\vee$ and $ ( \cdot )^\wedge $. Let $ R$ be the attitude in matrix form, $ \ell$ be the body-frame angular momentum, and  $ \omega$ be the body-frame angular velocity, so $ g = (R, \ell)$ with $ \ell = \mathbb{I} \omega$. Next, we present the exponential map $ \exp:  \mathfrak{g} \supset U \to V \subset G$ of $ G$. We also denote the exponential map of $ \SO(3)$ as $ \exp ( \xi) := \expm \left( \xi^\wedge \right) $. The input should resolve any ambiguity. We claim that TODO
+\begin{align*}
+	\exp \begin{pmatrix} \xi \\ x \end{pmatrix} = \begin{pmatrix} \exp( \xi )\\ J_l( \xi) x \end{pmatrix} ,
+\end{align*}
+where
+\begin{align*}
+	J_l(x) := I + \frac{1- \cos \norm{ x} }{ \norm{ x}^2 } x^\wedge + \frac{\norm{ x} - \sin \norm{ x}  }{ \norm{ x}^3 } ( x^\wedge )^2 
+\end{align*}
+is the left Jacobian of the $ \SO(3)$ exponential map. Note that $ J_l(0) = I$.
+
+Assume control has the form $ u = K \ell$ and shares the same channel as the noise with scaling matrix $ B$. Then the stochastic control process is modeled by the following Stratonovich SDE (Ito's is non-physical):
+\begin{align*}
+	g^{-1}\d g &= h^s(g)\d t+ H \textcircled{s}  \d W,  
+\end{align*}
+where
+\begin{align*}
+	h^s \begin{pmatrix} R\\ \ell \end{pmatrix} = \begin{pmatrix} \mathbb{I} ^{-1} \ell \\ - \ell^\wedge  \times \mathbb{I}^{-1} \ell + BK \ell \end{pmatrix}  , \qquad H = \begin{pmatrix} 0 &0\\0& B \end{pmatrix} .
+\end{align*}
+
+To obtain the 2nd-order approximation propagation, we need to compute the Jacobian and Hessian of following function:
+\begin{align*}
+	h^c \begin{pmatrix} \xi \\ x \end{pmatrix} &:= h^s \left( g \exp \begin{pmatrix} \xi \\ x \end{pmatrix}  \right) \\
+						   & = h^s \begin{pmatrix} \overline{R} \exp(\xi) \\ \overline{ \ell} + J_l(\xi)x \end{pmatrix}  \\
+						   &=  \\
+\end{align*}
+
+
+
+
+\begin{align*}
+	D( x^\wedge I^{-1} x) e_j = \left(-\left( I^{-1} x \right)^\wedge  + x^\wedge I^{-1} \right) e_j
+\end{align*}
+Then
+\begin{align*}
+	\partial x_i \left(-\left( I^{-1} x \right)^\wedge  + x^\wedge I^{-1} \right) e_j &= \partial x_i \left( (-I^{-1} x)^\wedge e_j \right) + E_i^{\SO(3)} I^{-1} e_j \\
+	&= \partial x_i \left( e_j^\wedge I^{-1}x \right) + E_i^{\SO(3)} I^{-1} e_j\\
+	&= E_j^{\SO(3)} I^{-1} e_i +  E_i^{\SO(3)} I^{-1} e_j .
+\end{align*}
+Since the term is symmetric, we can combine them into one when summed and scaled by entries of a symmetric matrix.
+
+\section{Tangent Bundle of A Lie Group}
+Let $ G$ be a Lie group. The tangent bundle $ TG$  has exactly two trivializations, which we call left and right trivializations. First, notice that $ G$ acts on itself by left or right multiplication. The action induces an action on $ TG$: $ g.(h,v) = (gh, T_h L_g(v))$ or $ g .(h,v) = (hg, T_hR_g(v))$.  This induced action allows us to move the base point of all tangent vectors of $ G$ to the identity, so that all tangent vectors are translated to the Lie algebra $ \mathfrak{g}$. Explicitly, left trivialization is the map
+\begin{align*}
+	\phi : TG \to G \ltimes  \mathfrak{g}, (g,v) \mapsto (g, T_g L_{g^{-1}}(v)).
+\end{align*}
+where the semidirect product $ G \ltimes  \mathfrak{g}$ has the following unconventional product structure:
+\begin{align*}
+	(g,u) * (h,v) = (gh, \Ad_{h^{-1}}(u) + v).
+\end{align*}
+We claim that this map is a Lie group isomorphism. That is, it is a diffeomorphism to the direct product manifold and respects the semidrect product structure. The inverse is $ (g,u)^{-1} = \left( g^{-1}, - \Ad_{ g}( u) \right)$.
+\begin{defn}
+	Let $ (K,*_K), (H,*_H)$ be groups and suppose there exists a group action $ \rho: K \to \aut (H)$.  Then the \allbold{semidirect product} $K \ltimes_\rho H$ is the set $ K \times H$ endowed with the following the group operation $ *$ induced by the group action $ \rho$:
+\begin{align*}
+(k_1,h_1)*(k_2,h_2) = (k_1 *_K k_2, h_1 *_H \rho_{k_1}(h_2)).
+\end{align*}
+Alternatively, we can define a different group operation $ *$ such that
+\begin{align*}
+	(k_1,h_1)*(k_2,h_2) = (k_1 *_K k_2, \rho_{k_2 ^{-1}}(h_1) *_H h_2).
+\end{align*}
+This is an equally valid definition yet is rarely mentioned in the literature. We will see that this definition is vital for our purpose so we haphazardly name it the \allbold{cosemidirect product} and denote it as $ K \ltimes_{\rho^{-1}}^* H$.
+\end{defn}
+Note that $ \rho_{k^{-1}} = \rho_k^{-1}$ which justifies the notation.
+
+\begin{defn}
+\begin{align*}
+	TL: G\ltimes_{ \Ad^{-1}}^*  \mathfrak{ g} \to TG,\ (g,\xi) \mapsto (g,T_eL_g \xi)
+\end{align*}
+\end{defn}
+
+\begin{prop} 
+Let $ G$ be a Lie group and  $ \mathfrak{ g }$ be its Lie algebra. Then $ TG \cong G\ltimes_{ \Ad} \mathfrak{ g} $ as a Lie group under .
+\end{prop}
+
+\begin{proof}
+Recall that multiplication on $ TG$ is the differential of the multiplication on $ G$. That is, if $ \mu: G \times G \to G, (g,h) \mapsto gh$, then product rule gives
+\begin{align*}
+	d\mu : TG \times TG \to TG,\ ((g, \xi) , (h, \eta)) \mapsto (gh, T_hL_g (\eta) + T_g R_h (\xi)).
+\end{align*}
+
+The ``left translation" map $ TL: G\ltimes_{ \Ad^{-1}} \mathfrak{ g} \to TG,\ (g,\xi) \mapsto (g,T_eL_g \xi)$ is smooth since $d\mu$ is smooth, the map $(g,\xi) \mapsto  ((e,\xi),(g,0))$ is smooth, and $ d\mu ((e,\xi),(g,0)) = (g, T_eL_g(\xi) )$ is a composition of smooth maps. It is a diffeomorphism since it has inverse $TL^{-1}: (g, v) \mapsto (g,T_g L_{g^{-1}}(v))$. We now show that it is also a Lie group homomorphism.
+
+Since $G$ is a multiplicative group whereas $\mathfrak{g}$ as a vector space is an additive group, we have
+\begin{align*}
+    \phi((g,\xi)(h,\eta)) &= \phi((gh,\ \xi + \Ad_g(\eta)))\\
+    &=(gh, T_e R_{gh}(\xi + \Ad_g(\eta)))\\
+    &= (gh, T_e R_{gh} (\xi+ T_{g^{-1}}L_g \circ T_e R_{g^{-1}} (\eta)))\\
+    &= (gh, T_gR_h \circ T_e R_g(\xi) + T_gR_h \circ T_eL_g(\eta))\\
+    &= (gh, T_gR_h ( T_eR_g(\xi)) + T_hL_g (T_eR_h (\eta)))\\
+    &= d\mu [(g, T_e R_g(\xi)) ,\ (h,T_eR_h (\eta)) ]\\
+    &= d\mu [\phi(g,\xi) ,\ \phi(h,\eta)].
+\end{align*}
+Thus, $\phi$ is a Lie group homomorphism and therefore an isomorphism.
+\end{proof}
+
+Its Lie algebra is $ \mathfrak{g} \ltimes \mathfrak{g}$ with the following Lie bracket:
+\begin{align*}
+	[(\xi, u), (\eta,v)] := \left( [\xi, \eta], [\xi,v ] - [\eta, u] \right) .
+\end{align*}
+Here whether the adjoint comes from $ G$ or the semidirect product is inferred from their inputs. Now we derive this fact.
+
+Loosely speaking, the adjoint action is the derivative of group conjugation action at identity, and adjoint representation is the derivative of adjoint action at identity. We make this precise in the context of the tangent bundle of $ G$: for any $ (g,u) \in G \ltimes \mathcal{ g}$, its action on $ G \ltimes \mathfrak{g} $ by conjugation is
+\begin{align*}
+	\phi_{(g,u)} : G \ltimes \mathfrak{g}  \to G \ltimes \mathfrak{g} , (h,v) \mapsto (g,u)*(h,v)*(g,u)^{-1}.
+\end{align*}
+Explicitly, we have
+\begin{align*}
+	\phi_{(g,u)} (h,v) &= (g,u)*(h,v)*\left( g^{-1}, - \Ad_{ g}( u) \right)  \\
+	&= (gh, \Ad_{ h^{-1}}( u) + v) * \left( g^{-1}, - \Ad_{ g}( u) \right)  \\
+	&= \left( ghg^{-1}, \Ad_{ g}( \Ad_{ h^{-1}}( u) + v) - \Ad_{ g}( u) \right)  .
+\end{align*}
+Let $ (\gamma, c)$ be a smooth curve on $ G \times  \mathfrak{g} $ such that $ \gamma(0) = e, \dot{ \gamma}(0) = \eta \in \mathfrak{g}, c(0) = 0, \dot{c}(0) = v$. Then the derivative of $ \phi_{(g,u)}$ at $ e$, the adjoint action $ \Ad_{(g,u)} : \mathfrak{g} \ltimes \mathfrak{g}  \to \mathfrak{g}\ltimes \mathfrak{g} $ is given by
+ \begin{align*}
+	 \Ad_{ (g,u)}(\eta, v ) &= \frac{d}{dt}\big|_{t= 0} \phi_g ( \gamma(t)) \\
+				&= \frac{d}{dt}\big|_{t= 0} \left( g \gamma(t) g^{-1}, \Ad_{ g}( \Ad_{ \gamma(t)^{-1}}( u) + c(t)) - \Ad_{ g}( u) \right)  \\ 
+						     &= \left( \Ad_{ g}( \eta), \Ad_{ g}(- \ad_{\dot{ \gamma}(0)} (u) + \dot{c}(0) ) \right)  \\
+						     &= \left( \Ad_{ g}( \eta), \Ad_{ g}( -[ \eta, u] + v) \right)  ,
+\end{align*}
+where we use the fact that $ \ad_{ \dot{ \gamma}(0)} := \frac{d}{dt}\big|_{t= 0} \Ad_{ \gamma(t)}$ and the following result: 
+\begin{align*}
+\Ad_{ \gamma(t)^{-1}} \circ  \Ad_{ \gamma(t)} &= \id  \\
+\frac{d}{dt}\big|_{t= 0} \left( \Ad_{ \gamma(t)^{-1}} \circ  \Ad_{ \gamma(t)} \right) &= 0 \\
+\frac{d}{dt}\big|_{t= 0} \Ad_{ \gamma(t)^{-1}} \circ  \Ad_{ \gamma(0)} + \Ad_{ \gamma(0)^{-1}} \circ \ad_{ \dot{ \gamma}(0)} &= 0 && \text{ chain rule}\\
+\frac{d}{dt}\big|_{t= 0} \Ad_{ \gamma(t)^{-1}} \circ \Ad_{ e} + \Ad_{ e} \circ \ad_{\dot{ \gamma}(0)} &= 0 \\
+\frac{d}{dt}\big|_{t= 0} \Ad_{ \gamma(t)^{-1}} &= - \ad_{ \dot{ \gamma}(0)}  && \Ad_{ e} = \id  . 
+\end{align*}
+Finally, let $ (\gamma, c)$ be another smooth curve on $ G \times  \mathfrak{g}$ such that $ \gamma(0) = e, \dot{ \gamma}(0) = \xi, c(0) =0, \dot{c}(0) = u$. Then the derivative of $ \Ad_{ ( \gamma(t), c(t))}$ at $ e$ is the adjoint representation $ \ad_{ (\xi, u)}: \mathfrak{g} \ltimes \mathfrak{g} \to \mathfrak{g} \ltimes \mathfrak{g} $:
+\begin{align*}
+	\ad_{ (\xi,u)}(\eta, v) &= \frac{d}{dt}\big|_{t= 0} \Ad_{ ( \gamma(t), c(t))}( \eta,v ) \\
+				&= \frac{d}{dt}\big|_{t= 0} \left( \Ad_{ \gamma(t)}( \eta), \Ad_{ \gamma(t)}( -[\eta, c(t)] + v) \right)    \\
+				&= \left( \ad_{ \xi}(\eta), \ad_{ \xi} (-[\eta,c(0)]) + \Ad_{ \gamma(0)}( - [\eta, \dot{c}(0)] ) + \ad_{ \xi}(v) \right)   \\
+				&= ([ \xi, \eta], [\xi, v] - [\eta, u]) .
+\end{align*}
+\begin{remark}
+The conventional semi-direct product has 
+\begin{align*}
+	(g,u) * (h,v) = (gh,u + \Ad_g(v)).
+\end{align*}
+The right trivialization indeed is a Lie group isomorphism to this conventional semidirect product structure. Moreover, $ \SE(3)$ manifests this structure for $ \TSO(3)$ through matrix multiplication. However, body-frame dynamics demand left-trivialization, so we are stuck with the weird one.
+\end{remark}
+
+Since $ \SE(3)$ corresponds to right trivialization, we need to find another matrix representation of the left trivialization. Consider
+ \begin{align*}
+	 (g,u) * (h,v) = \begin{pmatrix} h^{-1} & v\\0&1 \end{pmatrix} \begin{pmatrix} g^{-1} & u\\0&1 \end{pmatrix} = \begin{pmatrix} (gh)^{-1} & h^{-1}u +v \\ 0 & 1\end{pmatrix}. 
+\end{align*}
+We see that when we pass to the matrix, multiplication order is flipped in order to recover $ gh$ and match the semidirect product structure of left trivialization. This is the counterpart to  $ \SE(3)$ and the correct geometry to use for body-frame attitude dynamics. I do not know if it has a proper name so I will just refer to it as $ \LSE(3)$.
+
+The Lie algebra elements have the form
+\begin{align*}
+	\begin{pmatrix} - \xi^\wedge & v\\ 0&0 \end{pmatrix} .
+\end{align*}
+This is clear from the fact that $ \exp(-A) = A^{-1}$.
+
+Now we have a matrix representation, we can easily compute the $ \Ad$ and  $ \ad$ maps for this specific case using matrix multiplication.
+\begin{align*}
+	\Ad_{ (R,u)}( \eta,v)  &= (R,u) * (\eta,v) * (R,u)^{-1}   \\
+			       &= \begin{pmatrix} R& - RuR^{-1}\\ 0 & 1 \end{pmatrix} \begin{pmatrix} - \eta^\wedge & v \\ 0&0 \end{pmatrix} \begin{pmatrix} R^{-1}&u\\ 0 &1 \end{pmatrix}  \\
+			       &= \begin{pmatrix} -R \eta^\wedge & Rv\\ 0 & 0 \end{pmatrix} \begin{pmatrix} R^{-1}&u\\0&1 \end{pmatrix}  \\
+			       &= \begin{pmatrix} -R \eta^\wedge R^{-1} & R(- \eta^\wedge u + v) \\ 0&0\end{pmatrix}  \\
+			       &= (R \eta^\wedge R^{-1}, R(v - \eta^\wedge u)) .
+\end{align*}
+Let $ \gamma(0) = I, \dot{ \gamma}(0) = \xi^\wedge, c(0)=0, \dot{c}(0)=u $. Then
+\begin{align*}
+	\ad_{ ( \xi, u)} (\eta,u) &= \frac{d}{dt} \left( \gamma(t) \eta^\wedge \gamma^{-1}(t), \gamma(t) (v - \eta^\wedge c(t)) \right)  \\
+				  &= \left( [ \xi, \eta], \dot{ \gamma}(0) v- \dot{ \gamma}(0) \eta^\wedge c(0) - \gamma(0) \eta^\wedge \dot{c}(0)  \right)  \\
+				  &= \left( [ \xi, \eta], \xi^\wedge v - \eta^\wedge u  \right)  \\
+				  &= \left( [ \xi, \eta], [\xi,v] - [\eta,u] \right)  .
+\end{align*}
+The results match those from the general case!
+
+\section{Intuition of Hamiltonian Mechanics}
+A symplectic manifold has a conanical 2-form $ \omega$, which locally (in Darboux coordinates) acts as a symplectic bilinear form $J:= \begin{pmatrix} 0&I\\-I & 0 \end{pmatrix} $. Intuitively this ``turns the tangent coordinates 90 degrees". That is, horizontal direction becomes vertical and vice versa (not too different from $ \begin{pmatrix} 0&1\\-1&0 \end{pmatrix} $ if we think $ x$-coordinate as horizontal tangent coordinates and  $ y$-coordinate as vertical tangent coordinates). When this is applied to gradient vector field  of a function $ H$, since gradient goes perpendicular to the contour lines of $ H$, by turning 90 degrees now the vector field goes along the contour lines (level sets), which means that along the flow of the rotated vector field, $ H$ is conserved. This vector field is the Hamiltonian vector field $ X_H$ of  $ H$. Bloch Exercise 3.1.2 shows that in local Darboux coordinates, indeed we have $ X_H = J df^{T} = J \nabla f$. However, since there is no metric on the manifold, we cannot actually obtain gradient vector field of a function nor rotate it. Yet we can still do this rotation to flow along the contour lines thanks to the 2-form. Instead of rotating the gradient vector field, we rotate the differential contravariantly and get a vector field via $ \iota_{{X_H}} \omega$.
+
+Moreover, when the concept is applied to the cotangent bundle of a manifold, we have a canonical 1-form $ \theta$ and a canonical 2-form $ \omega := -d \theta$ that is symplectic. We can write this 2-form in local coordinates, and then compute the $ X_H$ in local coordinates as well for any $ H$. If we choose $ H$ to be the energy function, then the resulting coordinates are exactly Hamilton's equations, which give us the flows where energy is conserved. Notice that we do not need to use calculus of variations at all here. Geometry completely determines the equations of motion.
+
+\begin{align*}
+	\dot{z} &= X_H(z) \\
+	\dot{f}(z) &= \left\langle df(z), X_H(z) \right\rangle \ \forall \ f\\
+	\dot{f} &= \left\{ f,H \right\} \ \forall \ f
+\end{align*}
+\end{document}
