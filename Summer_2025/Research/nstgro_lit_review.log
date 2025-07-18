@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.12.29)  17 JUL 2025 15:51
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.12.29)  18 JUL 2025 16:17
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -689,8 +689,8 @@ Package grfext Info: Graphics extension search list:
  (/usr/local/texlive/2024/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 )))
-Package hyperref Info: Option `colorlinks' set `true' on input line 189.
-Package hyperref Info: Option `colorlinks' set `true' on input line 196.
+Package hyperref Info: Option `colorlinks' set `true' on input line 190.
+Package hyperref Info: Option `colorlinks' set `true' on input line 197.
  (/usr/local/texlive/2024/texmf-dist/tex/latex/cleveref/cleveref.sty
 Package: cleveref 2018/03/27 v0.21.4 Intelligent cross-referencing
 Package cleveref Info: `hyperref' support loaded on input line 2370.
@@ -1033,12 +1033,12 @@ Package zref Info: New property: mdf@pagevalue on input line 895.
 Package thmtools Info: Key `mdframed' (with value `style=mdbluebox')
 (thmtools)             is not a known style key.
 (thmtools)             Will pass this to every \declaretheorem
-(thmtools)             that uses `style=thmbluebox' on input line 251.
+(thmtools)             that uses `style=thmbluebox' on input line 252.
 Package thmtools Info: Key `mdframed' (with value `style=mdredbox')
 (thmtools)             is not a known style key.
 (thmtools)             Will pass this to every \declaretheorem
-(thmtools)             that uses `style=thmredbox' on input line 271.
-Package thmtools Info: Automatically pulling in `thmdef-mdframed' on input line 275.
+(thmtools)             that uses `style=thmredbox' on input line 272.
+Package thmtools Info: Automatically pulling in `thmdef-mdframed' on input line 276.
  (/usr/local/texlive/2024/texmf-dist/tex/latex/thmtools/thmdef-mdframed.sty
 Package: thmdef-mdframed 2023/05/04 v0.76
 )
@@ -1046,19 +1046,19 @@ Package: thmdef-mdframed 2023/05/04 v0.76
 Package thmtools Info: Key `mdframed' (with value `style=mdgreenbox')
 (thmtools)             is not a known style key.
 (thmtools)             Will pass this to every \declaretheorem
-(thmtools)             that uses `style=thmgreenbox' on input line 298.
+(thmtools)             that uses `style=thmgreenbox' on input line 299.
 Package thmtools Info: Key `mdframed' (with value `style=mdgreenboxsq')
 (thmtools)             is not a known style key.
 (thmtools)             Will pass this to every \declaretheorem
-(thmtools)             that uses `style=thmgreenboxsq' on input line 318.
+(thmtools)             that uses `style=thmgreenboxsq' on input line 319.
 Package thmtools Info: Key `mdframed' (with value `style=mdgreenboxsq')
 (thmtools)             is not a known style key.
 (thmtools)             Will pass this to every \declaretheorem
-(thmtools)             that uses `style=thmgreenboxsq*' on input line 326.
+(thmtools)             that uses `style=thmgreenboxsq*' on input line 327.
 Package thmtools Info: Key `mdframed' (with value `style=mdblackbox')
 (thmtools)             is not a known style key.
 (thmtools)             Will pass this to every \declaretheorem
-(thmtools)             that uses `style=thmblackbox' on input line 344.
+(thmtools)             that uses `style=thmblackbox' on input line 345.
 )
 LaTeX Font Info:    Trying to load font information for T1+lmr on input line 4.
  (/usr/local/texlive/2024/texmf-dist/tex/latex/lm/t1lmr.fd
@@ -1299,35 +1299,70 @@ LaTeX Warning: Command \textcircled invalid in math mode on input line 197.
 [7]
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 235.
+(mdframed)              on input line 228.
 
 pdfTeX warning (ext4): destination with the same identifier (name{defn.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.235 	L
-        et $ (K,*_K), (H,*_H)$ be groups and suppose there exists a group ac...
+l.228 	L
+        et $ G$ be a group and let  $ A$ be a set. A \allbold{group action} ...
 
 [8]
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 247.
-Package hyperref Info: bookmark level for unknown prop defaults to 0 on input line 247.
+(mdframed)              on input line 243.
+
+Overfull \hbox (13.64726pt too wide) in paragraph at lines 246--248
+\T1/lmr/m/n/12 Thus, $\OT1/lmr/m/n/12 (\OML/lmm/m/it/12 k; h\OT1/lmr/m/n/12 )[] = (\OML/lmm/m/it/12 k[]; ^^Z[]\OT1/lmr/m/n/12 (\OML/lmm/m/it/12 h[]\OT1/lmr/m/n/12 ))$ \T1/lmr/m/n/12 since $\OT1/lmr/m/n/12 (\OML/lmm/m/it/12 k; h\OT1/lmr/m/n/12 ) \OMS/lmsy/m/n/12 ^^C \OT1/lmr/m/n/12 (\OML/lmm/m/it/12 k[]; ^^Z[]\OT1/lmr/m/n/12 (\OML/lmm/m/it/12 h[]\OT1/lmr/m/n/12 )) = (\OML/lmm/m/it/12 e[]; h \OMS/lmsy/m/n/12 ^^C[] \OT1/lmr/m/n/12 [\OML/lmm/m/it/12 ^^Z[] \OMS/lmsy/m/n/12 ^^N \OML/lmm/m/it/12 ^^Z[]\OT1/lmr/m/n/12 (\OML/lmm/m/it/12 h[]\OT1/lmr/m/n/12 )]) =
+ []
+
 
 
 [9]
-
-[10]
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 310.
-Package hyperref Info: bookmark level for unknown remark defaults to 0 on input line 310.
+(mdframed)              on input line 259.
+Package hyperref Info: bookmark level for unknown eg defaults to 0 on input line 259.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 269.
+
+
+[10]
+
+LaTeX Warning: Citation `MarsdenRatiu1999' on page 11 undefined on input line 280.
+
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 290.
 
 
 [11]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 298.
+Package hyperref Info: bookmark level for unknown prop defaults to 0 on input line 298.
+
 
 [12]
 
-[13] (./nstgro_lit_review.aux)
+[13]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 373.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 380.
+Package hyperref Info: bookmark level for unknown remark defaults to 0 on input line 380.
+
+
+[14]
+
+[15]
+
+[16]
+
+[17] (./nstgro_lit_review.aux)
  ***********
 LaTeX2e <2024-11-01> patch level 1
 L3 programming layer <2024-12-09>
@@ -1336,22 +1371,25 @@ L3 programming layer <2024-12-09>
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
+
+LaTeX Warning: There were undefined references.
+
 Package rerunfilecheck Info: File `nstgro_lit_review.out' has not changed.
-(rerunfilecheck)             Checksum: 8667B3E50B58AF72A56CC3BA2A9A61A6;786.
+(rerunfilecheck)             Checksum: 593023910FE90FEC64000B92E0FC04FE;1163.
  ) 
 Here is how much of TeX's memory you used:
- 36262 strings out of 473254
- 729053 string characters out of 5717961
- 1106403 words of memory out of 5000000
- 58746 multiletter control sequences out of 15000+600000
+ 36307 strings out of 473254
+ 729848 string characters out of 5717961
+ 1106416 words of memory out of 5000000
+ 58775 multiletter control sequences out of 15000+600000
  618063 words of font info for 86 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 129i,17n,134p,1394b,1120s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 129i,21n,134p,1394b,1224s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/euler/eufm10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/lm/lmex10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/lm/lmmi12.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/lm/lmmi6.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/lm/lmmi8.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/lm/lmr12.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/lm/lmr6.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/lm/lmr8.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/lm/lmri12.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/lm/lmssbx10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/lm/lmsy10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/lm/lmsy6.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/lm/lmsy8.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on nstgro_lit_review.pdf (13 pages, 251267 bytes).
+Output written on nstgro_lit_review.pdf (17 pages, 266523 bytes).
 PDF statistics:
- 200 PDF objects out of 1000 (max. 8388607)
- 151 compressed objects within 2 object streams
- 38 named destinations out of 1000 (max. 500000)
- 45 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 236 PDF objects out of 1000 (max. 8388607)
+ 183 compressed objects within 2 object streams
+ 54 named destinations out of 1000 (max. 500000)
+ 61 words of extra memory for PDF output out of 10000 (max. 10000000)
 

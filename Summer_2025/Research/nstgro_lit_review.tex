@@ -222,36 +222,80 @@ Then
 Since the term is symmetric, we can combine them into one when summed and scaled by entries of a symmetric matrix.
 
 \section{Tangent Bundle of A Lie Group}
-Let $ G$ be a Lie group. The tangent bundle $ TG$  has exactly two trivializations, which we call left and right trivializations. First, notice that $ G$ acts on itself by left or right multiplication. The action induces an action on $ TG$: $ g.(h,v) = (gh, T_h L_g(v))$ or $ g .(h,v) = (hg, T_hR_g(v))$.  This induced action allows us to move the base point of all tangent vectors of $ G$ to the identity, so that all tangent vectors are translated to the Lie algebra $ \mathfrak{g}$. Explicitly, left trivialization is the map
-\begin{align*}
-	\phi : TG \to G \ltimes  \mathfrak{g}, (g,v) \mapsto (g, T_g L_{g^{-1}}(v)).
-\end{align*}
-where the semidirect product $ G \ltimes  \mathfrak{g}$ has the following unconventional product structure:
-\begin{align*}
-	(g,u) * (h,v) = (gh, \Ad_{h^{-1}}(u) + v).
-\end{align*}
-We claim that this map is a Lie group isomorphism. That is, it is a diffeomorphism to the direct product manifold and respects the semidrect product structure. The inverse is $ (g,u)^{-1} = \left( g^{-1}, - \Ad_{ g}( u) \right)$.
+\subsection{Group Theory}
+We first review two key concepts from group theory: group actions and semidirect products.
 \begin{defn}
-	Let $ (K,*_K), (H,*_H)$ be groups and suppose there exists a group action $ \rho: K \to \aut (H)$.  Then the \allbold{semidirect product} $K \ltimes_\rho H$ is the set $ K \times H$ endowed with the following the group operation $ *$ induced by the group action $ \rho$:
+	Let $ G$ be a group and let  $ A$ be a set. A \allbold{group action} $ \rho: G \to \aut (A), g \mapsto \rho_g$ is a group homomorphism. That is, each element $ g \in G$ corresponds to an invertible ``permutation'' of $ A$, which means $ \rho_g(a)$ sends any element $ a$ to another element in $ A$ in an invertible way. There are two types of group actions, namely left and right actions. The former is denoted $ g.a = \rho_g(a)$ and satisfies $ (gh).a = g.(h.a)$, and the latter is denoted $ a .g = \rho_g(a)$ and satisfies $ a.(gh) = (a .g).h$.
+\end{defn}
+The idea of group action is that since group elements have inverses, compose associatively, and contain an identity element, we can use them to encode automorphisms of a set, which themselves forms a group and thus share the same behaviors. Thus, it is easy to check that $ (\rho_g)^{-1} = \rho_{g^{-1}}$. Since the action is only required to be a group homomorphism but not isomorphism, it is possible that multiple group elements encode the same automorphism.
+
+If $ A = G$, then there are three natural actions of  $ G$ on itself: given any $ g$, we have left multiplication $ g.h = gh$, right multiplication $ h.g = hg$, and conjugation $ g.h = ghg^{-1}$.
+
+In the context of a Lie group $ G$, left and right multiplications are smooth automorphisms of $ G$ that induces derivatives on the tangent spaces. If $ v_h \in T_hG $, then the induced derivative of left multiplication is $T_h L_g (v_h) $ and that of right multiplication is $ T_hR_g(v_h)$. Notice that we need to keep careful track of the base point. Together, they induce an action on the Lie algebra $ \mathfrak{g} := T_e G $ called the \allbold{adjoint action}. Given any $ \xi \in \mathfrak{g} $, the adjoint action of $ g$, $ \Ad_{ g}: \mathfrak{g} \to \mathfrak{g} $ is defined as 
 \begin{align*}
-(k_1,h_1)*(k_2,h_2) = (k_1 *_K k_2, h_1 *_H \rho_{k_1}(h_2)).
+	\Ad_{ g}( \xi) &:= T_{g^{-1}} L_{g} \circ  T_e R_{g^{-1}} (\xi), \\
+	&:= T_g R_{g^{-1}} \circ  T_e L_g (\xi) .
 \end{align*}
+In a sense, the adjoint action is conjugation by the derivatives. Notice that the derivatives of left and right multiplications commute with each other, just as left and right multiplications themselves. We simply need to make sure the base point is correct.
+
+We shall see later that the definition of $ \Ad$ can indeed be derived from differentiating group conjugation. For now, let us review semidirect products.
+\begin{defn}
+	Let $ (K,*_K), (H,*_H)$ be groups and suppose there exists a group action $ \rho: K \to \aut (H)$.  Then the \allbold{semidirect product} $K \ltimes_\rho H$ is the set $ K \times H$ with the identity element $ (e_K,e_H)$ and is endowed with the following the group operation $ *$ induced by the group action $ \rho$:
+\begin{align*}
+(k_1,h_1)*(k_2,h_2) = (k_1 *_K k_2, h_1 *_H \rho_{k_1}(h_2))
+\end{align*}
+Thus, $ (k,h)^{-1} = (k^{-1}, \rho_{k^{-1}}(h^{-1}))$ since $ (k,h)*(k^{-1},\rho_{k^{-1}}(h^{-1})) = (e_K, h *_H [\rho_k \circ \rho_{k^{-1}}(h^{-1})]) = (e_K, e_H)$, where we use the fact that $ \rho_{k^{-1}} = \rho_k^{-1}$.
+
 Alternatively, we can define a different group operation $ *$ such that
 \begin{align*}
 	(k_1,h_1)*(k_2,h_2) = (k_1 *_K k_2, \rho_{k_2 ^{-1}}(h_1) *_H h_2).
 \end{align*}
-This is an equally valid definition yet is rarely mentioned in the literature. We will see that this definition is vital for our purpose so we haphazardly name it the \allbold{cosemidirect product} and denote it as $ K \ltimes_{\rho^{-1}}^* H$.
-\end{defn}
-Note that $ \rho_{k^{-1}} = \rho_k^{-1}$ which justifies the notation.
-
-\begin{defn}
+This is an equally valid definition yet is rarely mentioned in the literature. We will see that this definition is vital for our purpose so we haphazardly name it the \allbold{cosemidirect product} and denote it as $ K \ltimes_{\rho^{-1}}^* H$. Then, $ (k,h)^{-1} = (k^{-1}, \rho_{k}(h^{-1}))$ since
 \begin{align*}
-	TL: G\ltimes_{ \Ad^{-1}}^*  \mathfrak{ g} \to TG,\ (g,\xi) \mapsto (g,T_eL_g \xi)
+	(k,h)*(k^{-1}, \rho_{k} (h^{-1})) = (e_K, \rho_k(h) *_H \rho_k(h^{-1})) = (e_K, \rho_k (h *_H h^{-1})) = (e_K, e_H).
+\end{align*}
+\end{defn}
+\begin{eg}
+Consider the Lie groups $ (\SO(3), \text{matmul}) $ and $ (\rr^3,+)$. The 3D special Euclidean group is defined as $ \SE(3) := \SO(3) \ltimes _{\Ad} \rr^3$, where $ \Ad_{ R}( v) = Rv$. Then its group operation $ *$ is
+\begin{align*}
+	(R_1,v_1)*(R_2,v_2) = (R_1R_2, v_1 + \Ad_{ R_1}( v_2)) = (R_1R_2, v_1+ R_1 v_2). 
+\end{align*}
+Observe that we can embed $ \SE(3)$ into  $ \SL(4, \rr)$ and convert $ *$ to simply matrix multiplication:
+ \begin{align*}
+	 (R_1,v_1)*(R_2,v_2) \mapsto  \begin{pmatrix} R_1& v_1\\ 0 & 1 \end{pmatrix} \begin{pmatrix} R_2 & v_2\\ 0& 1 \end{pmatrix} = \begin{pmatrix} R_1R_2& v_1 + R_1v_2\\0&1 \end{pmatrix}  .
+\end{align*}
+\end{eg}
+\begin{eg}
+We define the 3D left special Euclidean group as $ \LSE(3) := \SO(3) \ltimes_{\Ad^{-1}}^* \rr^3$. Since $ R^{-1} = R^{T}$ in $ \SO(3)$, the group operation $ *$ is
+ \begin{align*}
+	(R_1,v_1)*(R_2,v_2) = (R_1R_2, \Ad_{ R_2^{T}}( v_1) + v_2) = (R_1R_2, R_2^{T} v_1 + v_2). 
+\end{align*}
+Since the group operation is different from that of $ \SE(3)$, its matrix embedding must be different as well. Consider the embedding $ (R,v) \mapsto \begin{pmatrix} R & 0\\v^{T}&1 \end{pmatrix} $, then $ *$ also becomes matrix multiplication:
+\begin{align*}
+	 (R_1,v_1)*(R_2,v_2) \mapsto  \begin{pmatrix} R_1& 0\\ v_1^{T} & 1 \end{pmatrix} \begin{pmatrix} R_2 & 0\\ v_2^{T}& 1 \end{pmatrix} = \begin{pmatrix} R_1R_2& 0\\ v_1^{T}R_2 + v_2^{T} &1 \end{pmatrix} \mapsto (R_1 R_2, R_2^{T}v_1 + v_2) .
+\end{align*}
+\end{eg}
+
+\subsection{Lie Group Structure of Tangent Bundle}
+The right trivialization results from this section can be found at \cite{MarsdenRatiu1999} Chapter 4.1 (note the right action semidirect product mentioned there is not the cosemidirect product we have here). TODO Engo 2001 mentions some results but did not cite nor elaborate. 
+
+Let $ G$ be a Lie group of dimension $ n$. The goal of this section is to show that the tangent bundle $ TG$  has two group-structure-preserving trivializations (meaning we can parametrize the group by another group whose underlying manifold is the trivial vector bundle $ G\times \rr^{n}$), which we call \allbold{left and right trivializations}. First, notice that $ G$ acts on itself by left or right multiplication. The action induces an action on the fibers of $ TG$: $ g.(h,v) = (gh, T_h L_g(v))$ or $(h,v).g = (hg, T_hR_g(v))$.  This induced action allows us to move the base point of all tangent vectors of $ G$ to the identity, so that all tangent vectors in $ TG$ are translated to the Lie algebra $ \mathfrak{g}$. This way, we can define left and right trivialization maps as
+\begin{align*}
+	LT &: TG \to G \ltimes_{\Ad^{-1}}^*   \mathfrak{g}, (g,v) \mapsto (g, T_g L_{g^{-1}}(v)),\\
+	RT &: TG \to G \ltimes_{\Ad}   \mathfrak{g}, (g,v) \mapsto (g, T_g R_{g^{-1}}(v)).
+\end{align*}
+
+We claim that the two maps are Lie group isomorphisms. That is, it is a diffeomorphism to the direct product manifold and respects the semidrect product structure. The inverse is $ (g,u)^{-1} = \left( g^{-1}, - \Ad_{ g}( u) \right)$. To prove the claim, we shall use the inverses of left and right trivialization maps instead, for convenience.
+\begin{defn}
+The left translation and right translation maps on $ TG$ are respectively defined as
+\begin{align*}
+	TL&: G\ltimes_{ \Ad^{-1}}^*  \mathfrak{ g} \to TG,\ (g,\xi) \mapsto (g,T_eL_g (\xi)), \\
+	TR&: G \ltimes _{\Ad} \mathfrak{g} \to TG, (g, \xi) \mapsto (g, T_eR_g (\xi)) .
 \end{align*}
 \end{defn}
 
 \begin{prop} 
-Let $ G$ be a Lie group and  $ \mathfrak{ g }$ be its Lie algebra. Then $ TG \cong G\ltimes_{ \Ad} \mathfrak{ g} $ as a Lie group under .
+Let $ G$ be a Lie group and  $ \mathfrak{ g }$ be its Lie algebra. Then the left and right translation maps $ TL$ and  $ TR$ are Lie group isomorphisms.
 \end{prop}
 
 \begin{proof}
@@ -260,30 +304,40 @@ Recall that multiplication on $ TG$ is the differential of the multiplication on
 	d\mu : TG \times TG \to TG,\ ((g, \xi) , (h, \eta)) \mapsto (gh, T_hL_g (\eta) + T_g R_h (\xi)).
 \end{align*}
 
-The ``left translation" map $ TL: G\ltimes_{ \Ad^{-1}} \mathfrak{ g} \to TG,\ (g,\xi) \mapsto (g,T_eL_g \xi)$ is smooth since $d\mu$ is smooth, the map $(g,\xi) \mapsto  ((e,\xi),(g,0))$ is smooth, and $ d\mu ((e,\xi),(g,0)) = (g, T_eL_g(\xi) )$ is a composition of smooth maps. It is a diffeomorphism since it has inverse $TL^{-1}: (g, v) \mapsto (g,T_g L_{g^{-1}}(v))$. We now show that it is also a Lie group homomorphism.
+The left translation map $ TL: G\ltimes_{ \Ad^{-1}} \mathfrak{ g} \to TG,\ (g,\xi) \mapsto (g,T_eL_g \xi)$ is smooth since $d\mu$ is smooth, the map $(g,\xi) \mapsto  ((e,\xi),(g,0))$ is smooth, and $ d\mu ((e,\xi),(g,0)) = (g, T_eL_g(\xi) )$ is a composition of smooth maps. It is a diffeomorphism since it has inverse $LT: (g, v) \mapsto (g,T_g L_{g^{-1}}(v))$. It remains to show that it is also a Lie group homomorphism.
 
 Since $G$ is a multiplicative group whereas $\mathfrak{g}$ as a vector space is an additive group, we have
 \begin{align*}
-    \phi((g,\xi)(h,\eta)) &= \phi((gh,\ \xi + \Ad_g(\eta)))\\
+    TL((g,\xi)*(h,\eta)) &= TL((gh,\ \Ad_{h^{-1}}(\xi) + \eta))\\
+    &=(gh, T_e L_{gh}( \Ad_{ h^{-1}}( \xi) + \eta))\\
+    &= (gh, T_e L_{gh} ( T_{h}L_{h^{-1}} \circ T_e R_{h} (\xi) + \eta))\\
+    &= (gh, T_h L_g \circ T_eR_h(\xi) + T_hL_g \circ T_eL_h(\eta) )\\
+    &= (gh, T_hL_g \circ T_eL_h(\eta) + T_gR_h \circ T_eL_g(\xi)) && \text{LR commute}  \\
+    &= d\mu [(g, T_e L_g(\xi)) ,\ (h,T_eL_h (\eta)) ]\\
+    &= d\mu [TL(g,\xi) ,\ TL(h,\eta)].
+\end{align*}
+Thus, $TL$ is a Lie group homomorphism and therefore an isomorphism. The results for $TR$ exactly mirror those of $ TL$. For completeness, we show
+\begin{align*}
+    TR((g,\xi)*(h,\eta)) &= TR((gh,\ \xi + \Ad_g(\eta)))\\
     &=(gh, T_e R_{gh}(\xi + \Ad_g(\eta)))\\
     &= (gh, T_e R_{gh} (\xi+ T_{g^{-1}}L_g \circ T_e R_{g^{-1}} (\eta)))\\
     &= (gh, T_gR_h \circ T_e R_g(\xi) + T_gR_h \circ T_eL_g(\eta))\\
-    &= (gh, T_gR_h ( T_eR_g(\xi)) + T_hL_g (T_eR_h (\eta)))\\
+    &= (gh, T_gR_h ( T_eR_g(\xi)) + T_hL_g (T_eR_h (\eta))) &&\text{LR commute} \\
     &= d\mu [(g, T_e R_g(\xi)) ,\ (h,T_eR_h (\eta)) ]\\
-    &= d\mu [\phi(g,\xi) ,\ \phi(h,\eta)].
+    &= d\mu [TR(g,\xi) ,\ TR(h,\eta)].
 \end{align*}
-Thus, $\phi$ is a Lie group homomorphism and therefore an isomorphism.
 \end{proof}
 
-Its Lie algebra is $ \mathfrak{g} \ltimes \mathfrak{g}$ with the following Lie bracket:
+It turns out that both left and right trivializations yield the same Lie algebra! TODO: why? intuition? Thus we denote the Lie algebra by $ \mathfrak{g} \ltimes \mathfrak{g} $, which we claim is endowed with the following Lie bracket:
 \begin{align*}
 	[(\xi, u), (\eta,v)] := \left( [\xi, \eta], [\xi,v ] - [\eta, u] \right) .
 \end{align*}
-Here whether the adjoint comes from $ G$ or the semidirect product is inferred from their inputs. Now we derive this fact.
+Its \allbold{adjoint representation} $ \ad_{ (\xi,u)} := [(\xi,u), -] : \mathfrak{g} \ltimes \mathfrak{g} \to \mathfrak{g} \ltimes \mathfrak{g} $. 
+Note that the notations $ \Ad, \ad, [ -, - ] $ can come from $ G$ or the semidirect product, and any ambiguity can be resolved by inspecting their inputs. Now we derive the bracket formula.
 
-Loosely speaking, the adjoint action is the derivative of group conjugation action at identity, and adjoint representation is the derivative of adjoint action at identity. We make this precise in the context of the tangent bundle of $ G$: for any $ (g,u) \in G \ltimes \mathcal{ g}$, its action on $ G \ltimes \mathfrak{g} $ by conjugation is
+Loosely speaking, the adjoint action $ \Ad$ is the derivative of group conjugation action at identity, and adjoint representation $ \ad$ is the derivative of adjoint action at identity. We make this precise in the context of the tangent bundle of $ G$: for any $ (g,u) \in G \ltimes_{\Ad^{-1}}^* \mathfrak{g} $, its action on $ G \ltimes_{\Ad^{-1}}^*  \mathfrak{g} $ by conjugation is
 \begin{align*}
-	\phi_{(g,u)} : G \ltimes \mathfrak{g}  \to G \ltimes \mathfrak{g} , (h,v) \mapsto (g,u)*(h,v)*(g,u)^{-1}.
+	\phi_{(g,u)} : G \ltimes_{\Ad^{-1}}^* \mathfrak{g}  \to G \ltimes_{\Ad^{-1}}^* \mathfrak{g} , (h,v) \mapsto (g,u)*(h,v)*(g,u)^{-1}.
 \end{align*}
 Explicitly, we have
 \begin{align*}
@@ -291,9 +345,9 @@ Explicitly, we have
 	&= (gh, \Ad_{ h^{-1}}( u) + v) * \left( g^{-1}, - \Ad_{ g}( u) \right)  \\
 	&= \left( ghg^{-1}, \Ad_{ g}( \Ad_{ h^{-1}}( u) + v) - \Ad_{ g}( u) \right)  .
 \end{align*}
-Let $ (\gamma, c)$ be a smooth curve on $ G \times  \mathfrak{g} $ such that $ \gamma(0) = e, \dot{ \gamma}(0) = \eta \in \mathfrak{g}, c(0) = 0, \dot{c}(0) = v$. Then the derivative of $ \phi_{(g,u)}$ at $ e$, the adjoint action $ \Ad_{(g,u)} : \mathfrak{g} \ltimes \mathfrak{g}  \to \mathfrak{g}\ltimes \mathfrak{g} $ is given by
+Let $ (\gamma, c)$ be a smooth curve on $ G \times  \mathfrak{g} $ such that $ \gamma(0) = e,\ \dot{ \gamma}(0) = \eta \in \mathfrak{g},\ c(0) = 0,\ \dot{c}(0) = v$. Then the derivative of $ \phi_{(g,u)}$ at $ (e,0)$, the adjoint action $ \Ad_{(g,u)} : \mathfrak{g} \ltimes  \mathfrak{g}  \to \mathfrak{g}\ltimes  \mathfrak{g} $ is given by
  \begin{align*}
-	 \Ad_{ (g,u)}(\eta, v ) &= \frac{d}{dt}\big|_{t= 0} \phi_g ( \gamma(t)) \\
+	 \Ad_{ (g,u)}(\eta, v ) &= \frac{d}{dt}\big|_{t= 0} \phi_g ( \gamma(t), c(t)) \\
 				&= \frac{d}{dt}\big|_{t= 0} \left( g \gamma(t) g^{-1}, \Ad_{ g}( \Ad_{ \gamma(t)^{-1}}( u) + c(t)) - \Ad_{ g}( u) \right)  \\ 
 						     &= \left( \Ad_{ g}( \eta), \Ad_{ g}(- \ad_{\dot{ \gamma}(0)} (u) + \dot{c}(0) ) \right)  \\
 						     &= \left( \Ad_{ g}( \eta), \Ad_{ g}( -[ \eta, u] + v) \right)  ,
@@ -306,49 +360,69 @@ where we use the fact that $ \ad_{ \dot{ \gamma}(0)} := \frac{d}{dt}\big|_{t= 0}
 \frac{d}{dt}\big|_{t= 0} \Ad_{ \gamma(t)^{-1}} \circ \Ad_{ e} + \Ad_{ e} \circ \ad_{\dot{ \gamma}(0)} &= 0 \\
 \frac{d}{dt}\big|_{t= 0} \Ad_{ \gamma(t)^{-1}} &= - \ad_{ \dot{ \gamma}(0)}  && \Ad_{ e} = \id  . 
 \end{align*}
-Finally, let $ (\gamma, c)$ be another smooth curve on $ G \times  \mathfrak{g}$ such that $ \gamma(0) = e, \dot{ \gamma}(0) = \xi, c(0) =0, \dot{c}(0) = u$. Then the derivative of $ \Ad_{ ( \gamma(t), c(t))}$ at $ e$ is the adjoint representation $ \ad_{ (\xi, u)}: \mathfrak{g} \ltimes \mathfrak{g} \to \mathfrak{g} \ltimes \mathfrak{g} $:
+Finally, let $ (\gamma, c)$ be another smooth curve on $ G \times  \mathfrak{g}$ such that $ \gamma(0) = e,\ \dot{ \gamma}(0) = \xi,\ c(0) =0,\ \dot{c}(0) = u$. Then the derivative of $ \Ad_{ ( \gamma(t), c(t))}$ at $ t=0$ is the adjoint representation $ \ad_{ (\xi, u)}: \mathfrak{g} \ltimes^*  \mathfrak{g} \to \mathfrak{g} \ltimes^*  \mathfrak{g} $:
 \begin{align*}
 	\ad_{ (\xi,u)}(\eta, v) &= \frac{d}{dt}\big|_{t= 0} \Ad_{ ( \gamma(t), c(t))}( \eta,v ) \\
 				&= \frac{d}{dt}\big|_{t= 0} \left( \Ad_{ \gamma(t)}( \eta), \Ad_{ \gamma(t)}( -[\eta, c(t)] + v) \right)    \\
 				&= \left( \ad_{ \xi}(\eta), \ad_{ \xi} (-[\eta,c(0)]) + \Ad_{ \gamma(0)}( - [\eta, \dot{c}(0)] ) + \ad_{ \xi}(v) \right)   \\
 				&= ([ \xi, \eta], [\xi, v] - [\eta, u]) .
 \end{align*}
-\begin{remark}
-The conventional semi-direct product has 
-\begin{align*}
-	(g,u) * (h,v) = (gh,u + \Ad_g(v)).
+
+We collect the above results into a proposition:
+\begin{prop}
+The left trivialization $ G \ltimes_{\Ad^{-1}}^* \mathfrak{g} $ of $ TG$ has
+ \begin{align*}
+	\Ad_{ (g,u)}(\eta, v ) &= \left( \Ad_{ g}( \eta), \Ad_{ g}(v-[ \eta, u]) \right),\\
+	\ad_{ (\xi,u)}(\eta, v) &=  ([ \xi, \eta], [\xi, v] - [\eta, u]). 
 \end{align*}
-The right trivialization indeed is a Lie group isomorphism to this conventional semidirect product structure. Moreover, $ \SE(3)$ manifests this structure for $ \TSO(3)$ through matrix multiplication. However, body-frame dynamics demand left-trivialization, so we are stuck with the weird one.
+\end{prop}
+\begin{remark}
+The right trivialization $ G \ltimes_{\Ad} \mathfrak{g} $ instead has
+\begin{align*}
+	\Ad_{ (g,u)}(\eta, v ) &= \left( \Ad_{ g}( \eta), \Ad_{ g}(v)-[ \Ad_{ g}( \eta), u]) \right).
+\end{align*}
+This is different from that of the left trivialization. However, the adjoint representation is exactly the same. Moreover, $ \SE(3)$ manifests this structure for $ \TSO(3)$ through matrix multiplication. However, body-frame dynamics demand left trivialization, so we are stuck with the cosemidirect product $ \LSE(3)$.
 \end{remark}
 
-Since $ \SE(3)$ corresponds to right trivialization, we need to find another matrix representation of the left trivialization. Consider
- \begin{align*}
-	 (g,u) * (h,v) = \begin{pmatrix} h^{-1} & v\\0&1 \end{pmatrix} \begin{pmatrix} g^{-1} & u\\0&1 \end{pmatrix} = \begin{pmatrix} (gh)^{-1} & h^{-1}u +v \\ 0 & 1\end{pmatrix}. 
-\end{align*}
-We see that when we pass to the matrix, multiplication order is flipped in order to recover $ gh$ and match the semidirect product structure of left trivialization. This is the counterpart to  $ \SE(3)$ and the correct geometry to use for body-frame attitude dynamics. I do not know if it has a proper name so I will just refer to it as $ \LSE(3)$.
+Recall that any finite-dimensional Lie algebra is a finite-dimensional vector space and thus is isomorphic to $ \rr^{n}$ after choosing a basis, and we convert back and forth using $ x^\wedge = X \in \mathfrak{g} $ and $ X^\vee = x \in \rr^{n}$. 
 
-The Lie algebra elements have the form
+The Lie algebra elements of $ \mathfrak{lse}(3) = \mathfrak{so}(3) \ltimes \mathfrak{so}(3) \cong \rr^3 \ltimes \rr^3$ have the following matrix embedding:
 \begin{align*}
-	\begin{pmatrix} - \xi^\wedge & v\\ 0&0 \end{pmatrix} .
+	(\xi, v) \mapsto \begin{pmatrix} \xi^\wedge & 0\\ v^{T}&0 \end{pmatrix} ,
 \end{align*}
-This is clear from the fact that $ \exp(-A) = A^{-1}$.
+where $ \xi^\wedge $ is a skew-symmetric matrix in $ \mathfrak{so}(3) $.
 
-Now we have a matrix representation, we can easily compute the $ \Ad$ and  $ \ad$ maps for this specific case using matrix multiplication.
+Now we have a matrix representation, we can easily verify the $ \Ad$ and  $ \ad$ maps for $ \LSE(3)$ using matrix multiplication.
 \begin{align*}
 	\Ad_{ (R,u)}( \eta,v)  &= (R,u) * (\eta,v) * (R,u)^{-1}   \\
-			       &= \begin{pmatrix} R& - RuR^{-1}\\ 0 & 1 \end{pmatrix} \begin{pmatrix} - \eta^\wedge & v \\ 0&0 \end{pmatrix} \begin{pmatrix} R^{-1}&u\\ 0 &1 \end{pmatrix}  \\
-			       &= \begin{pmatrix} -R \eta^\wedge & Rv\\ 0 & 0 \end{pmatrix} \begin{pmatrix} R^{-1}&u\\0&1 \end{pmatrix}  \\
-			       &= \begin{pmatrix} -R \eta^\wedge R^{-1} & R(- \eta^\wedge u + v) \\ 0&0\end{pmatrix}  \\
-			       &= (R \eta^\wedge R^{-1}, R(v - \eta^\wedge u)) .
+			       &\mapsto \begin{pmatrix} R&0\\ u^{T} &1 \end{pmatrix}\begin{pmatrix} \eta^\wedge & 0 \\ v^{T}&0 \end{pmatrix}   \begin{pmatrix} R^{T}& 0\\ - Ru^{T}R^{T} & 1 \end{pmatrix}  \\
+			       &= \begin{pmatrix} R \eta^\wedge & 0\\ u^{T} \eta^\wedge + v^{T} & 0 \end{pmatrix} \begin{pmatrix} R^{T}&0\\- Ru^{T}R^{T}&1 \end{pmatrix}  \\
+			       &= \begin{pmatrix} R \eta^\wedge R^{T} & 0 \\ (u^{T} \eta^\wedge + v^{T})R^{T}&0\end{pmatrix}  \\
+			       &\mapsto  (R \eta^\wedge R^{-1}, R(v - \eta^\wedge u)) && (\eta^\wedge )^{T} = - \eta^\wedge \\
+			       &\mapsto  ( \Ad_{ R}( \eta  ), \Ad_{ R}( v - [\eta,u])) .
 \end{align*}
-Let $ \gamma(0) = I, \dot{ \gamma}(0) = \xi^\wedge, c(0)=0, \dot{c}(0)=u $. Then
+In the last step, we use the following facts: 1. adjoint action of matrix Lie group is literally conjugation, $ \Ad_{ R}( \Omega) = R\Omega R^{-1}$;  2. adjoint action of matrix Lie group on $ \mathfrak{g} $ identified as $ \rr^{n}$ is simply matrix-vector multiplication, $ \Ad_{ R}( \omega) = R \omega = R \omega^\wedge R^{-1} $.
+
+The adjoint representation of matrix Lie group is just the commutator $ \ad_{ X}(Y) := [X,Y] = XY - YX$: 
 \begin{align*}
-	\ad_{ ( \xi, u)} (\eta,u) &= \frac{d}{dt} \left( \gamma(t) \eta^\wedge \gamma^{-1}(t), \gamma(t) (v - \eta^\wedge c(t)) \right)  \\
-				  &= \left( [ \xi, \eta], \dot{ \gamma}(0) v- \dot{ \gamma}(0) \eta^\wedge c(0) - \gamma(0) \eta^\wedge \dot{c}(0)  \right)  \\
-				  &= \left( [ \xi, \eta], \xi^\wedge v - \eta^\wedge u  \right)  \\
+	\ad_{ ( \xi, u)} (\eta,v) &\mapsto  \begin{pmatrix} \xi^\wedge & 0\\u^{T}&0 \end{pmatrix}  \begin{pmatrix}  \eta^\wedge &0\\v^{T}&0 \end{pmatrix} - \begin{pmatrix}  \eta^\wedge &0\\v^{T}&0 \end{pmatrix} \begin{pmatrix} \xi^\wedge & 0\\u^{T}&0 \end{pmatrix}\\
+				  &= \begin{pmatrix} \xi^\wedge \eta^\wedge & 0\\ u^{T} \eta^\wedge &0 \end{pmatrix} -  \begin{pmatrix} \eta^\wedge \xi^\wedge & 0\\ v^{T} \xi^\wedge &0 \end{pmatrix}  \\
+				  &= \begin{pmatrix} \xi^\wedge \eta^\wedge - \eta^\wedge \xi^\wedge &0 \\ \left( (\eta^\wedge)^{T}u - (\xi^\wedge )^{T} v  \right)^{T} &0 \end{pmatrix}  \\
+				  &\mapsto  \left( [ \xi, \eta], \xi^\wedge v - \eta^\wedge u  \right) && \xi, \eta \text{ skew-symmetric}  \\
 				  &= \left( [ \xi, \eta], [\xi,v] - [\eta,u] \right)  .
 \end{align*}
 The results match those from the general case!
+
+Using this matrix representation of $ \LSE(3)$, we can apply the propagation formula.
+
+A natural basis for $ \mathfrak{lse}(3) $ is
+ \begin{align*}
+	E_i = \begin{cases}
+		\begin{pmatrix} E_i^{ \mathfrak{so}(3)}&0\\0&0 \end{pmatrix} & i = 1,2,3,\\
+		\begin{pmatrix} 0& 0 \\ e_{i-3}^{T} & 0 \end{pmatrix} & i = 4,5,6 . 
+	\end{cases}
+\end{align*}
+Recall that $ \ad_{ i} := [\ad_{ E_i}]$ is the matrix that represents the linear operator $ \ad_{ E_i}$, whose $ j$th column can be computed as $ [E_i, E_j]^\vee$.
 
 \section{Intuition of Hamiltonian Mechanics}
 A symplectic manifold has a conanical 2-form $ \omega$, which locally (in Darboux coordinates) acts as a symplectic bilinear form $J:= \begin{pmatrix} 0&I\\-I & 0 \end{pmatrix} $. Intuitively this ``turns the tangent coordinates 90 degrees". That is, horizontal direction becomes vertical and vice versa (not too different from $ \begin{pmatrix} 0&1\\-1&0 \end{pmatrix} $ if we think $ x$-coordinate as horizontal tangent coordinates and  $ y$-coordinate as vertical tangent coordinates). When this is applied to gradient vector field  of a function $ H$, since gradient goes perpendicular to the contour lines of $ H$, by turning 90 degrees now the vector field goes along the contour lines (level sets), which means that along the flow of the rotated vector field, $ H$ is conserved. This vector field is the Hamiltonian vector field $ X_H$ of  $ H$. Bloch Exercise 3.1.2 shows that in local Darboux coordinates, indeed we have $ X_H = J df^{T} = J \nabla f$. However, since there is no metric on the manifold, we cannot actually obtain gradient vector field of a function nor rotate it. Yet we can still do this rotation to flow along the contour lines thanks to the 2-form. Instead of rotating the gradient vector field, we rotate the differential contravariantly and get a vector field via $ \iota_{{X_H}} \omega$.
