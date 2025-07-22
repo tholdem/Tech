@@ -225,7 +225,7 @@ Since the term is symmetric, we can combine them into one when summed and scaled
 \subsection{Group Theory}
 We first review two key concepts from group theory: group actions and semidirect products.
 \begin{defn}
-	Let $ G$ be a group and let  $ A$ be a set. A \allbold{group action} $ \rho: G \to \aut (A), g \mapsto \rho_g$ is a group homomorphism. That is, each element $ g \in G$ corresponds to an invertible ``permutation'' of $ A$, which means $ \rho_g(a)$ sends any element $ a$ to another element in $ A$ in an invertible way. There are two types of group actions, namely left and right actions. The former is denoted $ g.a = \rho_g(a)$ and satisfies $ (gh).a = g.(h.a)$, and the latter is denoted $ a .g = \rho_g(a)$ and satisfies $ a.(gh) = (a .g).h$.
+	Let $ G$ be a group and let  $ A$ be a set. A \allbold{group action} $ \rho: G \to \aut (A), g \mapsto \rho_g$ is a group homomorphism. That is, each element $ g \in G$ corresponds to an automorphism of $ A$, which means $ \rho_g$ sends any element $ a$ to another element $ \rho_g(a)$ in $ A$ in an invertible way. There are two types of group actions, namely left and right actions. The former is denoted $ g.a = \rho_g(a)$ and satisfies $ (gh).a = g.(h.a)$, and the latter is denoted $ a .g = \rho_g(a)$ and satisfies $ a.(gh) = (a .g).h$.
 \end{defn}
 The idea of group action is that since group elements have inverses, compose associatively, and contain an identity element, we can use them to encode automorphisms of a set, which themselves forms a group and thus share the same behaviors. Thus, it is easy to check that $ (\rho_g)^{-1} = \rho_{g^{-1}}$. Since the action is only required to be a group homomorphism but not isomorphism, it is possible that multiple group elements encode the same automorphism.
 
@@ -285,7 +285,7 @@ Let $ G$ be a Lie group of dimension $ n$. The goal of this section is to show t
 	RT &: TG \to G \ltimes_{\Ad}   \mathfrak{g}, (g,v) \mapsto (g, T_g R_{g^{-1}}(v)).
 \end{align*}
 
-We claim that the two maps are Lie group isomorphisms. That is, it is a diffeomorphism to the direct product manifold and respects the semidrect product structure. The inverse is $ (g,u)^{-1} = \left( g^{-1}, - \Ad_{ g}( u) \right)$. To prove the claim, we shall use the inverses of left and right trivialization maps instead, for convenience.
+We claim that the two maps are Lie group isomorphisms. That is, it is a diffeomorphism to the direct product manifold and respects the (co)semidrect product structure. The inverse is $ (g,u)^{-1} = \left( g^{-1}, - \Ad_{ g}( u) \right)$. To prove the claim, we shall use the inverses of left and right trivialization maps instead, for convenience.
 \begin{defn}
 The left translation and right translation maps on $ TG$ are respectively defined as
 \begin{align*}
@@ -377,12 +377,14 @@ The left trivialization $ G \ltimes_{\Ad^{-1}}^* \mathfrak{g} $ of $ TG$ has
 \end{align*}
 \end{prop}
 \begin{remark}
-The right trivialization $ G \ltimes_{\Ad} \mathfrak{g} $ instead has
+The right trivialization $ G \ltimes_{\Ad} \mathfrak{g} $ instead has adjoint action
 \begin{align*}
 	\Ad_{ (g,u)}(\eta, v ) &= \left( \Ad_{ g}( \eta), \Ad_{ g}(v)-[ \Ad_{ g}( \eta), u]) \right).
 \end{align*}
 This is different from that of the left trivialization. However, the adjoint representation is exactly the same. Moreover, $ \SE(3)$ manifests this structure for $ \TSO(3)$ through matrix multiplication. However, body-frame dynamics demand left trivialization, so we are stuck with the cosemidirect product $ \LSE(3)$.
 \end{remark}
+
+\subsection{Demystifying $ \LSE(3)$}
 
 Recall that any finite-dimensional Lie algebra is a finite-dimensional vector space and thus is isomorphic to $ \rr^{n}$ after choosing a basis, and we convert back and forth using $ x^\wedge = X \in \mathfrak{g} $ and $ X^\vee = x \in \rr^{n}$. 
 
@@ -413,6 +415,7 @@ The adjoint representation of matrix Lie group is just the commutator $ \ad_{ X}
 \end{align*}
 The results match those from the general case!
 
+\subsection{Preparation for Propagation}
 Using this matrix representation of $ \LSE(3)$, we can apply the propagation formula.
 
 A natural basis for $ \mathfrak{lse}(3) $ is
@@ -422,7 +425,81 @@ A natural basis for $ \mathfrak{lse}(3) $ is
 		\begin{pmatrix} 0& 0 \\ e_{i-3}^{T} & 0 \end{pmatrix} & i = 4,5,6 . 
 	\end{cases}
 \end{align*}
-Recall that $ \ad_{ i} := [\ad_{ E_i}]$ is the matrix that represents the linear operator $ \ad_{ E_i}$, whose $ j$th column can be computed as $ [E_i, E_j]^\vee$.
+Under this basis, we can express the linear action $ \Ad_{ (R,u)} : \mathfrak{so}(3) \ltimes \mathfrak{so}(3) \to \mathfrak{so}(3) \ltimes \mathfrak{so}(3) $ as a $ 6\times 6$ matrix, whose $ j$th column can be computed by  $ [(R,u)^\wedge  E_j (R,u)^{-\wedge } ]^\vee$, yielding
+\begin{align*}
+	[ \Ad_{ (R,u)}] = \begin{pmatrix} R &0\\ Ru^\wedge &R \end{pmatrix} .
+\end{align*}
+
+Similarly, since $ \ad_{ (\xi,u)}: \mathfrak{so}(3) \ltimes \mathfrak{so}(3) \to \mathfrak{so}(3) \ltimes \mathfrak{so}(3) $ is linear, let $ [\ad_{ (\xi,u)}]$ denote the $ 6 \times 6$ matrix representation under this basis. Thus, its $ j$th column can be computed by $ [(\xi,u)^\wedge, E_j]^\vee$, yielding
+\begin{align*}
+	[ \ad_{ (\xi,u)}] = \begin{pmatrix} \xi^\wedge &0\\ u^\wedge & \xi^\wedge  \end{pmatrix} .
+\end{align*}
+We can readily verify that
+\begin{align*}
+	[ \ad_{ (\xi,u)}] \begin{pmatrix} \eta \\ v \end{pmatrix} = \begin{pmatrix} \xi^\wedge &0\\ u^\wedge & \xi^\wedge  \end{pmatrix}  \begin{pmatrix} \eta \\ v \end{pmatrix} = \begin{pmatrix} \xi^\wedge \eta \\ \xi^\wedge v + u^\wedge  \eta \end{pmatrix} = \begin{pmatrix}[] [\xi, \eta] \\ [\xi,v] - [\eta, u] \end{pmatrix}  = \ad_{ ( \xi,u)} (\eta,v) .
+\end{align*}
+
+From this, we obtain a key expression in the propagation formula.
+\begin{align*}
+	\ad_{ i} :=[ \ad_{ E_i}] = \begin{cases}
+		\begin{pmatrix} E_i^{ \mathfrak{so}(3) } & 0\\ 0 & E_i^{ \mathfrak{so}(3) }  \end{pmatrix} & i = 1,2,3\\
+		\begin{pmatrix} 0&0\\ e_{i-3}^{T} &0 \end{pmatrix} & i = 4,5,6 .
+	\end{cases}
+\end{align*}
+Let $ x = \begin{pmatrix} \eta\\v \end{pmatrix} $. The exponential map $ \exp: \mathfrak{g} \ltimes \mathfrak{g} \to G \ltimes_{\Ad^{-1}}^* \mathfrak{g}  $  is
+\begin{align*}
+	\exp( x^\wedge ) = \begin{pmatrix} \exp( \eta^\wedge )\\  J_\ell(\eta)^{T} v \end{pmatrix} ,
+\end{align*}
+because
+\begin{align*}
+	\begin{pmatrix} \eta^\wedge &0\\ v^{T} & 0 \end{pmatrix}^{k} &= \begin{pmatrix} (\eta^\wedge)^{k} &0\\ v^{T} (\eta^\wedge )^{k-1} &0 \end{pmatrix} ,\\
+	\exp \begin{pmatrix} \eta^\wedge &0 \\ v^{T} &0 \end{pmatrix} &= \sum_{ k= 0}^{\infty} \frac{1}{k!} \begin{pmatrix} \eta^\wedge &0\\ v^{T} & 0 \end{pmatrix}^{k} \\
+					 &=  \begin{pmatrix} \sum_{ k= 0}^{\infty} \frac{1}{k!}  \eta^\wedge &0\\ v^{T} \sum_{ k= 0}^{\infty}\frac{1}{k!} (\eta^\wedge )^{k-1} & 0 \end{pmatrix} \\
+					 &= \begin{pmatrix} \exp( \eta^\wedge ) &0\\ \left(  J_{\ell}( \eta)^{T} v  \right)^{T} & 0  \end{pmatrix}  \\
+					 &= \begin{pmatrix} \exp( \eta^\wedge ) &0 \\ \left( J_r(\eta) v \right)^{T} &0  \end{pmatrix} && \text{ only in } \mathfrak{lse}(3) .
+\end{align*}
+See \cite{Barfoot Integral Forms in Matrix Lie Groups Eq 17}. Due to skew-symmetry, it is easy to see via Rodriguez's formula that $ J_r = J_\ell^{T}$ in $ \SO(3)$.
+
+Let $ \mu = ( \overline{R}, \overline{ \omega}) $. The remaining terms in the propagation equations involve 1st-order and 2nd-order derivatives at zero of
+\begin{align*}
+	h^{c}(x) := h^s(\mu \exp( x^\wedge )) &= h^s \begin{pmatrix} \overline{R} \exp( \eta^\wedge ) \\ [\Ad_{ \exp( -\eta^\wedge )}] \overline{\omega} + J_r(\eta)v \end{pmatrix}  \\
+					    &= h^s \begin{pmatrix} \overline{R} \exp( \eta^\wedge ) \\ \exp( -[\ad_{ \eta^\wedge }]) \overline{\omega} + J_r(\eta) v \end{pmatrix}  && \Ad_{ \exp( X)} = \exp( \ad_{ X}) \\
+	&= h^s \begin{pmatrix} \overline{R} \exp( \eta^\wedge ) \\ \exp( - \eta^\wedge) \overline{\omega} + J_r(\eta) v \end{pmatrix}  && [\ad_{ X}] = X \in \mathfrak{so}(3)  \\
+	&= \begin{pmatrix} \widetilde{ \omega}\\ \mathbb{I}^{-1} \left( BK \widetilde{ \omega}-  \widetilde{ \omega}^\wedge \mathbb{ I} \widetilde{ \omega} \right) \end{pmatrix}  ,
+\end{align*}
+where $ \widetilde{ \omega} := \exp( - \eta^\wedge) \overline{\omega} + J_r(\eta) v$ and $ h^s (R, \omega) = \begin{pmatrix} \omega \\ \mathbb{I} ^{-1} \left( BK \omega  - \omega^\wedge \mathbb{ I} \omega \right) \end{pmatrix} $ is just the attitude dynamics with linear feedback control $ u( \omega) = K \omega$ from the Stratonovich SDE  $ g^{-1} \d g = h^s \d t + H^s \textcircled{s} \d W$, where $ H^s = \begin{pmatrix} 0&0\\0&B \end{pmatrix} $. 
+
+It is easier to find the 1st and 2nd order derivatives of $ \widetilde{ \omega}$ first:
+\begin{align*}
+	a_j := \frac{\partial \omega}{\partial x_j}\bigg|_{(0,0)} =\begin{cases}
+		-  \exp( -\eta^\wedge )\big|_{0} E_j^{ \mathfrak{so}(3) } \overline{\omega} + \partial_j Jr(\eta) v\big|_{(0,0)} = - E_j^{ \mathfrak{so}(3) } \overline{\omega} & j = 1,2,3,\\
+		\partial_j J_r(\eta)v\big|_{(0,0} + J_r(\eta)\big|_0 e_{j-3} = e_{j-3} & j=4,5,6.
+	\end{cases}
+\end{align*}
+\begin{align*}
+	c_{ij} := \frac{\partial^2 \omega}{\partial { x_i} \partial x_j}\bigg|_{(0,0}  = \begin{cases}
+		\exp( -\eta^\wedge )\big|_0 E_i^{\mathfrak{so}(3) } E_j^{\mathfrak{so}(3) } \overline{\omega} = E_i^{\mathfrak{so}(3) } E_j^{\mathfrak{so}(3) } \overline{\omega} & i,j=1,2,3,\\
+		\partial_j J_r(\eta)\big|_0 e_{i-3} = - \frac{1}{2} E_j^{\mathfrak{so}(3) } e_{i-3} & i=4,5,6,\quad j=1,2,3,\\
+		c_{ji} & i = 1,2,3, \quad j = 4,5,6\\
+		0 & i,j=4,5,6 .
+	\end{cases}
+\end{align*}
+Note that we use the series expansion of $ J_r(\eta)= I - \frac{1}{2} \eta^\wedge + \cdots$ to obtain $ \partial_j J_r(\eta)  = -\frac{1}{2} E_j^{\mathfrak{so}(3) }$ for $ j=1,2,3$.
+
+Denote $ h^c = (h_1^c, h_2^c)$, we can compute the composite derivatives blockwise:
+\begin{align*}
+	\frac{\partial h_1^c}{\partial x_j}\bigg|_{(0,0)} = a_j, \qquad \frac{\partial^2 h_1^c}{\partial { x_i} \partial x_j} \bigg|_{(0,0)} = c_{ij},  
+\end{align*}
+and
+\begin{align*}
+	\frac{\partial h_2^c}{\partial x_j}\bigg|_{(0,0)} &= \mathbb{I} ^{-1} \left( BK a_j - \left( \partial_j( \widetilde{ \omega})^\wedge \mathbb{I}  \widetilde{ \omega} + \widetilde{ \omega}^\wedge \mathbb{I} \partial_j \widetilde{ \omega} \right)\big|_{(0,0)}  \right)  \\ 
+	&= \mathbb{I} ^{-1}\left( BKa_j - \left( a_j^\wedge \mathbb{I} \overline{\omega} + \overline{\omega}^\wedge \mathbb{I} a_j \right)  \right)  ,\\
+	\frac{\partial^2 h_2^c}{\partial { x_i} \partial x_j} \bigg|_{(0,0)} &= \mathbb{I} ^{-1} \left( BKc_{ij} - \left( \partial_{ij}^2(\widetilde{ \omega})^\wedge \mathbb{I} \widetilde{ \omega} + \partial_j(\widetilde{ \omega})^\wedge \mathbb{I} \partial_i\widetilde{ \omega} + \partial_i(\widetilde{ \omega})^\wedge \mathbb{I} \partial_j \widetilde{ \omega} + \widetilde{ \omega}^\wedge \mathbb{I} \partial_{ij}^2 \widetilde{ \omega} \right)\big|_{(0,0)}  \right)  \\
+	&= \mathbb{I} ^{-1} \left( BK c_{ij} - \left( c_{ij}^\wedge \mathbb{I} \overline{\omega} + a_j^\wedge \mathbb{I} a_i + a_i^\wedge \mathbb{I} a_j + \overline{\omega}^\wedge \mathbb{I} c_{ij} \right)  \right)  ,
+\end{align*}
+ where we use the fact that $ \widetilde{ w}|_{(0,0)} = \overline{\omega}$. Due to symmetry, further simplifications can be achieved when their sums are weighted by a symmetric matrix like the covariance. But we will leave that for later.
+
+We now have all the ingredients for the 2nd order mean and covariance propagation on $ \LSE(3)$.
 
 \section{Intuition of Hamiltonian Mechanics}
 A symplectic manifold has a conanical 2-form $ \omega$, which locally (in Darboux coordinates) acts as a symplectic bilinear form $J:= \begin{pmatrix} 0&I\\-I & 0 \end{pmatrix} $. Intuitively this ``turns the tangent coordinates 90 degrees". That is, horizontal direction becomes vertical and vice versa (not too different from $ \begin{pmatrix} 0&1\\-1&0 \end{pmatrix} $ if we think $ x$-coordinate as horizontal tangent coordinates and  $ y$-coordinate as vertical tangent coordinates). When this is applied to gradient vector field  of a function $ H$, since gradient goes perpendicular to the contour lines of $ H$, by turning 90 degrees now the vector field goes along the contour lines (level sets), which means that along the flow of the rotated vector field, $ H$ is conserved. This vector field is the Hamiltonian vector field $ X_H$ of  $ H$. Bloch Exercise 3.1.2 shows that in local Darboux coordinates, indeed we have $ X_H = J df^{T} = J \nabla f$. However, since there is no metric on the manifold, we cannot actually obtain gradient vector field of a function nor rotate it. Yet we can still do this rotation to flow along the contour lines thanks to the 2-form. Instead of rotating the gradient vector field, we rotate the differential contravariantly and get a vector field via $ \iota_{{X_H}} \omega$.
