@@ -173,8 +173,8 @@ For the covariance, the same simplifications apply. Keeping only up to second-or
 \end{align*}
 
 \begin{align*}
-	M^{\mu} &= \frac{1}{48} \ad_i \ad_k HH^{T} \ad_{ j} ^{T} e_k + \frac{1}{48} \ad_{ k} HH^{T} \ad_j ^{T} \ad_{ i}^{T} e_k + \frac{1}{2} \ad_{ i} \frac{\partial h^{c}}{\partial x_j} + \frac{1}{2} \frac{\partial^2 h^{c}}{\partial { x_i} \partial x_j}    \\
-	M^{ \Sigma} &= \sym \bigg\{ \bigg[ \frac{1}{8} \ad_{ k} HH^{T}  \ad_i^{T} e_k + \frac{1}{24} \ad_{ k} \ad_i HH^{T} e_k + \frac{1}{2} \ad_{ i} \left( h + \left( \mu^{-1} \dot{\mu} \right)^\vee  \right) + \frac{\partial h^{c}}{\partial x_i} \bigg] e_j^{T} \\ 
+	M_{ij}^{\mu} &= \frac{1}{48} \ad_i \ad_k HH^{T} \ad_{ j} ^{T} e_k + \frac{1}{48} \ad_{ k} HH^{T} \ad_j ^{T} \ad_{ i}^{T} e_k + \frac{1}{2} \ad_{ i} \frac{\partial h^{c}}{\partial x_j} + \frac{1}{2} \frac{\partial^2 h^{c}}{\partial { x_i} \partial x_j}    \\
+	M_{ij}^{ \Sigma} &= \sym \bigg\{ \bigg[ \frac{1}{8} \ad_{ k} HH^{T}  \ad_i^{T} e_k + \frac{1}{24} \ad_{ k} \ad_i HH^{T} e_k + \frac{1}{2} \ad_{ i} \left( h + \left( \mu^{-1} \dot{\mu} \right)^\vee  \right) + \frac{\partial h^{c}}{\partial x_i} \bigg] e_j^{T} \\ 
 	&+ \frac{1}{12} \ad_{ i} \ad_{ j} HH^{T} \bigg\} + \frac{1}{4} \ad_{ i} H H^{T} \ad_{ j}^{T} .
 \end{align*}
 
@@ -501,8 +501,40 @@ and
 
 We now have all the ingredients for the 2nd order mean and covariance propagation on $ \LSE(3)$.
 
+\section{Jacobian}
+Since $ \exp: \mathfrak{g} \to G $, its derivative at $ X= x^\wedge  \in \mathfrak{g} $ is $ T_X \exp: \mathfrak{g} \to T_{\exp(X)}G$. Let $ Y= y^\wedge  \in \mathfrak{g} $. We can compute the derivative by
+\begin{align*}
+	T_X \exp( Y) &= \frac{d}{dt}\big|_{t= 0} \exp( X+tY) \\ 
+	&= \frac{d}{dt}\big|_{t= 0} \lim_{ n \to \infty} \left( I + \frac{X+tY}{ n} \right)^{n}  \\
+	&= \lim_{ n \to \infty} \frac{d}{dt}\big|_{t= 0} \left( I + \frac{X+tY}{ n} \right)^{n}  && \text{uniform convergence of derivatives}  \\
+	&= \lim_{ n \to \infty} \sum_{ k= 0}^{ n} \left( I+ \frac{X}{n} \right)^{k} \frac{Y}{n} \left( I+\frac{X}{n} \right)^{n-k-1}  && \text{generalized Leibniz rule}  \\
+	&= \int_{ 0}^{ 1} \exp( tX) Y \exp( (1-t)X)\ \d t && \text{known identity}  \\
+	&= \int_{ 0}^{ 1} \exp( tX) Y \exp( -tX)\ \d t \exp( X)  \\
+	&= \int_{ 0}^{ 1} \Ad_{ \exp( tX)}( Y)\ \d t \exp( X)  .
+\end{align*}
+But since we not interested in any tangent space other than the Lie algebra, we should right or left translate this derivative back to the Lie algebra, which results in left and right Jacobian, respectively. That is,
+\begin{align*}
+	J_\ell(x)[y] &:= \left(T_{\exp(X)} R_{\exp(X)^{-1}} \circ  T_X \exp( y^\wedge ) \right)^\vee\\
+		  &= \left( T_X \exp( y^\wedge ) \exp( X)^{-1}\right)^\vee && \text{matrix Lie group}   \\
+		  &= \left(  \int_{ 0}^{ 1} \Ad_{ \exp( tX)}( y^\wedge )\ \d t \exp( X) \exp( X)^{-1} \right)^\vee  \\
+	&= \left(\int_{ 0}^{ 1} [\Ad_{ \exp( tX)}]\ \d t  \right) y \\
+	&= \int_{ 0}^{ 1} \exp( [ \ad_{t X}])\ \d t \ y .
+\end{align*}
+Thus, we see that
+\begin{align*}
+	J_{\ell}(x) &= \int_{ 0}^{ 1} \exp( [t \ad_{ X}])\ \d t  \\
+		    &= \int_{ 0}^{ 1} \sum_{ k= 0}^{\infty}\frac{t^{k}}{k! }[ \ad_{ X}]^{k} \d t \\
+		    &= \sum_{ k= 0}^{\infty} \int_{ 0}^{ 1} \frac{t^{k}}{ k!} [ \ad_{ X}]^{k} \d t \\
+		    &= \sum_{ k= 0}^{\infty} \frac{t^{k+1}}{ (k+1)!} [ \ad_{ X}]^{k}\bigg|_0^1 \\
+		    &= \sum_{ k= 0}^{\infty} \frac{[ \ad_{ X}]^{k}}{(k+1)!} .
+\end{align*}
+Similarly, by a change of variable $ s=-t$ and left translation, we obtain that
+\begin{align*}
+	J_r(x) &= \int_{ 0}^{ 1} \exp( [ -t\ad_{X}])\ \d t \ = \sum_{ k= 0}^{\infty} \frac{[- \ad_{ X}]^{k}}{(k+1)!}  .
+\end{align*}
+
 \section{Intuition of Hamiltonian Mechanics}
-A symplectic manifold has a conanical 2-form $ \omega$, which locally (in Darboux coordinates) acts as a symplectic bilinear form $J:= \begin{pmatrix} 0&I\\-I & 0 \end{pmatrix} $. Intuitively this ``turns the tangent coordinates 90 degrees". That is, horizontal direction becomes vertical and vice versa (not too different from $ \begin{pmatrix} 0&1\\-1&0 \end{pmatrix} $ if we think $ x$-coordinate as horizontal tangent coordinates and  $ y$-coordinate as vertical tangent coordinates). When this is applied to gradient vector field  of a function $ H$, since gradient goes perpendicular to the contour lines of $ H$, by turning 90 degrees now the vector field goes along the contour lines (level sets), which means that along the flow of the rotated vector field, $ H$ is conserved. This vector field is the Hamiltonian vector field $ X_H$ of  $ H$. Bloch Exercise 3.1.2 shows that in local Darboux coordinates, indeed we have $ X_H = J df^{T} = J \nabla f$. However, since there is no metric on the manifold, we cannot actually obtain gradient vector field of a function nor rotate it. Yet we can still do this rotation to flow along the contour lines thanks to the 2-form. Instead of rotating the gradient vector field, we rotate the differential contravariantly and get a vector field via $ \iota_{{X_H}} \omega$.
+A symplectic manifold has a conanical 2-form $ \omega$, which locally (in Darboux coordinates) acts as a symplectic bilinear form $J:= \begin{pmatrix} 0&I\\-I & 0 \end{pmatrix} $. Intuitively this ``turns the tangent coordinates 90 degrees". That is, horizontal direction becomes vertical and vice versa (not too different from $ \begin{pmatrix} 0&1\\-1&0 \end{pmatrix} $ if we think $ x$-coordinate as horizontal tangent coordinates and  $ y$-coordinate as vertical tangent coordinates). When this is applied to gradient vector field  of a function $ H$, since gradient goes perpendicular to the contour lines of $ H$, by turning 90 degrees now the vector field goes along the contour lines (level sets), which means that along the flow of the rotated vector field, $ H$ is conserved. This vector field is the Hamiltonian vector field $ X_H$ of  $ H$. Bloch Exercise 3.1.2 shows that in local Darboux coordinates, indeed we have $ X_H = J df^{T} = J \nabla f$. However, since there is no metric on the manifold, we cannot actually obtain gradient vector field of a function $ H$ nor rotate it. Yet we can still do this rotation to flow along the contour lines thanks to the 2-form. Instead of rotating the gradient vector field of $ H$, we rotate the differential $ dH$ contravariantly and get a vector field via $ \iota_{{X_H}} \omega = dH$.
 
 Moreover, when the concept is applied to the cotangent bundle of a manifold, we have a canonical 1-form $ \theta$ and a canonical 2-form $ \omega := -d \theta$ that is symplectic. We can write this 2-form in local coordinates, and then compute the $ X_H$ in local coordinates as well for any $ H$. If we choose $ H$ to be the energy function, then the resulting coordinates are exactly Hamilton's equations, which give us the flows where energy is conserved. Notice that we do not need to use calculus of variations at all here. Geometry completely determines the equations of motion.
 
@@ -511,4 +543,51 @@ Moreover, when the concept is applied to the cotangent bundle of a manifold, we 
 	\dot{f}(z) &= \left\langle df(z), X_H(z) \right\rangle \ \forall \ f\\
 	\dot{f} &= \left\{ f,H \right\} \ \forall \ f
 \end{align*}
+
+\section{Dual Quaternions}
+
+Consider $ G = \mathbb{ H}_u$ with scalar-first convention. Then $ \mathfrak{g} = T_1 \mathbb{ H}_u $ the set of pure quaternions, which we can identify with 3D vectors via $ ^\vee: \mathfrak{g} \to \rr^3, (0,v) \mapsto v$ and $ ^\wedge : \rr^3 \to \mathfrak{g},  v \mapsto (0,v)$. The exponential map can be defined using the infinite series $ \exp( v) = \sum_{ k= 0}^{\infty} \frac{(v^\wedge )^{k}}{ k!}$, which by applying the identity $ (v^\wedge)^2 = - \norm{ v}^2 $ simplifies to
+\begin{align*}
+	\exp( v) = \begin{pmatrix} \cos \norm{ v}\\ \frac{\sin \norm{ v} }{\norm{ v}  }v  \end{pmatrix} .
+\end{align*}
+We see that the injectivity radius remains $ \norm{ v} < \pi$, the same as the exponential map of $ \SO(3)$. Recall that $ \mathbb{ H}_u $ is a double-cover of $ \SO(3)$ with isomorphic Lie algebra $ \mathfrak{so}(3)$. Since their exponential maps have the same injectivity radius, in order for the exponential map of $ \mathbb{ H}_u $ to cover the entire $ S^3$ that wraps around $ \SO(3)$ twice within the same injectivity radius, the exponential map of $ \mathbb{ H}_u $ should go twice as fast as that of $ \SO(3)$. Therefore, in order to encode the same rotation, axis-angle-wise we need half the angle $ \norm{ v}$ in $ T_1 \mathbb{ H}_u $ than we do in $ \mathfrak{so}(3) $. Another way to see this is just deriving everything from $ \SU(2)$ which is isomorphic to  $ \mathbb{ H}_u $ as a Lie group.
+
+As a result, for $ u^\wedge ,v^\wedge  \in \mathfrak{g} $, define pure quaternion multiplication to be the cross product $ u^\wedge v^\wedge := (u \times v)^\wedge$, we have
+\begin{align*}
+	\ad_{ u^\wedge }(v^\wedge ) = [u^\wedge ,v^\wedge ] = u^\wedge v^\wedge -v^\wedge u^\wedge  = \left(u \times v - v\times u   \right)^\wedge   = \left(2 u \times v \right)^\wedge = 2u^\wedge v^\wedge.
+\end{align*}
+Thus, we can write
+\begin{align*}
+	\ad_{ u^\wedge } = 2 u^\wedge .
+\end{align*}
+Indeed, we see that adjoint operator for pure quaternions goes twice as fast as well. 
+
+Note that we omit explicitly writing out two types of multiplication for quaternions. A unit quaternion that encodes a rotation acts on other quaternions by the quaternion multiplication, but a pure quaternion that encodes a tangent vector in the Lie algebra can only act on other pure quaternions by the cross product. Thus, ambiguity can be resolved by inspecting the types of the objects.
+
+Since the adjoint representation for $ \mathbb{ H}_u$ has the same form and only differ by a factor of 2, the left and right Jacobians and their inverses of $ \mathbb{ H}_u $ follow from the same infinite series as those from $ \SO(3)$ modulo a factor of 2. By following Barfoot 25, we can then derive the left and right Jacobians of the cosemidirect product  $ G \ltimes_{\Ad^{-1}}^* \mathfrak{g} $, which has the form
+\begin{align*}
+	J_{\ell} \begin{pmatrix} \xi \\ u \end{pmatrix} &= \begin{pmatrix} J_\ell(\xi) & 0\\  Q(\xi,u) & J_{\ell}(\xi)\end{pmatrix}  \\
+	J_r \begin{pmatrix} \xi\\u \end{pmatrix} &= \begin{pmatrix} J_r(\xi)&0\\ Q(\xi,u)^{T}& J_r(\xi) \end{pmatrix}  .
+\end{align*}
+And then by Schur's complement, we can invert the block matrices and obtain
+\begin{align*}
+	J_{r}^{-1} \begin{pmatrix} \xi\\u \end{pmatrix} &= \begin{pmatrix} J_{r}^{-1} & -J_{r}^{-1}Q^{T} J_r^{-1} \\ 0 & J_r^{-1} \end{pmatrix}  .
+\end{align*}
+And likewise for $ J_\ell^{-1}$. 
+
+There is no way to convert generic matrix-vector multiplication into quaternion multiplication, since quaternion multiplication can only encodes matrices related to rigid-body motion. Thus, by using $ \ad_{ i}^{T} =  - e_i^\wedge $, we obtain
+
+\begin{align*}
+	M_{ij}^{\mu} &= \frac{2^3}{48} e_i^\wedge  e_k^\wedge  \left( - BB^{T} e_j \right)^\wedge e_k^\wedge + \frac{2^3}{48} e_k^\wedge  \left( - BB^{T} e_j \right)^\wedge (- e_i^\wedge ) e_k^\wedge+ \frac{1}{2} \left( 2 e_i^\wedge \left(\frac{\partial h^c}{\partial x_j} \right)^\wedge  + \left(\frac{\partial^2 h^c}{\partial { x_i} \partial x_j}\right)^\wedge   \right)  .
+\end{align*}
+
+\section{PMP}
+
+Here is the story: first, we know that the endpoint of optimal trajectory must be on the boundary of the attainable set at final time for the extended system, since the total cost has to be optimal which is part of the extended system. PMP tells us the necessary conditions for all trajectories that have endpoints on the boundary. Since all trajectories follow the same velocity vector field (that satisfies typical assumptions), they are completely determined by their endpoints. TODO
+
+The idea is that instead of imposing velocity constraints on the cost function, we lift the velocity field to the natural setting of velocity field of functions, the cotangent bundle, and include cost as an extended velocity field there. This unifies the state dynamics and the cost function dynamics into the same space. The Hamiltonian lift gives us back the trajectory after projection, but along the fiber direction the trajectory simply traces out the (potentially time-varying) level sets of the maximized Hamiltonian since the velocity field is the Hamiltonian vector field. When the Hamiltonian is autonomous, then along the trajectory the Hamiltonian is conserved. In this case, since Hamiltonian is constant along the trajectory, maximality of Hamiltonian along the trajectory reduces to maximality of Hamiltonian at the end point. For the time-varying case, we can adjoin time to the state with speed $ 1$, yielding an autonomous extended system so the same intuition applies. This provides another perspective of why we can find a costate trajectory just by knowing that its endpoint is on the boundary. TODO
+
+PMP, via its necessary conditions, reduces the infinite-dimensional trajectory optimization problem to the $ (n-1)$-dimensional endpoint optimization problem on the boundary, which is equivalent to studying the $ (n-1)$-dimensional costate equation $ \dot{ \lambda}_t = X_H ( \lambda_t)  $ since $ X_H $ is homogenous.
+
+
 \end{document}
