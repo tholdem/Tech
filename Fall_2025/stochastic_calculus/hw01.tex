@@ -1,0 +1,160 @@
+\documentclass[12pt]{article}
+\input{../preamble.tex}
+
+\begin{document}
+\centerline {\textsf{\textbf{\LARGE{Homework 1}}}}
+\centerline {Jaden Wang}
+\vspace{.15in}
+\begin{problem}[1.15]
+\begin{enumerate}[label=(\arabic*)]
+	\item $ (\implies)$: suppose $ t\mapsto X_t$ is continuous, then pointwise product $(s,t) \mapsto  X_s X_t$  is also continuous and $ (s,t) \mapsto  \mathbb{E}\left[X_s X_t \right] $ is continuous as well as a composition of continuous functions. But this is precisely the definition of covariance function $ K$. Thus  $ K$ is continuous.
+
+		 $ (\impliedby):$ suppose $ K$ is continuous, then we want to show that  $ \lim_{ s \to t} \mathbb{E}\left[ X_s - X_t \right] = 0$. Consider
+	\begin{align*}
+		\mathbb{E}\left[ (X_{s} - X_{t})^2 \right] &= \mathbb{E}\left[ X_s^2 - X_s X_t + X_t - X_s X_t \right]  \\ 
+		&= \mathbb{E}\left[ X_s^2 \right] - \mathbb{E}\left[ X_s X_t \right] + \mathbb{E}\left[ X_t^2 \right] - \mathbb{E}\left[ X_sX_t \right]    \\
+		&= K(s,s) - K(s,t) + K(t,t) - K(s,t) .
+	\end{align*}
+Taking $ s \to t$, using the fact that $ K(s,t)$ is continuous, we obtain the desired result.
+\item To show that  $ \int_{ 0}^{ 1} h(t) X_t(\omega) \d t $ is absolutely convergent a.e., it suffices to show that $ \mathbb{E}\left[ \int_{ 0}^{ 1} |h(t)||X_t| \d t \right] < \infty $ since this implies $ \mathbb{ P} \left( \int_{ 0}^{ 1} |h(t)||X_t| \d t \right) =1$ which is equivalent to a.e. absolute convergence. First, by Jensen inequality, notice
+\begin{align*}
+	\mathbb{E}\left[ \sqrt{X_t^2}  \right] \leq \sqrt{\mathbb{E}\left[ X_t^2 \right] } = \sqrt{K(t,t)} .
+\end{align*}
+Thus, we obtain
+\begin{align*}
+	\mathbb{E}\left[ \int_{ 0}^{ 1} |h(t)||X_t| \d t \right] &= \int_{ 0}^{ 1} |h(t)| \mathbb{E}\left[ \sqrt{X_t^2}  \right] \d t && \text{ Tonelli with } \sigma \text{-finite } \d t, \mathbb{ P}    \\
+	&\leq \int_{ 0}^{ 1} |h(t)| \sqrt{K(t,t)}  < \infty  ,
+\end{align*}
+as desired.
+\item Showing $ Z_n \to Z$ in $ L^2$ is equivalent to showing $ \mathbb{E}\left[ (Z_n-Z)^2 \right] \to 0$ as $ n \to \infty$. Notice that 	
+	\begin{align*}
+		Z_n &= \sum_{ i= 1}^{ n} X_{\frac{i}{n}} \int_{ \frac{i-1}{n}}^{ \frac{i}{n}} h(t) \d t  \\
+		&= \sum_{ i= 1}^{ n} X_{\frac{i}{n}} \int_{ 0}^{ 1} h(t) \mathbbm{1}_{[\frac{i-1}{n}, \frac{i}{n}]}  \d t \\
+		Z_n^2 &= \left( \sum_{ i= 1}^{ n} X_{\frac{i}{n}} \int_{ 0}^{ 1} h(t) \mathbbm{1}_{[\frac{i-1}{n}, \frac{i}{n}]}  \d t\right) ^2\\
+		&= \sum_{ i= 1}^{ n} X_{\frac{i}{n}}^2 \mathbbm{1}_{ [\frac{i-1}{n}, \frac{i}{n}]} \left( \int_{ 0}^{ 1} h(t) \d t  \right)^2  ,
+	\end{align*}
+where the indicator function forces non-diagonal terms to be 0.
+	Let us compute
+\begin{align*}
+	\mathbb{E}\left[ (Z_n-Z)^2 \right] &= \mathbb{E}\left[ Z_n^2 - Z_nZ \right] + \mathbb{E}\left[ Z^2 - Z_nZ \right]  \\
+					   &= \mathbb{E}\left[ \sum_{ i= 1}^{ n} X_{\frac{i}{n}}^2 \mathbbm{1}_{ [\frac{i-1}{n}, \frac{i}{n}]} \left( \int_{ 0}^{ 1} h(t) \d t  \right)^2 - \sum_{ i= 1}^{ n} X_{\frac{i}{n}} \mathbbm{1}_{[\frac{i-1}{n}, \frac{i}{n}] } \int_{ 0}^{ 1} h(t) \d t \int_{ 0}^{ 1} h(t) X_t \d t   \right]  \\
+					   &\quad + \mathbb{E}\left[ \left( \int_{ 0}^{ 1} h(t) X_t \d t  \right)^2 - \sum_{ i= 1}^{ n} X_{\frac{i}{n}} \mathbbm{1}_{[\frac{i-1}{n}, \frac{i}{n}] } \int_{ 0}^{ 1} h(t) \d t \int_{ 0}^{ 1} h(t) X_t \d t  \right]   \\
+					   &= \underbrace{\int_{ 0}^{ 1} h(t) \d t  }_{ \text{abs conv, }\leq C_1}  \left( \sum_{ i= 1}^{ n}\int_{ 0}^{ 1} h(t)  \mathbbm{1}_{ [\frac{i-1}{n}, \frac{i}{n}]} \left( \mathbb{E}\left[   X_{\frac{i}{n}}^2 \right] - \mathbb{E}\left[  X_{\frac{i}{n}} X_t \right] \right)   \d t  \right)    \\
+					   &\quad + \mathbb{E}\left[ \underbrace{  \int_{ 0}^{ 1} h(t) X_t \d t }_{ \text{abs conv, } \leq C_2} \left( \int_{ 0}^{ 1} h(t) \sum_{ i= 1}^{ n} \mathbbm{1}_{ [\frac{i-1}{n}, \frac{i}{n}]} \left( X_t - X_{\frac{i}{n}} \right) \d t   \right) \right]  && \text{ Tonelli}   \\
+		&\leq C_1 \sum_{ i= 1}^{ n}\int_{ \frac{i-1}{n}}^{ \frac{i}{n}} h(t)    \left( K\left(\frac{i}{n}, \frac{i}{n}\right) - K\left(\frac{i}{n},t\right) \right)  \d t   \\
+		&\quad + C_2 \sum_{ i= 1}^{ n} \int_{ \frac{i-1}{n}}^{ \frac{i}{n}} h(t) \mathbb{E}\left[ X_t - X_{\frac{i}{n}} \right] \d t     .
+\end{align*}
+We see that as $ n \to \infty$, $ t \to \frac{i}{n}$. Since both $ t\mapsto X_t$ and $ K$ are continuous, both terms tend to 0 as  $ n \to \infty$. Therefore, $ Z_n \to Z$ in $ L^2$.
+
+Since $ Z_n$ is a linear combination of Gaussians from a centered Gaussian space, we know from a result from class that its $ L^2$ limit remains a Gaussian. That is, $ Z$ is Gaussian. 
+\item First, fix $ t \in [0,1]$. To show the limit exists, we wish to show that $ \frac{X_s-X_t}{ s-t}$ is Cauchy. Given $ s,r \in [0,1] $, since $ K$ is twice continuously differentiable, we can perform a 2nd-order Taylor expansion on the covariance function (or its derivative) $ K(s,s) = K(s,t) + \dot{K}(s,t) (s-t) + \frac{1}{2} \ddot{K}(s,t) (s-t)^2 + R(s)$ (here $ \ddot{K}$ is short-hand for mixed 2nd derivative), where $ R(s) / (s-t)^2 \to 0$ as $ s \to t$. Thus we can omit the remainder below since eventually we will take  $ s \to t$. Consider
+\begin{align*}
+	&\qquad \mathbb{E}\left[ \left(\frac{X_s-X_t}{ s-t} \frac{X_r-X_t}{ r-t}\right)^2 \right] \\
+	&= \mathbb{E}\left[ \frac{X_s^2-2X_sX_t+X_t^2}{ (s-t)^2} - 2 \frac{X_sX_r-X_sX_t-X_tX_r+X_t^2}{ (s-t)(r-t)} + \frac{X_r^2-2X_rX_t+X_t^2}{ (r-t)^2} \right]  \\
+	&= \frac{K(s, s) -2K(s, t) +K(t, t) }{(s-t)^2 } - 2 \frac{K(r, s) -K(t, r) - K(s, t) +K(t,t) }{ (s-t)(r-t)} + \frac{K(r,r) - 2K(r, t) +K(t, t) }{(r-t)^2 } \\
+	&= \frac{\dot{K}(s, t) (s-t) + \frac{1}{2}\ddot{K}(s, t) (s-t)^2 + \dot{K}(s, t) (t-s)+ \frac{1}{2} \ddot{K}(s, t) (t-s)^2}{ (s-t)^2} \\
+	& \quad - \frac{\dot{K}(t, r) (s-t) + \frac{1}{2} \ddot{K}(t, r) (s-t) + \dot{K}(s, t) (t-s) + \frac{1}{2}\ddot{K}(s, t) (t-s)^2 }{(s-t)(r-t)}\\
+	&\quad - \frac{\dot{K}(s, t) (r-t) + \frac{1}{2} \ddot{K}(s, t) (r-t)^2+ \dot{K}(t, r) (t-r) + \frac{1}{2}\ddot{K}(t, r) (t-r)^2}{ (s-t)(r-t)}\\
+	&\quad +   \frac{\dot{K}(r, t) (r-t) + \frac{1}{2}\ddot{K}(r, t) (r-t)^2 + \dot{K}(r, t) (t-r)+ \frac{1}{2} \ddot{K}(r, t) (t-r)^2}{ (r-t)^2} \\
+	&= \ddot{K}(s, t)- \frac{(s-t)(\dot{K}(r, t) -\dot{K}(s, t) ) + \frac{1}{2}(s-t)^2(\ddot{K}(r, t) + \ddot{K}(s, t)  )  }{(s-t)(r-t) } \\
+	&\quad  + \ddot{K}(r, t) - \frac{(r-t)(\dot{K}(s, t) -\dot{K}(r, t) ) + \frac{1}{2}(r-t)^2(\ddot{K}(s, t) + \ddot{K}(r, t) )}{(s-t)(r-t) }  \\
+	&= \ddot{K}(s, t) + \ddot{K}(r, t)  \\
+	&\quad - \frac{(s-t)(r-s)\ddot{K}(s, t) + \frac{1}{2}((s-t)^2+(r-t)^2)(\ddot{K}(r, t) + \ddot{K}(s, t) + (r-t)(s-r)\ddot{K}(r, t)  )}{(s-t)(r-t) }   \\
+	&= \frac{s-t}{ r-t} \ddot{K}(s, t) - \frac{1}{2} \left( \frac{s-t}{ r-t} + \frac{r-t}{ s-t} \right) (\ddot{K}(r, t) +\ddot{K}(s, t) ) + \frac{r-t}{ s-t}\ddot{K}(r, t)  \\
+	&= \frac{1}{2} \left( \frac{s-t}{ r-t} - \frac{r-t}{ s-t} \right) \left( \ddot{K}(s, t) -\ddot{K}(r, t)  \right)   .
+\end{align*}
+Since $ \ddot{K}$ is continuous, as $ s,r \to t$, both terms tend to 0, implying Cauchy in $ L^2(\Omega)$.
+
+Since $ (\dot{X}_t)$ are limits of linear combinations of elements from a centered Gaussian space,  they themselves are in the same centered Gaussian space and therefore form a centered Gaussian process. Its covariance function can be computed by
+\begin{align*}
+	\mathbb{E}\left[ \dot{X}_t \dot{X}_s \right] &= \mathbb{E}\left[ \lim_{ a \to t, b \to s}  \frac{X_a - X_t}{a-t}\frac{ X_b- X_s}{b-s} \right]  \\
+						     &= \lim_{ a \to t, b \to s} \mathbb{E}\left[ \frac{X_aX_b-X_aX_s-X_tX_b+X_tX_s}{(a-t)(b-s)} \right]  && \text{DCT}   \\
+						     &= \lim_{ a \to t, b \to s} \frac{K(a, b) - K(a, s) -K(t, b)+ K(t, s) }{(a-t)(b-s)} \\
+						     &= \ddot{K}(t, s)  ,
+\end{align*}
+where we again use Taylor expansion.
+\end{enumerate}
+\end{problem}
+\begin{problem}[1.18]
+\begin{enumerate}[label=(\arabic*)]
+	\item Since all partitions have increments of the form $ 2^{-n-1}$, they must either be disjoint or completely contained. We compute
+\begin{align*}
+	\int_{ 0}^{ 1} h_k^{n}(t) h_j^{m}(t) \d t &= \int_{ 0}^{ 1}   2^{\frac{m+n}{ 2}} \big( \mathbbm{1}_{[(2k) 2^{-n-1}, (2k+1)2^{-n-1}] \cap [(2j) 2^{-m-1}, (2j+1)2^{-m-1}] }    \\ 
+		& \quad - \mathbbm{1}_{[(2k)2^{-n-1},(2k+1)2^{-n-1}] \cap [(2j+1)2^{-m-1},(2j+2)2^{-m-1}] } \\
+		&\quad - \mathbbm{1}_{[(2k+1)2^{-n-1},(2k+2)2^{-n-1}] \cap [(2j)2^{-m-1},(2j+1)2^{-m-1}] }  \\
+						  & \quad + \mathbbm{1}_{[(2k+1)2^{-n-1},(2k+2)2^{-n-1}] \cap [(2j+1)2^{-m-1},(2j+2)2^{-m-1}] } \big) \d t .
+\end{align*}
+We see that if $ m\neq n$, WLOG  $ n>m$ (so $ n$-partition is finer), then for each $ k,j$, if  $ n$-partitions are not all disjoint from  $ m$-partitions, then one of them must be completely contained in a $ m$-partition. Then either $ +1$ or  $ -1$ from the contained one is also completely contained since $ n$-partitions are strictly finer on the order of  $ 2$-powers.  Thus, based on the above formula we see that they will always cancel each other. Thus when $ m \neq n$, the integral is 0.
+
+When  $ m=n$, if  $ k=j$, then only the 1st and 4th terms remain, and the integral evaluates to $ 2^{\frac{n+n}{2}} \left(2 \cdot  2^{-n-1} \right) = 1$. If $ k \neq j$, WLOG  $ k>j$, then only 2nd term can be nonzero, but that implies  $ 2k=2j+1$ which gives  $ k = j+\frac{1}{2}$, which is impossible since $ k,j$ are integers.
+
+Finally, we have
+ \begin{align*}
+	 \int_{ 0}^{ 1} h_0(t) h_k^{n}(t) \d t  &=  \int_{ 0}^{ 1} h_k^{n}(t) \d t  = \int_{ 0}^{ 1} 2^{\frac{n}{2}} \left(2^{-n-1} - 2^{-n-1} \right) \d t  = 0\\
+		\int_{ 0}^{ 1} h_0(t)^2 \d t &= 1 . 
+\end{align*}
+We just showed that $ h_0, h_k^{n}$ are an orthonormal system in $ L^2([0,1], \mathcal{ B}([0,1]), \d t )$.
+
+Now, fix $ n$ and let $ f^{n}$ be a function in the space that has constant value $ f_j^{n}$ on $ [j2^{-n},(j+1) 2^{-n}]$ (or if $ f^{n}$ is constant, denote its value as $ f_0$ or set $ f_0 = 0$ otherwise). Then by telescoping, we can rewrite $ f^{n}$ as
+\begin{align*}
+	f^{n} &= f_0 + \sum_{ j= 0}^{ 2^{n}-1}   f_j^{n} \mathbbm{1}_{[j2^{-n},(j+1)2^{-n}]} \\
+	&= f_0 h_0 + \sum_{ k= 0}^{ 2^{n}-1} \left( \sum_{ j= 0}^{ k} f_j^{n} \right) h_k^{n}.
+\end{align*}
+Thus, $ f^{n}$ can be written as a linear combination of the orthonormal system. Since simple functions like $ f^{n}$ are dense in $ L^2$, we can extend the result to the entire space, making the orthonormal system an orthonormal basis.
+\item Consider the centered Gaussian space generated by $ N_0, N_k^{n}$. Since they are iid standard Gaussians, by result from class they form an orthonormal basis of this centered Gaussian space. Since there is an obvious bijection between the two sets of orthonormal bases $ h_0, h_k^{n}$ and $ N_0, N_k^{n}$, the set map extends to an isometry between the two $ L^2$ spaces, which is by definition a Gaussian white noise we call $ G$.
+\item Since we have an orthonormal basis, the coefficient of any function can be computed via inner product with the basis. Thus, the indicator function $ \mathbbm{1}_{[0,t] } $ has coefficients $ \int_{ 0}^{ 1} \mathbbm{1}_{[0,t] }  h_0(s) \d s  = t $ and
+	\begin{align*}
+		g_k^{n} (t) &= \int_{ 0}^{ 1} \mathbbm{1}_{[0,t] } h_k^{n}(s) \d s \\ 
+		&= \int_{ 0}^{ t} h_k^{n}(s) \d s   .
+	\end{align*}
+Thus, we can express it as
+\begin{align*}
+	\mathbbm{1}_{[0,t] } = t h_0 + \sum_{ n= 0}^{\infty} \sum_{ k= 0}^{ 2^{n}-1} g_k^{n} (t) h_k^{n} . 
+\end{align*}
+Then Gaussian white noise simply swap the basis:
+\begin{align*}
+	B_t = G([0,t]) = t N_0 + \sum_{ n= 0}^{\infty} \sum_{ k= 0}^{ 2^{n}-1} g_k^{n} (t) N_k^{n}.
+\end{align*}
+\item First we prove an inequality: if $ N \sim \mathscr{N}(0,1)$, if $ a \geq 1$, we have
+\begin{align*}
+	\mathbb{P}\left( |N|\geq a \right) &= 2 \int_{ a}^{ \infty} \frac{1}{\sqrt{2\pi} }  e^{-\frac{t^2}{2}} \d t  \\
+					   &\leq \frac{2}{\sqrt{2\pi} } \int_{ a}^{ \infty} t e^{-\frac{t^2}{2}} \d t  && a\geq 1 \\
+	&= \frac{2}{\sqrt{2 \pi} } e^{-\frac{a^2}{2}} \\
+	&\leq e^{-\frac{a^2}{2}} .
+\end{align*}
+Denote $ A_n = \{\omega \in \Omega: \sup \{|N_k^{n}(\omega)|_{k=0}^{2^{n}-1}\} > 2^{\frac{n}{4}} \} $. Then we see that
+\begin{align*}
+	\mathbb{P}\left( A_n \right) &= \mathbb{P}\left( \bigcup_{ k=0}^{2^{n}-1} |N_k^{n}| > 2^{\frac{n}{4}}   \right)  \\
+	&\leq \sum_{ k= 0}^{ 2^{n}-1} \mathbb{P}\left( |N_k^{n}| > 2^{\frac{n}{4}} \right)    \\
+	&\leq 2^{n} e^{-2^{\frac{n}{2}}-1} ,
+\end{align*}
+where the last inequality comes from setting $ a = 2^{\frac{n}{4}}$ and applying previous result. Since the exponential of exponential dominates, it is easy to check that
+\begin{align*}
+	\sum_{ n= 0}^{\infty} \mathbb{P}\left( A_n \right) < \infty . 
+\end{align*}
+By Borel-Cantelli, $ \mathbb{P}\left( \limsup_n A_n \right) =0 $ and thus 
+\begin{align*}
+	\mathbb{P}\left( \liminf_n A_n^{c} \right) = \mathbb{P}\left( \liminf_n \{\omega \in \Omega: \sup \{|N_k^{n}(\omega)|_{k=0}^{2^{n}-1}\} \leq 2^{\frac{n}{4}} \}  \right) =1. 
+\end{align*}
+This is saying that for a.a. $ \omega \in \Omega$, as long as $ n$ is large enough, $ \sup \{|N_k^{n}(\omega)|_{k=0}^{2^{n}-1}\}$ is bounded by $2^{\frac{n}{4}} $ indpendent of  $ k$. 
+
+Now consider
+\begin{align*}
+	|g_k^{n}(t)| \leq \int_{ 0}^{ t} |h_k^{n}(s)| \d s \leq \int_{ 0}^{ 1} |h_k^{n}(s)| \d s = 2^{\frac{n}{2}} (2 \cdot 2^{-n-1}) = 2^{-\frac{n}{2}},
+\end{align*}
+which is independent of $ k$. Since $ h_k^{n}$ have disjoint support, we see that
+\begin{align*}
+	\sum_{ k= 0}^{ 2^{n}-1} |g_k^{n}(t)| \leq 2^{-\frac{n}{2}},
+\end{align*}
+which is independent of $ t$. Therefore, for a.a. $ \omega$ and a large enough $ n$, we have
+ \begin{align*}
+	 \sup_{t \in [0,1]} |B_t - B_t^{(m)}| &\leq \sup_{t \in [0,1]} \sum_{ n=m}^{ \infty} \sum_{ k= 0}^{ 2^{n}-1}|g_k^{n}(t)| |N_k^{n}|   \\
+					      &\leq \sup_{t \in [0,1]} \sum_{ n=m}^{ \infty} \sup_n \{N_k^{n}\}_{k=0}^{2^{n}-1}  \sum_{ k= 0}^{ 2^{n}-1}|g_k^{n}(t)|  \\
+					      &\leq \sum_{ n=m}^{ \infty} 2^{\frac{n}{4}} 2^{-\frac{n}{2}}  \\
+					      &= \sum_{ n=m}^{ \infty} 2^{-\frac{n}{4}}  .
+\end{align*}
+We see that as $ m \to \infty$, the last RHS goes to 0. Therefore, we have shown uniform convergence for a.a. $ \omega$.
+\item For any $ t \in [0,t]$, let $ B_t' = \lim_{ m \to \infty} B_t^{(m)}$ be the uniform convergence limit, which we know from (4) that  $B_t' = B_t$ a.s.. Since $ g_k^{n}$ are continuous, $ t \mapsto B_t^{(m)}$ with coefficients continuous in $ t$ is also continuous. Since uniform convergence preserves continuity, we conclude that $ t \mapsto B_t'$ is continuous for every $ \omega \in \Omega$, as desired.
+\end{enumerate}
+\end{problem}
+\end{document}

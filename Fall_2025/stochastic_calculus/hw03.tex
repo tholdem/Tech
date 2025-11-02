@@ -1,0 +1,103 @@
+\documentclass[12pt]{article}
+\input{../preamble.tex}
+
+\begin{document}
+\centerline {\textsf{\textbf{\LARGE{Homework 3}}}}
+\centerline {Jaden Wang}
+\vspace{.15in}
+\begin{problem}[2]
+\begin{enumerate}[label=(\alph*)]
+	\item Recall from HW2 that $ \lim_{ t \to \infty} \frac{B_t}{ t} = 0$ a.s. so $ \lim_{ t \to \infty} \frac{B_t}{ t} -\frac{1}{2} = -\frac{1}{2}$ a.s. Therefore, we have a.s.
+	\begin{align*}
+		\lim_{ t \to \infty} X_t &= \lim_{ t \to \infty} \exp \left( t \left( \frac{B_t}{t} - \frac{1}{2} \right)  \right)  \\
+		&= \exp (- \infty) = 0.
+	\end{align*}
+\item No. Suppose that $ X_t \to X$ in  $ L^{1}$ for some $ X$, then after rational discretization there exists a subsequence such that  $ X_t \to X$ a.s., but since $ X_t \to 0$ a.s., this forces $ X = 0$ a.s. However, we have
+	 \begin{align*}
+		\mathbb{E}\left[ X_t \right] = \mathbb{E}\left[ e^{B_t} e^{-\frac{t}{2}} \right]  = \mathbb{E}\left[ e^{\sqrt{t} B_1} \right] e^{-\frac{t}{2}} = e^{\frac{t}{2}} e^{-\frac{t}{2}} = 1 \neq 0 = \mathbb{E}\left[ X \right] ,
+	\end{align*}
+	a contradiction.
+\end{enumerate}
+\end{problem}
+\begin{problem}[3]
+\begin{enumerate}[label=(\alph*)]
+	\item Since each $ T_n$ is a stopping time, $ \{T_n \leq t\} \in \mathcal{ F}_t \ \forall \ n,t$. Then
+		\begin{align*}
+			\{ \sup_{n } T_n \leq t\} &= \bigcap_{ n} \{T_n \leq t\} \in \mathcal{ F}_t .  
+		\end{align*}
+		Thus $ \sup_{n } T_n$ is a stopping time.
+	\item The case for infimum is different because for infimum to be $ \leq t$,  it is possible that all $T_n > t$ but the infimum converges to $ t$. Since $ \mathcal{ F}_t$ is right continuous, we have
+	\begin{align*}
+		\{ \inf_{n } T_n \leq t \} &= \bigcup_{ n} \underbrace{ \{T_n \leq t\}}_{ \mathcal{ F}_t} \cup \underbrace{ \bigcap_{ s >t}  \{T_n \leq s\}}_{ \mathcal{ F}_{t+}  = \mathcal{ F}_t}   \in \mathcal{ F}_t.
+	\end{align*}
+	Thus $ \inf_{n } T_n$ is a stopping time.
+
+	Define $ S_n := \sup_{m\geq n } T_m$ and $ I_n := \inf_{m\geq n } T_m $. It follows from above that $ S_n$ and $ I_n$ are stopping times. Then
+	\begin{align*}
+		\{\limsup_n T_n \leq t \} &= \{\inf_{n } \sup_{m\geq n } T_m \leq t\} = \{\inf_{n } S_n \leq t\} \in \mathcal{ F}_t \\
+		\{\liminf_n T_n \leq t\} &= \{\sup_{n } \inf_{m\geq n } T_m \leq t \} = \{\sup_{n } I_n \leq t \} \in \mathcal{ F}_t  . 
+	\end{align*}
+\end{enumerate}
+\end{problem}
+\begin{problem}[4]
+We first show that $ (X_n)$ has uncorrelated increments. Let $ m\leq n \in \nn$, we repeatedly apply the Tower property:
+\begin{align*}
+	\mathbb{E}\left[ (X_n-X_m)^2 \right] &= \mathbb{E}\left[ \mathbb{E}\left[ (X_n-X_m)^2 | \mathcal{ F}_m \right]  \right]  \\
+	&= \mathbb{E}\left[ \mathbb{E}\left[ X_n^2 - 2 X_nX_m + X_m^2 | \mathcal{F}_{ m}  \right]  \right]  \\
+	&= \mathbb{E}\left[ \mathbb{E}\left[ X_n^2 | \mathcal{F}_{ m}  \right] - 2 \mathbb{E}\left[ X_n|\mathcal{F}_{ m}  \right]X_m + X_m^2 \right]  \\
+	&= \mathbb{E}\left[ \mathbb{E}\left[ X_n^2 | \mathcal{F}_{ m}  \right] - 2 X_m^2 + X_m^2 \right]  \\
+	&= \mathbb{E}\left[ \mathbb{E}\left[ X_n^2| \mathcal{F}_{ m}  \right] - X_m^2 \right]  \\
+	&= \mathbb{E}\left[ X_n^2-X_m^2 \right]  .
+\end{align*}
+Let $S := \sup_{n } \mathbb{E}\left[ X_n^2 \right] < \infty$. Then $ \mathbb{E}\left[ X_n^2 - X_m^2 \right] \leq 2S $. Consider
+\begin{align*}
+	\mathbb{E}\left[ (X_n - X_0)^2 \right] &=\mathbb{E}\left[ X_n^2 - X_0^2 \right] \\
+	&= \mathbb{E}\left[ \sum_{ i=0}^{ n} (X_{i+1}^2 - X_i^2) \right] && \textrm{ telescope}  \\
+	&=  \mathbb{E}\left[ \sum_{ i=0}^{ n} (X_{i+1} - X_i)^2 \right]  \\
+	&= \sum_{ i=0}^{ n} \mathbb{E}\left[ (X_{i+1}-X_i)^2 \right]  \leq 2S.
+\end{align*}
+Since each term is nonnegative, the partial sum is an monotone increasing sequence, and is bounded above by $ 2S$, the series converges by MCT, and the tail sum tends to 0. That is, given any $ \epsilon>0$, by choosing  $ m,n$ large enough,  $ \mathbb{E}\left[ (X_n-X_m)^2 \right] < \epsilon$. Thus $ (X_n)$ is Cauchy and therefore converges in $ L^2$.
+
+\end{problem}
+\begin{problem}[5]
+\begin{enumerate}[label=(\alph*)]
+	We first prove the hints.
+	\item $ (\implies)$ is a straightforward computation using LOTUS.
+
+		$ (\impliedby):$ If the MGF $ \mathbb{E}\left[ e^{ \lambda X} \right] = e^{ \lambda^2 /2}$ for every real $ \lambda$, then since both sides are analytic functions, by analytic continuation we can extend the equality to the complex plane and obtain the characteristic function $ \mathbb{E}\left[ e^{ i\lambda X} \right] = e^{ -\lambda^2 /2}$. Since characteristic function uniquely determines the distribution, $ X$ must be standard Gaussian.
+	\item If the conditional MGF equals unconditional MGF, then by the characteristic equation argument above, the conditional and unconditional probability distributions of $ X$ must be the same. That is, for any $ x \in \rr$ and $ B \in \mathcal{ B}$ such that $ \mathbb{P}\left( B \right) >0 $, we have
+\begin{align*}
+	\mathbb{P}\left( X\leq x | B \right) &= \mathbb{P}\left( X \leq x \right) \\
+	\frac{\mathbb{P}\left( X\leq x \cap B \right) }{ \mathbb{P}\left( B \right) } &= \mathbb{P}\left( X\leq x \right)  \\
+	\mathbb{P}\left( X \leq x \cap B \right) &= \mathbb{P}\left( X\leq x \right) \mathbb{P}\left( B \right)  .
+\end{align*}
+When $ B$ is a null-set,  \emph{i.e.} $ \mathbb{P}\left(B \right) =0$, the equality trivially holds. This proves independence since $ X\leq x$ and  $ B$ are generators of  $ \sigma(X)$ and $ \mathcal{ B}$.
+\end{enumerate}
+Since $ X_t$ already has continuous paths, it remains to show that it is a pre-BM. We shall use definition 3. We already have  $ X_0 = 0$ a.s. Notice that since $ M_t^{(1)}$ is $ \mathcal{F}_{ t} $-measurable, $ X_t = \log M_t^{(1)} + \frac{t}{2}$ is also $ \mathcal{F}_{ t} $-measurable. 
+
+%Moreover, we have
+%\begin{align*}
+%	\mathbb{E}\left[ M_t^{( \alpha)} \right] &= \mathbb{E}\left[ M_0^{( \alpha)} \right] = M_0^{( \alpha)} = 1 \\
+%	\mathbb{E}\left[ e^{ \alpha X_t} \right]  &= e^{ \frac{ \alpha^2}{ 2}t} .
+%\end{align*}
+%By hint (a), we have $ \frac{1}{\sqrt{t} } X_t \sim N(0,1)$ and therefore $ X_t \sim N(0,t)$.
+
+Let $ 0 \leq s \leq t$, so $\mathcal{F}_{ s} \subset \mathcal{F}_{ t}$. Next we show for  $ X_t - X_s \sim N(0, t-s)$. Consider
+\begin{align*}
+	\mathbb{E}\left[ e^{X_t- X_s} \right] &= \mathbb{E}\left[ \mathbb{E}\left[ e^{X_t-X_s} | \mathcal{F}_{ s}  \right]  \right] && \text{tower rule}  \\
+					      &= \mathbb{E}\left[ \mathbb{E}\left[ e^{X_t} |\mathcal{F}_{ s} \right] e^{-X_s}   \right]  && X_s \in \mathcal{F}_{ s} \\
+					      &= \mathbb{E}\left[ \mathbb{E}\left[ e^{X_t - \frac{1}{2}t} | \mathcal{F}_{ s}  \right] e^{-X_s + \frac{1}{2} s} \right] e^{\frac{1}{2}(t-s)}  \\
+					      &= \mathbb{E}\left[ \mathbb{E}\left[ M_t^{(1)} | \mathcal{F}_{ s}  \right] \frac{1}{M_s^{(1)} }  \right] e^{\frac{1}{2}(t-s)} \\
+					      &= \mathbb{E}\left[ M_s^{(1)} \frac{1}{M_s ^{(1)}} \right] e^{\frac{1}{2}(t-s)} && \text{Martingale} \\
+					      &= e^{\frac{1}{2}(t-s)} .
+\end{align*}
+Then the result follows from hint (a).
+
+Finally, we show independent increment. Since $ \mathcal{F}_{ r} \subset \mathcal{F}_{ s}$ for all $ 0\leq r \leq s$, it suffices to show that $ X_t - X_s$ is independent of $ \mathcal{F}_{ s} $. Using similar computation from above, we obtain 
+\begin{align*}
+	\mathbb{E}\left[ e^{ X_t- X_s} | \mathcal{F}_{ s}  \right] &= e^{\frac{1}{2}(t-s)}\\
+	&= \mathbb{E}\left[ e^{X_t-X_s} \right]  .
+\end{align*}
+The result follows from hint (b). Therefore, $ X_t$ is a BM.
+\end{problem}
+\end{document}

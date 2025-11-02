@@ -292,7 +292,7 @@ endsnippet
 
 context "math()"
 snippet csd "cosemidirect product" A
-\ltimes_{\Ad^{-1}}^* $1
+\prescript{}{{\Ad^{-1}}}{\ltimes} $1
 endsnippet
 
 context "math()"
@@ -318,6 +318,16 @@ endsnippet
 context "math()"
 snippet so3 "mathfrak so3" iA
 \mathfrak{so}(3) 
+endsnippet
+
+context "math()"
+snippet qH "quaternions" A
+\mathbb{H}
+endsnippet
+
+context "math()"
+snippet dq "dual quaternions" A
+\widetilde{\mathbb{H}_u}
 endsnippet
 
 # vim:ft=snippets

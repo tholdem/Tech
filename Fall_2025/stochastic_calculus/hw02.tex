@@ -1,0 +1,78 @@
+\documentclass[12pt]{article}
+\input{../preamble.tex}
+
+\begin{document}
+\centerline {\textsf{\textbf{\LARGE{Homework 2}}}}
+\centerline {Jaden Wang}
+\vspace{.15in}
+\begin{problem}[2.25]
+\begin{enumerate}[label=(\arabic*)]
+	\item First, we show that $ (W_t)$ is a pre-BM. We shall use the second definition and show that it is a centered Gaussian process with  $ K(s,t) = s \wedge t$.
+
+		Uniform scaling doesn't affect the mean so $ W_t$ is still zero-mean.  Since $ (B_t)$ is a centered Gaussian process, then clearly  $ \frac{1}{t} B_{\frac{1}{t}}$ are scalar multiple of centered Gaussians from the same centered Gaussian space and therefore a centered Gaussian process. Let $0<s<t $, then we have $ 0< \frac{1}{t}<\frac{1}{s}$ and
+		\begin{align*}
+			K(s,t) = \mathbb{E}\left[ W_t W_s \right] = \mathbb{E}\left[ t B_{\frac{1}{t}} s B_{\frac{1}{s}} \right] = ts \left( \frac{1}{t}\wedge \frac{1}{s} \right) = ts \frac{1}{t} = s = s \wedge t.
+		\end{align*}
+		With $ W_0 :=0$ with $ K(0,0) =0 \wedge 0 = 0$, this proves that $ (W_t)$ is a pre-BM on $ [0,\infty)$. 
+
+Now we wish to show that $ (W_t)$ has continuous sample path on  $ [0,\infty)$. For $ (0, \infty)$, we know inversion $ i: (0,\infty) \to (0, \infty), t \mapsto \frac{1}{t}$ is continuous, $ t \mapsto  B_t( \omega)$ is continuous for a fixed $ \omega$, and multiplication by $ t$ is continuous, so the composition  $ t B_{\frac{1}{t}} (\omega)$ is continuous on $ (0,\infty)$. It remains to show that $ W_t$ is right continuous at  $ t=0$. 
+
+Recall that in the proof of Komogorov lemma, we applied the analytic lemma to show that for a pre-BM $ (W_t)$ (since it satisfies the assumption of Komogorov), we have
+ \begin{align*}
+	\mathbb{P}\left( W_s( \omega), W_t(\omega) \right) \leq \frac{2k( \omega)}{ 1- 2^{- \alpha}} |t-s|^{ \alpha},
+\end{align*}
+for $ t,s \in D$ (dyadic rationals that partitions the interval $ [0,1]$) some $ k( \omega) < \infty$ a.s. and $ \alpha \in \left( 0, \frac{1}{2} - \frac{1}{q} \right) $ with $ q >2$. This implies that as $ t \to 0$, over $ D$ we have a.s. $ W_t \to W_0 :=0$. Since $ W_t$ is continuous on  $ (0,\infty)$ and $ D$ is dense in  $ [0,1]$, we can extend this result to the entire  $ [0,1]$ a.s. by the typical density argument. That is,  $ W_t(\omega)$ is continuous a.s. on $ [0,\infty)$. Hence, $ (W_t)$ is indistinguishable of a BM.
+\item Since time inversion is an involution, we have $ B_t = t W_{\frac{1}{t}}$ a.s., so we have a.s.
+	\begin{align*}
+		\lim_{ t \to \infty} \frac{B_t}{t} = \lim_{ t \to \infty} W_{\frac{1}{t}} = W_0 = 0.
+	\end{align*}
+\end{enumerate}
+\end{problem}
+\begin{problem}[2.28]
+We wish to use a fact from Theorem 2.21: for every $ t >0$,  $ \sup_{s\leq t } B_s$ has the same distribution as $ |B_t|$. Since  $ (B_t)$ is a Gaussian process,  $ |B_t|$ has continuous distribution (wrt $ \Sigma_t$) as well. It follows that $ \sup_{s\leq t } B_s $ has continuous distribution for BM $ (B_t)$ wrt to $ \Sigma_t$.
+
+We want to get to the above sup form. Under sup we can WLOG subtract $ B_r$ from both LHS and RHS, which yields the LHS
+\begin{align*}
+	\sup_{p\leq t\leq q} B_t - B_r &= \sup_{p\leq t\leq q } (B_t - B_p) + (B_p - B_r) \\
+	&= \sup_{t \leq q-p } B_t^{(p)} + (B_p-B_r) .
+\end{align*}
+and the RHS
+\begin{align*}
+	\sup_{r\leq t\leq s } B_t - B_r = \sup_{ t \leq s-r } B_t^{(r)}   . 
+\end{align*}
+Since $ (B_t^{(p)}) $ and $ (B_t^{(r)})$ are also BMs with continuous distributions (wrt $ \Sigma_r$ and $\Sigma_s$), by the fact the sup terms have continuous distributions, and $ B_p - B_r$ also have continuous distributions wrt to $ \Sigma_r$. Since  $ p<q<r<s$, by Markov property the RHS is independent of  $ \Sigma_r$, which is the sigma algebra that makes LHS distributions continuous. Thus, the probability that two independent r.v.s with continuous distributions equal is 0 (which follows from separating the double integral where the inner integral is over a single point and thus 0). That is, $ \mathbb{P}\left( \sup_{p \leq t \leq q } B_t \neq \sup_{r\leq t \leq s } B_t   \right) =1$.
+\end{problem}
+
+\begin{problem}[2.29]
+The first event is equivalent to $ A =  \bigcap_{ n =1}^{\infty} \sup_{0<t\leq \frac{1}{n} } \left\{\frac{B_t}{ \sqrt{t} } = +\infty \right\}  $. We wish to show that $ A \in \Sigma_{0+} $ and $ \mathbb{P}\left( A \right) >0$ to conclude that $ \mathbb{P}\left( A \right) =1$ by Blumenthal's 0/1 law. The infimum case follows from symmetry.
+
+Since $ A$ is a tail event, the first finitely many events don't matter in the intersection, so for all $ r >0$, $ n \in \nn$, we have
+ \begin{align*}
+	A = A_r := \bigcap_{ n \geq \frac{1}{r}} \sup_{0<t < \frac{1}{n} } \left\{  \frac{B_t}{\sqrt{t} } = +\infty \right\}=: \bigcap_{ n \geq \frac{1}{r}} A_n. 
+\end{align*}
+Since $ \frac{1}{n} < r$, by the Markov property, $ A_n \in \Sigma_r $ so the countable intersection $ A_r$ is in $ \Sigma_r$. Intersecting over all $ r>0$ yields $ A \in \Sigma_{0+} $.
+
+For $ M > 0$ and $ N \in \nn$, we have
+\begin{align*}
+	\mathbb{P}\left( A \right) &\geq \limsup_{ n \to \infty} \mathbb{P}\left( A_n = + \infty \right)  && \text{Fatou}  \\
+	&\geq \limsup_{ n \to \infty} \mathbb{P}\left( A_n > M \right)   \\
+	&\geq \mathbb{P}\left( A_N > M \right)   \\
+	&= \mathbb{P}\left( \frac{B_{\frac{1}{N}}}{ \sqrt{\frac{1}{N}} } > M \right)  \\
+	&= 1 - \mathbb{P}\left(  \frac{B_{\frac{1}{N}}}{ \sqrt{\frac{1}{N}} } \leq  M \right)  \\
+	& > 0 ,
+\end{align*}
+where the last inequality comes from fact of the CDF of Gaussian distribution. It follows that $ \mathbb{P}\left( A \right) =1$.
+\end{problem}
+To show that the right derivative doesn't exist, it suffices to show that the following limsup and liminf do not agree. For $ s \in [0, \infty)$, we have
+\begin{align*}
+	\limsup_{ t \to 0} \frac{B_{s+t} - B_s}{ t} &= \limsup_{ t \to 0} \frac{1}{\sqrt{t} } \frac{B_t^{(s)}}{ \sqrt{t} } \\
+	&\geq \limsup_{ t \to 0} \frac{B_t^{(s)}}{ \sqrt{t} }  = + \infty .
+\end{align*}
+However,
+\begin{align*}
+	\liminf_{ t \to 0} \frac{1}{\sqrt{t} } \frac{B_t^{(s)}}{ \sqrt{t} } < 0,
+\end{align*}
+since the first term is positive and the second term tends to  $ -\infty$. Therefore, they disagree.
+
+Alternatively, I believe we can use the same time rescaling proof technique we used for the non-montonoe property to prove the statement directly (use rescaling $ t \mapsto t \lambda^{-1}$, where $ \lambda = \frac{\delta}{ M}$). But since it doesn't directly use 0/1 law and instead use its consequence involving the sup, I omit it. 
+\end{document}

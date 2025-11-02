@@ -1,0 +1,128 @@
+\documentclass[12pt]{article}
+\input{./preamble.tex}
+
+\begin{document}
+\centerline {\textsf{\textbf{\LARGE{NSTGRO}}}}
+\centerline {Jaden Wang}
+\vspace{.15in}
+\section{PMP}
+
+Here is the story: first, we know that the endpoint of optimal trajectory must be on the boundary of the attainable set at final time for the extended system, since the total cost has to be optimal which is part of the extended system. PMP tells us the necessary conditions for all trajectories that have endpoints on the boundary of attainable set. Since all state trajectories follow the same velocity vector field (that satisfies typical ODE uniqueness assumptions), they are completely determined by their endpoints (false, control can vary). Thus we only consider the case when the endpoints are on the boundary of attainable set.
+
+The idea is that instead of imposing velocity constraints on the cost function, we treat the cost function as the velocity of the running cost and obtain an extended system. Then by studying the endpoints, we realized that the Hamiltonian must be maximized along the flow of the Hamiltonian lift of the extended velocity field. This unifies the state dynamics and the cost function dynamics into the same space. The Hamiltonian lift gives us back the trajectory after projection, but along the fiber direction the trajectory simply traces out the level sets of the maximized Hamiltonian since the velocity field is the Hamiltonian vector field. Along the costate trajectory the maximized Hamiltonian is conserved (Remark 12.2 of Agrachev and Sachov). In this case, since Hamiltonian is constant along the trajectory, maximality of Hamiltonian along the trajectory reduces to maximality of Hamiltonian at the end point. This provides another perspective of why we can find a costate trajectory just by knowing that its state trajectory endpoint is on the boundary. TODO
+
+
+PMP, via its necessary conditions, reduces the infinite-dimensional trajectory optimization problem to the $ (n-1)$-dimensional endpoint optimization problem on the boundary (by finding controls that maximize the Hamiltonian on the boundary TODO), which is equivalent to studying the $ (n-1)$-dimensional costate equation $ \dot{ \lambda}_t = X_H ( \lambda_t)  $ since $ X_H $ is homogenous.
+
+How can we find the costate trajectory? It requires finding a supporting hyerplane of the reachable set of state trajectory at (almost) each time point. Pullback flow can give us the supporting hyperplane once we find it at the end point $ q_1= \widetilde{ q}(t_1)$. If the reachable set near the boundary is locally convex and is differentiable at $ q_1$, we are done. But since it might not be locally convex, we must use a local convex approximation. This comes from using all admissible controls at their Lebesgue timepoints (so differentiation of integral gives integrand, which by constructing needlike control variations of $ \widetilde{ u}$ gives all possible directions of controlled velocity at $ q_1$) and use the flow to pushforward to $ t_1$, then take the convex cone of them all. This emcompasses all feasible controlled velocities at $ q_1$ and ensures local convexity thus a supporting hyperplane. Maximality of the Hamiltonian at $ t_1$ is exactly the convexity condition at $ q_1$ where $ \lambda_{t_1}$ is the supporting hyperplane. Then the adjoint identity on the pullback flow extends this condition to almost all time. We know that the pullback flow is precisely the Hamiltonian vector field corresponding to the Hamiltonian from Chapter 11. And we are done. 
+
+
+\section{Control-Affine PMP}
+Consider the optimal control problem with control-affine dynamics and quadratic cost:
+\begin{align*}
+	\ell(\mu, L , u ,t) &= \frac{1}{2} \norm{ u}^2\\
+	\begin{pmatrix} \mu ^{-1} \dot{\mu} \\ \dot{L}\end{pmatrix} &= f_0(\mu, L, t) + \sum_{ i= 1}^{ n} f_i(\mu,L,t) u_i =: f_0(\mu,L,t) + F(\mu,L,t) u . 
+\end{align*}
+
+\section{6 DOF geometry}
+\subsection{Notation}
+Since each trivialization of tangent bundle $ TG$ is a new Lie group with different multiplication and other Lie group operations, to avoid ambiguity (in the absence of number of inputs) in the notation we shall label operations with number that indicates how many trivialization the group has experienced. For example, $ \SO(3)$ has zero trivialization (its $ \Ad_0$ is indexed by 0 when there is no input), $ \SE(3)$ and $ \LSE(3)$ have one trivialization, and $ \TSE(3)$ and  $ \TLSE(3)$ have two trivializations.
+\subsection{Left-trivialized $\TSE(3)$}
+Consider $ \SE(3) = \SO(3) \rsd[0] \rr^3 $. We want to find the Lie group structure of $ TG$ under left-trivialization. Given $ \left( (R_1,r_1),(\omega_1,v_1) \right), \left( (R_2,r_2),(\omega_2,v_2) \right) \in \SE(3) \lsd \se(3) = \left( \SO(3) \rsd[0] \rr^3 \right) \lsd \left( \so(3) \rsd <>[] \rr^3 \right)   $, we have
+\begin{align*}
+	& \quad \left( (R_1,r_1),(\omega_1,v_1) \right) *_2 \left( (R_2,r_2),(\omega_2,v_2) \right) \\
+	&= \left( (R_1,r_1)*_1 (R_2,r_2), \Ad_{ (R_2,r_2)}^{-1}( \omega_1,v_1) + ( \omega_2,v_2) \right)  \\
+	&= \left(  (R_1 R_2, r_1 + \Ad_{ R_1}( r_2)), \Ad_{ (R_2^{-1},- \Ad_{ R_2^{-1}}( r_2))}( \omega_1,v_1) + ( \omega_2,v_2) \right)  \\
+	&= \left( (R_1 R_2, r_1 + \Ad_{ R_1}( r_2)), ( \Ad_{ R_2^{-1}}( \omega_1 ) + \omega_2, \Ad_{ R_2^{-1}}( v_1 + [- \Ad_{ R_2^{-1}}( r_2) , \omega_1]) + v_2) \right)   \\
+	&= \left( (R_1 R_2, r_1 + \Ad_{ R_1}( r_2)), ( \Ad_{ R_2^{-1}}( \omega_1 ) + \omega_2, \Ad_{ R_2^{-1}} v_1 + v_2 + \Ad_{ R_2^{-1}}[ \omega_1, \Ad_{ R_2^{-1}}( r_2) ])) \right)   \\
+	 &= \left( (R_1R_2, r_1 + R_1 r_2), (R_2^T \omega_1 + \omega_2, R_2^Tv_1 + v_2 + R_2^{T} (\omega_1 \times (R_2^{T} r_2))) \right)  .
+\end{align*}
+$ \SE(3) \lsd \se(3)  $ admits the following $ 8 \times 8$ matrix embedding
+\begin{align*}
+	\left( (R,r),(\omega,v) \right) \mapsto \begin{pmatrix} R &0&0&0\\ (R^{T} r)\ha R & R &0&0\\ r^{T} & 0&1&0\\  v^{T}& \omega^{T} & 0&1 \end{pmatrix} 
+\end{align*}
+Using the following identity
+\begin{align*}
+	\left( \omega_1^{T} (R_2^{T} r_2)\ha R_2 \right)^{T} = R_2^{T} ( - R_2^{T} r_2)\ha \omega_1 = R_2^{T} (\omega_1 \times (R_2^{T} r_2)),
+\end{align*}
+we verify that this embedding gives the desired product:
+\begin{align*}
+	& \quad \begin{pmatrix} R_1 &0&0&0\\ (R_1^{T} r_1)\ha R_1 & R_1 &0&0\\ r_1^{T} & 0&1&0\\  v_1^{T}& \omega_1^{T} & 0&1 \end{pmatrix} \begin{pmatrix} R_2 &0&0&0\\ (R_2^{T} r_2)\ha R_2 & R_2 &0&0\\ r_2^{T} & 0&1&0\\  v_2^{T}& \omega_2^{T} & 0&1 \end{pmatrix} \\
+	&= \begin{pmatrix} R_1 R_2&0&0&0\\ ( R_1^{T} r_1) \ha R_1 R_2 + R_1 ( R_2^{T} r_2 )\ha R_2 &0&0&0\\ r_1^{T}R_2 + r_2^{T} &0&1&0\\ v_1^{T}R_2 + \omega_1^{T}( R_2^{T}r_2 )\ha R_2 + v_2^{T}&\omega_1^{T} R_2 + \omega_2^{T} &0&1 \end{pmatrix}  .
+\end{align*}
+
+
+\subsection{Left-trivialized $\TLSE(3)$}
+Now consider $ G = \LSE(3) = \SO(3) \lsd[0] \rr^3 $. Thus $ \mathfrak{g} = \so(3) \lsd<>[] \rr^3$. The left-trivialized tangent bundle is $ G \lsd \mathfrak{g} = \LSE(3) \lsd \lse(3) =  \left( \SO(3) \lsd[0] \rr^3 \right) \lsd[1] \left( \so(3) \lsd <>[] \rr^3 \right) $.  we have
+\begin{align*}
+	& \quad \left( (R_1,r_1),(\omega_1,v_1) \right) *_2 \left( (R_2,r_2),(\omega_2,v_2) \right) \\
+	&= \left( (R_1,r_1)*_1 (R_2,r_2), \Ad_{ (R_2,r_2)}^{-1}( \omega_1,v_1) + ( \omega_2,v_2) \right)  \\
+	&= \left(  (R_1 R_2, \Ad_{ R_2}^{-1}( r_1) + r_2, \Ad_{ (R_2^{-1},- \Ad_{ R_2}( r_2))}( \omega_1,v_1) + ( \omega_2,v_2) \right)  \\
+	&= \left( (R_1 R_2, \Ad_{ R_2}^{-1}( r_1) + r_2), ( \Ad_{ R_2^{-1}}( \omega_1 ) + \omega_2, \Ad_{ R_2^{-1}}( v_1 + [- \Ad_{ R_2}( r_2) , \omega_1]) + v_2) \right)   \\
+	&= \left( (R_1 R_2, \Ad_{ R_2}^{-1}( r_1) + r_2), ( \Ad_{ R_2^{-1}}( \omega_1 ) + \omega_2, \Ad_{ R_2^{-1}}( v_1) + \Ad_{ R_2^{-1}}[\omega_1, \Ad_{ R_2}( r_2) ] + v_2) \right)   \\
+	&= \left( (R_1 R_2, \Ad_{ R_2}^{-1}( r_1) + r_2), ( \Ad_{ R_2^{-1}}( \omega_1 ), \Ad_{ R_2^{-1}}( v_1) + [\Ad_{ R_2^{-1}}(\omega_1) + \omega_2, \Ad_{ R_2^{-1}} \circ \Ad_{ R_2}( r_2) ] + v_2) \right)   \\
+	&= \left( (R_1 R_2, \Ad_{ R_2}^{-1}( r_1) + r_2), ( \Ad_{ R_2^{-1}}( \omega_1 ) + \omega_2, \Ad_{ R_2^{-1}}( v_1) + v_2+ [\Ad_{ R_2^{-1}}(\omega_1),  r_2 ] ) \right)   \\
+	&= \left( (R_1R_2, R_2^{T}r_1 + r_2), (R_2^T \omega_1 + \omega_2, R_2^Tv_1 + v_2+ (R_2^{T} \omega_1) \times r_2 ) \right)  .
+\end{align*}
+where we use the fact that adjoint action distributes over the Lie bracket TODO (wiki).
+
+$ G \lsd \mathfrak{g} $ admits the following $ 8 \times 8$ matrix embedding
+\begin{align*}
+	\left( (R,r),(\omega,v) \right) \mapsto \begin{pmatrix} R &0&0&0\\ R r\ha & R &0&0\\ r^{T} & 0&1&0\\  v^{T}& \omega^{T} & 0&1 \end{pmatrix} = \begin{pmatrix} \left[ \Ad_{ (R,r)} \right]  &0_{6\times 2}\\ V^{T} & I_2 \end{pmatrix} ,
+\end{align*}
+where $ V = \begin{pmatrix} r & v\\0& \omega \end{pmatrix} $.
+Notice that the block form resembles that of $\LSE(3)$ (recall $ R = [\Ad_{ R}])$.
+
+Using the following identity
+\begin{align*}
+	\left( \omega_1^{T} R_2 r_2\ha \right)^{T} = -r_2\ha R_2^{T} \omega_1 = (R_2^{T} \omega_1) \times r_2,
+\end{align*}
+we verify that this embedding gives the desired product:
+\begin{align*}
+	& \quad \begin{pmatrix} R_1 &0&0&0\\ R_1 r_1\ha  & R_1 &0&0\\ r_1^{T} & 0&1&0\\  v_1^{T}& \omega_1^{T} & 0&1 \end{pmatrix} \begin{pmatrix} R_2 &0&0&0\\ R_2 r_2\ha & R_2 &0&0\\ r_2^{T} & 0&1&0\\  v_2^{T}& \omega_2^{T} & 0&1 \end{pmatrix} \\
+	&= \begin{pmatrix} R_1 R_2&0&0&0\\ R_1 r_1\ha R_2 + R_1 R_2 r_2\ha &0&0&0\\ r_1^{T}R_2 + r_2^{T} &0&1&0\\ v_1^{T}R_2 + \omega_1^{T} R_2 r_2\ha + v_2^{T}&\omega_1^{T} R_2 + \omega_2^{T} &0&1 \end{pmatrix}  .
+\end{align*}
+
+\subsection{Lie algebra}
+Given $ \left((\xi_1, r_1), (\omega_1, v_1) \right),  \left( (\xi_2, r_2),(\omega_2, v_2) \right)$ in $ \mathfrak{g} \lsd <>[] \mathfrak{g} = (\so(3) \lsd <>[] \rr^3 ) \lsd <>[] ( \so(3) \lsd <>[] \rr^3) $ (recall left and right give the same Lie algebra):
+\begin{align*}
+	& \quad \left[ \left((\xi_1, r_1), (\omega_1, v_1) \right),  \left( (\xi_2, r_2),(\omega_2, v_2) \right) \right]_2  \\
+	&= \left( [(\xi_1, r_1), (\xi_2, r_2)]_1, [(\xi_1,r_1),( \omega_2,v_2)]_1 + [( \omega_1,v_1), (\xi_2,r_2)]_1 \right)  \\
+	&= \left( ([ \xi_1,\xi_2]_0, [\xi_1 ,r_2]_0 + [r_1, \xi_2]_0 ), ([\xi_1, \omega_2]_0 + [ \omega_1, \xi_2]_0, [\xi_1, v_2 ]_0 + [ r_1, \omega_2]_0 + [ \omega_1,r_2]_0 + [ v_1, \xi_2]_0 ) \right)  .
+\end{align*}
+
+$ \mathfrak{g}  \lsd <>[] \mathfrak{g} $ admits the following $ 8 \times 8$ matrix embedding (hat operation):
+\begin{align*}
+	((\xi,r), (\omega,v))\ha = \begin{pmatrix} \xi\ha &0 &0 &0 \\ r\ha & \xi\ha &0&0\\ r^{T} &0&0&0\\ v^{T}&\omega^{T}&0&0 \end{pmatrix} = \begin{pmatrix} \left[ \ad_{ (\xi,r)}\right] & 0_{ 6\times 2}\\ V^{T} & 0_{2 \times 2} \end{pmatrix} .
+\end{align*}
+Similarly, the block form resembles that of $ \lse(3)$.
+
+A natural basis of $ \mathfrak{g} \lsd <>[] \mathfrak{g}  $ is
+\begin{align*}
+	E_i = \begin{cases}
+		\begin{pmatrix} E_i^{0} & 0_{3 \times 3}&0&0\\0_{3\times 3}& E_i^{0} &0 &0 \\0_{1 \times 3}& 0_{1 \times 3} & 0&0 \\0_{1 \times 3}&0_{1 \times 3}&0&0 \end{pmatrix} & i = 1,2,3,\\
+		\begin{pmatrix} 0_{3 \times 3} & 0_{3 \times 3} & 0 &0 \\ E_{i-3}^{0} &0_{3 \times 3} &0&0\\e_{i-3}^{T}&0_{1 \times 3} &0&0\\0_{1 \times 3} & 0_{1\times 3} &0&0 \end{pmatrix}  & i = 4,5,6  \\
+		\begin{pmatrix} 0_{3 \times 3}&0_{3\times 3} &0&0\\ 0_{3 \times 3} & 0_{3 \times 3} & 0 &0\\ 0_{1 \times 3} & 0_{1 \times 3} &0&0\\ e_{i-6}^{T} &0_{1 \times 3} &0&0 \end{pmatrix} & i = 7,8,9\\
+		\begin{pmatrix} 0_{3 \times 3}&0_{3\times 3} &0&0\\ 0_{3 \times 3} & 0_{3 \times 3} & 0 &0\\ 0_{1 \times 3} & 0_{1 \times 3} &0&0\\  0_{1 \times 3} &e_{i-9}^{T}&0&0 \end{pmatrix} & i = 10,11,12 . 
+	\end{cases}
+\end{align*}
+Then we can compute the adjoint action and adjoint representation of  $ G \lsd <>[] \mathfrak{g} $ using their matrix representations:
+\begin{align*}
+	\left[\ad_{ ((\xi,r),(\omega,v))}\right] &= \begin{bmatrix} \left[\ad_{ (\xi,r)}^1\right] & 0 \\ \left[\ad_{ (\omega,v)}^1\right] & \left[ \ad_{ (\xi,r)}^1\right]   \end{bmatrix} \\
+							 &= \begin{pmatrix} \xi\ha &0 &0 &0 \\ r\ha & \xi\ha &0&0\\ \omega\ha&0& \xi\ha&0\\ v\ha & \omega\ha & r\ha & \xi\ha \end{pmatrix} .
+\end{align*}
+This is not surprising, the adjoint representation after each trivialization of tangent bundle follows the product rule, so this is simply the recursive form after two trivializations.
+
+We can verify by direct computation
+\begin{align*}
+	\begin{pmatrix} \xi_1\ha &0 &0 &0 \\ r_1\ha & \xi_1\ha &0&0\\ \omega_1\ha&0& \xi_1\ha&0\\ v_1\ha & \omega_1\ha & r_1\ha & \xi_1\ha \end{pmatrix} \begin{pmatrix} \xi_2\\r_2\\\omega_2\\v_2 \end{pmatrix} &= \begin{pmatrix} \xi_1\ha \xi_2\\ r_1\ha \xi_2 + \xi_1\ha r_2\\ \omega_1\ha \xi_2 + \xi_1\ha \omega_2\\v_1\ha\xi_2+ \omega_1\ha r_2+r_1\ha\omega_2 + \xi_1\ha v_2 \end{pmatrix}  .
+\end{align*}
+
+The coadjoint representation is
+\begin{align*}
+	\left[\ad_{ ((\xi,r),(\omega,v))}^* \right] &= - \left[\ad_{ ((\xi,r),(\omega,v))}\right]^{T} \\
+			 &= \begin{pmatrix} \xi\ha & r\ha  & \omega\ha  &v\ha  \\ 0 & \xi\ha & 0 & \omega\ha \\ 0& 0 & \xi\ha&r\ha \\ 0 & 0 & 0 & \xi\ha \end{pmatrix} .
+\end{align*}
+\section{Dual quaternions}
+
+\end{document}

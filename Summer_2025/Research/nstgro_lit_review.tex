@@ -533,6 +533,35 @@ Similarly, by a change of variable $ s=-t$ and left translation, we obtain that
 	J_r(x) &= \int_{ 0}^{ 1} \exp( [ -t\ad_{X}])\ \d t \ = \sum_{ k= 0}^{\infty} \frac{[- \ad_{ X}]^{k}}{(k+1)!}  .
 \end{align*}
 
+
+\section{$\SO(3)$ Facts}
+The following facts can be found in \cite{Chirikjian}. For $ \SO(3)$, by Cayley-Hamilton Theorem, the infinite series of the exponential map (infinite basis with constant coefficients) can be reduced to an order-2 exact formula with trigonometric coefficients, called the Rodriguez formula, as long as we stay within the injectivity radius $ \norm{ x} < \pi$ and set $ \exp( 0^\wedge ) = I$:
+\begin{align*}
+	\exp( x^\wedge ) = I + \frac{\sin \norm{ x} }{ \norm{ x}  } X + \frac{(1- \cos \norm{ x} )}{ \norm{ x}^2 }X^2.
+\end{align*}
+We can derive the left and right Jacobians accordingly:
+\begin{align*}
+	J_{\ell}(x) &= I + \frac{1- \cos\norm{ x} }{ \norm{ x}^2  } X + \frac{\norm{ x}- \sin \norm{ x}  }{ \norm{ x}^3 }X^2,\\
+	J_{r}(x) &= I - \frac{1- \cos\norm{ x} }{ \norm{ x}^2  } X + \frac{\norm{ x}- \sin \norm{ x}  }{ \norm{ x}^3 }X^2.
+\end{align*}
+Since $ X^{T} = -X$ in $ \mathfrak{so}(3),$ we see that $ J_{\ell} = J_r^{T}$ in $ \SO(3)$.
+Then we can also obtain closed-formed expressions of their inverses:
+\begin{align*}
+	J_{\ell}^{-1} (x) &= I - \frac{1}{2}X + \left( \frac{1}{\norm{ x} ^2} - \frac{1+ \cos\norm{ x} }{2 \norm{ x} \sin \norm{ x}  } \right) X^2, \\
+	J_{r}^{-1} (x) &= I + \frac{1}{2}X + \left( \frac{1}{\norm{ x} ^2} - \frac{1+ \cos\norm{ x} }{2 \norm{ x} \sin \norm{ x}  } \right) X^2.
+\end{align*}
+
+In this document we use the following notations: for any smooth manifold $ M$ and $ p \in M$,  the tangent space at $ p$ is denoted as $ T_pM$. If $ f : M \to N$ is a smooth map, then the induced map (derivative) of $ f$ at $ p$ is  $ T_p f : T_pM \to T_p N$. Gluing induced maps at all points yields a smooth map between the tangent bundles $ Tf: TM \to TN$. The reason to use the $ T$ notation here is that it is natural to consider  $ T$ as a functor: it acts on both the manifolds and morphisms between manifolds naturally. Moreover, this is the most common notation in Lie theory textbooks. Let $ G$ denote a general Lie group of dimension $ n$ and  $ \mathfrak{g} $ be its Lie algebra. We tend to use $ g$ for a group element in  $ G$ and  $ e$ for the identity element. We tend to use  $ \xi, \eta, u,v$ for Lie algebra elements. For matrix Lie groups, we use capital letters such as $ X$ for matrices, and lower case letters such as $ x$ for vectors. Since the Lie algebra of a matrix Lie group is a vector space of matrices, we can choose a basis $ \{E_{i}\}_{i=1}^{n}$ and convert between a Lie algebra element $ X$ and its coordinate vector  $ x$ via the hat  $ x^\wedge = X$ and vee $ X^\vee = x$ operations. Likewise we can do this for any finite-dimensional Lie algebra, including the pure quaternions.
+
+A Lie group can be parametrized differently with generalized coordinates. For example, $ \SO(3)$ can be parametrized by Euler angles at the cost of singularities. A more natural and convenient parametrization is the exponential coordinates as long as the exponential map is surjective. This is the case for compact connected Lie groups like  $ \SO(n)$ and $ \SU(n)$. It is also the case for  $ \SE(n)$ or the tangent bundle Lie group of any Lie group that has a surjective exponential TODO. Thus, we will use $ g(q)$ for generalized coordinates, and  $ g(x)= \exp( x^\wedge )$ for exponential coordinates. It is beneficial for the analysis to use a moving exponential coordinates instead, so later we shall use $ g(x) = \mu \exp( x^\wedge )$ where $ \mu$ is the current mean so we continuously reset the origin of the coordinates to current mean.
+
+\begin{prop}
+For any $ \xi, \eta \in \mathfrak{g} $, we have the following identity
+\begin{align*}
+	\Ad_{ \exp( \xi)}( \eta) = \exp( \ad_{ \xi}(\eta)).
+\end{align*}
+This is simply a corollary of the fact that exponential map commutes with differentiation, and $ \ad$ is the derivative of $ \Ad$. This matches the intuition of exponential on the real numbers, where the derivative of the exponential is itself.
+\end{prop}
 \section{Intuition of Hamiltonian Mechanics}
 A symplectic manifold has a conanical 2-form $ \omega$, which locally (in Darboux coordinates) acts as a symplectic bilinear form $J:= \begin{pmatrix} 0&I\\-I & 0 \end{pmatrix} $. Intuitively this ``turns the tangent coordinates 90 degrees". That is, horizontal direction becomes vertical and vice versa (not too different from $ \begin{pmatrix} 0&1\\-1&0 \end{pmatrix} $ if we think $ x$-coordinate as horizontal tangent coordinates and  $ y$-coordinate as vertical tangent coordinates). When this is applied to gradient vector field  of a function $ H$, since gradient goes perpendicular to the contour lines of $ H$, by turning 90 degrees now the vector field goes along the contour lines (level sets), which means that along the flow of the rotated vector field, $ H$ is conserved. This vector field is the Hamiltonian vector field $ X_H$ of  $ H$. Bloch Exercise 3.1.2 shows that in local Darboux coordinates, indeed we have $ X_H = J df^{T} = J \nabla f$. However, since there is no metric on the manifold, we cannot actually obtain gradient vector field of a function $ H$ nor rotate it. Yet we can still do this rotation to flow along the contour lines thanks to the 2-form. Instead of rotating the gradient vector field of $ H$, we rotate the differential $ dH$ contravariantly and get a vector field via $ \iota_{{X_H}} \omega = dH$.
 
@@ -581,13 +610,82 @@ There is no way to convert generic matrix-vector multiplication into quaternion 
 	M_{ij}^{\mu} &= \frac{2^3}{48} e_i^\wedge  e_k^\wedge  \left( - BB^{T} e_j \right)^\wedge e_k^\wedge + \frac{2^3}{48} e_k^\wedge  \left( - BB^{T} e_j \right)^\wedge (- e_i^\wedge ) e_k^\wedge+ \frac{1}{2} \left( 2 e_i^\wedge \left(\frac{\partial h^c}{\partial x_j} \right)^\wedge  + \left(\frac{\partial^2 h^c}{\partial { x_i} \partial x_j}\right)^\wedge   \right)  .
 \end{align*}
 
+
+\section{pure dual quaternions}
+The counterpart of $\LSE(3)$ is the unit dual quaternions  $ \widetilde{\mathbb{H}_u} := \mathbb{H}_u \prescript{}{{\Ad^{-1}}}{\ltimes} T_1 \mathbb{H}_u= \{q+ \epsilon v^\wedge  : q \in \mathbb{H}, v^\wedge  \in T_1 \mathbb{H}, \epsilon^2=0\} $. Notice that here we define $ \widetilde{\mathbb{H}_u}$ to only take tangent vectors from the pure quaternions. Multiplication mirrors that of $ \LSE(3)$:
+ \begin{align*}
+	 (q_1 + \epsilon v_1^\wedge ) \otimes  (q_2 + \epsilon v_2^\wedge ) := q_1 q_2 + \epsilon ( \overline{q_2}v_1^\wedge  q_2 + v_2^\wedge ),
+\end{align*}
+where $ \overline{q}$ is the quaternion conjugate, which is also the inverse for unit quaternions.
+
+Its Lie algebra is $ T_1 \mathbb{H}_u \ltimes T_1 \mathbb{H}_u$, which we name the \allbold{pure dual quaternions},  with the following Lie bracket: 
+
+\begin{align*}
+	[ x^\wedge + \epsilon u^\wedge , y^\wedge + \epsilon v^\wedge ] &= [x^\wedge ,y^\wedge ] + \epsilon ([x^\wedge , v^\wedge ] - [y^\wedge ,u^\wedge ])\\ 
+	&= 2 x^\wedge y^\wedge + \epsilon( 2 x^\wedge v^\wedge - 2 y^\wedge u^\wedge ) \\
+				&= 2(x^\wedge + \epsilon u^\wedge ) \times (y^\wedge + \epsilon v^\wedge ),
+\end{align*}
+where $ \times $ is the established dual quaternion cross product (see \cite{Reynolds} Equation 7) simplified for pure dual quaternions. That is, we have
+\begin{align*}
+	(x^\wedge + \epsilon u^\wedge ) \times (y^\wedge + \epsilon v^\wedge ) = x^\wedge y^\wedge + \epsilon( x^\wedge v^\wedge - y^\wedge u^\wedge ).
+\end{align*}
+
+Thus, the adjoint operator of $ \widetilde{\mathbb{H}_u}$ is given by
+\begin{align*}
+	\ad_{ \widetilde{ x}} = 2 \widetilde{ x} ,
+\end{align*}
+where dual quaternion cross product is implied since it is the only meaningful multiplication for pure dual quaternions.
+
+The hat and vee operations on pure dual quaternions are just inserting or removing 0 for each pure quaternion. That is, for a vector $ x = (x_1,x_2)\in \rr^{6}$ where $ x_1,x_2 \in \rr^3$, we have
+\begin{align*}
+	\widetilde{ x} = \begin{pmatrix} 0\\ x_1\\ 0 \\ x_2 \end{pmatrix} .
+\end{align*}
+Note that in our notation, a lower case letter with no modification, such as $ x$, represents a vector, whereas $ \widetilde{ x}$ represents the pure dual quaternion corresponding to $ x$. We reserve the $ ^\wedge $ and $ ^\vee$ for quaternions to avoid confusion. We also define the \allbold{swap operation} on pure dual quaternions: if $ \widetilde{ x} = x_1^\wedge  + \epsilon x_2^\wedge $, then
+\begin{align*}
+	\widetilde{ x}^{s} = x_2^\wedge + \epsilon x_1^\wedge .
+\end{align*}
+Let $ \{e_i\}_{i=1}^{6}$ be the standard basis on $ \rr^{6}$. A convenient basis of $ \widetilde{\mathbb{H}_u}$ is simply $ \{ \widetilde{ e}_i\}_{i=1}^{6} $.
+Thus we have
+\begin{align*}
+	\ad_i = \ad_{ \widetilde{ e}_i} = 2 \widetilde{ e}_i.
+\end{align*}
+Recall that $ \ad_{ i}^{T}$ in $ \LSE(3)$ acts on $ x = (x_1,x_2) \in \rr^{6}$ as
+\begin{align*}
+	\ad_{ i}^T x = \begin{cases}
+		\begin{pmatrix} -E_i^{ \mathfrak{so}(3) } & 0\\ 0 & -E_i^{ \mathfrak{so}(3) }  \end{pmatrix} x = - \ad_{ i}x & i = 1,2,3\\
+		\begin{pmatrix} 0& -E_{i-3}^{\mathfrak{so}(3)} \\ 0 &0 \end{pmatrix} x = \begin{pmatrix} - E_{i-3}^{\mathfrak{so}(3) } x_2 \\0 \end{pmatrix} = \begin{pmatrix} - e_{i-3}^\wedge x_2^\wedge \\0 \end{pmatrix}  & i = 4,5,6 .
+	\end{cases}
+\end{align*}
+Notice that when converting the above to pure dual quaternions, the second case can be viewed as swapping the quaternion and the dual parts of both $ \widetilde{ e}_i$ and $ \widetilde{ x}$:
+ \begin{align*}
+	 \widetilde{ \ad}_{ i}^{T} \widetilde{ x} = \begin{cases}
+		- \widetilde{ e}_i \widetilde{ x} & i=1,2,3\\
+		- \widetilde{ e}_i^{s} \widetilde{ x}^{s} & i=4,5,6 .
+	\end{cases}
+\end{align*}
+Finally, let $ \widetilde{ M} \widetilde{ x}$ denote the operation where it outputs $ \widetilde{ Mx}$. As an example, we obtain the propagation equation
+\begin{align*}
+	M_{ij}^{\mu} =	\frac{2^3}{48} \widetilde{ e}_i   \widetilde{ e}_k \widetilde{H H^{T}}  \widetilde{ \ad}_j^{T}  \widetilde{ e}_k  + \frac{2^3}{48} \widetilde{ e}_k  \widetilde{H H^{T}}  \widetilde{ \ad}_j^{T} \widetilde{ \ad}_{ i}^{T} \widetilde{ e}_k+ \frac{1}{2} \left( 2 \widetilde{ e}_i \widetilde{ \frac{\partial h^c}{\partial x_j}}   + \widetilde{\frac{\partial^2 h^c}{\partial { x_i} \partial x_j}}   \right)  .
+\end{align*}
+In practice, there is no harm forgetting the 0's in dual pure quaternions since they only serve as placeholders and are never involved in any computation.
 \section{PMP}
 
-Here is the story: first, we know that the endpoint of optimal trajectory must be on the boundary of the attainable set at final time for the extended system, since the total cost has to be optimal which is part of the extended system. PMP tells us the necessary conditions for all trajectories that have endpoints on the boundary. Since all trajectories follow the same velocity vector field (that satisfies typical assumptions), they are completely determined by their endpoints. TODO
+Here is the story: first, we know that the endpoint of optimal trajectory must be on the boundary of the attainable set at final time for the extended system, since the total cost has to be optimal which is part of the extended system. PMP tells us the necessary conditions for all trajectories that have endpoints on the boundary of attainable set. Since all state trajectories follow the same velocity vector field (that satisfies typical ODE uniqueness assumptions), they are completely determined by their endpoints. Thus we only consider the case when the endpoints are on the boundary of attainable set.
 
-The idea is that instead of imposing velocity constraints on the cost function, we lift the velocity field to the natural setting of velocity field of functions, the cotangent bundle, and include cost as an extended velocity field there. This unifies the state dynamics and the cost function dynamics into the same space. The Hamiltonian lift gives us back the trajectory after projection, but along the fiber direction the trajectory simply traces out the (potentially time-varying) level sets of the maximized Hamiltonian since the velocity field is the Hamiltonian vector field. When the Hamiltonian is autonomous, then along the trajectory the Hamiltonian is conserved. In this case, since Hamiltonian is constant along the trajectory, maximality of Hamiltonian along the trajectory reduces to maximality of Hamiltonian at the end point. For the time-varying case, we can adjoin time to the state with speed $ 1$, yielding an autonomous extended system so the same intuition applies. This provides another perspective of why we can find a costate trajectory just by knowing that its endpoint is on the boundary. TODO
+The idea is that instead of imposing velocity constraints on the cost function, we treat the cost function as the velocity of the running cost and obtain an extended system. Then by studying the endpoints, we realized that the Hamiltonian must be maximized along the flow of the Hamiltonian lift of the extended velocity field. This unifies the state dynamics and the cost function dynamics into the same space. The Hamiltonian lift gives us back the trajectory after projection, but along the fiber direction the trajectory simply traces out the level sets of the maximized Hamiltonian since the velocity field is the Hamiltonian vector field. Along the costate trajectory the maximized Hamiltonian is conserved (Remark 12.2 of Agrachev and Sachov). In this case, since Hamiltonian is constant along the trajectory, maximality of Hamiltonian along the trajectory reduces to maximality of Hamiltonian at the end point. This provides another perspective of why we can find a costate trajectory just by knowing that its state trajectory endpoint is on the boundary. TODO
 
-PMP, via its necessary conditions, reduces the infinite-dimensional trajectory optimization problem to the $ (n-1)$-dimensional endpoint optimization problem on the boundary, which is equivalent to studying the $ (n-1)$-dimensional costate equation $ \dot{ \lambda}_t = X_H ( \lambda_t)  $ since $ X_H $ is homogenous.
+
+PMP, via its necessary conditions, reduces the infinite-dimensional trajectory optimization problem to the $ (n-1)$-dimensional endpoint optimization problem on the boundary (by finding controls that maximize the Hamiltonian on the boundary TODO), which is equivalent to studying the $ (n-1)$-dimensional costate equation $ \dot{ \lambda}_t = X_H ( \lambda_t)  $ since $ X_H $ is homogenous.
+
+How can we find the costate trajectory? It requires finding a supporting hyerplane of the reachable set of state trajectory at (almost) each time point. Pullback flow can give us the supporting hyperplane once we find it at the end point $ q_1= \widetilde{ q}(t_1)$. If the reachable set near the boundary is locally convex and is differentiable at $ q_1$, we are done. But since it might not be locally convex, we must use a local convex approximation. This comes from using all admissible controls at their Lebesgue timepoints (so differentiation of integral gives integrand, which by constructing needlike control variations of $ \widetilde{ u}$ gives all possible directions of controlled velocity at $ q_1$) and use the flow to pushforward to $ t_1$, then take the convex cone of them all. This emcompasses all feasible controlled velocities at $ q_1$ and ensures local convexity thus a supporting hyperplane. Maximality of the Hamiltonian at $ t_1$ is exactly the convexity condition at $ q_1$ where $ \lambda_{t_1}$ is the supporting hyperplane. Then the adjoint identity on the pullback flow extends this condition to almost all time. We know that the pullback flow is precisely the Hamiltonian vector field corresponding to the Hamiltonian from Chapter 11. And we are done. 
+
+
+\section{Control-Affine PMP}
+Consider the optimal control problem with control-affine dynamics and quadratic cost:
+\begin{align*}
+	\ell(\mu, L , u ,t) &= \frac{1}{2} \norm{ u}^2\\
+	\begin{pmatrix} \mu ^{-1} \dot{\mu} \\ \dot{L}\end{pmatrix} &= f_0(\mu, L, t) + \sum_{ i= 1}^{ n} f_i(\mu,L,t) u_i =: f_0(\mu,L,t) + F(\mu,L,t) u . 
+\end{align*}
 
 
 \end{document}

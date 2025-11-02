@@ -1,0 +1,137 @@
+global !p
+def math():
+	return vim.eval('vimtex#syntax#in_mathzone()') == '1'
+endglobal	
+
+context "math()"
+snippet ww "omega,cs" iA
+\omega
+endsnippet
+
+context "math()"
+snippet WW "Omega,cs" iA
+\Omega
+endsnippet
+
+context "math()"
+snippet OO "fancy O" iA
+\mathcal{O}
+endsnippet
+
+context "math()"
+snippet supr "supremum" iA
+\sup_{$1 } $0
+endsnippet
+
+context "math()"
+snippet infim "infimum" iA
+\inf_{$1 } $0
+endsnippet
+
+context "math()"
+snippet xra "" iA
+\xrightarrow{ $1} $0
+endsnippet
+
+context "math()"
+snippet bsc "big square cup" iA
+\bigsqcup_{ $1}
+endsnippet
+
+context "math()"
+snippet mb "mathbb" iA
+\mathbb{ $1} $0
+endsnippet
+
+context "math()"
+snippet kb "mathbbm k" iA
+\mathbbm{k} $0
+endsnippet
+
+context "math()"
+snippet one "indicator function" iA
+\mathbbm{1}_{$1 } $0
+endsnippet
+
+context "math()"
+snippet dt| "derivative" iA
+\frac{\d}{\d t}\bigg|_{t=${1: 0}} $0
+endsnippet
+
+context "math()"
+snippet EE "expectation" iA
+\mathbb{E}\left[ $1 \right] $0
+endsnippet
+
+context "math()"
+snippet PP "probability" iA
+\mathbb{P}\left( $1 \right) $0
+endsnippet
+
+context "math()"
+snippet 'X([a-z])' "stochastic process" wrA
+X_`!p snip.rv = match.group(1)`
+endsnippet
+
+priority 100
+context "math()"
+snippet 'K([a-z])([a-z])' "covariance function" wrA
+K(`!p snip.rv = match.group(1)`, `!p snip.rv = match.group(2)`) 
+endsnippet
+
+context "math()"
+snippet dt "dt" A
+\d t 
+endsnippet
+
+priority 200
+context "math()"
+snippet 'K.([a-z])([a-z])' "covariance function derivative" wrA
+\dot{K}(`!p snip.rv = match.group(1)`, `!p snip.rv = match.group(2)`) 
+endsnippet
+
+priority 300
+context "math()"
+snippet 'K..([a-z])([a-z])' "covariance function derivative" wrA
+\ddot{K}(`!p snip.rv = match.group(1)`, `!p snip.rv = match.group(2)`) 
+endsnippet
+
+priority 300
+context "math()"
+snippet 'limsup:([A-Za-z])([A-Za-z]|\d)' "limit supremum" rwA
+\limsup_{ ${1:`!p snip.rv = match.group(1)`} \to ${2:`!p snip.rv = match.group(2)`}} 
+endsnippet
+
+priority 300
+context "math()"
+snippet 'liminf:([A-Za-z])([A-Za-z]|\d)' "limit infimum" rwA
+\liminf_{ ${1:`!p snip.rv = match.group(1)`} \to ${2:`!p snip.rv = match.group(2)`}} 
+endsnippet
+
+context "math()"
+snippet wg "wedge product" iA
+\wedge $0
+endsnippet
+
+context "math()"
+snippet d| "downarrow" iA
+\downarrow $0
+endsnippet
+
+context "math()"
+snippet gsa "germ sigma-algebra" iA
+\Sigma_{0+} $0
+endsnippet
+
+context "math()"
+snippet FF "mathcal F" iA
+\mathcal{F}_{ ${1:n}} $0
+endsnippet
+
+context "math()"
+snippet cov "covariance" iA
+\Cov\left( $1 \right) $0
+endsnippet
+
+# vim:ft=snippets
+

@@ -1,0 +1,74 @@
+\documentclass[12pt]{article}
+\input{../preamble.tex}
+
+\begin{document}
+\centerline {\textsf{\textbf{\LARGE{Homework 4}}}}
+\centerline {Jaden Wang}
+\vspace{.15in}
+\begin{problem}[1]
+\begin{enumerate}[label=(\alph*)]
+	\item No. Here, jointly measurable means that $ (\omega,t) \mapsto Z_t(\omega)$ is $ \mathcal{ B}(\rr) \otimes \mathcal{ B}([0, \infty)) $ measurable. That implies that any slice is measurable, \emph{i.e.} if we fix an $ \omega$, then $ Z_t(\omega) = \omega(t)$ should be $ \mathcal{ B}([0,\infty))$ measurable. That is, $ \omega$ should be a $ \mathcal{ B}([0,\infty))$-measurable function. However, setting $ \omega$ to be 0 on a Vitali subset of $ [0,\infty)$ and 1 on its complement makes it not measurable, a contradiction. 
+	\item Versions only care about same distribution whereas modifications care about a.s. pointwise equality, \emph{i.e.} $ \mathbb{P}\left( X_t = \widetilde{ X}_t \right) =1$ for all $ t$. Consider $ (X_t)$ to be an iid standard Gaussian process and $ \widetilde{ X}_t := - X_t$. Since standard Gaussian is symmetric about 0, they clearly have the same distribution. However, they only equal each other at exactly one point ($ 0$), so they are not modifications of each other.
+\end{enumerate}
+\end{problem}
+\begin{problem}[2]
+	Since $ f$ is smooth, it has bounded  $ f'$ in  $ [0,1]$. Similarly, $ \sqrt{t} $ is also bounded. Therefore, we have
+\begin{align*}
+	\frac{1}{\sqrt{2 \pi} } \int_{- \infty}^{ \infty} \int_{ 0}^{ 1} |f'(t)| \sqrt{t} x e^{-\frac{x^2}{ 2}} \d x \d t < \infty.
+\end{align*}
+This allows us to apply Fubini:
+\begin{align*}
+	\mathbb{E}\left[ \int_{ 0}^{ 1} f'(t) B_t \d t   \right] &= \mathbb{E}\left[ \int_{ 0}^{ 1} f'(t) \sqrt{t} B_1 \d t    \right]  \\
+	&= \frac{1}{\sqrt{2 \pi} } \int_{- \infty}^{ \infty} \int_{ 0}^{ 1} f'(t) \sqrt{t} x e^{-\frac{x^2}{ 2}} \d x \d t  \\
+	&= \frac{1}{\sqrt{2 \pi} } \int_{ 0}^{ 1} f'(t) \sqrt{t} \left( \int_{ -\infty}^{ \infty} xe^{-\frac{x^2}{2}} \d x \right) \d t    \\
+	&= 0 .
+\end{align*}
+So the mean is 0.
+\begin{align*}
+	\mathbb{E}\left[ \left( \int_{ 0}^{ 1} f'(t) B_t \d t   \right)  \right] &= \mathbb{E}\left[ \int_{ 0}^{ 1} f'(t)\int_{ 0}^{ 1}  f'(s) B_t B_s \d s \d t    \right]  \\
+	&= \int_{ 0}^{ 1} f'(t)\int_{ 0}^{ 1}  f'(s) \mathbb{E}\left[ B_t B_s \right] \d s \d t    \\
+	&= \int_{ 0}^{ 1} f'(t)\int_{ 0}^{ 1}  f'(s) s \wedge t \d s \d t    \\
+	&= \int_{ 0}^{ 1} f'(t) \left( \int_{ 0}^{ t} f'(s) s \d s + t \int_{ t}^{ 1} f'(s) \d s   \right)   \\
+	&= \int_{ 0}^{ 1} f'(t) \left(( f(s) s) \big|_0^{t} - \int_{ 0}^{ t} f(s) \d s + t f(s)\big|_t^{1} \right)  \d t  \\
+	&= \int_{ 0}^{ 1} f'(t) \left( f(t)t - \int_{ 0}^{ t} f(s) \d s - f(t)t  \right)  \d t  \\
+	&= - \int_{ 0}^{ 1} f'(t) \int_{ 0}^{ t} f(s) \d s \d t    \\
+	&= \int_{ 0}^{ 1} f(s) \int_{ 1}^{ s} f'(t) \d t \d s  && \textrm{Fubini}  \\
+	&= \int_{ 0}^{ 1} f(s) f(t)\big|_1^{s} \d s  \\
+	&= \int_{ 0}^{ 1} f(s)^2 \d s  .
+\end{align*}
+\end{problem}
+
+\begin{problem}[3]
+	Notice that since $ T_{k+1} \geq T_k$, we can rewrite
+\begin{align*}
+	T_{k+1} - T_k &= \inf\{ t \geq T_k: B_t = 1 + B_{T_k} \} - T_k  \\
+	&= \inf\{ t - T_k \geq 0: B_t - B_{T_k} = 1 \}  \\
+	&= \inf \{s \geq 0: B_{s+T_k} - B_{T_k}=1\}  \\
+	&= \inf \{s \geq 0: B_s ^{(T_k)} =1\}  .
+\end{align*}
+By the strong Markov property, we know that $ B_t^{(T_k)} \sim B_t $ and is independent of $ \Sigma_{T_k} \supset \Sigma_{T_{k-1}} \supset \cdots \supset \Sigma_{T_1}$. Thus it is iid with $ T_1, T_2 - T_1, \ldots, T_{k-1} - T_{k-2}$ by simple induction.
+\end{problem}
+
+\begin{problem}[4]
+Take any limit point $ t$ of $ E$ with sequence  $ (t_k) \subset E$ such that $ t_k \to t$, by continuity $ B_t = \lim_{ k \to \infty} B_{t_k} = \lim_{ k \to \infty} 1 = 1 $, ie any limit point  of $ E$ is in $ E$. Hence $ E$ is closed. Suppose  $ E$ is finite, then let $s:= \max E < \infty $. By the Markov property, $ B_t^{(s)}= B_{t+s} - B_s$ is a BM. Therefore it crosses $ B_s = 1$ a.s. at least once after time  $ s$ by the fact of BM that $ \sup B_t^{(s)} >0$ and  $ \inf B_t^{(s)}< 0$ for any time after $ s$, a contradiction that  $ s$ is the maximum. Thus, $ E$ must be infinite. 
+
+Next, notice that for a fixed $ t$, we have $ \mathbb{P}\left( B_t = 1 \right) =0 $. Since $(t,\omega) \mapsto  B_t(\omega)$ is jointly measurable, we can apply Fubini on the product Lebesgue measure:
+\begin{align*}
+	\mu(E) = \int_{\Omega \times [0,\infty)} \mathbbm{1}_{E } \d \mu = \int_{ 0}^{ \infty} \int_{\Omega}  \mathbbm{1}_{B_t = 1 } \d \lambda \d t = \int_0^\infty \mathbb{P}\left( B_t = 1 \right)  \d t = \int_0^\infty 0 \d t = 0 .    
+\end{align*}
+Thus, $ E$ has Lebesgue measure zero. 
+
+Finally, for any $ 0\leq a < b$ such that  $ (a,b) \subset E$, by the Markov property we have BM $ B_t^{(a)} \equiv 0 \ \forall \ t \in(0,b-a)$. But as a BM, it must satisfies a.s. $ \sup_{t \in (0,b-a) } >0$ and $ \inf_{t \in (0,b-a)} <0 $, so it must be that $ \mathbb{P}\left( (a,b) \subset E: 0\leq a <b \right)=0 $.
+\end{problem}
+
+\begin{problem}[5]
+For any $ t_0 \in \rr$, if $ B_s = t_0$, then $ B_s ^{(t_0)}$ again has the supremum $ >0$ infimum $ <0$ property for any neighborhood, so $ t_0$ is not a local maximum. To show a.s. the set $ S$ of local maximum of BM is countably infinite, we need to establish a bijection between that and a countable set, $ \qq_+$.
+
+First, we establish that $ \qq_+$ injects into  $S$. WLOG take any $ p<r \in \qq_+$, pick any $q,s \in \qq_+$ such that $p<q<r<s$. By continuous path and EVT, there exist local maximum$ a = \sup_{[p,q] } B_t $ and $ b = \sup_{[r,s] } B_t$. Then by HW2, we know a.s. $ a \neq b$, which yields a.s. injectivity. 
+
+Given $ a \in S$, since it is a local maximum, there exists a neighborhood with rational boundary such that $ a$ is a maximum there. Taking its rational lower boundary yields surjectivity. Thus, there exists a.s. a bijection between $ \qq_+$ and $ S$ by taking the rational lower boundary of the local maximum.
+
+Finally, density again follows from continuity of paths and EVT. For any $ 0\leq s<t$, there exists an $ r \in (s,t)$ such that $ B_r$ is a local maximum of  $ [s+ \epsilon, t- \epsilon]$ for sufficiently small $ \epsilon$.
+
+\end{problem}
+\end{document}

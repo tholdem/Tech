@@ -39,6 +39,7 @@
 \usepackage{cancel}
 % Bold math
 \usepackage{bm}
+\usepackage{xparse}
 % Some shortcuts
 \newcommand{\rr}{\ensuremath{\mathbb{R}}}
 \newcommand{\zz}{\ensuremath{\mathbb{Z}}}
@@ -52,7 +53,42 @@
 \renewcommand{\d}{\mathrm{d}}
 \newcommand{\norm}[1]{{\left\lVert{#1}\right\rVert}}
 \newcommand{\dbracket}[1]{{\left\llbracket{#1}\right\rrbracket}}
-\newcommand{\ve}[1]{{\bm{#1}}}
+
+\newcommand{\defeq}{:=}
+\newcommand{\II}{\mathbb{I}} % moment of inertia
+\newcommand{\ev}[1]{\langle #1 \rangle}
+\newcommand{\so}{\ensuremath{\mathfrak{so}}}
+\newcommand{\se}{\ensuremath{\mathfrak{se}}}
+\newcommand{\lse}{\ensuremath{\mathfrak{lse}}}
+\newcommand{\deri}[2][]{{T_{#1} #2}} % derivative at p of f
+\newcommand{\tg}[2][]{T_{#1} #2} %tangent space at p of M
+\newcommand{\q}[1]{{\bm{#1}}}
+\newcommand{\pqhat}[1]{{\wh{#1}}}
+\newcommand{\dq}[1]{{\widetilde{\bm{#1}}}}
+\newcommand{\ha}{{^\wedge}}
+\newcommand{\ve}{{^\vee}}
+\newcommand{\hada}{{\odot}}
+% m - A standard mandatory argument
+% o - An optional argument which if not given returns a special marker
+% O{<default>} - An optional argument which returns <default> if not given
+% s - An optional star
+% D<t1><t2>{<default>} - a generalisation of O{<default>} in which <t1> and <t2> delimit the optional argument, e.g. D(){black} would be an optional argument delimited by () which if not given would supply black to the command
+\NewDocumentCommand\lsd{D<>{\Ad^{-1}}O{1}}{\ltimes_{#1_{#2}}}
+\NewDocumentCommand\rsd{D<>{\Ad}O{1}}{\rtimes_{#1_{#2}}}
+\newcommand{\unitdq}{\widetilde{\mathbb{H}}_u}
+\newcommand{\pureq}{\mathbb{H}_p}
+\newcommand{\unitq}{\mathbb{H}_u}
+\newcommand{\qmult}{\otimes}
+\NewDocumentCommand{\dqmult}{O{1}}{\odot_{#1}}
+\newcommand{\qconj}[1]{\q{#1}^*}
+\newcommand{\ldq}{\unitq \lsd[0] \pureq}
+\newcommand{\lldq}{(\unitq \lsd[0] \pureq) \lsd (\qliealg \lsd<\ad>[0] T_1 \pureq)}
+\NewDocumentCommand\ldqmul{O{1}}{\ltimes_{#1}}
+\NewDocumentCommand\rdqmul{O{1}}{\rtimes_{#1}}
+\NewDocumentCommand\dqx{O{1}}{\boxtimes_{#1}}
+\newcommand{\qliealg}{\mathfrak{h_u}}
+
+
 \newcommand\allbold[1]{{\boldmath\textbf{#1}}}
 \DeclareMathOperator{\lcm}{lcm}
 \DeclareMathOperator{\im}{im}
@@ -61,8 +97,6 @@
 \DeclareMathOperator{\tr}{tr}
 \DeclareMathOperator{\rank}{rank}
 \DeclareMathOperator*{\var}{Var}
-\DeclareMathOperator*{\ev}{E}
-\DeclareMathOperator{\dg}{deg}
 \DeclareMathOperator{\aff}{aff}
 \DeclareMathOperator{\conv}{conv}
 \DeclareMathOperator{\inte}{int}
@@ -75,30 +109,23 @@
 \DeclareMathOperator{\mat}{mat}
 \DeclareMathOperator{\diag}{diag}
 \DeclareMathOperator{\aut}{Aut}
+\DeclareMathOperator{\der}{Der}
 \DeclareMathOperator{\gal}{Gal}
 \DeclareMathOperator{\inn}{Inn}
 \DeclareMathOperator{\edm}{End}
 \DeclareMathOperator{\Hom}{Hom}
-\DeclareMathOperator{\ext}{Ext}
-\DeclareMathOperator{\tor}{Tor}
 \DeclareMathOperator{\Span}{Span}
 \DeclareMathOperator{\Stab}{Stab}
 \DeclareMathOperator{\cont}{cont}
-\DeclareMathOperator{\Ann}{Ann}
 \DeclareMathOperator{\Div}{div}
 \DeclareMathOperator{\curl}{curl}
-\DeclareMathOperator{\nat}{Nat}
 \DeclareMathOperator{\gr}{Gr}
-\DeclareMathOperator{\vect}{Vect}
 \DeclareMathOperator{\id}{id}
-\DeclareMathOperator{\Mod}{Mod}
 \DeclareMathOperator{\sign}{sign}
-\DeclareMathOperator{\Surf}{Surf}
 \DeclareMathOperator{\fcone}{fcone}
 \DeclareMathOperator{\Rot}{Rot}
 \DeclareMathOperator{\grad}{grad}
 \DeclareMathOperator{\atan2}{atan2}
-\DeclareMathOperator{\Ric}{Ric}
 \DeclareMathOperator{\Ad}{Ad}
 \DeclareMathOperator{\ad}{ad}
 \DeclareMathOperator{\sym}{sym}
@@ -114,6 +141,7 @@
 \DeclareMathOperator{\SE}{SE}
 \DeclareMathOperator{\LSE}{LSE}
 \DeclareMathOperator{\TSE}{TSE}
+\DeclareMathOperator{\TLSE}{TLSE}
 \DeclareMathOperator{\SL}{SL}
 \DeclareMathOperator{\expm}{expm}
 % Put x \to \infty below \lim

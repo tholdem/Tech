@@ -151,7 +151,7 @@ endsnippet
 
 context "math()"
 snippet ad "adjoint representation" A
-\ad_{ $1}( $2)$0
+\ad_{ $1}$0
 endsnippet
 
 context "math()"
@@ -167,7 +167,7 @@ endsnippet
 priority 200
 context "math()"
 snippet exp "exponential map" A
-\exp( $1)
+\exp\left( $1 \right)
 endsnippet
 
 context "math()"
@@ -183,11 +183,6 @@ endsnippet
 context "math()"
 snippet aut "Aut" A
 \aut ($1)
-endsnippet
-
-context "math()"
-snippet rsd "right semidirect product" A
-\rtimes $1
 endsnippet
 
 context "math()"
@@ -286,18 +281,136 @@ snippet cite "cite" iA
 endsnippet
 
 context "math()"
-snippet lsd "lsd semidirect product" A
-\ltimes $1
+snippet lsd "left semidirect product" A
+\lsd ${1:<>[] }
+endsnippet
+
+context "math()"
+snippet rsd "right semidirect product" A
+\rsd ${1:<>[] }
 endsnippet
 
 context "math()"
 snippet ^^ "R^n to Lie algebra" iA
-^\wedge 
+\ha 
+endsnippet
+
+context "math()"
+snippet vv "Lie algebra to R^n" iA
+\ve 
 endsnippet
 
 context "math()"
 snippet II "moment of inertia" iA
 \mathbb{I} 
 endsnippet
+
+context "math()"
+snippet SS "Stratonovich" iA
+\textcircled{s} 
+endsnippet
+
+
+context "math()"
+snippet uH "unit quaternions" A
+\unitq 
+endsnippet
+
+context "math()"
+snippet pH "pure quaternions" A
+\pureq 
+endsnippet
+
+context "math()"
+snippet udq "unit dual quaternions" A
+\unitdq
+endsnippet
+
+context "math()"
+snippet qx "quaternions multiplication" A
+\qmult
+endsnippet
+
+context "math()"
+snippet dqm "left trivialized unit dual quaternions multiplication" A
+\dqmult
+endsnippet
+
+context "math()"
+snippet dqx "left trivialized unit dual quaternions cross product" A
+\dqcross
+endsnippet
+
+context "math()"
+snippet q "quaternion" 
+\q{ $1} 
+endsnippet
+
+context "math()"
+snippet pqh "pure quaternion hat" iA
+\pqhat{ $1} 
+endsnippet
+
+priority 100
+context "math()"
+snippet "([a-zA-Z])pqh" "pure quaternion hat" riA
+\pqhat{ `!p snip.rv=match.group(1)`}$0
+endsnippet
+
+context "math()"
+snippet d "dual quaternion" 
+\dq{ $1} 
+endsnippet
+
+context "math()"
+snippet SE3 "SE(3)" A
+\SE(3)
+endsnippet
+
+context "math()"
+snippet LSE3 "LSE(3)" A
+\LSE(3)
+endsnippet
+
+context "math()"
+snippet SO3 "SO(3)" A
+\SO(3)
+endsnippet
+
+context "math()"
+snippet so3 "so(3)" A
+\so(3)
+endsnippet
+
+context "math()"
+snippet se3 "se(3)" A
+\se(3)
+endsnippet
+
+context "math()"
+snippet lse "lse(3)" A
+\lse(3)
+endsnippet
+
+context "math()"
+snippet hada "Hadamard product" A
+\hada 
+endsnippet
+
+context "math()"
+snippet ev "expectation" A
+\ev{ $1} 
+endsnippet
+
+context "math()"
+snippet deri "derivative at p of f" iA
+\deri[ $1]{ $2}
+endsnippet
+
+context "math()"
+snippet tg "derivative at p of f" iA
+\tg[ $1]{ $2}
+endsnippet
+
 # vim:ft=snippets
 
