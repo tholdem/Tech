@@ -1,0 +1,98 @@
+\documentclass[12pt,class=article,crop=false]{standalone} 
+\input{./preamble.tex}
+
+\begin{document}
+\section{6 DOF geometry}
+\subsection{Notation}
+Since each trivialization of tangent bundle $ TG$ is a new Lie group with different multiplication and other Lie group operations, to avoid ambiguity (in the absence of number of inputs) in the notation we shall label operations with number that indicates how many trivialization the group has experienced. For example, $ \SO(3)$ has zero trivialization (its $ \Ad_0$ is indexed by 0 when there is no input), $ \SE(3)$ and $ \LSE(3)$ have one trivialization, and $ \TSE(3)$ and  $ \TLSE(3)$ have two trivializations.
+\subsection{$\TSE(3)$ vs $\TLSE(3)$}
+In $ \TLSE(3)$, the position coordinates are in the body frame. Although we can recover the spatial coordinates by applying the rotation matrix, since rotation matrix is part of the state, this creates an undesired coupling. Since all positional constraints for landing (e.g. glide cone) are imposed on spatial coordinates, this coupling would make these constraints unnecessarily more nonlinear and less convex. Thus, I believe it would be better to use left-trivialized $ \TSE(3)$ so we always use the spatial position coordinates. The literature only uses $ \SE(3)$ anyway so this approach is more accessible to the mainstream. However, the drawback is that while $ \TLSE(3)$ can be embedded in an  $ 8\times 8$ matrix in a straightforward fashion, I do not know a way to embed $ \TSE(3)$ into a matrix of the same size without coupling some of the states. This is why we prefer to use the abstract formulation than matrix embedding, and therefore uses unit quaternions to represent rotations since it has fewer parameters. We illustrate these issues below. 
+\subsection{Left-trivialized $\TSE(3)$}
+Consider $ G = \SE(3) = \SO(3) \rsd[0] \rr^3 $. We want to find the Lie group structure of $ TG$ under left-trivialization. Let $ \left( (R_1,r_1),(\omega_1,v_1) \right), \left( (R_2,r_2),(\omega_2,v_2) \right) \in \SE(3) \lsd \se(3) = \left( \SO(3) \rsd[0] \rr^3 \right) \lsd \left( \so(3) \rsd <>[] \rr^3 \right)   $. Recall that in $ \SE(3)$, the inverse is
+\begin{align*}
+	(R,r)^{-1} &= \left( R^{-1}, - \Ad_{ R^{-1}}( r) \right)  .
+\end{align*}
+Applying semidirect product rules yields
+\begin{align*}
+	& \quad \left( (R_1,r_1),(\omega_1,v_1) \right) *_2 \left( (R_2,r_2),(\omega_2,v_2) \right) \\
+	&= \left( (R_1,r_1)*_1 (R_2,r_2), \Ad_{ (R_2,r_2)}^{-1}( \omega_1,v_1) + ( \omega_2,v_2) \right)  \\
+	&= \left(  (R_1 R_2, r_1 + \Ad_{ R_1}( r_2)), \Ad_{ (R_2^{-1},- \Ad_{ R_2^{-1}}( r_2))}( \omega_1,v_1) + ( \omega_2,v_2) \right)  \\
+	&= \left( (R_1 R_2, r_1 + \Ad_{ R_1}( r_2)), ( \Ad_{ R_2^{-1}}( \omega_1 ) + \omega_2, \Ad_{ R_2^{-1}} v_1 + [ -\Ad_{ R_2^{-1}}( r_2) , \Ad_{ R_2^{-1}}( \omega_1)]) + v_2) \right)   \\
+	&= \left( (R_1 R_2, r_1 + \Ad_{ R_1}( r_2)), ( \Ad_{ R_2^{-1}}( \omega_1 ) + \omega_2, \Ad_{ R_2^{-1}}(v_1) + \Ad_{ R_2^{-1}}([ \omega_1,  r_2 ]) + v_2)) \right)   \\
+	&= \left( (R_1 R_2, r_1 + \Ad_{ R_1}( r_2)), ( \Ad_{ R_2^{-1}}( \omega_1 ) + \omega_2, \Ad_{ R_2^{-1}}\left(v_1 + [ \omega_1,  r_2 ]\right) + v_2)) \right)   \\
+	 &= \left( (R_1R_2, r_1 + R_1 r_2), (R_2^T \omega_1 + \omega_2, R_2^T(v_1 + \omega_1 \times r_2) + v_2 ) \right)  .
+\end{align*}
+TODO check advanced dynamics lectures.
+
+The formula CITE above and embedding of $ \SE(3)$ and  $ \LSE(3)$ reveal a straightforward way to embed this into a matrix: since the Adjoint action of $ \SE(3)$ acts on the bottom block, and its matrix representation is $ [ \Ad_{ (R,r)}] = \begin{pmatrix} R&0\\ r\ha R&R \end{pmatrix} $ which contains the state $ R$ and a coupled  $ r$, we can just make this the upper left block, and let it act on the body velocities  $ V : = \left( \omega, v \right) $ in the left-trivialized manner, meaning that $ V$ is embedded in the lower left block as  $ V^{T}$.
+
+$ \SE(3) \lsd \se(3)  $ admits the following $ 7 \times 7$ matrix embedding
+\begin{align*}
+	\left( (R,r),(\omega,v) \right) \mapsto \begin{pmatrix} \left[ \Ad_{ (R,r)} \right]  &0_{6\times 1}\\ V^{T} & 1 \end{pmatrix} = \begin{pmatrix} R &0&0\\ r\ha R & R &0\\   v^{T}& \omega^{T} &1 \end{pmatrix}. 
+\end{align*}
+Unfortunately, we see that $ r$ is coupled with  $ R$ here. The problem is  $ r$ cannot also be embedded in the lower left block, because it transforms by the right-trivialized rule --- opposite that of  $ V$. (In fact, in $ \TLSE(3)$ this is exactly how we get nice  $ 8\times 8$ embedding.) But if $ r$ goes to the upper right block like  $ \SE(3)$, then it would be forced to interact with  $ V^{T}$ and yield nonzero entries, breaking the embedding. Thus we would need more than $ 8\times 8$. In fact, we can do it using $ 11 \times 11$ matrix by inserting a $ \SE(3)$ diagonal block that does not interact with any other nonzero entries, but this blows up the dimension too much. This is not a problem: embedding is just a convenience, but we can always just use the abstract formulation CITE. We shall use this $ 7\times 7$ matrix embedding for validation purposes.
+
+Using the following identities
+\begin{align*}
+	r_1 \ha R_1 R_2 + R_1 r_2\ha R_2 &= r_1\ha R_1 R_2 + R_1 r_2\ha (R_1^{-1} R_1) R_2 \\
+	&= r_1\ha R_1R_2 + \Ad_{ R_1}( r_2 \ha ) R_1 R_2 \\
+	&= \left(r_1 + \Ad_{ R_1}(r_2 ) \ha \right)R_1 R_2 ,
+\end{align*}
+and
+\begin{align*}
+	\omega_1^{T} r_2\ha R_2 = \left( R_2^{T} (- r_2\ha) \omega_1  \right) ^{T} = \left( R_2^{T} \left( \omega_1 \times  r_2 \right)  \right)^{T} 	,
+\end{align*}
+we verify that this embedding gives the desired product:
+\begin{align*}
+	& \quad \begin{pmatrix} R_1 &0&0\\  r_1\ha R_1 & R_1 &0\\  v_1^{T}& \omega_1^{T} & 1 \end{pmatrix} \begin{pmatrix} R_2 &0&0\\ r_2\ha R_2 & R_2 &0\\  v_2^{T}& \omega_2^{T}&1 \end{pmatrix} \\
+	&= \begin{pmatrix} R_1 R_2&0&0\\r_1 \ha R_1 R_2 + R_1 r_2\ha R_2  &R_1R_2&0\\ v_1^{T}R_2 + \omega_1^{T} r_2\ha R_2 + v_2^{T}&\omega_1^{T} R_2 + \omega_2^{T}&1 \end{pmatrix} ,\\
+	&= \begin{pmatrix} R_1 R_2&0&0\\\left(r_1 + \Ad_{ R_1}(r_2 ) \ha \right)R_1 R_2   &R_1R_2&0\\ \left(R_2^T(v_1 + \omega_1 \times r_2) + v_2 \right)^{T}&\left(R_2^T \omega_1 + \omega_2\right)^{T}&1 \end{pmatrix} . 
+\end{align*}
+This can also be easily verified using the block matrix form.
+
+\subsection{quaternionic $ \TSE(3)$}
+Since $ \TSE(3)$ is the true phase space, when we use quaternions to represent it, we are invoking the double-covering isomorphism $ p$ that makes $ R v = qvq^{-1}$ true, where $ R = p(q)$. Then the derivative $ \deri[ e]{ p}$ of this covering map at the Lie algebra identifies $ i,j,k$ as $ 2E_1, 2E_2, 2E_3$, respectively. That is, this is an isomorphism of Lie algebras that is $ 2\times $ scaling on the coordinates. For example,  the exponential map of unit quaternions goes twice as fast as the exponential map of $ \SO(3)$, because the same coordinates as pure quaternions is in fact twice as long as the coordinates in $ \so(3)$ under the covering map identification. 
+
+We can lift any group action of $ \SO(3)$ on  $ \so(3)$ to an action of $ \unitq $ on  $ \so(3)$ under the covering map. For left translation action, given a unit quaternion $ q$ and a vector $ X$ in $ \so(3)$, we can define
+\begin{align*}
+	q .v := q . \widetilde{ v} = q . \left( \frac{1}{2}v \right) = \frac{1}{2} q \otimes v.
+\end{align*}
+Since $ \dot{R} = R. v\ha $, we see that to have the same derivative as the rotation, we must have $ \dot{q} = q.v = \frac{1}{2} q \otimes v$.
+
+
+\section{Formulas}
+
+\subsection{Unit Quaternions}
+\begin{align*}
+	\exp\left( \eta \right) = \begin{pmatrix} \cos \left( \frac{\theta}{2} \right) \\ \sinc\left( \frac{\theta}{2} \right)  v \end{pmatrix} , \qquad \theta := \norm{ \eta}.\\
+	J_\ell(\eta) = I + \frac{1}{2} \beta X + \delta X^2 , \qquad \alpha := \sinc(\theta) ,\quad   \beta := \sinc\left( \frac{\theta}{2} \right)^2, \quad  \delta := \frac{1-\alpha}{ \theta^2}, \quad X = \eta\ha . \\
+	J_r(\eta) = J_{\ell}(\eta)^{T}\\
+	\log(q) = \frac{q_v}{ \norm{ q_v} } \theta, \qquad \theta = 2 \arccos(q_s) .\\
+J_{\ell}^{-1}(\eta) = I - \frac{1}{2} X + \frac{1- \gamma}{ \theta^2} X^2, \qquad \gamma = \frac{\alpha}{ \beta}.\\
+J_r^{-1}(\eta) = J_{\ell}^{-1}(\eta)^{T} .
+\end{align*}
+\subsection{Quaternionic $ \SE(3)$}
+\begin{align*}
+	\exp\left( \eta, r \right) = \begin{pmatrix} \exp\left( \eta \right)\\ J_\ell(\eta) r \end{pmatrix} .\\
+	Q(\eta,r) = -\frac{\beta}{2} r\ha  + \delta (\eta\ha r\ha + r\ha \eta\ha ) + (\eta \cdot r) \left( \frac{ \beta- \alpha}{ \theta^2} \eta\ha  +  \frac{\frac{\beta}{2} - 3 \delta}{ \theta^2} (\eta\ha)^2  \right).\\
+	\log(q,r) = \begin{pmatrix} \log(q)\\ J_{\ell}^{-1}(\log(q)) r \end{pmatrix} \\
+	- J_{\ell}^{-1}(\eta)Q(\eta,r) J_{\ell}^{-1}(\eta) = - \frac{1}{2} r\ha + \frac{1- \gamma}{\theta^2} (Xr\ha +r\ha X) + \frac{\eta \cdot r}{\theta^{4}} \left( \frac{1}{\beta} + \gamma - 2 \right) X^2 .\\
+	J_r^{-1}(\eta,r) = \begin{pmatrix} J_r^{-1}(\eta) & 0\\ - J_{r}^{-1}(\eta)Q(\eta,r)^{T} J_{r}^{-1}(\eta) & J_r^{-1}(\eta)  \end{pmatrix} 
+\end{align*}
+\subsection{Quaternionic $ \TSE(3)$}
+\begin{align*}
+	\exp\left( \eta,r,\omega,v \right) = \begin{pmatrix} \exp\left( \eta,r \right) \\ J_\ell^{T}(\eta) \omega\\ J_{\ell}^{T}(\eta) v + Q(\eta,r) \omega  \end{pmatrix}\\
+	\log(q,r,\omega,v) = \begin{pmatrix} \log(q,r)\\ J_r^{-1}(\log(q,r)) \begin{pmatrix} \omega\\v \end{pmatrix}  \end{pmatrix} 
+	 . 
+\end{align*}
+By identifying pure quaternions as $ \rr^3$, a basis $ \{e_i\}_{i=1}^{12} $ of $ \tse(3)$ is the standard basis for $ \rr^{12}$. Then
+\begin{align*}
+	\ad_{ (\eta,r,\omega,v)} &= \begin{pmatrix} \eta\ha &0 &0 &0 \\ r\ha &\eta\ha &0&0\\ \omega\ha &0& \eta\ha &0\\ v\ha & \omega\ha &r\ha & \eta\ha  \end{pmatrix}  \\
+\end{align*}
+gives us
+\begin{align*}
+	\ad_{i } := [ \ad_{ e_i}] .
+\end{align*}
+
+
+\end{document}
