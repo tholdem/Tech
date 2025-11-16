@@ -1,0 +1,181 @@
+\documentclass[12pt,class=article,crop=false]{standalone} 
+\input{./preamble.tex}
+
+\begin{document}
+\section{Mathematical Preliminaries}
+
+\subsection{Group Theory}
+For left group actions, we refer to Dummit and Foote Section 1.7. For semidirect products, we refer readers to Dummit and Foote Section 5.5.
+
+ Let $ G$ be a group and $ e \in G$ be the identity element. A \defemph{right group action} $ \rho: A \times G \to A, (a,g) \mapsto a .g$ on a set $ A$ is a set map that satisfies $ (a . g_1).g_2 = a . (g_1 g_2)$ and $ a . e = a$ for all $ g_1, g_2 \in G$ and $ a \in A$. Any left group action $ \lambda$ can be turned into a right group action $ \lambda^{-1}: (a,g) \mapsto a .g \defeq g^{-1} .a$ (and vice versa). We verify that $ \lambda^{-1}$ is indeed a right action:
+ \begin{align*}
+	 (a .g_1^{-1}).g_2^{-1} \defeq g_2. (g_1.a) = (g_2 g_1) .a \defeq a . (g_2 g_1)^{-1} = a. (g_1 ^{-1} g_2 ^{-1}) .
+\end{align*}
+
+Every group has three natural actions on itself: for any fixed $ g \in G$ and every $ h \in G$, we have left multiplication $L_g(h) = g.h \defeq  gh$, right multiplication $R_g(h) = h .g \defeq  h g$, and conjugation  $ C_g(h) : (g , h) \mapsto   g h g^{-1}$.
+
+Let $ H$ be another group. A \defemph{semidirect product} of $ G$ and  $ H$ can be defined whenever there is a left action $ \lambda$ or a right action $ \lambda^{-1}$ of $ G$ on  $ H$. The two types of actions yield two isomorphic but distinct semidirect products with the following product structures:
+\begin{align}
+	\textrm{left action: }& G \rsd < \lambda>[] H:  (g_1,h_1) \rsd <>[]  (g_2,h_2) = (g_1g_2, h_1 \lambda_{g_1}(h_2)) \\
+	\textrm{right action: } & G \lsd < \lambda^{-1}>[] H : (g_1,h_1) \lsd <>[] (g_2,h_2) = \left( g_1 g_2, \lambda_{g_2}^{-1}(h_1) h_2 \right)  
+\end{align}
+
+\subsection{Lie Group and its Tangent Bundle}
+For Lie groups, we refer readers to Killrov Chapter 2 and 3. Let $ G$ be a real Lie group of dimension $ n$ with Lie algebra $ (\mathfrak{g}, [ \cdot , \cdot ] )$. Since $ \mathfrak{g} $ as a vector space is the tangent space $ \tg[ e]{ G}$ at identity $ e$, we can always choose a basis  $ E = \{e_i\}_{i=1}^{n}$ of $ \mathfrak{g} $ and represent any tangent vector $ \xi \in \mathfrak{g} $ via its coordinates $ x \in \rr^{n}$ under this basis, \emph{i.e.} $ \xi = \sum_{ i= 1}^{ n} x_i e_i$. We use ``vee'' $ \ve $ and ``hat'' $ \ha $ operations to convert between $ \xi$ and $ x$,  \emph{i.e.} $ \xi\ve = x$ and $ x\ha = \xi$.
+
+The tangent bundle $ TG \defeq \{(g,v): g \in G, v \in T_gG\} $ of  $ G$ is the union of all tangent spaces of  $ G$. Since multiplication and inversion of $ G$ are smooth maps, the left and right multiplication actions each induces a pushforward $ G$-action on the tangent bundle $ \tg[]{ G}$: \defemph{left translation action} $ g.(h,v) = (gh, \deri[h]{L_g}(v))$, or \defemph{right translation action} $(h,v).g = (hg, \deri[ h]{ R_g}(v))$. This induced action allows us to move the base point of all tangent vectors of $ G$ to the identity $ e$, so that all tangent vectors in $ TG$ are translated to the Lie algebra $ \mathfrak{g}$. 
+
+ The tangent bundle has a natural Lie group structure: if  $ *: G \times G \to G$ is the smooth Lie group multiplication of $ G$, then its differential $ \tg[ ]{ *}: \tg[ ]{ G} \times \tg[ ]{ G} \to \tg[ ]{ G}, ((g_1, v_1),(g_2,v_2)) \mapsto (g_1*g_2,g_1 .v_2 + v_1 . g_2)$ is the Lie group multiplication of $ \tg[ ]{ G}$. Notice that the second entry simply follows the Leibniz rule under $ \tg[ ]{ *}$.
+
+The conjugation action induces the following action on $ \tg[ ]{ G}$: $ (g,(h,v)) \mapsto  (ghg^{-1}, \deri[ h]{C_g }(v))$. Notice that when $ h = e$,  we have $ geg^{-1} =e$, so we obtain a $ G$-action on $ \mathfrak{g} $, namely the \defemph{adjoint action} $ \Ad: G  \times \mathfrak{g}  \to \mathfrak{g} , (g,v) \mapsto \tg[ e]{ C_g}(v)$. That is, $ \Ad$ is the infinitesimal conjugation action at the identity.
+\begin{remark}
+Any vector space $ V$, such as $ \tg[ e]{ G}$, is an additive/abelian Lie group. Any of its tangent space $ \tg[ v]{ V}$, including its Lie algebra, is canonically identified with $ V$. Its Lie algebra $ \mathfrak{v} $ is endowed with the trivial Lie bracket. The left and right translation actions of $ V$ on $ \tg[ v]{ V}$ simply shift the origin and therefore are trivial actions. Therefore, we use $ \tg[ e]{ G}$ instead of $ \mathfrak{g}$ whenever we need to distinguish the distinct Lie algebra structures between the two.
+\end{remark}
+
+In light of the remark, we can now define two semidirect product Lie groups using the left $ G$-action $ \Ad$ and the right $ G$-action $ \Ad^{-1}$ according to Eq \cref{1} :
+\begin{align}
+	G\rtimes_{\Ad} \tg[ e]{ G}:\quad  & (g_1, v_1) \rsd <>[] (g_2,v_2) = (g_1g_2, v_1+ \Ad_{ g_1}( v_2))\\ 
+					  & (g,v)^{-1} = (g^{-1}, - \Ad_{ g^{-1}}( v) );\\
+	G\ltimes_{\Ad^{-1}} \tg[ e]{ G}: \quad 	& (g_1,v_1) \lsd <>[] (g_2,v_2) = (g_1g_2, \Ad_{ g_2}^{-1}( v_1) + v_2), \\
+						& (g,v)^{-1} = (g^{-1}, -\Ad_{ g}( v)).
+\end{align}
+See Equations 6.1.1 and 6.4.1 of Holm's Geometric Mechanics Part II.
+
+This way, we can define \defemph{right and left trivialization maps} as
+\begin{align}
+	\textrm{ right trivialization: }  & \tg[ ]{ G} \to G \rsd <>[\Ad] \tg[ e]{ G}, \quad  (g,v) \mapsto (g, v .g^{-1}) ,\\
+	\textrm{left trivialization: } &\tg[ ]{ G} \to G \lsd <>[\Ad^{-1}] \tg[ e]{ G} ,\quad  (g,v) \mapsto (g, g^{-1}.v).
+\end{align}
+Note the unfortunate naming convention that the left action yields the right trivialization.
+\begin{prop}
+The left and right trivialization maps are both Lie group isomorphisms.
+\end{prop}
+That is, it is a diffeomorphism between $ \tg[ ]{ G}$ and the direct product manifold $ G \times \tg[ e]{ G} $ and respects the semidrect product group structure. The proof can be found in the Appendix. This trivializes the tangent part of the potentially curved $ \tg[ ]{ G}$ to a fixed vector space, which is a much more friendly object to work with.
+
+We now discuss the physical interpretation of this fixed vector space $ \mathfrak{g} $. By convention, under left trivialization, $ \mathfrak{g} $ represents the body frame tangent space, whereas under right trivialization $ \mathfrak{g} $ represents the spatial/world frame tangent space. This contrasts with the tangent bundle, where each $ \tg[ g]{ G}$ corresponds to the instantaneous inertial frame at $ g$, and the frame varies with $ g$. Insert Schematics. The adjoint action $\Ad$ manifests as similarity transform for matrix Lie groups, and can be understood as a change of basis operation. Specifically, at any current state $ g \in G$, $ \Ad$ transforms body frame tangent vectors to the spatial frame, i.e.\ $ \Ad_{ g}( v_b) = v_s$. Under a basis $ E$ of  $ \mathfrak{g} $ in the spatial frame,  $ \Ad_g$ can be represented by a change of basis matrix  $ [\Ad_g]$. We have $ [\Ad_g] (v_b\ve ) = (\Ad_g(v_b))\ve = v_s \ve$.
+
+
+Next, we turn to the Lie algebra. The most important operation here is the \defemph{adjoint representation} $ \ad: \mathfrak{g} \times \mathfrak{g} \to \mathfrak{g}$, which is obtained by differentiating the group action $ \Ad$ at identity  $ e$. The resulting skew-symmetric bilinear form precisely coincide with the Lie bracket of $ \mathfrak{g}$. For any fixed $ \xi \in \mathfrak{g}$, $ \ad_{ \xi}$ is linear and therefore under $ E$ can be represented by a matrix  $ [\ad_{\xi}]$ such that $ [\ad_{\xi}](\eta\ve ) = (\ad_{ \xi}(\eta))\ve = [\xi, \eta]\ve  $.
+
+Now that we have two semidirect Lie groups, we need to understand their Lie algebras. It turns out that both left and right trivializations yield the same Lie algebra! The intuition is that at the identity state, body frame and spatial frame coincide, so left and right trivializations should yield the same derivative $ \ad$ of the action $\Ad$. We denote this (semidirect sum) Lie algebra by either $ \mathfrak{g} \lsd <>[\ad] \tg[ e]{ G}$ or $ \mathfrak{g} \rsd <>[\ad] \tg[ e]{ G} $ to emphasize distinct Lie groups of origin. It is endowed with the following Lie bracket: for $ (\eta,r), (\xi, p) \in \mathfrak{g} \lsd <>[\ad] \tg[ e]{ G}$, we have
+\begin{align}
+	[(\eta, r), (\xi,p)] := \left( [\eta, \xi], [\eta, p ]+[r, \xi] \right) .
+\end{align}
+Notice that the second entry is simply the Leibniz rule on the original Lie bracket. Thus, we see that much like the induced multiplication $T*$ on the tangent bundle, the induced Lie bracket on the tangent bundle Lie algebra is the derivation of the original Lie bracket. After a direct computation in Appendix, we obtain the $ \Ad$ and  $ \ad$ operations of the semidirect product groups.
+\begin{prop}
+The trivializations of $ TG$ have adjoint actions
+ \begin{align}
+	 \textrm{right: }& \Ad_{ (g,r)}(\omega, v ) = \left( \Ad_{ g}( \omega), \Ad_{ g}(v)+ \ad_{ r} (\Ad_{ g}( \omega)) \right),\\
+		&  \left[ \Ad_{ (g,r)} \right] = \begin{pmatrix} \left[\Ad_{ g}\right] & 0 \\ \left[ \ad_{ r} \right] \left[\Ad_{ g}\right] & \left[\Ad_{ g} \right] \end{pmatrix};  \\
+	 \textrm{left: }& \Ad_{ (g, r)}(\omega, v ) = \left( \Ad_{ g}( \omega), \Ad_{ g}(v+ \ad_{ r} (\omega)) \right),\\
+		&  \left[ \Ad_{ (g,r)} \right] = \begin{pmatrix} \left[\Ad_{ g}\right] & 0 \\ \left[\Ad_{ g}\right] \left[ \ad_{ r} \right] & \left[\Ad_{ g} \right] \end{pmatrix}  .
+\end{align}
+and the same adjoint representation
+\begin{align}
+	\ad_{ (\eta, r)}( \xi, v) &=  ( \ad_{ \eta}(\xi), \ad_{ \eta}(v) + \ad_{ r}(\xi)), \\
+	\left[ \ad_{ (\eta,r)} \right] &= \begin{pmatrix} \left[ \ad_{ \eta} \right] &0\\ \left[ \ad_{ r} \right] & \left[ \ad_{ \eta} \right]    \end{pmatrix} . \\ 
+\end{align}
+\end{prop}
+A Lie group is \defemph{unimodular} if $ |\det [ \Ad_{ g}]| = 1$ for all $ g$. Based on the block triangular form of $ [ \Ad]$ from \cref{eq:general Ad}, we obtain $ \det [ \Ad_{ (g,r)}] = \det [ \Ad_{ g}] ^2$. Therefore, the tangent bundle and their trivializations of a unimodular Lie group remain unimodular.
+\subsection{The Exponential Map and Its Jacobians}
+Let $ \xi \in \mathfrak{g}$, then there exists a unique flow line $ \gamma_\xi : \rr \to G$ on $ G$ with constant velocity $ \xi$ starting at $ e$. The Lie group exponential map is defined by $ \xi \mapsto \gamma_\xi(1)$.  Moreover, since the exponential map is a local diffeomorphism, we can restrict the exponential map to its injectivity domain, and let $ D \subset \rr^{n}$ denote its corresponding coordinates domain under a basis $ E$. 
+
+Let $ G$ be a Lie group such that its Lie group exponential map is almost surjective (surjective up to measure zero set under the Haar measure) and denote its image as $ O$. For convenience we define the \defemph{exponential map} $ \exp: \rr^{n} \supset D \to O \subset G$ as the composition of $ \ha|_D$ and the Lie group exponential map. This way, we obtain a parametrization of $ G$ using $ D$, whose elements are called the \defemph{exponential coordinates} of $ G$. Since we construct $ \exp$ to be a diffeomorphism, it has an inverse $ \log: O \to D$. These two operations are the key to bridge the nonlinear group $ G$ and the vector space $ \mathfrak{g}$.
+
+The derivative $ \tg[ x]{ \exp}: \mathfrak{g}\cong \rr^{n}  \to \tg[ \exp\left( x \right)]{ G}  $ of $ \exp$ at $ x \in D$ does not coincide with the notion of Jacobian because its codomain is not in the same frame as $ \mathfrak{g} $. To fix this, we can either left or right translate the output back to $ \mathfrak{g}$. Therefore, the \defemph{left Jacobian} $ J_{\ell}$ and the \defemph{right Jacobian} $ J_r$ of $ \exp$ are defined as
+\begin{align}
+	J_{\ell}(x)[y] &\defeq \left( \tg[ \exp\left( x \right)]{ R_{\exp(-x)}} \circ \tg[ x]{ \exp}(y) \right)\ve  \\
+	J_r(x)[y] &\defeq \left( \tg[ \exp\left( x \right)]{ L_{\exp(-x)}} \circ \tg[ x]{ \exp}(y) \right)\ve  .
+\end{align}
+Again, we have the unfortunate naming mismatch that the left Jacobian is achieved by right translation. Since the Jacobians are represented by matrices, we can derive the following matrix definitions:
+\begin{align}
+   	J_\ell(x) &= \int_{ 0}^{ 1} \exp( t[\ad_{x\ha }])\ \d t \ = \sum_{ k= 0}^{\infty} \frac{[ \ad_{ x\ha }]^{k}}{(k+1)!} , \label{eq:mat_Jl}\\
+	J_r(x) &= \int_{ 0}^{ 1} \exp( -t[\ad_{x\ha }])\ \d t \ = \sum_{ k= 0}^{\infty} \frac{[- \ad_{ x\ha }]^{k}}{(k+1)!}  . \label{eq:mat_Jr}
+\end{align}
+
+\subsection{$ \SO(3)$ and $ \SE(3)$}
+
+The 3D \defemph{special orthogonal group} $ \SO(3)$ consists of all rotations of $ \rr^3$. Any tangent bundle or its trivializations derived from $ \SO(3)$ exhibit special behavior due to an exceptional fact: $ \dim \so(3) = \dim \rr^3 = 3$. Via the hat map $ x\ha = \begin{pmatrix} 0&-x_3&x_2 \\ x_3&0&-x_1 \\ -x_2 & x_1 &0 \end{pmatrix}$, this coincidence allows the identification of $ (\rr^3, \times )$ with $ (\so(3), [ \cdot , \cdot  ])$ under the standard basis $E \defeq \{ e_i\ha\}_{i=1}^{3}$,. As a result, $ \Ad$ and $ \ad$ take the remarkably simple matrix forms: $ [ \Ad_{ R}] = R$, $ R \in \SO(3)$ and $ [\ad_{ x\ha}] = x\ha$, $ x\ha \in \so(3)$. Under this basis, the injectivity domain $ D$ of the exponential map of $ \SO(3)$ is $ B_{\pi}^3$, a centered solid ball of radius $ \pi$ in $ \rr^3$.
+
+The 3D \defemph{special Euclidean group} $ \SE(3)$ is defined as $ \SO(3) \rsd <>[\Ad] \rr^3$, which encodes all 3D rigid-body motions consisting of rotations and translations. By the dimension miracle above, 3D translations $ \rr^3$ can be identified as the coordinate space of $ \so(3)$. Under this identification, it follows that $ \SE(3)$ is the right trivialization of $ \TSO(3)$. We have
+\begin{align}
+	[ \Ad_{ (R,r)} ] &= \begin{pmatrix} R &0\\ r\ha R & R \end{pmatrix} , \qquad [ \ad_{ (\eta,r)}] = \begin{pmatrix} \eta\ha & 0 \\ r\ha & \eta\ha  \end{pmatrix} .
+\end{align}
+
+
+
+\subsection{Unit Quaternions}
+
+The set of unit quaternions is $ \unitq \defeq \{a+bi+cj+dk \in \mathbb{H}:  a^2+b^2+c^2+d^2 =1\}$. It is diffeomorphic to $ S^3$ and isomorphic as a Lie group to $ \SU(2)$, the real Lie group of $ 2\times 2$ unitary matrices. Its Lie algebra $\tg[ 1]{ \unitq}$ is the set of pure quaternions $ \pureq \defeq \{bi+cj+dk \in \mathbb{H}\} $, which can be easily identified as $ \rr^3$ under the basis $ \{i,j,k\} $, endowed with the Lie bracket $ [v_1,v_2] \defeq 2 v_1 \times v_2$. Therefore, we treat $ \ve $ and $ \ha $ as identity in this case and omit them, so we can use $ \ha $ and $ \ve $ from $ \SO(3)$ and $\SE(3)$ without ambiguity. Let $ q \otimes r$ for any $ r \in r^3$ denote quaternion multiplication by treating $ r$ as a pure quaternion. It is well-known that $ \unitq$ is a double-cover of  $ \SO(3)$, so we can substitute the cumbersome 6-parameter rotation matrices with 4-parameter unit quaternions under this covering map $ \Rot : \unitq \to \SO(3)$.  Then the derivative $ \tg[ 1]{ \Rot}: \pureq \to \so(3)$ sends $ i,j,k$ to  $ 2 E_1 , 2 E_2 , 2 E_3 $. Because $ \tg[ 1]{ \Rot}$ doubles the basis vectors, the coordinates in $ \qliealg$ are half of their image coordinates in $ \so(3)$. 
+
+We emphasize that due to different choices of bases in the Lie algebras, $  \unitq$ and  $ SO(3)$ represented by $ \unitq$ do not always share the same operations. A well-know example is that the exponential map of the latter has half the angle than that of the former. Therefore, we denote the latter unit quaternions by  $ \SO(3)_q$ with Lie algebra $ \so(3)_q$ to remove this ambiguity. 
+As a result, the injectivity domain of  $ \so(3)_q$ is $ B^3_{\pi /2}$, a centered ball in $ \rr^3$ with radius $ \pi /2$.
+
+Due to the double covering, left/right translation of $ q \in \SO(3)_q$ on angular velocity body-frame coordinates $ \omega_B$ or spatial frame coordinates $ \omega_S$ also scales the coordinates by half to convert $ \SO(3)$ tangent coordinates to $ \SO(3)_q$ tangent coordinates:
+\begin{align}
+	\frac{1}{2} q \otimes \omega_B = q.\omega_B =  &\dot{q} = \omega_S.q = \frac{1}{2} \omega_S \otimes q\\
+	\omega_B = 2 q^* . \dot{q}, \qquad & \omega_S = 2 \dot{q} .q^* , 
+\end{align}
+where $ q^* = q^{-1} $ is the quaternion conjugate. For any $ r\ha \in \so(3)$, we have
+\begin{align}
+	\oqAd_{ q }( r) &= q .r .q^* = 2\left(\frac{1}{2} q \otimes r \right) \otimes q^*  = 2 q \otimes \left( \frac{1}{2} r \otimes q^*  \right)  = q \otimes r \otimes q^*  = \Rot(q) r ,\label{eq:Adq} \\
+	\oqad_{ \eta}(r) &= 2 \eta \times r = 2 \eta\ha r , \quad [ \ad_{ \eta}] = 2 \eta\ha .\label{eq:adq} 
+\end{align}
+For convenience, we drop $ \otimes $ when there is no ambiguity, such as $ q_1 q_2 \defeq q_1 \otimes q_2 $ and $ q r q^* \defeq q \otimes r \otimes q^*$. 
+
+We now present the exponential map, its left and right Jacobians and their inverses, and the logarithmic map of $ \SO(3)_q$, which simply requires converting $ \so(3)_q$ to $ \so(3)$ coordinates in the beginning and applying $ \so(3)$ formula verbatim. We adopt the Rodriguez-style formula due to their numerical advantages. Please see \cite{d} for their derivations. 
+Let $ \eta \in B^3_{\pi /2}$ be a coordinate vector of $ \so(3)_q$, $ x \defeq 2\eta$ be the corresponding coordinates in $ \so(3)$, $ \theta \defeq \norm{ x}$ (the rotation angle), $ \alpha \defeq \sinc(\theta)$, $ \beta \defeq  \sinc\left( \frac{\theta}{2} \right)^2 $, $ \gamma \defeq \frac{\alpha}{ \beta}$, and $ \delta \defeq  \frac{1- \alpha}{ \theta^2}$, $ X \defeq x\ha \in \so(3)$,  and $ q \in \unitq$ where $ q_s$ is the scalar part and  $ q_p$ is the pure quaternion part. Then the exponential and logarithmic maps and their Jacobians of $ \SO(3)_q$ is
+\begin{align}
+	\exp\left( \eta \right) &= \begin{pmatrix} \cos \left( \frac{\theta}{2} \right) \\ \sinc\left( \frac{\theta}{2} \right)  \eta \end{pmatrix} , \\
+	J_\ell(\eta) &= I + \frac{1}{2} \beta X + \delta X^2 ,  \\
+	J_r(\eta) &= J_{\ell}(\eta)^{T}\\
+	\log(q) &= \frac{q_p}{ \norm{ q_p} } \theta, \qquad \theta = 2 \atan2(\norm{ q_p}, q_s) .\\
+	J_{\ell}^{-1}(\eta) &= I - \frac{1}{2} X + \frac{1- \gamma}{ \theta^2} X^2, \\
+	J_r^{-1}(\eta) &= J_{\ell}^{-1}(\eta)^{T} .
+\end{align}
+
+In order to use quaternions for $ \SE(3)$, we simply substitute $ \SO(3)_q$ for $ \SO(3)$ in its definition and define
+\begin{align*}
+	\SE(3)_q \defeq \SO(3)_q \rsd < \oqAd >[] \rr^3,
+\end{align*}
+where $ \rr^3$ is still identified with $ \so(3)$, not $ \so(3)_q$. Since $ \oqAd_q = \Ad_{ R(q)}$ by \cref{eq:Adq}, the only difference between $ \SE(3)_q$ and $ \SE(3)$ is the rotational part, and everything else remains the same. The group structure is
+\begin{align}
+	(q_1, r_1) (q_2, r_2) = (q_1 q_2, r_1 + \oqAd_{ q_1}( r_2)),\\
+	(q,r)^{-1} = (q^* , - \oqAd_{q^*}(r)).
+\end{align}
+Again we have the Rodriguez-style formula for the exponential map and related operations from \cite{} . Since we have already taken care of the conversion from $ \so(3)_q$ coordinates to $ \so(3)$ coordinates for these operations in the $ \SO(3)_q$ case, the operations for $ \SE(3)_q$ stay the same as those for $ \SE(3)$:
+\begin{align}
+	\exp\left( \eta, r \right) = \begin{pmatrix} \exp\left( \eta \right)\\ J_\ell(\eta) r \end{pmatrix} .\\
+	Q(\eta,r) = -\frac{\beta}{2} r\ha  + \delta (\eta\ha r\ha + r\ha \eta\ha ) + (\eta \cdot r) \left( \frac{ \beta- \alpha}{ \theta^2} \eta\ha  +  \frac{\frac{\beta}{2} - 3 \delta}{ \theta^2} (\eta\ha)^2  \right).\\
+	\log(q,r) = \begin{pmatrix} \log(q)\\ J_{\ell}^{-1}(\log(q)) r \end{pmatrix} \\
+	- J_{\ell}^{-1}(\eta)Q(\eta,r) J_{\ell}^{-1}(\eta) = - \frac{1}{2} r\ha + \frac{1- \gamma}{\theta^2} (Xr\ha +r\ha X) + \frac{\eta \cdot r}{\theta^{4}} \left( \frac{1}{\beta} + \gamma - 2 \right) X^2 .\\
+	J_r^{-1}(\eta,r) = \begin{pmatrix} (J_\ell^{-1}(\eta))^{T} & 0\\ (- J_{\ell}^{-1}(\eta)Q(\eta,r) J_{\ell}^{-1}(\eta))^{T} & (J_\ell^{-1}(\eta))^{T}  \end{pmatrix}
+\end{align}
+
+Applying general formula \cref{eq:} yields
+\begin{align}
+	\left[\eqAd_{ (q,r)}\right] &= \left[ \Ad_{ (\Rot(q),r)} \right],   \\ 
+	\eqad_{ (\eta_1,r_1)}(\eta_2,r_2) &= \left( \oqad_{ \eta_1}(\eta_2), \oqad_{ \eta_1}(r_2) + \oqad_{ r_1}(\eta_2)\right)\\ 
+	\left[\eqad_{( \eta,r)} \right] &= 2 \left[ \ad_{ (\eta, r)} \right] .
+\end{align}
+
+\section{Theoretical Development}
+
+The 6DOF state space consists of the configuration space $ \SE(3)$ and its velocities in either the body frame or the spatial frame. We will focus on the derivation of left-trivialized 6DOF phase space because body-frame measurements and control are more common for spacecraft and robot navigation. If spatial frame is preferred, the derivation would exactly mirror the one below. Note that if fewer or more states are required, such as removing angular velocity as a state or adding IMU biases, our derivations can be easily modified to adapt to the needs. This is the advantage of not having to embed the state in a matrix.
+
+\subsection{Left-trivialized $\TSE(3)_q$}
+Consider $ G = \SE(3)_q = \SO(3)_q \rsd< \oqAd>[] \rr^3 $. We want to find the Lie group structure of $ TG$ under left-trivialization. Let $ \left( (q_1,r_1),(\omega_1,v_1) \right), \left( (q_2,r_2),(\omega_2,v_2) \right) \in \SE(3)_q \lsd<\eqAd^{-1}>[]\se(3) = \left( \SO(3)_q \rsd<\oqAd>[] \rr^3 \right) \lsd<\eqAd^{-1}>[] \left( \so(3) \rsd < \ad >[] \rr^3 \right)   $. Recall that in $ \SE(3)_q$, the inverse is
+\begin{align*}
+	(q,r)^{-1} &= \left( q^{-1}, - \oqAd_{ q^{-1}}( r) \right)  .
+\end{align*}
+Applying semidirect product rules from \cref{eq:}  yields
+\begin{align*}
+	& \quad \left( (q_1,r_1),(\omega_1,v_1) \right) * \left( (q_2,r_2),(\omega_2,v_2) \right) \\
+	&= \left( (q_1,r_1)* (q_2,r_2), \eqAd_{ (q_2,r_2)}^{-1}( \omega_1,v_1) + ( \omega_2,v_2) \right)  \\
+	&= \left( \left (q_1 q_2, r_1 + \oqAd_{ q_1}( r_2) \right), \eqAd_{ \left(q_2^{-1},- \oqAd_{ q_2^{-1}}( r_2)\right)}( \omega_1,v_1) + ( \omega_2,v_2) \right)  \\
+	&= \left( \left(q_1 q_2, r_1 + \oqAd_{ q_1}( r_2)\right), \left( \oqAd_{ q_2^{-1}}( \omega_1 ) + \omega_2, \oqAd_{ q_2^{-1}} v_1 + \ad_{-\oqAd_{ q_2^{-1}}( r_2) } \left( \oqAd_{ q_2^{-1}}( \omega_1)\right)+ v_2 \right) \right) \right)   \\
+	&= \left( (q_1 q_2, r_1 + \oqAd_{ q_1}( r_2)), ( \oqAd_{ q_2^{-1}}( \omega_1 ) + \omega_2, \oqAd_{ q_2^{-1}}(v_1) + \oqAd_{ q_2^{-1}}\left( \ad_ {\omega_1}( r_2) \right) + v_2)) \right)   \\
+	&= \left( (q_1 q_2, r_1 + \oqAd_{ q_1}( r_2)), ( \oqAd_{ q_2^{-1}}( \omega_1 ) + \omega_2, \oqAd_{ q_2^{-1}}\left(v_1 + \ad_{\omega_1}( r_2 )\right) + v_2)) \right)   \\
+	 &= \left( (q_1q_2, r_1 + q_1 r_2 q_1^* ), (q_2^* \omega_1 q_2 + \omega_2, q_2^* (v_1 + \omega_1 \times r_2)q_2 + v_2 ) \right)  .
+\end{align*}
+\end{document}

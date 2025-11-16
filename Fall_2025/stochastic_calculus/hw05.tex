@@ -1,0 +1,134 @@
+\documentclass[12pt]{article}
+\input{../preamble.tex}
+
+\begin{document}
+\centerline {\textsf{\textbf{\LARGE{Homework 5}}}}
+\centerline {Jaden Wang}
+\vspace{.15in}
+\begin{problem}[4.22]
+We wish to find a sequence of stopping time tending to $ \infty$ such that it reduces $ N_t$. Define
+ \begin{align*}
+	T_n(\omega) = \{ \inf t\geq 0: |U(\omega) M_t(\omega)| \geq n \}.  
+\end{align*}
+We first show that $ T_n(\omega) \uparrow \infty \ \forall \ \omega$.  Since  $ M$ is continuous in  $ t$ and  $ U$ does not depend on time, $ N_t$ is continuous in $ t$. By a fact from class, we obtain the result.
+
+Second, since $ M$ is a CLM, there exists a sequence of stopping time  $ (S_n)$ that reduces it. Since $ T_n \uparrow \infty$, from class we know that $ R_n := T_n \wedge S_n$ reduces $ M$ as well.  we have $M_t^{R_n} \in L^{1}$
+
+It remains to show that $ (R_n)$ reduces $ N_t$.  Since $ |N_t^{R_n}| = |U M_t^{R_n}| \leq n $ by definition of $ R_n$, we have $ N_t^{R_n} \in L^{1}$ so we can consider conditional expectation on it:
+ \begin{align*}
+	\mathbb{E}\left[ N_t^{R_n}| \Sigma_s \right] &= \mathbb{E}\left[ U M_t^{R_n} | \Sigma_s \right]  \\
+	&= U \mathbb{E}\left[ M_t^{R_n} | \Sigma_s \right] && U \in \Sigma_0 \subset \Sigma_s  \\
+	&= U M_s^{R_n} \\
+	&= N_s^{R_n} .
+\end{align*}
+\end{problem}
+\begin{problem}[4.24]
+\begin{enumerate}[label=(\arabic*)]
+	\item Since $ M$ is CLM and  $ \mathbb{E}\left[ M_0 \right] =0 < \infty$, from class we know that $ (T_n)$ reduces $ M$.
+
+		$ ( \subseteq ):$ if $ \lim_{ t \to \infty} M_t(\omega) = C < \infty$, we want to show that $ T_n(\omega) = \infty$ for some $ n$. Since  $ M$ is continuous, for any $ \epsilon>0$, there exists a $ T$  s.t.\ $|C - M_T(\omega) | < \epsilon$ and we know that  $ \sup_{t \geq 0 } M_t(\omega)$ is bounded by the max of $ \max_{[0,T]} M_t(\omega)$ and $ |C| + \epsilon$. Therefore, the supremum is bounded and we can take any $ n$ greater than this supremum to get  $ T_n(\omega) = \infty$.
+		
+		$ ( \supseteq):$ if $ T_n(\omega) = \infty$ for some $ n$, this implies  $ |M_t(\omega)| \leq n$ for all $ t \geq 0$. Since  $ M_t ^{T_n} = M_t$ is a martingale with continuous path, by the Martingale Convergence it has an a.s.\ limit $ M_{\infty}(\omega)$ and is finite since $ M_t(\omega)$ is bounded.
+
+	$ (\subseteq) :$ suppose $ T(\omega) =\infty$, \emph{i.e.}  $ |M_t(\omega)| \leq n$ for all $ t \geq 0$. Since $ M_t^{T_n}$ is a martingale, $ M_0 = 0 \in L^2$, and $ \mathbb{E}\left[ (M_t^{T_n})^2 \right] \leq \sup_{t\geq 0 } (M_t^{T_n})^2 \leq n^2$, we apply the TFAE to obtain $ \mathbb{E}\left[ \left\langle M^{T_n}, M^{T_n} \right\rangle_{\infty} \right] <\infty$. It follows that $\left\langle M^{T_n}, M^{T_n} \right\rangle_\infty < \infty $ a.s. Since $ M_\infty(\omega) = M_\infty^{T_n}(\omega)$, we finally obtain $  \left\langle M,M \right\rangle_\infty(\omega) <\infty$ a.s.
+\item 
+
+	$ ( \subseteq ):$ let $ \left\langle M,M \right\rangle_\infty( \omega) < \infty$. Since $ \left\langle M,M \right\rangle_t$ is an increasing process, picking any $ n > \left\langle M,M \right\rangle_\infty(\omega)$ yields $ S_n(\omega) =\infty$.
+
+	$ ( \supseteq ):$ suppose there exists an $ n$  s.t.\ $ \left\langle M,M \right\rangle_t(\omega) \leq n \ \forall \ t$, then by increasing process and Monotone Convergence Theorem,  $ \left\langle M,M \right\rangle_\infty (\omega) \leq n$.
+
+	$ ( \subseteq ):$ under the same assumption, first notice that $ S_n$ is a stopping time because $ \left\langle M,M \right\rangle_t$ is continuous and $ \{n\} $ is a closed set. Thus we have $ \mathbb{E}\left[ \left\langle M^{S_n},M^{S_n} \right\rangle_\infty \right] \leq n<\infty$. Since $ M$ is a CLM, $ M^{S_n}$ is also a CLM. Since $ M_0=0 \in L^2$, we apply the TFAE to obtain that $ M^{S_n}$ is a martingale and bounded in $ L^2$. Since $ M_t^{S_n}(\omega) = M_t(\omega)$, by Martingale Convergence we obtain that $ \lim_{ t \to \infty}  M_t^{Sn}(\omega) = \lim_{ t \to \infty} M_t(\omega)$ converges a.s. and is a.s. finite since it is bounded in $ L^2$.
+
+Putting (1) and (2) together, we obtain the final a.s. set equality.
+\end{enumerate}
+\end{problem}
+
+\begin{problem}[4.25]
+\begin{enumerate}[label=(\arabic*)]
+	\item First, $ T_ \epsilon^{n}$ is a stopping time because $ \left\langle M^{n},M^{n} \right\rangle_t$ is continuous and $ [ \epsilon, \infty)$ is a closed set. Second, since $ M^{n}$ is a CLM, $ M^{n, \epsilon}$ is also a CLM. By definition we have  $ \left\langle M^{n, \epsilon}, M^{n, \epsilon} \right\rangle_t \leq \epsilon$, so by increasing process and MCT $ \left\langle M^{n, \epsilon}, M^{n, \epsilon} \right\rangle_\infty \leq \epsilon$ exists. Since $ M_0 = 0 \in L^2$, TFAE yields that $ M_t^{n, \epsilon}$ is a true martingale and is bounded in $ L^2$.
+	\item The previous TFAE also yields $ \mathbb{E}\left[ |M_t^{n, \epsilon}|^2 \right]  = \mathbb{E}\left[ \left\langle M^{n, \epsilon}, M^{n, \epsilon} \right\rangle_t \right] \leq \epsilon $. Applying Doob's inequality, we obtain
+	\begin{align*}
+		\mathbb{E}\left[ \sup_{t \geq 0 } |M_t^{n, \epsilon}|^2 \right] \leq \left( \frac{2}{2-1} \right) ^2 \mathbb{E}\left[ |M_t^{n, \epsilon}|^2 \right] \leq 4 \epsilon . 
+	\end{align*}
+\item Since when $ T_{ \epsilon}^{n} = \infty$, we have $ M_t^{n} = M_t^{n, \epsilon}$, we can rewrite
+	\begin{align*}
+		\mathbb{P}\left( \sup_{t\geq 0 } |M_t^{n}| \geq a \right) &= \mathbb{P}\left( \{ \sup_{t\geq 0 } |M_t^{n, \epsilon}| \geq a\}  \cap \{T_ \epsilon^{n} = \infty\}  \right)  + \mathbb{P}\left( \{\sup_{t\geq 0 } |M_t^{n}| \geq a\} \cap \{T_ \epsilon^{n} < \infty\}   \right) \\
+									  &\leq \mathbb{P}\left( \{ \sup_{t\geq 0 } |M_t^{n, \epsilon}| \geq a\} \right) + \mathbb{P}\left( T_ \epsilon^{n} < \infty \right) 
+	\end{align*}
+by monotonicity.
+By maximal inequality of martingale, we can bound the first term as
+\begin{align*}
+	\frac{2}{a} \mathbb{E}\left[ \sup_{ t \geq 0 } |M_t^{n, \epsilon}| \right] \leq \frac{4 \sqrt{ \epsilon} }{ a} 
+\end{align*}
+Since quadratic variation is increasing, the second term can be bounded by
+\begin{align*}
+	\mathbb{P}\left( \left\langle M^{n}, M^{n} \right\rangle_{\infty} > \epsilon \right) 
+\end{align*}
+Let $ \epsilon \to 0$ and $ n \to \infty$, then by the assumption that $ \lim_{ n \to \infty} \left\langle M^{n}, M^{n} \right\rangle_\infty =0$ in probability, we obtain that
+\begin{align*}
+	\lim_{ n \to \infty} \mathbb{P}\left( \sup_{t\geq 0 } |M_t^{n}| \geq a \right) = 0 .
+\end{align*}
+Since $ a>0$ is arbitrary, this converges in probability. 
+
+\end{enumerate}
+\end{problem}
+
+\begin{problem}[2]
+	Since $ M$ is a Gaussian process, and as a martingale$ \mathbb{E}\left[ M_t \right] = \mathbb{E}\left[ M_0 \right] =0$, $ M$ is a centered Gaussian process and $ M_{t+s} - M_t$ is a centered Gaussian. To show that $ M_{t+s} - M_t$ is independent of $ \sigma(M_r: r \in [0,t])$, it suffices to show that $ \Cov\left( M_{t+s} - M_t , M_r \right) =0$. We have
+\begin{align*}
+	\mathbb{E}\left[ (M_{t+s} - M_t ) M_r \right] &= \mathbb{E}\left[ \mathbb{E}\left[ M_{t+s}M_r | \Sigma_t \right] - M_tM_r \right] \\
+						      &= \mathbb{E}\left[ \mathbb{E}\left[ M_{t+s} | \Sigma_t \right] M_r - M_t M_r  \right] && M_r \in \Sigma_r \subset \Sigma_t \\
+	&= \mathbb{E}\left[ M_tM_r - M_tM_r \right] =0 .
+\end{align*}
+
+Since $ M_t$ is Gaussian,  we know $ M_t \in L^2$. Since $ M$ is also a continuous martingale with  $ M_0=0$, by TFAE we conclude that $ M^2 - l$
+
+We wish to show that $ M_t^2 - \mathbb{E}\left[ M_t^2 \right] $ is a continuous martingale, so by (indist) uniqueness of quadratic variation, we would obtain that $ \left\langle M,M \right\rangle_t = \mathbb{E}\left[ M_t^2 \right] $ which is a deterministic continuous monotone nondecreasing (by definition of quadratic variation) function. Consider
+\begin{align*}
+	\mathbb{E}\left[ \left( M_t^2 - \mathbb{E}\left[ M_t^2 \right]  \right) | \Sigma_s \right] &= \mathbb{E}\left[ M_t^2 | \Sigma_s \right] - \mathbb{E}\left[ \mathbb{E}\left[ M_t^2 \right] | \Sigma_s \right]  \\
+	&= \mathbb{E}\left[ M_t^2 -M_s^2 + M_s^2 | \Sigma_s \right] - \mathbb{E}\left[ \mathbb{E}\left[ M_t^2 - M_s^2 + M_s^2 \right] | \Sigma_s  \right]  \\
+	&= \mathbb{E}\left[ M_t^2 - M_s^2 | \Sigma_s \right] + M_s^2 - \underbrace{ \mathbb{E}\left[ \mathbb{E}\left[ M_t^2 - M_s^2 \right] | \Sigma_s \right]  }_{ \textrm{ tower}  }- \mathbb{E}\left[ M_s^2 \right]  \\
+	&= M_s^2 - \mathbb{E}\left[ M_s^2 \right] .
+\end{align*}
+This shows that it is indeed a continuous martingale. 
+\end{problem}
+
+\begin{problem}[3]
+First, we establish the following equality:
+\begin{align*}
+	\mathbb{E}\left[ M_{t_i} A_{t_{i-1}} \right] &= \mathbb{E}\left[ \mathbb{E}\left[ M_{t_i} A_{t_{i-1}} | \Sigma_{t_{i-1}} \right]  \right]  \\
+						     &= \mathbb{E}\left[ \mathbb{E}\left[ M_{t_i} | \Sigma_{t_{i-1}} \right] A_{t_{i-1}} \right] &&  A_{t_{i-1}} \in \Sigma_{t_{i-1}}\\
+&= \mathbb{E}\left[ M_{t_{i-1}} A_{t_{i-1}} \right]  .
+\end{align*}
+Since both $ M$ and $ A$ are bounded, take the usual mesh, we have
+ \begin{align*}
+	\left|\sum_{ i= 1}^{ p_n} M_{t_i} (A_{t_i} - A_{t_{i-1}}) \right| \leq C A \leq C' .
+\end{align*}
+Thus, by bounded convergence theorem, we have
+\begin{align*}
+	\mathbb{E} \int_{ 0}^{ \infty} M_t \d A_t  &= \mathbb{E}\left[ \lim_{ n \to \infty}  \sum_{ i= 1}^{ p_n} M_{t_i} (A_{t_i} - A_{t_{i-1}}) \right] \\
+	&= \lim_{ n \to \infty} \sum_{ i= 1}^{ p_n} \left( \mathbb{E}\left[ M_{t_i}A_{t_i} \right] - \mathbb{E}\left[ M_{t_i} A_{t_{i-1}} \right]  \right)   \\
+	&= \lim_{ n \to \infty} \sum_{ i= 1}^{ p_n} \left(  \mathbb{E}\left[ M_{t_i}A_{t_i} \right] - \mathbb{E}\left[ M_{t_{i-1}} A_{t_{i-1}} \right]  \right)  \\
+	&= \mathbb{E}\left[ M_t A_t \right] - \mathbb{E}\left[ M_0A_0 \right]  && \textrm{telescope} \\
+	&= \mathbb{E}\left[ M_t A_t \right]  .
+\end{align*}
+Since $ \mathbb{E}\left[ M_t A_t \right] $ is bounded, by bounded convergence theorem we can take $ t \to \infty$ for the equality to hold.
+\end{problem}
+\begin{problem}[4]
+	$ (\implies):$ this follows immediately from the uniqueness of quadratic variation. Suppose $ 0\leq a \leq b$ and $ M_t = M_a$ a.s. for all $ t \in [a,b]$. Then consider $ M_a$ as a martingale with contant sample paths and the stopped CLM $ N_t = M_{t+a}^{b}$ with $ N_0 = M_a$. Since they equal for all $ t \geq 0$, by uniqueness, $ \left\langle M_a, M_a \right\rangle_t = \left\langle N, N \right\rangle_t$ a.s. In particular, we have a.s.
+	\begin{align*}
+		\left\langle M,M \right\rangle_b &= \left\langle M_{b-a+a}^{b} , M_{b-a+a}^{b} \right\rangle \\
+						 &=\left\langle N,N \right\rangle_{b-a} \\
+						 &= \left\langle M, M \right\rangle_a .
+	\end{align*}
+$ (\impliedby):$  First, since the rationals are dense in the reals, and $ M_t$ and  $ \left\langle M,M \right\rangle_t$ are continuous, it suffices to prove for $ a=q,b \in \qq$ and perform the usual countable intersection. Define $ N_t := M_t - M_{t \wedge q}$ (notice that $ N_0 = M_0 - M_0 = 0$) and $ T_q = \inf\{ t > 0: \left\langle N,N \right\rangle_t >0 \}$. Since $ (0,\infty)$ is open, $ T_q$ is a stopping time for  $ ( \Sigma_{t+})$. Under the usual condition of right-continuous filtration, $ T_q$ is indeed a stopping time for  $ ( \Sigma_t)$. Moreover, since $ M$ is a CLM, stopped process $ M_{t \wedge q}$ is also a CLM, thus $ N_t $ and $ N_t^{T_q}$ are CLMs. Suppose $ \left\langle M,M \right\rangle_b = \left\langle M,M \right\rangle_q$ where $ b \geq q$. 
+
+If $ T_q < q$, we have  $ N_t^{T_q} = M_{t \wedge T_q} - M_{t \wedge T_q} = 0$ so $ \left\langle N^{T_q}, N^{T_q} \right\rangle_t \equiv 0$ a.s. but this contradict with the definition of $ T_q$. So we must have $ T_q \geq q$. By the definition of $ T_q$, we have
+ \begin{align*}
+	 0 \equiv \left\langle N^{T_q}, N^{T_q} \right\rangle_t &= \left\langle M_{t \wedge T_q} - M_{t \wedge q \wedge T_q} , M_{t \wedge T_q} - M_{t \wedge q \wedge T_q}  \right\rangle \\
+	&=  \left\langle M_{t \wedge T_q} - M_{t \wedge q} , M_{t \wedge T_q} - M_{t \wedge q}  \right\rangle .
+\end{align*}
+Since $ N_0 = 0$, we conclude that $M_{t \wedge T_q} = M_{t \wedge q}$ a.s. Thus, $ M_{b \wedge T_q} = M_q$. If we show that $ b \leq T_q$, we are done. This can be shown from the fact that $ \left\langle M,M \right\rangle_t$ is an increasing process so $ \left\langle M,M \right\rangle_t = \left\langle M,M \right\rangle_q$ for all $ t \in [q,b]$. But $ \left\langle N,N \right\rangle_t = \left\langle M_t - M_q, M_t - M_q \right\rangle$ for $ t \in [q,b]$. 
+
+\end{problem}
+\end{document}

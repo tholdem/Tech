@@ -1,10 +1,10 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.12.29)  4 NOV 2025 12:05
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.12.29)  13 NOV 2025 16:22
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**nstgro.tex
-(./nstgro.tex
+**hw05.tex
+(./hw05.tex
 LaTeX2e <2024-11-01> patch level 1
 L3 programming layer <2024-12-09>
 (/usr/local/texlive/2024/texmf-dist/tex/latex/base/article.cls
@@ -23,7 +23,7 @@ File: size12.clo 2024/06/29 v1.4n Standard LaTeX file (size option)
 \abovecaptionskip=\skip49
 \belowcaptionskip=\skip50
 \bibindent=\dimen141
-) (./preamble.tex (/usr/local/texlive/2024/texmf-dist/tex/latex/standalone/standalone.sty
+) (../preamble.tex (/usr/local/texlive/2024/texmf-dist/tex/latex/standalone/standalone.sty
 Package: standalone 2022/10/10 v1.3b Package to include TeX sub-files with preambles
  (/usr/local/texlive/2024/texmf-dist/tex/latex/tools/shellesc.sty
 Package: shellesc 2023/07/08 v1.0d unified shell escape interface for LaTeX
@@ -597,16 +597,8 @@ Package bm Info: No bold for \U/msb/m/n, using \pmb.
 \symboldstmry=\mathgroup12
 Package bm Info: No bold for \U/rsfs/m/n, using \pmb.
 LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 149.
-) (/usr/local/texlive/2024/texmf-dist/tex/latex/l3packages/xparse/xparse.sty (/usr/local/texlive/2024/texmf-dist/tex/latex/l3kernel/expl3.sty
-Package: expl3 2024-12-09 L3 programming layer (loader) 
- (/usr/local/texlive/2024/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
-File: l3backend-pdftex.def 2024-05-08 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count327
-\l__pdf_internal_box=\box109
-))
-Package: xparse 2024-08-16 L3 Experimental document command parser
 )
-LaTeX Info: Redefining \atan2 on input line 130.
+LaTeX Info: Redefining \atan2 on input line 100.
  (/usr/local/texlive/2024/texmf-dist/tex/latex/scalerel/scalerel.sty
 Package: scalerel 2016/12/29 v1.8 Routines for constrained scaling and stretching of objects, relative to a reference object or in absolute terms
 \thesrwidth=\skip65
@@ -619,64 +611,64 @@ Package: scalerel 2016/12/29 v1.8 Routines for constrained scaling and stretchin
 ) (/usr/local/texlive/2024/texmf-dist/tex/latex/stackengine/stackengine.sty
 Package: stackengine 2021/07/22 v4.11\ Stacking text and objects in convenient ways
  (/usr/local/texlive/2024/texmf-dist/tex/generic/listofitems/listofitems.sty (/usr/local/texlive/2024/texmf-dist/tex/generic/listofitems/listofitems.tex
-\loi_cnt_foreach_nest=\count328
-\loi_nestcnt=\count329
+\loi_cnt_foreach_nest=\count327
+\loi_nestcnt=\count328
 )
 Package: listofitems 2024/03/09 v1.65 Grab items in lists using user-specified sep char (CT)
 )
-\c@@stackindex=\count330
+\c@@stackindex=\count329
 \@boxshift=\skip72
 \stack@tmplength=\skip73
 \temp@stkl=\skip74
 \@stackedboxwidth=\skip75
-\@addedbox=\box110
-\@anchorbox=\box111
-\@insetbox=\box112
-\se@backgroundbox=\box113
-\stackedbox=\box114
-\@centerbox=\box115
-\c@ROWcellindex@=\count331
+\@addedbox=\box109
+\@anchorbox=\box110
+\@insetbox=\box111
+\se@backgroundbox=\box112
+\stackedbox=\box113
+\@centerbox=\box114
+\c@ROWcellindex@=\count330
 ) (/usr/local/texlive/2024/texmf-dist/tex/latex/siunitx/siunitx.sty
 Package: siunitx 2024-12-06 v3.4.0 A comprehensive (SI) units package
-\l__siunitx_number_uncert_offset_int=\count332
-\l__siunitx_number_exponent_fixed_int=\count333
-\l__siunitx_number_min_decimal_int=\count334
-\l__siunitx_number_min_integer_int=\count335
-\l__siunitx_number_round_precision_int=\count336
-\l__siunitx_number_lower_threshold_int=\count337
-\l__siunitx_number_upper_threshold_int=\count338
-\l__siunitx_number_group_first_int=\count339
-\l__siunitx_number_group_size_int=\count340
-\l__siunitx_number_group_minimum_int=\count341
+\l__siunitx_number_uncert_offset_int=\count331
+\l__siunitx_number_exponent_fixed_int=\count332
+\l__siunitx_number_min_decimal_int=\count333
+\l__siunitx_number_min_integer_int=\count334
+\l__siunitx_number_round_precision_int=\count335
+\l__siunitx_number_lower_threshold_int=\count336
+\l__siunitx_number_upper_threshold_int=\count337
+\l__siunitx_number_group_first_int=\count338
+\l__siunitx_number_group_size_int=\count339
+\l__siunitx_number_group_minimum_int=\count340
 \l__siunitx_angle_tmp_dim=\dimen269
-\l__siunitx_angle_marker_box=\box116
-\l__siunitx_angle_unit_box=\box117
-\l__siunitx_compound_count_int=\count342
+\l__siunitx_angle_marker_box=\box115
+\l__siunitx_angle_unit_box=\box116
+\l__siunitx_compound_count_int=\count341
  (/usr/local/texlive/2024/texmf-dist/tex/latex/translations/translations.sty
 Package: translations 2022/02/05 v1.12 internationalization of LaTeX2e packages (CN)
 )
-\l__siunitx_table_tmp_box=\box118
+\l__siunitx_table_tmp_box=\box117
 \l__siunitx_table_tmp_dim=\dimen270
 \l__siunitx_table_column_width_dim=\dimen271
-\l__siunitx_table_integer_box=\box119
-\l__siunitx_table_decimal_box=\box120
-\l__siunitx_table_uncert_box=\box121
-\l__siunitx_table_before_box=\box122
-\l__siunitx_table_after_box=\box123
+\l__siunitx_table_integer_box=\box118
+\l__siunitx_table_decimal_box=\box119
+\l__siunitx_table_uncert_box=\box120
+\l__siunitx_table_before_box=\box121
+\l__siunitx_table_after_box=\box122
 \l__siunitx_table_before_dim=\dimen272
 \l__siunitx_table_carry_dim=\dimen273
-\l__siunitx_unit_tmp_int=\count343
-\l__siunitx_unit_position_int=\count344
-\l__siunitx_unit_total_int=\count345
+\l__siunitx_unit_tmp_int=\count342
+\l__siunitx_unit_position_int=\count343
+\l__siunitx_unit_total_int=\count344
  (/usr/local/texlive/2024/texmf-dist/tex/latex/tools/array.sty
 Package: array 2024/10/17 v2.6g Tabular extension package (FMi)
 \col@sep=\dimen274
-\ar@mcellbox=\box124
+\ar@mcellbox=\box123
 \extrarowheight=\dimen275
 \NC@list=\toks40
 \extratabsurround=\skip76
 \backup@length=\skip77
-\ar@cellbox=\box125
+\ar@cellbox=\box124
 )) (/usr/local/texlive/2024/texmf-dist/tex/latex/epstopdf-pkg/epstopdf.sty
 Package: epstopdf 2020-01-24 v2.11 Conversion with epstopdf on the fly (HO)
  (/usr/local/texlive/2024/texmf-dist/tex/latex/grfext/grfext.sty
@@ -690,10 +682,9 @@ Package grfext Info: Graphics extension search list:
  (/usr/local/texlive/2024/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 )))
-Package hyperref Info: Option `colorlinks' set `true' on input line 221.
-Package hyperref Info: Option `colorlinks' set `true' on input line 228.
-
-(/usr/local/texlive/2024/texmf-dist/tex/latex/cleveref/cleveref.sty
+Package hyperref Info: Option `colorlinks' set `true' on input line 191.
+Package hyperref Info: Option `colorlinks' set `true' on input line 198.
+ (/usr/local/texlive/2024/texmf-dist/tex/latex/cleveref/cleveref.sty
 Package: cleveref 2018/03/27 v0.21.4 Intelligent cross-referencing
 Package cleveref Info: `hyperref' support loaded on input line 2370.
 LaTeX Info: Redefining \cref on input line 2370.
@@ -714,10 +705,11 @@ Package cleveref Info: include cross-reference names in hyperlinks on input line
 ) (/usr/local/texlive/2024/texmf-dist/tex/latex/thmtools/thmtools.sty
 Package: thmtools 2023/05/04 v0.76
 \thmt@toks=\toks41
-\c@thmt@dummyctr=\count346
+\c@thmt@dummyctr=\count345
  (/usr/local/texlive/2024/texmf-dist/tex/latex/thmtools/thm-patch.sty
 Package: thm-patch 2023/05/04 v0.76
- (/usr/local/texlive/2024/texmf-dist/tex/latex/thmtools/parseargs.sty
+
+(/usr/local/texlive/2024/texmf-dist/tex/latex/thmtools/parseargs.sty
 Package: parseargs 2023/05/04 v0.76
 \@parsespec=\toks42
 )) (/usr/local/texlive/2024/texmf-dist/tex/latex/thmtools/thm-kv.sty
@@ -737,7 +729,15 @@ Package: thm-amsthm 2023/05/04 v0.76
 \thmt@style@headstyle=\toks43
 )) (/usr/local/texlive/2024/texmf-dist/tex/latex/mdframed/mdframed.sty
 Package: mdframed 2013/07/01 1.9b: mdframed
- (/usr/local/texlive/2024/texmf-dist/tex/latex/zref/zref-abspage.sty
+ (/usr/local/texlive/2024/texmf-dist/tex/latex/l3packages/xparse/xparse.sty (/usr/local/texlive/2024/texmf-dist/tex/latex/l3kernel/expl3.sty
+Package: expl3 2024-12-09 L3 programming layer (loader) 
+ (/usr/local/texlive/2024/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
+File: l3backend-pdftex.def 2024-05-08 L3 backend support: PDF output (pdfTeX)
+\l__color_backend_stack_int=\count346
+\l__pdf_internal_box=\box125
+))
+Package: xparse 2024-08-16 L3 Experimental document command parser
+) (/usr/local/texlive/2024/texmf-dist/tex/latex/zref/zref-abspage.sty
 Package: zref-abspage 2023-09-14 v2.35 Module abspage for zref (HO)
  (/usr/local/texlive/2024/texmf-dist/tex/latex/zref/zref-base.sty
 Package: zref-base 2023-09-14 v2.35 Module base for zref (HO)
@@ -1026,12 +1026,12 @@ Package zref Info: New property: mdf@pagevalue on input line 895.
 Package thmtools Info: Key `mdframed' (with value `style=mdbluebox')
 (thmtools)             is not a known style key.
 (thmtools)             Will pass this to every \declaretheorem
-(thmtools)             that uses `style=thmbluebox' on input line 283.
+(thmtools)             that uses `style=thmbluebox' on input line 253.
 Package thmtools Info: Key `mdframed' (with value `style=mdredbox')
 (thmtools)             is not a known style key.
 (thmtools)             Will pass this to every \declaretheorem
-(thmtools)             that uses `style=thmredbox' on input line 303.
-Package thmtools Info: Automatically pulling in `thmdef-mdframed' on input line 307.
+(thmtools)             that uses `style=thmredbox' on input line 273.
+Package thmtools Info: Automatically pulling in `thmdef-mdframed' on input line 277.
  (/usr/local/texlive/2024/texmf-dist/tex/latex/thmtools/thmdef-mdframed.sty
 Package: thmdef-mdframed 2023/05/04 v0.76
 )
@@ -1039,25 +1039,25 @@ Package: thmdef-mdframed 2023/05/04 v0.76
 Package thmtools Info: Key `mdframed' (with value `style=mdgreenbox')
 (thmtools)             is not a known style key.
 (thmtools)             Will pass this to every \declaretheorem
-(thmtools)             that uses `style=thmgreenbox' on input line 330.
+(thmtools)             that uses `style=thmgreenbox' on input line 300.
 Package thmtools Info: Key `mdframed' (with value `style=mdgreenboxsq')
 (thmtools)             is not a known style key.
 (thmtools)             Will pass this to every \declaretheorem
-(thmtools)             that uses `style=thmgreenboxsq' on input line 350.
+(thmtools)             that uses `style=thmgreenboxsq' on input line 320.
 Package thmtools Info: Key `mdframed' (with value `style=mdgreenboxsq')
 (thmtools)             is not a known style key.
 (thmtools)             Will pass this to every \declaretheorem
-(thmtools)             that uses `style=thmgreenboxsq*' on input line 358.
+(thmtools)             that uses `style=thmgreenboxsq*' on input line 328.
 Package thmtools Info: Key `mdframed' (with value `style=mdblackbox')
 (thmtools)             is not a known style key.
 (thmtools)             Will pass this to every \declaretheorem
-(thmtools)             that uses `style=thmblackbox' on input line 376.
+(thmtools)             that uses `style=thmblackbox' on input line 346.
 )
 LaTeX Font Info:    Trying to load font information for T1+lmr on input line 4.
  (/usr/local/texlive/2024/texmf-dist/tex/latex/lm/t1lmr.fd
 File: t1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
-) (./nstgro.aux)
-\openout1 = `nstgro.aux'.
+) (./hw05.aux)
+\openout1 = `hw05.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 4.
 LaTeX Font Info:    ... okay on input line 4.
@@ -1092,9 +1092,9 @@ LaTeX Font Info:    ... okay on input line 4.
 \everyMPtoPDFconversion=\toks57
 )
 Package hyperref Info: Link coloring ON on input line 4.
- (./nstgro.out) (./nstgro.out)
+ (./hw05.out) (./hw05.out)
 \@outlinefile=\write5
-\openout5 = `nstgro.out'.
+\openout5 = `hw05.out'.
 
 
 *geometry* driver: auto-detecting
@@ -1151,227 +1151,69 @@ LaTeX Font Info:    Trying to load font information for T1+lmss on input line 5.
  (/usr/local/texlive/2024/texmf-dist/tex/latex/lm/t1lmss.fd
 File: t1lmss.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 15.
+Package hyperref Info: bookmark level for unknown problem defaults to 0 on input line 8.
+LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 9.
  (/usr/local/texlive/2024/texmf-dist/tex/latex/lm/ot1lmr.fd
 File: ot1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-LaTeX Font Info:    Trying to load font information for OML+lmm on input line 15.
+LaTeX Font Info:    Trying to load font information for OML+lmm on input line 9.
  (/usr/local/texlive/2024/texmf-dist/tex/latex/lm/omllmm.fd
 File: omllmm.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 15.
+LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 9.
  (/usr/local/texlive/2024/texmf-dist/tex/latex/lm/omslmsy.fd
 File: omslmsy.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 15.
+LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 9.
  (/usr/local/texlive/2024/texmf-dist/tex/latex/lm/omxlmex.fd
 File: omxlmex.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <12> on input line 15.
+(Font)              <12> on input line 9.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8> on input line 15.
+(Font)              <8> on input line 9.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 15.
-LaTeX Font Info:    Trying to load font information for U+esvect on input line 15.
+(Font)              <6> on input line 9.
+LaTeX Font Info:    Trying to load font information for U+esvect on input line 9.
  (/usr/local/texlive/2024/texmf-dist/tex/latex/esvect/uesvect.fd
 File: uesvect.fd 
 )
-LaTeX Font Info:    Trying to load font information for U+msa on input line 15.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 9.
  (/usr/local/texlive/2024/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 15.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 9.
  (/usr/local/texlive/2024/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Trying to load font information for U+stmry on input line 15.
+LaTeX Font Info:    Trying to load font information for U+stmry on input line 9.
  (/usr/local/texlive/2024/texmf-dist/tex/latex/stmaryrd/Ustmry.fd)
-LaTeX Font Info:    Trying to load font information for U+rsfs on input line 15.
+LaTeX Font Info:    Trying to load font information for U+rsfs on input line 9.
  (/usr/local/texlive/2024/texmf-dist/tex/latex/jknapltx/ursfs.fd
 File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
 )
 
 LaTeX Font Warning: Font shape `U/stmry/b/n' undefined
-(Font)              using `U/stmry/m/n' instead on input line 15.
+(Font)              using `U/stmry/m/n' instead on input line 9.
 
 
 
 [1
 
-{/usr/local/texlive/2024/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}]
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <14.4> on input line 30.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 30.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 30.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 30.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\mathop' on input line 30.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\mathcode' on input line 30.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\mathcode' on input line 30.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\mathcode' on input line 30.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\mathchardef' on input line 30.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\std@minus' on input line 30.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\mathcode' on input line 30.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\mathcode' on input line 30.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\mathcode' on input line 30.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\mathcode' on input line 30.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\leavevmode@ifvmode' on input line 30.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                \kern 2.6108pt
-(hyperref)                removed on input line 30.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\mathgroup' on input line 30.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\symoperators' on input line 30.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\@ifnextchar' on input line 30.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 30.
-
-LaTeX Font Info:    Trying to load font information for U+euf on input line 31.
-(/usr/local/texlive/2024/texmf-dist/tex/latex/amsfonts/ueuf.fd
-File: ueuf.fd 2013/01/14 v3.01 Euler Fraktur
-)
-
-[2{/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc}]
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 55.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\mathop' on input line 55.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\mathcode' on input line 55.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\mathcode' on input line 55.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\mathcode' on input line 55.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\mathchardef' on input line 55.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\std@minus' on input line 55.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\mathcode' on input line 55.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\mathcode' on input line 55.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\mathcode' on input line 55.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\mathcode' on input line 55.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\leavevmode@ifvmode' on input line 55.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                \kern 2.6108pt
-(hyperref)                removed on input line 55.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\mathgroup' on input line 55.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\symoperators' on input line 55.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\@ifnextchar' on input line 55.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 55.
-
-
-Overfull \hbox (12.16084pt too wide) detected at line 66
+{/usr/local/texlive/2024/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc}]
+Overfull \hbox (30.72398pt too wide) detected at line 57
 []
  []
 
 
+
+[2]
 
 [3]
 
 [4]
-Overfull \hbox (4.74626pt too wide) detected at line 92
-[]
- []
 
-
-
-[5]
-
-[6]
-
-[7] (./nstgro.aux)
+[5] (./hw05.aux)
  ***********
 LaTeX2e <2024-11-01> patch level 1
 L3 programming layer <2024-12-09>
@@ -1380,22 +1222,22 @@ L3 programming layer <2024-12-09>
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
-Package rerunfilecheck Info: File `nstgro.out' has not changed.
-(rerunfilecheck)             Checksum: 5AE90A3A3043F459ED13ADFE397C40AC;1300.
+Package rerunfilecheck Info: File `hw05.out' has not changed.
+(rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 35915 strings out of 473254
- 719572 string characters out of 5717961
- 1101409 words of memory out of 5000000
- 58421 multiletter control sequences out of 15000+600000
- 632519 words of font info for 119 fonts, out of 8000000 for 9000
+ 35824 strings out of 473254
+ 718526 string characters out of 5717961
+ 1090020 words of memory out of 5000000
+ 58341 multiletter control sequences out of 15000+600000
+ 608113 words of font info for 80 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 129i,20n,134p,1314b,1052s stack positions out of 10000i,1000n,20000p,200000b,200000s
-</usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/euler/eufm10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/lm/lmex10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/lm/lmmi12.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/lm/lmmi6.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/lm/lmmi8.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/lm/lmr12.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/lm/lmr6.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/lm/lmr8.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/lm/lmssbx10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/lm/lmsy10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/lm/lmsy6.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/lm/lmsy8.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on nstgro.pdf (7 pages, 187183 bytes).
+ 129i,16n,134p,796b,1307s stack positions out of 10000i,1000n,20000p,200000b,200000s
+</usr/local/texlive/2024/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/lm/lmex10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/lm/lmmi12.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/lm/lmmi6.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/lm/lmmi8.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/lm/lmr12.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/lm/lmr6.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/lm/lmr8.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/lm/lmri12.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/lm/lmssbx10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/lm/lmsy10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/lm/lmsy6.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/lm/lmsy8.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on hw05.pdf (5 pages, 193290 bytes).
 PDF statistics:
- 157 PDF objects out of 1000 (max. 8388607)
- 117 compressed objects within 2 object streams
- 16 named destinations out of 1000 (max. 500000)
- 77 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 127 PDF objects out of 1000 (max. 8388607)
+ 89 compressed objects within 1 object stream
+ 17 named destinations out of 1000 (max. 500000)
+ 13 words of extra memory for PDF output out of 10000 (max. 10000000)
 

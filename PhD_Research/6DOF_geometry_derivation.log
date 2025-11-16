@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.12.29)  2 NOV 2025 19:01
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.12.29)  14 NOV 2025 14:23
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -613,7 +613,7 @@ File: l3backend-pdftex.def 2024-05-08 L3 backend support: PDF output (pdfTeX)
 ))
 Package: xparse 2024-08-16 L3 Experimental document command parser
 )
-LaTeX Info: Redefining \atan2 on input line 130.
+LaTeX Info: Redefining \atan2 on input line 131.
  (/usr/local/texlive/2024/texmf-dist/tex/latex/scalerel/scalerel.sty
 Package: scalerel 2016/12/29 v1.8 Routines for constrained scaling and stretching of objects, relative to a reference object or in absolute terms
 \thesrwidth=\skip65
@@ -697,8 +697,8 @@ Package grfext Info: Graphics extension search list:
  (/usr/local/texlive/2024/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 )))
-Package hyperref Info: Option `colorlinks' set `true' on input line 221.
-Package hyperref Info: Option `colorlinks' set `true' on input line 228.
+Package hyperref Info: Option `colorlinks' set `true' on input line 222.
+Package hyperref Info: Option `colorlinks' set `true' on input line 229.
 
 (/usr/local/texlive/2024/texmf-dist/tex/latex/cleveref/cleveref.sty
 Package: cleveref 2018/03/27 v0.21.4 Intelligent cross-referencing
@@ -1033,12 +1033,12 @@ Package zref Info: New property: mdf@pagevalue on input line 895.
 Package thmtools Info: Key `mdframed' (with value `style=mdbluebox')
 (thmtools)             is not a known style key.
 (thmtools)             Will pass this to every \declaretheorem
-(thmtools)             that uses `style=thmbluebox' on input line 283.
+(thmtools)             that uses `style=thmbluebox' on input line 284.
 Package thmtools Info: Key `mdframed' (with value `style=mdredbox')
 (thmtools)             is not a known style key.
 (thmtools)             Will pass this to every \declaretheorem
-(thmtools)             that uses `style=thmredbox' on input line 303.
-Package thmtools Info: Automatically pulling in `thmdef-mdframed' on input line 307.
+(thmtools)             that uses `style=thmredbox' on input line 304.
+Package thmtools Info: Automatically pulling in `thmdef-mdframed' on input line 308.
  (/usr/local/texlive/2024/texmf-dist/tex/latex/thmtools/thmdef-mdframed.sty
 Package: thmdef-mdframed 2023/05/04 v0.76
 )
@@ -1046,19 +1046,19 @@ Package: thmdef-mdframed 2023/05/04 v0.76
 Package thmtools Info: Key `mdframed' (with value `style=mdgreenbox')
 (thmtools)             is not a known style key.
 (thmtools)             Will pass this to every \declaretheorem
-(thmtools)             that uses `style=thmgreenbox' on input line 330.
+(thmtools)             that uses `style=thmgreenbox' on input line 331.
 Package thmtools Info: Key `mdframed' (with value `style=mdgreenboxsq')
 (thmtools)             is not a known style key.
 (thmtools)             Will pass this to every \declaretheorem
-(thmtools)             that uses `style=thmgreenboxsq' on input line 350.
+(thmtools)             that uses `style=thmgreenboxsq' on input line 351.
 Package thmtools Info: Key `mdframed' (with value `style=mdgreenboxsq')
 (thmtools)             is not a known style key.
 (thmtools)             Will pass this to every \declaretheorem
-(thmtools)             that uses `style=thmgreenboxsq*' on input line 358.
+(thmtools)             that uses `style=thmgreenboxsq*' on input line 359.
 Package thmtools Info: Key `mdframed' (with value `style=mdblackbox')
 (thmtools)             is not a known style key.
 (thmtools)             Will pass this to every \declaretheorem
-(thmtools)             that uses `style=thmblackbox' on input line 376.
+(thmtools)             that uses `style=thmblackbox' on input line 377.
 )
 LaTeX Font Info:    Trying to load font information for T1+lmr on input line 4.
  (/usr/local/texlive/2024/texmf-dist/tex/latex/lm/t1lmr.fd
@@ -1648,10 +1648,10 @@ Package rerunfilecheck Info: File `6DOF_geometry_derivation.out' has not changed
 (rerunfilecheck)             Checksum: 47F1549CBD0897AEC79C297B71DBF4FE;2128.
  ) 
 Here is how much of TeX's memory you used:
- 36074 strings out of 473254
- 723703 string characters out of 5717961
- 1093847 words of memory out of 5000000
- 58583 multiletter control sequences out of 15000+600000
+ 36075 strings out of 473254
+ 723710 string characters out of 5717961
+ 1093856 words of memory out of 5000000
+ 58584 multiletter control sequences out of 15000+600000
  624199 words of font info for 116 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  129i,19n,134p,1110b,1048s stack positions out of 10000i,1000n,20000p,200000b,200000s

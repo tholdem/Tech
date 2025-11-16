@@ -155,6 +155,51 @@ snippet ad "adjoint representation" A
 endsnippet
 
 context "math()"
+snippet qAd "Adjoint action" A
+\widetilde{\Ad}_{ $1}$0
+endsnippet
+
+context "math()"
+snippet qad "adjoint representation" A
+\widetilde{\ad}_{ $1}$0
+endsnippet
+
+context "math()"
+snippet eAd "Adjoint action of SE(3)" A
+\eAd 
+endsnippet
+
+context "math()"
+snippet ead "adjoint representation of SE(3)" A
+\ead 
+endsnippet
+
+context "math()"
+snippet oqAd "Adjoint action of SO(3)q" A
+\oqAd 
+endsnippet
+
+context "math()"
+snippet oqad "adjoint representation of SO(3)q" A
+\oqad 
+endsnippet
+
+context "math()"
+snippet eqAd "Adjoint action of SE(3)q" A
+\eqAd 
+endsnippet
+
+context "math()"
+snippet eqad "adjoint representation of SE(3)q" A
+\eqad 
+endsnippet
+
+context "math()"
+snippet tqad "adjoint representation of TSE(3)q" A
+\tqad 
+endsnippet
+
+context "math()"
 snippet inte "interior" A
 \intr 
 endsnippet
@@ -164,9 +209,15 @@ snippet rank "rank" A
 \rank 
 endsnippet
 
-priority 200
+priority 10
 context "math()"
 snippet exp "exponential map" A
+\exp
+endsnippet
+
+priority 100
+context "math()"
+snippet \exp "exponential map" 
 \exp\left( $1 \right)
 endsnippet
 
@@ -266,6 +317,10 @@ endsnippet
 context "math()"
 snippet defe "defeq" iA
 \defeq $0
+endsnippet
+
+snippet defem "defemph" iA
+\defemph{ $1} $0
 endsnippet
 
 snippet label "label" iA
@@ -411,6 +466,8 @@ context "math()"
 snippet tg "derivative at p of f" iA
 \tg[ $1]{ $2}
 endsnippet
+
+
 
 # vim:ft=snippets
 

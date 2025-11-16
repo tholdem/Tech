@@ -1,5 +1,5 @@
 # Fdb version 4
-["pdflatex"] 1762128094.98102 "6DOF_geometry_derivation.tex" "6DOF_geometry_derivation.pdf" "6DOF_geometry_derivation" 1762128097.33134 0
+["pdflatex"] 1763148208.80988 "6DOF_geometry_derivation.tex" "6DOF_geometry_derivation.pdf" "6DOF_geometry_derivation" 1763148210.20633 0
   "/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc" 1254269338 2375 baa924870cfb487815765f9094cf3728 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc" 1202520719 3486 c7eadf5dcc57b3b2d11736679f6636ba ""
   "/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc" 1202520719 2405 5dcf2c1b967ee25cc46c58cd52244aed ""
@@ -285,10 +285,10 @@
   "/usr/local/texlive/2024/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1735524607 5485709 8129e419010b46b234085a26866cdb87 ""
   "/usr/local/texlive/2024/texmf-var/web2c/pdftex/pdflatex.fmt" 1735524684 3347788 f2f2cdd73f9f0023bca18d6476e3e2e9 ""
   "/usr/local/texlive/2024/texmf.cnf" 1735524602.09219 455 5b996dcaa0eb4ef14a83b026bc0a008c ""
-  "6DOF_geometry_derivation.aux" 1762128097.06896 1470 6ca6881c409d5a5427eea15deedb1d59 "pdflatex"
-  "6DOF_geometry_derivation.out" 1762128097.07196 2128 47f1549cbd0897aec79c297b71dbf4fe "pdflatex"
-  "6DOF_geometry_derivation.tex" 1762128093.54218 9748 2112df76621bbc8423e0d9201e229c01 ""
-  "preamble.tex" 1762117338.45188 12144 c0cd00bf87e1577b45f2174c4f08bc27 ""
+  "6DOF_geometry_derivation.aux" 1763148210.06235 1470 6ca6881c409d5a5427eea15deedb1d59 "pdflatex"
+  "6DOF_geometry_derivation.out" 1763148210.06335 2128 47f1549cbd0897aec79c297b71dbf4fe "pdflatex"
+  "6DOF_geometry_derivation.tex" 1762201556.19221 9748 2112df76621bbc8423e0d9201e229c01 ""
+  "preamble.tex" 1762718156.66682 12182 9268f87dd52f5b9e8a229cef121d31d0 ""
   (generated)
   "6DOF_geometry_derivation.aux"
   "6DOF_geometry_derivation.log"

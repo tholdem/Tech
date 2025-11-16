@@ -69,6 +69,7 @@
 \newcommand{\ha}{{^\wedge}}
 \newcommand{\ve}{{^\vee}}
 \newcommand{\hada}{{\odot}}
+\newcommand{\defemph}[1]{{\emph{#1}}}
 % m - A standard mandatory argument
 % o - An optional argument which if not given returns a special marker
 % O{<default>} - An optional argument which returns <default> if not given
@@ -87,7 +88,15 @@
 \NewDocumentCommand\ldqmul{O{1}}{\ltimes_{#1}}
 \NewDocumentCommand\rdqmul{O{1}}{\rtimes_{#1}}
 \NewDocumentCommand\dqx{O{1}}{\boxtimes_{#1}}
-\newcommand{\qliealg}{\mathfrak{h_u}}
+\newcommand{\qliealg}{\mathfrak{so}(3)_q}
+
+\newcommand{\eAd}{\bm{\Ad}}
+\newcommand{\oqAd}{\widetilde{\Ad}}
+\newcommand{\eqAd}{\widetilde{\bm{\Ad}}}
+\newcommand{\ead}{\bm{\ad}}
+\newcommand{\oqad}{\widetilde{\ad}}
+\newcommand{\eqad}{\widetilde{\bm{\ad}}}
+\newcommand{\tqad}{\widetilde{\mathcal{\ad}}}
 
 
 \newcommand\allbold[1]{{\boldmath\textbf{#1}}}
